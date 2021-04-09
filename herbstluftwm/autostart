@@ -42,7 +42,7 @@ hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/scripts/volumeUp.sh
 hc keybind XF86AudioLowerVolume spawn ~/.config/herbstluftwm/scripts/volumeDown.sh
 hc keybind XF86AudioNext spawn playerctl next
 hc keybind XF86AudioPrev spawn playerctl previous
-hc keybind XF86AudioPlay spawn playerctl play-pause && notify-send "Play/Pause" "Played/Paused Music" -h string:x-canonical-private-synchronous:playpause
+hc keybind XF86AudioPlay spawn playerctl play-pause
 
 # basic movement in tiling and floating mode for focusing
 hc keybind $Mod-Left  focus left
@@ -138,17 +138,17 @@ hc keybind $Mod-i jumpto urgent
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#ff00ff'
+hc set frame_border_active_color '#00ff00'
 hc set frame_border_normal_color '#ffffff'
 hc set frame_active_opacity 50
-hc set frame_normal_opacity 80
+hc set frame_normal_opacity 90
 hc set frame_border_width 0
 hc set always_show_frame off
 hc set frame_bg_transparent off
 hc set frame_transparent_width 1
 hc set frame_gap 0
 
-hc attr theme.active.color '#ff00ff'
+hc attr theme.active.color '#00ff00'
 hc attr theme.normal.color '#ffffff'
 hc attr theme.urgent.color red
 hc attr theme.inner_width 0
