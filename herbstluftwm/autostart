@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# this is a simple config for herbstluftwm
+#░█░█░█░░░█░█░█▄█░░░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░░░░░█░█░▀█░░█▀▀░▄▀▄
+#░█▀█░█░░░█▄█░█░█░▄▄▄░█░░░█░█░█░█░█▀▀░░█░░█░█░▄▄▄░█▀▄░░█░░█▀▀░█/█
+#░▀░▀░▀▀▀░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
 # apply correct resolution and orientation
 ~/.config/herbstluftwm/scripts/xrandrapply.sh &
@@ -13,16 +15,16 @@ hc emit_hook reload
 
 xsetroot -solid '#00ff00'
 
-#set default layout
+# set default layout
 herbstclient set default_frame_layout grid
 
 # remove all existing keybindings
 hc keyunbind --all
 
 # keybindings
-# if you have a super key you will be much happier with Mod set to Mod4
-#Mod=Mod1    # Use alt as the main modifier
-Mod=Mod4   # Use the super key as the main modifier
+
+# Use the super key as the main modifier
+Mod=Mod4
 
 hc keybind $Mod-Shift-q quit
 hc keybind $Mod-Shift-r reload
@@ -76,8 +78,10 @@ hc keybind $Mod-Control-Right   resize right +$resizestep
 tag_names=( {1..5} )
 tag_keys=( {1..5} 0 )
 
+# set default frame layout
 hc set default_frame_layout grid
 
+# create workspaces
 hc rename default "${tag_names[0]}" || true
 for i in "${!tag_names[@]}" ; do
     hc add "${tag_names[$i]}"
@@ -88,8 +92,7 @@ for i in "${!tag_names[@]}" ; do
     fi
 done
 
-#set default layout for tags
-
+# set default layout for tags
 for i in 0 1 2 3 4 ; do
   if [ "$i" == 1 ]; then
     hc use_index 1
@@ -100,7 +103,7 @@ for i in 0 1 2 3 4 ; do
   fi
 done
 
-#switch to main monitor
+# switch to main monitor
 hc use_index 1
 hc focus_monitor 1
 
@@ -114,9 +117,6 @@ hc keybind $Mod-s floating toggle
 hc keybind $Mod-f fullscreen toggle
 hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
 hc keybind $Mod-p pseudotile toggle
-# The following cycles through the available layouts within a frame, but skips
-# layouts, if the layout change wouldn't affect the actual window positions.
-# I.e. if there are two windows within a frame, the grid layout is skipped.
 hc keybind $Mod-space                                                           \
             or , and . compare tags.focus.curframe_wcount = 2                   \
                      . cycle_layout +1 vertical horizontal max vertical grid    \
@@ -140,8 +140,6 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#ff00ff'
 hc set frame_border_normal_color '#ffffff'
-#hc set frame_bg_normal_color '#000000ff'
-#hc set frame_bg_active_color '#000000ff'
 hc set frame_active_opacity 50
 hc set frame_normal_opacity 80
 hc set frame_border_width 0
@@ -161,7 +159,6 @@ hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color '#ffffff' 
 hc attr theme.active.inner_color '#ff00ff'
 hc attr theme.active.outer_color '#ff00ff'
-#hc attr theme.background_color '#000000'
 
 hc set window_gap 6 
 hc set frame_padding on
@@ -171,25 +168,24 @@ hc set mouse_recenter_gap 0
 
 # rules
 hc unrule -F
-#hc rule class=XTerm tag=3 # move all xterms to tag 3
-hc rule focus=on # normally focus new clients
+
+# focus new clients
+hc rule focus=on 
 hc rule floatplacement=smart
-#hc rule focus=off # normally do not focus new clients
-# give focus to most common terminals
-#hc rule class~'(.*[Rr]xvt.*|.*[Tt]erm|Konsole)' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
 
+# tree style
 hc set tree_style '╾│ ├└╼─┐'
 
 # unlock, just to be sure
 hc unlock
 
-#detect monitors
+# detect monitors
 hc detect_monitors
 
-#find the panel
+# apply the panel
 panel=~/.config/herbstluftwm/scripts/panel.sh
 [ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
 for monitor in $(hc list_monitors | cut -d: -f1) ; do
@@ -197,15 +193,15 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
     "$panel" "$monitor" &
 done
 
-#start compton (req compton)
+# start compton (req compton)
 compton &
 
-#startx polybars (req polybar)
+# start polybars (req polybar)
 polybar main-hlwm &
 polybar sec-hlwm &
 
-#start dunst (req dunst)
+# start dunst (req dunst)
 dunst &
 
-#restore wallpapers
+# restore wallpapers
 nitrogen --restore &
