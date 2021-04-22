@@ -31,7 +31,7 @@ hc keybind $Mod-Shift-r reload
 hc keybind $Mod-Shift-c close
 
 #custom kb (req betterlockscreen, nemo, kitty, dmenu, flameshot)
-hc keybind $Mod-Return spawn "${TERMINAL:-kitty}" # use your $TERMINAL with xterm as fallback
+hc keybind $Mod-Return spawn kitty
 hc keybind $Mod-a spawn dmenu_run
 hc keybind $Mod-l spawn betterlockscreen -l
 hc keybind $Mod-q spawn nemo
@@ -95,7 +95,7 @@ done
 # set default layout for tags
 for i in 0 1 2 3 4 ; do
   if [ "$i" == 1 ]; then
-    hc use_index 1
+    hc use_index "$i"
     hc set_layout vertical
   else
     hc use_index "$i"
@@ -140,8 +140,8 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#00ff00'
 hc set frame_border_normal_color '#ffffff'
-hc set frame_active_opacity 50
-hc set frame_normal_opacity 90
+hc set frame_active_opacity 30
+hc set frame_normal_opacity 100
 hc set frame_border_width 0
 hc set always_show_frame off
 hc set frame_bg_transparent off
@@ -157,8 +157,8 @@ hc attr theme.border_width 2.5
 hc attr theme.floating.border_width 2
 hc attr theme.floating.outer_width 1
 hc attr theme.floating.outer_color '#ffffff' 
-hc attr theme.active.inner_color '#ff00ff'
-hc attr theme.active.outer_color '#ff00ff'
+hc attr theme.active.inner_color '#00ff00'
+hc attr theme.active.outer_color '#00ff00'
 
 hc set window_gap 6 
 hc set frame_padding on
