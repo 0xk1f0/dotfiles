@@ -140,12 +140,12 @@ hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#00ff00'
 hc set frame_border_normal_color '#ffffff'
-hc set frame_active_opacity 30
+hc set frame_active_opacity 50
 hc set frame_normal_opacity 100
 hc set frame_border_width 0
 hc set always_show_frame off
 hc set frame_bg_transparent off
-hc set frame_transparent_width 1
+#hc set frame_transparent_width 1
 hc set frame_gap 0
 
 hc attr theme.active.color '#00ff00'

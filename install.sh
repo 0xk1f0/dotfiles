@@ -24,6 +24,8 @@ echo ""
 sleep 1
 echo "4. Follow the installer prompts CAREFULLY as you will be asked for a backup!"
 sleep 1
+echo "5. This script is only made to work on Arch based Distributions of GNU/Linux!"
+sleep 1
 echo ""
 echo "#########################################################################################"
 echo "### I take ABSOLUTELY NO responsibility for any deleted configs or destroyed systems! ###"
