@@ -13,15 +13,8 @@ hc() {
 
 hc emit_hook reload
 
-xsetroot -solid '#00ff00'
-
-# set default layout
-herbstclient set default_frame_layout grid
-
 # remove all existing keybindings
 hc keyunbind --all
-
-# keybindings
 
 # Use the super key as the main modifier
 Mod=Mod4
@@ -135,35 +128,42 @@ hc keybind $Mod-Shift-Tab   cycle_all -1
 hc keybind $Mod-c cycle
 hc keybind $Mod-i jumpto urgent
 
+#set multi monitor focus
+hc set focus_crosses_monitor_boundaries true
+
+#focus follows mouse
+hc set focus_follows_mouse true
+
+#dont swap monitors to get tag if already on monitor
+hc set swap_monitors_to_get_tag false
+
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
 hc set frame_border_active_color '#00ff00'
 hc set frame_border_normal_color '#ffffff'
-#hc set frame_active_opacity 100
-#hc set frame_normal_opacity 100
-hc set frame_border_width off
-hc set always_show_frame off
-hc set frame_bg_transparent off
+hc set frame_bg_transparent 0
+hc set frame_border_width 0
+hc set always_show_frame true
 hc set frame_gap 0
 
+#theme2
 hc attr theme.active.color '#00ff00'
 hc attr theme.normal.color '#ffffff'
-hc attr theme.urgent.color red
+hc attr theme.urgent.color '#ff0000'
 hc attr theme.inner_width 0
-hc attr theme.inner_color off
+hc attr theme.inner_color '#ffffff'
 hc attr theme.border_width 2.5 
 hc attr theme.floating.border_width 2
 hc attr theme.floating.outer_width 1
-hc attr theme.floating.outer_color '#ffffff' 
-hc attr theme.active.inner_color '#00ff00'
-hc attr theme.active.outer_color '#00ff00'
+hc attr theme.floating.outer_color '#ffffff'
 
+#window rules/theme
 hc set window_gap 6 
 hc set frame_padding on
 hc set smart_window_surroundings on
 hc set smart_frame_surroundings on
-hc set mouse_recenter_gap 0
+hc set mouse_recenter_gap 10
 
 # rules
 hc unrule -F
