@@ -181,7 +181,7 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 menu-3-0 = sleep
-menu-3-0-exec = suspendsystem
+menu-3-0-exec = systemctl suspend && betterlockscreen -l
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
