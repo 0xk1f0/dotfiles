@@ -49,6 +49,7 @@ rm -rf kitty/
 rm -rf pacwall/
 rm -rf polybar/
 rm -rf bash/bashrc
+rm -rf nano/
 
 echo "Done!"
 sleep 2
@@ -71,6 +72,7 @@ cp -r ~/.config/polybar .
 cp -r ~/.config/kitty .
 cp -r ~/.config/pacwall .
 cp -r ~/.bashrc bash/
+cp -r ~/.config/nano .
 
 #renaming if necessary
 mv bash/.bashrc bash/bashrc 

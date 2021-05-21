@@ -81,6 +81,7 @@ if [ $answer2 = 'y' ]; then
     mv ~/.config/kitty ~/.config/kitty.old
     mv ~/.config/pacwall ~/.config/pacwall.old
     mv ~/.bashrc ~/.bashrc.old
+    mv ~/.config/nano ~/.config/nano.old
 
     echo "Done!"
     sleep 1
@@ -101,6 +102,7 @@ elif [ $answer2 = 'Y' ]; then
     mv ~/.config/kitty ~/.config/kitty.old
     mv ~/.config/pacwall ~/.config/pacwall.old
     mv ~/.bashrc ~/.bashrc.old
+    mv ~/.config/nano ~/.config/nano.old
 
     echo "Done!"
     sleep 1
@@ -128,6 +130,7 @@ elif [ $answer2 = 'n' ]; then
     rm -rf ~/.config/kitty/
     rm -rf ~/.config/pacwall/
     rm -f ~/.bashrc
+    rm -rf ~/.config/nano/
 
     echo "Done!"
     sleep 1
@@ -155,6 +158,7 @@ elif [ $answer2 = 'N' ]; then
     rm -rf ~/.config/kitty/
     rm -rf ~/.config/pacwall/
     rm -f ~/.bashrc
+    rm -rf ~/.config/nano/
 
     echo "Done!"
     sleep 1
@@ -183,6 +187,7 @@ cp -r kitty/ ~/.config/
 cp -r pacwall/ ~/.config/
 cp -r bash/bashrc ~/
 mv ~/bashrc ~/.bashrc
+cp -r nano/ ~/.config/
 
 echo "Done!"
 sleep 1
@@ -222,6 +227,7 @@ if [ $answer3 = 'y' ]; then
     rm -rf ~/.config/kitty.old
     rm -rf ~/.config/pacwall.old
     rm -rf ~/.bashrc.old
+    rm -rf ~/.config/nano.old
     echo "Done!"
     sleep 1
     clear
@@ -238,6 +244,7 @@ elif [ $answer3 = 'Y' ]; then
     rm -rf ~/.config/kitty.old
     rm -rf ~/.config/pacwall.old
     rm -rf ~/.bashrc.old
+    rm -rf ~/.config/nano.old
     echo "Done!"
     sleep 1
     clear
