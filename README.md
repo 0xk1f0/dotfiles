@@ -7,5 +7,12 @@ Installation guide provided below.
 ```
 git clone https://github.com/K1llf0rce/dotfiles.git
 cd dotfiles/
-./install.sh
+
+#FOR FULL INSTALL WITH POLYBAR AND HLWM
+
+./installfull.sh
+
+#FOR MINIMAL INSTALL !!WITHOUT!! POLYBAR AND HLWM
+
+./installfull.sh
 ```

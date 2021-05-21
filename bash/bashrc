@@ -5,10 +5,6 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#exports
-export LANG=en_US.UTF-8
-export TERM="xterm-256color"
-
 #archive extraction
 ex ()
 {
@@ -27,16 +23,13 @@ ex ()
       *.7z)        7z x $1      ;;
       *.deb)       ar x $1      ;;
       *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   unzstd $1    ;;      
+      *.tar.zst)   unzstd $1    ;;
       *)           echo "'$1' cannot be extracted via ex()" ;;
     esac
   else
     echo "'$1' is not a valid file"
   fi
 }
-
-#shortcut for neovide
-alias nv="neovide"
 
 #use new rust programs for these commands (req procs, exa, bat)
 alias ps="procs"
@@ -55,19 +48,14 @@ alias startssh='eval `ssh-agent -s` && ssh-add ~/git/.keystore/github_rsa'
 #remove orphans
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
 
-#clear pacman cache
-alias cacheclean='paru -Scc'
+#clear pacman cache (req paru)
+alias cleancache='paru -Scc'
 
-#update AUR packages
+#update AUR packages (req paru)
 alias aurup='paru -a -Syu'
 
-#clear pacman cache noconfirm
-alias hardcacheclean='sudo paru -Scc --noconfirm'
-
 #typos
-alias yay="paru"
 alias pdw="pwd"
-alias sl="ls"
 
 #prompt
 PS1='┌─[\u@\h]─[\W]─[\A]\n└─> '

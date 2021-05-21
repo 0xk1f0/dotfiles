@@ -6,6 +6,8 @@
 clear
 
 #WARNINGS
+echo "Full Install Script"
+echo ""
 echo "This script will install k1f0's dotfiles to your .config/ directory"
 echo ""
 echo "#############"
@@ -23,6 +25,7 @@ echo "3. This script deletes, moves and copies files in the process!"
 echo ""
 sleep 1
 echo "4. Follow the installer prompts CAREFULLY as you will be asked for a backup!"
+echo ""
 sleep 1
 echo "5. This script is only made to work on Arch based Distributions of GNU/Linux!"
 sleep 1
