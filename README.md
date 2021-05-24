@@ -14,5 +14,5 @@ cd dotfiles/
 
 #FOR MINIMAL INSTALL !!WITHOUT!! POLYBAR AND HLWM
 
-./installfull.sh
+./installmin.sh
 ```
