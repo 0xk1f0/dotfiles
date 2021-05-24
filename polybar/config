@@ -16,8 +16,8 @@ fixed-center = true
 bottom = false
 separator = 
 
-background = #0f0f1a
-foreground = #ffffff
+background = ${colors.colorBackground}
+foreground = ${colors.colorForeground}
 
 override-redirect = true
 
@@ -52,8 +52,8 @@ fixed-center = true
 bottom = false
 separator = 
 
-background = #0f0f1a
-foreground = #ffffff
+background = ${colors.colorBackground}
+foreground = ${colors.colorForeground}
 
 override-redirect = true
 
@@ -79,13 +79,21 @@ label-font = 0
 ###########################################################
 ###########################################################
 
+[colors]
+colorUnderlineNormal = #00ff00
+colorUnderlineAlt = #0000ff
+colorBackground = #0f0f1a
+colorForeground = #ffffff
+
+###########################################################
+
 [module/filesystem]
 type = internal/fs
 interval = 30
 
 mount-0 = /
 
-format-mounted-underline = #00ff00
+format-mounted-underline = ${colors.colorUnderlineNormal}
 label-mounted = %mountpoint%: %{F#ff0000}%percentage_used%%%{F-} usd
 format-unmounted-underline = #ff0000
 label-unmounted = %mountpoint% umtd
@@ -99,9 +107,9 @@ interval = 30
 
 mount-0 = /hdd1
 
-format-mounted-underline = #00ff00
+format-mounted-underline = ${colors.colorUnderlineNormal}
 label-mounted = %mountpoint%: %{F#ff0000}%percentage_used%%%{F-} usd
-format-unmounted-underline = #ff0000
+format-unmounted-underline = ${colors.colorUnderlineAlt}
 label-unmounted = %mountpoint% umtd
 
 ###########################################################
@@ -109,7 +117,7 @@ label-unmounted = %mountpoint% umtd
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-underline = #00ff00
+format-underline = ${colors.colorUnderlineNormal}
 label = cpu: %{F#ff0000}%percentage%%%{F-} utl
 
 ###########################################################
@@ -117,7 +125,7 @@ label = cpu: %{F#ff0000}%percentage%%%{F-} utl
 [module/memory]
 type = internal/memory
 interval = 2
-format-underline = #00ff00
+format-underline = ${colors.colorUnderlineNormal}
 label = memory: %{F#ff0000}%percentage_used%%%{F-} usd
 
 ###########################################################
@@ -127,10 +135,10 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-format-connected-underline = #00ff00
+format-connected-underline = ${colors.colorUnderlineNormal}
 label-connected = eth con
 
-format-disconnected-underline = #ff0000
+format-disconnected-underline = ${colors.colorUnderlineAlt}
 label-disconnected = eth disc
 
 ###########################################################
@@ -145,7 +153,7 @@ date-alt = "%d.%m.%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-underline = #00ff00
+format-underline = ${colors.colorUnderlineNormal}
 
 label = %{F#ff0000}%date%%{F-} %time%
 
@@ -157,7 +165,7 @@ type = custom/menu
 expand-right = true
 
 format-spacing = 2
-format-underline = #00ff00
+format-underline = ${colors.colorUnderlineNormal}
 
 label-open = pwr >
 label-close = pwr <
@@ -204,14 +212,14 @@ format = <label-state>
 label-monitor = %name%
 
 label-active = %name%
-label-active-underline= #00ff00
+label-active-underline= ${colors.colorUnderlineNormal}
 label-active-padding = 2
 
 label-occupied = %name%o
 label-occupied-padding = 2
 
 label-urgent = %name%
-label-urgent-underline = #ff0000
+label-urgent-underline = ${colors.colorUnderlineAlt}
 label-urgent-padding = 2
 
 label-empty = %name%e
@@ -224,6 +232,7 @@ type = internal/xwindow
 
 label = %title%
 label-maxlen = 30
+label-underline = ${colors.colorUnderlineNormal}
 
 ##########################################################
 

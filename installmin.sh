@@ -2,6 +2,25 @@
 
 #This is a script to install my dotfiles
 
+#functions
+
+timeout () {
+    echo $1
+    sleep 1
+    echo "3..."
+    sleep 1
+    echo "2..."
+    sleep 1
+    echo "1..."
+    sleep 1
+}
+
+success () {
+    echo "Done!"
+    sleep 2
+    clear
+}
+
 #clear terminal window
 clear
 
@@ -44,14 +63,7 @@ read -p "Do you want to proceed? (y|n) " answer1
 if [ $answer1 = 'y' ]; then
     clear
     read -p "Do you want to back up your present configs? (y|n) " answer2
-elif [ $answer1 = 'Y' ]; then
-    clear
-    read -p "Do you want to back up your present configs? (y|n) " answer2
 elif [ $answer1 = 'n' ]; then
-    clear
-    echo "Exiting..."
-    exit
-elif [ $answer1 = 'N' ]; then
     clear
     echo "Exiting..."
     exit
@@ -61,20 +73,15 @@ elif [ $answer1 = ]; then
     exit
 else 
     clear
-    echo "Exiting..."
+    echo "Unsure, Exiting..."
     exit
 fi
 
 #ask for backup
 if [ $answer2 = 'y' ]; then
     clear
-    echo "Backing up present configs to .old in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
+    
+    timeout "Backing up present configs to .old in..."
 
     #backup configs if present
     mv ~/.config/dunst ~/.config/dunst.old
@@ -83,30 +90,7 @@ if [ $answer2 = 'y' ]; then
     mv ~/.bashrc ~/.bashrc.old
     mv ~/.config/nano ~/.config/nano.old
 
-    echo "Done!"
-    sleep 1
-    clear
-    echo "Proceeding in..."
-elif [ $answer2 = 'Y' ]; then
-    clear
-    echo "Backing up present configs to .old in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
-
-    #backup configs if present
-    mv ~/.config/dunst ~/.config/dunst.old
-    mv ~/.config/kitty ~/.config/kitty.old
-    mv ~/.config/pacwall ~/.config/pacwall.old
-    mv ~/.bashrc ~/.bashrc.old
-    mv ~/.config/nano ~/.config/nano.old
-
-    echo "Done!"
-    sleep 1
-    clear
+    success
 elif [ $answer2 = 'n' ]; then
     clear
     echo ""
@@ -117,13 +101,8 @@ elif [ $answer2 = 'n' ]; then
     echo "NO BACKUP OF YOUR OLD CONFIGS WILL BE CREATED!"
     echo ""
     sleep 2
-    echo "Deleting old configs (if present) in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
+
+    timeout "Deleting old configs (if present) in..."
 
     #delete old configs
     rm -rf ~/.config/dunst/
@@ -132,54 +111,18 @@ elif [ $answer2 = 'n' ]; then
     rm -f ~/.bashrc
     rm -rf ~/.config/nano/
 
-    echo "Done!"
-    sleep 1
-    clear
-elif [ $answer2 = 'N' ]; then
-    clear
-    echo ""
-    echo "#############"
-    echo "# !WARNING! #"
-    echo "#############"
-    echo ""
-    echo "NO BACKUP OF YOUR OLD CONFIGS WILL BE CREATED!"
-    echo ""
-    sleep 2
-    echo "Deleting old configs (if present) in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
-
-    #delete old configs
-    rm -rf ~/.config/dunst/
-    rm -rf ~/.config/kitty/
-    rm -rf ~/.config/pacwall/
-    rm -f ~/.bashrc
-    rm -rf ~/.config/nano/
-
-    echo "Done!"
-    sleep 1
-    clear
+    success
 elif [ $answer2 = ]; then
     clear
     echo "No answer was given, exiting..."
     exit
 else 
     clear
-    echo "Exiting..."
+    echo "Unsure, Exiting..."
     exit
 fi
 
-echo "Copying new configs in..."
-echo "3..."
-sleep 1
-echo "2..."
-sleep 1
-echo "1..."
-sleep 1
+timeout "Copying new configs in..."
 
 #copying new files
 cp -r dunst/ ~/.config/
@@ -189,90 +132,7 @@ cp -r bash/bashrc ~/
 mv ~/bashrc ~/.bashrc
 cp -r nano/ ~/.config/
 
-echo "Done!"
-sleep 1
-clear
-
-#check if user created backups
-if [ $answer2 = 'y' ]; then
-    clear
-    read -p "Do you wish to delete the created .old Backups? (y|n) " answer3
-elif [ $answer2 = 'Y' ]; then
-    clear
-    read -p "Do you wish to delete the created .old Backups? (y|n) " answer3
-elif [ $answer2 = 'N' ]; then
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "Exiting..."
-    exit
-elif [ $answer2 = 'n' ]; then
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "Exiting..."
-    exit
-fi
-
-if [ $answer3 = 'y' ]; then
-    echo "Deleting Backups in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
-    #delete backups
-    rm -rf ~/.config/dunst.old
-    rm -rf ~/.config/kitty.old
-    rm -rf ~/.config/pacwall.old
-    rm -rf ~/.bashrc.old
-    rm -rf ~/.config/nano.old
-    echo "Done!"
-    sleep 1
-    clear
-elif [ $answer3 = 'Y' ]; then
-    echo "Deleting Backups in..."
-    echo "3..."
-    sleep 1
-    echo "2..."
-    sleep 1
-    echo "1..."
-    sleep 1
-    #delete backups
-    rm -rf ~/.config/dunst.old
-    rm -rf ~/.config/kitty.old
-    rm -rf ~/.config/pacwall.old
-    rm -rf ~/.bashrc.old
-    rm -rf ~/.config/nano.old
-    echo "Done!"
-    sleep 1
-    clear
-elif [ $answer3 = 'n' ]; then
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "Exiting..."
-    exit
-elif [ $answer3 = 'N' ]; then
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "Exiting..."
-    exit
-elif [ $answer3 = ]; then
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "No answer was given, exiting..."
-    exit
-else
-    clear
-    echo "Enjoy your new configs!"
-    sleep 2
-    echo "Exiting..."
-    exit
-fi
+success
 
 echo "Enjoy your new configs!"
 sleep 2

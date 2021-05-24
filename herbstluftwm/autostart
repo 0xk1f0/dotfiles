@@ -137,30 +137,31 @@ hc set focus_follows_mouse true
 #dont swap monitors to get tag if already on monitor
 hc set swap_monitors_to_get_tag false
 
+#colors
+colorNormal='#888888'
+colorActive='#00ff00'
+colorUrgent='#ff0000'
+
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color '#00ff00'
-hc set frame_border_normal_color '#ffffff'
+hc set frame_border_active_color "$colorActive"
+hc set frame_border_normal_color "$colorNormal"
 hc set frame_border_width 0
-hc set frame_active_opacity 50
-hc set frame_normal_opacity 100
+hc set frame_active_opacity 1
+hc set frame_normal_opacity 1
 hc set always_show_frame off
 hc set frame_gap 0
 
 #theme2
-hc attr theme.active.color '#00ff00'
-hc attr theme.normal.color '#ffffff'
-hc attr theme.urgent.color '#ff0000'
-hc attr theme.inner_width 0
-hc attr theme.inner_color '#ffffff'
-hc attr theme.border_width 2.5 
+hc attr theme.active.color "$colorActive"
+hc attr theme.normal.color "$colorNormal"
+hc attr theme.urgent.color "$colorUrgent"
+hc attr theme.border_width 2.5
 hc attr theme.floating.border_width 2
-hc attr theme.floating.outer_width 1
-hc attr theme.floating.outer_color '#ffffff'
 
 #window rules/theme
-hc set window_gap 6 
+hc set window_gap 6
 hc set frame_padding on
 hc set smart_window_surroundings on
 hc set smart_frame_surroundings on
@@ -170,7 +171,7 @@ hc set mouse_recenter_gap 10
 hc unrule -F
 
 # focus new clients
-hc rule focus=on 
+hc rule focus=on
 hc rule floatplacement=smart
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
@@ -191,9 +192,10 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
 done
 
 # start compton (req compton)
-compton &
+picom &
 
 # start polybars (req polybar)
+killall polybar
 polybar main-hlwm &
 polybar sec-hlwm &
 

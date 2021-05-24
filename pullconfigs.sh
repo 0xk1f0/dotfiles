@@ -2,6 +2,25 @@
 
 #This is a script to pull all dotfiles to this repo
 
+#functions
+
+timeout () {
+    echo $1
+    sleep 1
+    echo "3..."
+    sleep 1
+    echo "2..."
+    sleep 1
+    echo "1..."
+    sleep 1
+}
+
+success () {
+    echo "Done!"
+    sleep 2
+    clear
+}
+
 #clear terminal window
 clear
 
@@ -13,15 +32,7 @@ read -p "Proceed? (y|n) " answer
 
 if [ $answer = 'y' ]; then
     clear
-    echo "Deleting old configs in..."
-elif [ $answer = 'Y' ]; then
-    clear
-    echo "Deleting old configs in..."
 elif [ $answer = 'n' ]; then
-    clear
-    echo "Exiting..."
-    exit
-elif [ $answer = 'N' ]; then
     clear
     echo "Exiting..."
     exit
@@ -31,16 +42,11 @@ elif [ $answer = ]; then
     exit
 else 
     clear
-    echo "Exiting..."
+    echo "Unsure, Exiting..."
     exit
 fi
 
-echo "3..."
-sleep 1
-echo "2..."
-sleep 1
-echo "1..."
-sleep 1
+timeout "Deleting old configs in..."
 
 #delete all configs first
 rm -rf dunst/
@@ -51,21 +57,10 @@ rm -rf polybar/
 rm -rf bash/bashrc
 rm -rf nano/
 
-echo "Done!"
-sleep 2
-clear
+success
+timeout "Pulling new configs in..."
 
-#pull new configs
-echo "Pulling new configs in..."
-
-echo "3..."
-sleep 1
-echo "2..."
-sleep 1
-echo "1..."
-sleep 1
-
-#copying
+#copying / renaming
 cp -r ~/.config/herbstluftwm .
 cp -r ~/.config/dunst .
 cp -r ~/.config/polybar .
@@ -73,15 +68,10 @@ cp -r ~/.config/kitty .
 cp -r ~/.config/pacwall .
 cp -r ~/.bashrc bash/
 cp -r ~/.config/nano .
-
-#renaming if necessary
 mv bash/.bashrc bash/bashrc 
 
-echo "Done!"
-sleep 2
+success
 
 #exit
-clear
 echo "Exiting..."
 exit
-
