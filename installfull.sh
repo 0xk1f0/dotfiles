@@ -90,6 +90,7 @@ if [ $answer2 = 'y' ]; then
     mv ~/.config/pacwall ~/.config/pacwall.old
     mv ~/.bashrc ~/.bashrc.old
     mv ~/.config/nano ~/.config/nano.old
+    mv ~/.config/picom ~/.config/picom.old
 
     success
 elif [ $answer2 = 'n' ]; then
@@ -113,6 +114,7 @@ elif [ $answer2 = 'n' ]; then
     rm -rf ~/.config/pacwall/
     rm -f ~/.bashrc
     rm -rf ~/.config/nano/
+    rm -rf ~/.config/picom/
 
     success
 elif [ $answer2 = ]; then
@@ -136,6 +138,7 @@ cp -r pacwall/ ~/.config/
 cp -r bash/bashrc ~/
 mv ~/bashrc ~/.bashrc
 cp -r nano/ ~/.config/
+cp -r picom/ ~/.config/
 
 success
 

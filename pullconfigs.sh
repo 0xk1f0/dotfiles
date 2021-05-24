@@ -56,6 +56,7 @@ rm -rf pacwall/
 rm -rf polybar/
 rm -rf bash/bashrc
 rm -rf nano/
+rm -rf picom/
 
 success
 timeout "Pulling new configs in..."
@@ -68,6 +69,7 @@ cp -r ~/.config/kitty .
 cp -r ~/.config/pacwall .
 cp -r ~/.bashrc bash/
 cp -r ~/.config/nano .
+cp -r ~/.config/picom .
 mv bash/.bashrc bash/bashrc 
 
 success
