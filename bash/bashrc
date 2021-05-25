@@ -5,6 +5,9 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+#color
+export TERM="xterm-256color"
+
 #archive extraction
 ex ()
 {
