@@ -138,7 +138,7 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#888888'
+colorNormal='#ffffff'
 colorActive='#00ff00'
 colorUrgent='#ff0000'
 
@@ -148,20 +148,20 @@ hc attr theme.floating.reset 1
 hc set frame_border_active_color "$colorActive"
 hc set frame_border_normal_color "$colorNormal"
 hc set frame_border_width 0
-hc set frame_active_opacity 1
-hc set frame_normal_opacity 1
+hc set frame_active_opacity 0
+hc set frame_normal_opacity 0
 hc set always_show_frame off
 hc set frame_gap 0
-
-#theme2
 hc attr theme.active.color "$colorActive"
 hc attr theme.normal.color "$colorNormal"
 hc attr theme.urgent.color "$colorUrgent"
-hc attr theme.border_width 2.5
+hc attr theme.border_width 2
 hc attr theme.floating.border_width 2
+hc attr theme.floating.active.color "$colorActive"
+hc attr theme.floating.normal.color "$colorNormal"
 
 #window rules/theme
-hc set window_gap 6
+hc set window_gap 10
 hc set frame_padding on
 hc set smart_window_surroundings on
 hc set smart_frame_surroundings on

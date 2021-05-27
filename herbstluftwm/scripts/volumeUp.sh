@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 #Up Volume
 pamixer -i 5
 
