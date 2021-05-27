@@ -136,10 +136,10 @@ interface = enp34s0
 interval = 5
 
 format-connected-underline = ${colors.colorUnderlineNormal}
-label-connected = eth con
+label-connected = eth %{F#00ff00}con%{F-}
 
 format-disconnected-underline = ${colors.colorUnderlineAlt}
-label-disconnected = eth disc
+label-disconnected = eth %{F#ff0000}disc%{F-}
 
 ###########################################################
 
@@ -180,15 +180,15 @@ menu-0-2-exec = menu-open-3
 
 menu-1-1 = cancel
 menu-1-1-exec = menu-open-0
-menu-1-0 = reboot
+menu-1-0 = %{F#ff0000}reboot%{F-}
 menu-1-0-exec = reboot
 
-menu-2-0 = power off
+menu-2-0 = %{F#ff0000}power off%{F-}
 menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
-menu-3-0 = sleep
+menu-3-0 = %{F#ff0000}sleep%{F-}
 menu-3-0-exec = systemctl suspend && betterlockscreen -l
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
