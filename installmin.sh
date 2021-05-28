@@ -36,18 +36,13 @@ echo ""
 sleep 1
 echo "1. Always examine a bash script before you execute it to understand what it does!"
 echo ""
-sleep 1
 echo "2. If you find any errors in this script, please inform the maintainer ASAP!"
 echo ""
-sleep 1
 echo "3. This script deletes, moves and copies files in the process!"
 echo ""
-sleep 1
 echo "4. Follow the installer prompts CAREFULLY as you will be asked for a backup!"
 echo ""
-sleep 1
 echo "5. This script is only made to work on Arch based Distributions of GNU/Linux!"
-sleep 1
 echo ""
 echo "#########################################################################################"
 echo "### I take ABSOLUTELY NO responsibility for any deleted configs or destroyed systems! ###"
@@ -59,6 +54,8 @@ sleep 1
 
 #ask for confirmation to run
 read -p "Do you want to proceed? (y|n) " answer1
+clear
+read -p "Are you on a Laptop? (y|n) " answer3
 
 if [ $answer1 = 'y' ]; then
     clear
@@ -84,7 +81,6 @@ if [ $answer2 = 'y' ]; then
     timeout "Backing up present configs to .old in..."
 
     #backup configs if present
-    mv ~/.config/dunst ~/.config/dunst.old
     mv ~/.config/kitty ~/.config/kitty.old
     mv ~/.config/pacwall ~/.config/pacwall.old
     mv ~/.bashrc ~/.bashrc.old
@@ -106,7 +102,6 @@ elif [ $answer2 = 'n' ]; then
     timeout "Deleting old configs (if present) in..."
 
     #delete old configs
-    rm -rf ~/.config/dunst/
     rm -rf ~/.config/kitty/
     rm -rf ~/.config/pacwall/
     rm -f ~/.bashrc
@@ -126,14 +121,29 @@ fi
 
 timeout "Copying new configs in..."
 
-#copying new files
-cp -r dunst/ ~/.config/
-cp -r kitty/ ~/.config/
-cp -r pacwall/ ~/.config/
-cp -r bash/bashrc ~/
-mv ~/bashrc ~/.bashrc
-cp -r nano/ ~/.config/
-cp -r picom/ ~/.config/
+if [ $answer3 = 'y' ]; then
+    #copying new files
+    cp -r laptop/kitty/ ~/.config/
+    cp -r laptop/pacwall/ ~/.config/
+    cp -r laptop/bash/bashrc ~/
+    mv ~/bashrc ~/.bashrc
+    cp -r laptop/nano/ ~/.config/
+    cp -r laptop/picom/ ~/.config/
+elif [ $answer3 = 'n' ]; then
+    #copying new files
+    cp -r pc/kitty/ ~/.config/
+    cp -r pc/pacwall/ ~/.config/
+    cp -r pc/bash/bashrc ~/
+    mv ~/bashrc ~/.bashrc
+    cp -r pc/nano/ ~/.config/
+    cp -r pc/picom/ ~/.config/
+else
+    clear
+    echo "Device not specified!"
+    sleep 2
+    echo "Exiting..."
+    exit
+fi
 
 success
 
