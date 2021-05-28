@@ -26,7 +26,7 @@ hc keybind $Mod-Shift-c close
 #custom kb (req betterlockscreen, nemo, kitty, dmenu, flameshot)
 hc keybind $Mod-Return spawn kitty
 hc keybind $Mod-a spawn dmenu_run
-hc keybind $Mod-l spawn betterlockscreen -l
+hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
 hc keybind $Mod-q spawn nemo
 hc keybind $Mod-Shift-s spawn flameshot gui
 
@@ -157,6 +157,8 @@ hc attr theme.border_width 2
 hc attr theme.floating.border_width 2
 hc attr theme.floating.active.color "$colorActive"
 hc attr theme.floating.normal.color "$colorNormal"
+hc attr theme.active.inner_color '$colorActive'
+hc attr theme.active.outer_color '$colorNormal'
 
 #window rules/theme
 hc set window_gap 10
