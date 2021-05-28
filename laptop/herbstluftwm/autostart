@@ -157,7 +157,7 @@ hc attr theme.border_width 2.5
 hc attr theme.floating.border_width 2
 
 #window rules/theme
-hc set window_gap 6
+hc set window_gap 10
 hc set frame_padding on
 hc set smart_window_surroundings on
 hc set smart_frame_surroundings on
