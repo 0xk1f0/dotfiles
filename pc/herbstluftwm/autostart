@@ -139,14 +139,12 @@ hc set swap_monitors_to_get_tag false
 
 #colors
 colorNormal='#ffffff'
-colorActive='#00ff00'
+colorActive='#4444ff'
 colorUrgent='#ff0000'
 
 # theme
 hc attr theme.tiling.reset 1
 hc attr theme.floating.reset 1
-hc set frame_border_active_color "$colorActive"
-hc set frame_border_normal_color "$colorNormal"
 hc set frame_border_width 0
 hc set frame_active_opacity 0
 hc set frame_normal_opacity 0
@@ -163,7 +161,7 @@ hc attr theme.floating.normal.color "$colorNormal"
 #window rules/theme
 hc set window_gap 10
 hc set frame_padding on
-hc set smart_window_surroundings on
+hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
 hc set mouse_recenter_gap 10
 
