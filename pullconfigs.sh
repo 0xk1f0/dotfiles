@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 #This is a script to pull all dotfiles to this repo
 
@@ -53,61 +53,73 @@ if [ $answer2 = 'y' ]; then
     sleep 2
     timeout "Deleting old configs in..."
 
-    #delete all configs first
+    #device specific configs
     rm -rf laptop/dunst/
     rm -rf laptop/herbstluftwm/
-    rm -rf laptop/kitty/
-    rm -rf laptop/pacwall/
     rm -rf laptop/polybar/
-    rm -rf laptop/bash/bashrc
-    rm -rf laptop/nano/
-    rm -rf laptop/picom/
+
+    #combined configs
+    rm -rf combined/kitty/
+    rm -rf combined/pacwall/
+    rm -rf combined/bash/bashrc
+    rm -rf combined/nano/
+    rm -rf combined/picom/
 
     success
+    
     timeout "Pulling new configs in..."
 
-    #copying / renaming
+    #device specific configs
     cp -r ~/.config/herbstluftwm laptop/
     cp -r ~/.config/dunst laptop/
     cp -r ~/.config/polybar laptop/
-    cp -r ~/.config/kitty laptop/
-    cp -r ~/.config/pacwall laptop/
-    cp -r ~/.bashrc laptop/bash/
-    cp -r ~/.config/nano laptop/
-    cp -r ~/.config/picom laptop/
-    mv laptop/bash/.bashrc laptop/bash/bashrc 
+
+    #combined configs
+    cp -r ~/.config/kitty combined/
+    cp -r ~/.config/pacwall combined/
+    cp -r ~/.bashrc combined/bash/
+    cp -r ~/.config/nano combined/
+    cp -r ~/.config/picom combined/
+    mv combined/bash/.bashrc combined/bash/bashrc 
 
     success
+
 elif [ $answer2 = 'n' ]; then
     echo "On PC"
     sleep 2
     timeout "Deleting old configs in..."
 
-    #delete all configs first
+    #device specific configs
     rm -rf pc/dunst/
     rm -rf pc/herbstluftwm/
-    rm -rf pc/kitty/
-    rm -rf pc/pacwall/
     rm -rf pc/polybar/
-    rm -rf pc/bash/bashrc
-    rm -rf pc/nano/
-    rm -rf pc/picom/
+
+    #combined configs
+    rm -rf combined/kitty/
+    rm -rf combined/pacwall/
+    rm -rf combined/bash/bashrc
+    rm -rf combined/nano/
+    rm -rf combined/picom/
 
     success
+
     timeout "Pulling new configs in..."
 
-    #copying / renaming
+    #device specific configs
     cp -r ~/.config/herbstluftwm pc/
     cp -r ~/.config/dunst pc/
     cp -r ~/.config/polybar pc/
-    cp -r ~/.config/kitty pc/
-    cp -r ~/.config/pacwall pc/
-    cp -r ~/.bashrc pc/bash/
-    cp -r ~/.config/nano pc/
-    cp -r ~/.config/picom pc/
-    mv bash/.bashrc pc/bash/bashrc 
+
+    #combined configs
+    cp -r ~/.config/kitty combined/
+    cp -r ~/.config/pacwall combined/
+    cp -r ~/.bashrc combined/bash/
+    cp -r ~/.config/nano combined/
+    cp -r ~/.config/picom combined/
+    mv bash/.bashrc combined/bash/bashrc 
 
     success
+
 elif [ $answer2 = ]; then
     clear
     echo "No answer was given, exiting..."

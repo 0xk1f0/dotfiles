@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 #This is a script to install my dotfiles
 
@@ -25,9 +25,9 @@ success () {
 clear
 
 #WARNINGS
-echo "Minimal Install Script"
+echo "Full Install Script"
 echo ""
-echo "This script will install k1f0's dotfiles (excluding polybar and hlwm) to your .config/ directory"
+echo "This script will install k1f0's dotfiles to your .config/ directory"
 echo ""
 echo "#############"
 echo "# !WARNING! #"
@@ -77,10 +77,12 @@ fi
 #ask for backup
 if [ $answer2 = 'y' ]; then
     clear
-    
     timeout "Backing up present configs to .old in..."
 
     #backup configs if present
+    mv ~/.config/herbstluftwm ~/.config/herbstluftwm.old
+    mv ~/.config/dunst ~/.config/dunst.old
+    mv ~/.config/polybar ~/.config/polybar.old
     mv ~/.config/kitty ~/.config/kitty.old
     mv ~/.config/pacwall ~/.config/pacwall.old
     mv ~/.bashrc ~/.bashrc.old
@@ -102,6 +104,9 @@ elif [ $answer2 = 'n' ]; then
     timeout "Deleting old configs (if present) in..."
 
     #delete old configs
+    rm -rf ~/.config/herbstluftwm/
+    rm -rf ~/.config/dunst/
+    rm -rf ~/.config/polybar/
     rm -rf ~/.config/kitty/
     rm -rf ~/.config/pacwall/
     rm -f ~/.bashrc
@@ -122,21 +127,15 @@ fi
 timeout "Copying new configs in..."
 
 if [ $answer3 = 'y' ]; then
-    #copying new files
-    cp -r laptop/kitty/ ~/.config/
-    cp -r laptop/pacwall/ ~/.config/
-    cp -r laptop/bash/bashrc ~/
-    mv ~/bashrc ~/.bashrc
-    cp -r laptop/nano/ ~/.config/
-    cp -r laptop/picom/ ~/.config/
+    #device specific
+    cp -r laptop/herbstluftwm/ ~/.config/
+    cp -r laptop/dunst/ ~/.config/
+    cp -r laptop/polybar/ ~/.config/
 elif [ $answer3 = 'n' ]; then
-    #copying new files
-    cp -r pc/kitty/ ~/.config/
-    cp -r pc/pacwall/ ~/.config/
-    cp -r pc/bash/bashrc ~/
-    mv ~/bashrc ~/.bashrc
-    cp -r pc/nano/ ~/.config/
-    cp -r pc/picom/ ~/.config/
+    #device specific
+    cp -r pc/herbstluftwm/ ~/.config/
+    cp -r pc/dunst/ ~/.config/
+    cp -r pc/polybar/ ~/.config/
 else
     clear
     echo "Device not specified!"
@@ -144,6 +143,14 @@ else
     echo "Exiting..."
     exit
 fi
+
+#combined configs
+cp -r combined/kitty/ ~/.config/
+cp -r combined/pacwall/ ~/.config/
+cp -r combined/nano/ ~/.config/
+cp -r combined/picom/ ~/.config/
+cp -r combined/bash/bashrc ~/
+mv ~/bashrc ~/.bashrc
 
 success
 
