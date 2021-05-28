@@ -8,11 +8,11 @@ Installation guide provided below.
 git clone https://github.com/K1llf0rce/dotfiles.git
 cd dotfiles/
 
-#FOR FULL INSTALL WITH POLYBAR AND HLWM
+#FOR FULL INSTALL WITH POLYBAR, DUNST AND HLWM
 
 ./installfull.sh
 
-#FOR MINIMAL INSTALL !!WITHOUT!! POLYBAR AND HLWM
+#FOR MINIMAL INSTALL !!WITHOUT!! POLYBAR, DUNST AND HLWM
 
 ./installmin.sh
 ```
