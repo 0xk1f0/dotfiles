@@ -25,8 +25,6 @@ success () {
 clear
 
 #WARNINGS
-echo "Full Install Script"
-echo ""
 echo "This script will install k1f0's dotfiles to your .config/ directory"
 echo ""
 echo "#############"
@@ -36,17 +34,11 @@ echo ""
 sleep 1
 echo "1. Always examine a bash script before you execute it to understand what it does!"
 echo ""
-echo "2. If you find any errors in this script, please inform the maintainer ASAP!"
+echo "2. This script deletes, moves and copies files in the process!"
 echo ""
-echo "3. This script deletes, moves and copies files in the process!"
-echo ""
-echo "4. Follow the installer prompts CAREFULLY as you will be asked for a backup!"
-echo ""
-echo "5. This script is only made to work on Arch based Distributions of GNU/Linux!"
-echo ""
-echo "#########################################################################################"
-echo "### I take ABSOLUTELY NO responsibility for any deleted configs or destroyed systems! ###"
-echo "#########################################################################################"
+echo "##############################################################################"
+echo "### I take NO responsibility for any deleted configs or destroyed systems! ###"
+echo "##############################################################################"
 echo ""
 echo "YOU HAVE BEEN WARNED!"
 echo ""
@@ -124,14 +116,18 @@ else
     exit
 fi
 
-timeout "Copying new configs in..."
-
 if [ $answer3 = 'y' ]; then
+    echo "On Laptop"
+    sleep 1
+    timeout "Copying new configs in..."
     #device specific
     cp -r laptop/herbstluftwm/ ~/.config/
     cp -r laptop/dunst/ ~/.config/
     cp -r laptop/polybar/ ~/.config/
 elif [ $answer3 = 'n' ]; then
+    echo "On PC"
+    sleep 1
+    timeout "Copying new configs in..."
     #device specific
     cp -r pc/herbstluftwm/ ~/.config/
     cp -r pc/dunst/ ~/.config/

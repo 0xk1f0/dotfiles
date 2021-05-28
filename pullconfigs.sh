@@ -116,7 +116,7 @@ elif [ $answer2 = 'n' ]; then
     cp -r ~/.bashrc combined/bash/
     cp -r ~/.config/nano combined/
     cp -r ~/.config/picom combined/
-    mv bash/.bashrc combined/bash/bashrc 
+    mv combined/bash/.bashrc combined/bash/bashrc 
 
     success
 
