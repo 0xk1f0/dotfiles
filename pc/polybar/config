@@ -9,8 +9,13 @@
 
 [bar/main-hlwm]
 monitor = DisplayPort-2
-width = 100%
-height = 20
+width = 99%
+height = 28
+padding = 2
+border-size = 2
+border-color = #4444ff
+offset-x = 0.5%
+offset-y = 0.5%
 radius = 0.0
 fixed-center = true
 bottom = false
@@ -45,8 +50,13 @@ label-font = 0
 
 [bar/sec-hlwm]
 monitor = HDMI-A-0
-width = 100%
-height = 20
+width = 98%
+height = 22
+padding = 2
+border-size = 2
+border-color = #4444ff
+offset-x = 1%
+offset-y = 0.4%
 radius = 0.0
 fixed-center = true
 bottom = false
@@ -80,8 +90,8 @@ label-font = 0
 ###########################################################
 
 [colors]
-colorUnderlineNormal = #00ff00
-colorUnderlineAlt = #0000ff
+colorUnderlineNormal = #ffffff
+colorUnderlineAlt = #00ff00
 colorBackground = #0f0f1a
 colorForeground = #ffffff
 
@@ -94,7 +104,7 @@ interval = 30
 mount-0 = /
 
 format-mounted-underline = ${colors.colorUnderlineNormal}
-label-mounted = %mountpoint%: %{F#ff0000}%percentage_used%%%{F-} usd
+label-mounted = %mountpoint%: %percentage_used%% usd
 format-unmounted-underline = #ff0000
 label-unmounted = %mountpoint% umtd
 
@@ -108,7 +118,7 @@ interval = 30
 mount-0 = /hdd1
 
 format-mounted-underline = ${colors.colorUnderlineNormal}
-label-mounted = %mountpoint%: %{F#ff0000}%percentage_used%%%{F-} usd
+label-mounted = %mountpoint%: %percentage_used%% usd
 format-unmounted-underline = ${colors.colorUnderlineAlt}
 label-unmounted = %mountpoint% umtd
 
@@ -118,7 +128,7 @@ label-unmounted = %mountpoint% umtd
 type = internal/cpu
 interval = 2
 format-underline = ${colors.colorUnderlineNormal}
-label = cpu: %{F#ff0000}%percentage%%%{F-} utl
+label = cpu: %percentage%% utl
 
 ###########################################################
 
@@ -126,7 +136,7 @@ label = cpu: %{F#ff0000}%percentage%%%{F-} utl
 type = internal/memory
 interval = 2
 format-underline = ${colors.colorUnderlineNormal}
-label = memory: %{F#ff0000}%percentage_used%%%{F-} usd
+label = memory: %percentage_used%% usd
 
 ###########################################################
 
@@ -155,7 +165,7 @@ time-alt = %H:%M:%S
 
 format-underline = ${colors.colorUnderlineNormal}
 
-label = %{F#ff0000}%date%%{F-} %time%
+label = %date% %time%
 
 ###########################################################
 
@@ -238,6 +248,7 @@ label-underline = ${colors.colorUnderlineNormal}
 
 [settings]
 screenchange-reload = true
+pseudo-transparency = true
 
 ###########################################################
 

@@ -17,11 +17,11 @@ fi
 x=${geometry[0]}
 y=${geometry[1]}
 panel_width=${geometry[2]}
-panel_height=20
+panel_height=34
 font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
-bgcolor=$(hc get frame_border_normal_color)
-selbg=$(hc get window_border_active_color)
-selfg='#101010'
+bgcolor='#ffffffff'
+selbg='#ffffffff'
+selfg='#101010ff'
 
 ####
 # Try to find textwidth binary.
