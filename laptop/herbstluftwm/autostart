@@ -25,7 +25,7 @@ hc keybind $Mod-Shift-c close
 
 #custom kb (req betterlockscreen, nemo, kitty, dmenu, flameshot)
 hc keybind $Mod-Return  spawn kitty
-hc keybind $Mod-a       spawn dmenu_run
+hc keybind $Mod-a       spawn dmenu_run -b
 hc keybind $Mod-l       spawn betterlockscreen -l
 hc keybind $Mod-q       spawn nemo
 hc keybind $Mod-Shift-s spawn xfce4-screenshooter --region --save ~/Documents/Screenshots
@@ -134,8 +134,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#888888'
-colorActive='#0000ff'
+colorNormal='#ffffff'
+colorActive='#4444ff'
 colorUrgent='#ff0000'
 
 # theme
@@ -157,9 +157,9 @@ hc attr theme.border_width 2.5
 hc attr theme.floating.border_width 2
 
 #window rules/theme
-hc set window_gap 10
+hc set window_gap 12
 hc set frame_padding on
-hc set smart_window_surroundings on
+hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
 hc set mouse_recenter_gap 10
 
@@ -167,7 +167,7 @@ hc set mouse_recenter_gap 10
 hc unrule -F
 
 # focus new clients
-hc rule focus=on 
+hc rule focus=on
 hc rule floatplacement=smart
 hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
 hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
