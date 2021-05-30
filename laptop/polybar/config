@@ -13,7 +13,7 @@ width = 98.8%
 height = 28
 padding = 2
 border-size = 2
-border-color = #4444ff
+border-color = #ffffff
 offset-x = 0.6%
 offset-y = 0.6%
 radius = 0.0
@@ -51,7 +51,7 @@ label-font = 0
 [colors]
 colorUnderlineNormal = #ffffff
 colorUnderlineAlt = #00ff00
-colorBackground = #222222
+colorBackground = #302550
 colorForeground = #ffffff
 
 ###########################################################
@@ -136,9 +136,9 @@ format-packetloss-underline = ${colors.colorUnderlineAlt}
 ;   %linkspeed% [wired]
 
 ; Default: %ifname% %local_ip%
-label-connected = %ifname% %{F#00ff00}con%{F-}@%essid%
+label-connected = %ifname% con @ %essid%
 
-label-disconnected = %ifname% %{F#ff0000}dsc%{F-}
+label-disconnected = %ifname% dsc
 
 label-packetloss = %ifname% pktlss
 
@@ -182,7 +182,7 @@ adapter = ADP1
 ; Default: 5
 poll-interval = 1
 format-discharging-underline = ${colors.colorUnderlineNormal}
-format-charging-underline = ${colors.colorUnderlineAlt}
+format-charging-underline = ${colors.colorUnderlineNormal}
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
