@@ -139,7 +139,7 @@ hc set swap_monitors_to_get_tag false
 
 #colors
 colorNormal='#ffffff'
-colorActive='#4444ff'
+colorActive='#4136cc'
 colorUrgent='#ff0000'
 
 # theme
@@ -200,6 +200,7 @@ polybar main-hlwm &
 polybar sec-hlwm &
 
 # start dunst (req dunst)
+killall -q dunst
 dunst &
 
 # restore wallpapers

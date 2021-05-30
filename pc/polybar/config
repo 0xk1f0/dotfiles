@@ -12,7 +12,7 @@ monitor = DisplayPort-2
 width = 99%
 height = 26
 padding = 2
-border-size = 3
+border-size = 2
 border-color = ${colors.colorBorder}
 offset-x = 0.5%
 offset-y = 0.5%
@@ -53,7 +53,7 @@ monitor = HDMI-A-0
 width = 98%
 height = 22
 padding = 2
-border-size = 3
+border-size = 2
 border-color = ${colors.colorBorder}
 offset-x = 1%
 offset-y = 0.4%
@@ -92,7 +92,7 @@ label-font = 0
 [colors]
 colorUnderlineNormal = #ffffff
 colorUnderlineAlt = #00ff00
-colorBackground = #880000ff
+colorBackground = #302550
 colorForeground = #ffffff
 colorBorder = #ffffff
 
@@ -147,10 +147,10 @@ interface = enp34s0
 interval = 5
 
 format-connected-underline = ${colors.colorUnderlineNormal}
-label-connected = eth %{F#00ff00}con%{F-}
+label-connected = eth con
 
 format-disconnected-underline = ${colors.colorUnderlineAlt}
-label-disconnected = eth %{F#ff0000}disc%{F-}
+label-disconnected = eth disc
 
 ###########################################################
 
