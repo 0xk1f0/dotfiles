@@ -50,6 +50,13 @@ clear
 read -p "Are you on a Laptop? (y|n) " answer3
 
 if [ $answer1 = 'y' ]; then
+    if [ $answer3 = 'y' ]; then
+        echo "On Laptop"
+        sleep 1
+    else
+        echo "On PC"
+        sleep 1
+    fi
     clear
     read -p "Do you want to back up your present configs? (y|n) " answer2
 elif [ $answer1 = 'n' ]; then
@@ -117,16 +124,12 @@ else
 fi
 
 if [ $answer3 = 'y' ]; then
-    echo "On Laptop"
-    sleep 1
     timeout "Copying new configs in..."
     #device specific
     cp -r laptop/herbstluftwm/ ~/.config/
     cp -r laptop/dunst/ ~/.config/
     cp -r laptop/polybar/ ~/.config/
 elif [ $answer3 = 'n' ]; then
-    echo "On PC"
-    sleep 1
     timeout "Copying new configs in..."
     #device specific
     cp -r pc/herbstluftwm/ ~/.config/

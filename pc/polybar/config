@@ -10,10 +10,10 @@
 [bar/main-hlwm]
 monitor = DisplayPort-2
 width = 99%
-height = 28
+height = 26
 padding = 2
-border-size = 2
-border-color = #4444ff
+border-size = 3
+border-color = ${colors.colorBorder}
 offset-x = 0.5%
 offset-y = 0.5%
 radius = 0.0
@@ -53,8 +53,8 @@ monitor = HDMI-A-0
 width = 98%
 height = 22
 padding = 2
-border-size = 2
-border-color = #4444ff
+border-size = 3
+border-color = ${colors.colorBorder}
 offset-x = 1%
 offset-y = 0.4%
 radius = 0.0
@@ -92,8 +92,9 @@ label-font = 0
 [colors]
 colorUnderlineNormal = #ffffff
 colorUnderlineAlt = #00ff00
-colorBackground = #0f0f1a
+colorBackground = #880000ff
 colorForeground = #ffffff
+colorBorder = #ffffff
 
 ###########################################################
 
