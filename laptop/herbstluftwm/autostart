@@ -26,9 +26,9 @@ hc keybind $Mod-Shift-c close
 #custom kb (req betterlockscreen, nemo, kitty, dmenu, flameshot)
 hc keybind $Mod-Return  spawn kitty
 hc keybind $Mod-a       spawn dmenu_run -b
-hc keybind $Mod-l       spawn betterlockscreen -l
+hc keybind $Mod-l       spawn ~/.config/herbstluftwm/scripts/i3lock.sh
 hc keybind $Mod-q       spawn nemo
-hc keybind $Mod-Shift-s spawn xfce4-screenshooter --region --save ~/Documents/Screenshots
+hc keybind $Mod-Shift-s spawn flameshot gui
 
 #fn keys (req pamixer and playerctl)
 hc keybind XF86AudioRaiseVolume  spawn ~/.config/herbstluftwm/scripts/volumeUp.sh
@@ -197,6 +197,10 @@ polybar main-hlwm &
 # start dunst (req dunst)
 killall -q dunst
 dunst &
+
+#start flameshot
+killall -q flameshot
+flameshot &
 
 # restore wallpapers
 nitrogen --restore &
