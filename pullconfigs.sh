@@ -77,18 +77,18 @@ if [ $answerLaptop = 'y' ]; then
     timeout "Pulling new configs in..."
 
     #device specific configs
-    cp -r ~/.config/herbstluftwm laptop/
-    cp -r ~/.config/dunst laptop/
-    cp -r ~/.config/polybar laptop/
+    cp -r   ~/.config/herbstluftwm laptop/
+    cp -r   ~/.config/dunst laptop/
+    cp -r   ~/.config/polybar laptop/
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r ~/.config/kitty       combined/
-    cp -r ~/.config/pacwall     combined/
-    cp -r ~/.bashrc             combined/bash/
-    cp -r ~/.config/nano        combined/
-    cp -r ~/.config/picom       combined/
-    mv combined/bash/.bashrc    combined/bash/bashrc 
+    cp -r   ~/.config/kitty         combined/
+    cp -r   ~/.config/pacwall       combined/
+    cp -r   ~/.bashrc               combined/bash/
+    cp -r   ~/.config/nano          combined/
+    cp -r   ~/.config/picom         combined/
+    mv      combined/bash/.bashrc   combined/bash/bashrc 
     fi
 
     success
@@ -114,12 +114,12 @@ elif [ $answerLaptop = 'n' ]; then
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r ~/.config/kitty       combined/
-    cp -r ~/.config/pacwall     combined/
-    cp -r ~/.bashrc             combined/bash/
-    cp -r ~/.config/nano        combined/
-    cp -r ~/.config/picom       combined/
-    mv combined/bash/.bashrc    combined/bash/bashrc 
+    cp -r   ~/.config/kitty         combined/
+    cp -r   ~/.config/pacwall       combined/
+    cp -r   ~/.bashrc               combined/bash/
+    cp -r   ~/.config/nano          combined/
+    cp -r   ~/.config/picom         combined/
+    mv      combined/bash/.bashrc   combined/bash/bashrc 
     fi
 
     success
@@ -127,18 +127,18 @@ elif [ $answerLaptop = 'n' ]; then
     timeout "Pulling new configs in..."
 
     #device specific configs
-    cp -r ~/.config/herbstluftwm pc/
-    cp -r ~/.config/dunst pc/
-    cp -r ~/.config/polybar pc/
+    cp -r   ~/.config/herbstluftwm pc/
+    cp -r   ~/.config/dunst pc/
+    cp -r   ~/.config/polybar pc/
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r ~/.config/kitty       combined/
-    cp -r ~/.config/pacwall     combined/
-    cp -r ~/.bashrc             combined/bash/
-    cp -r ~/.config/nano        combined/
-    cp -r ~/.config/picom       combined/
-    mv combined/bash/.bashrc    combined/bash/bashrc 
+    cp -r   ~/.config/kitty         combined/
+    cp -r   ~/.config/pacwall       combined/
+    cp -r   ~/.bashrc               combined/bash/
+    cp -r   ~/.config/nano          combined/
+    cp -r   ~/.config/picom         combined/
+    mv      combined/bash/.bashrc   combined/bash/bashrc 
     fi
 
     success

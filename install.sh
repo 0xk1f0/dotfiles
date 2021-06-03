@@ -120,9 +120,9 @@ fi
 if [ $answer3 = 'y' ]; then
     timeout "Copying new configs in..."
     #device specific
-    cp -r laptop/herbstluftwm/ ~/.config/
-    cp -r laptop/dunst/ ~/.config/
-    cp -r laptop/polybar/ ~/.config/
+    cp -r   laptop/herbstluftwm/    ~/.config/
+    cp -r   laptop/dunst/           ~/.config/
+    cp -r   laptop/polybar/         ~/.config/
 elif [ $answer3 = 'n' ]; then
     timeout "Copying new configs in..."
     #device specific
@@ -143,7 +143,7 @@ cp -r   combined/pacwall/     ~/.config/
 cp -r   combined/nano/        ~/.config/
 cp -r   combined/picom/       ~/.config/
 cp -r   combined/bash/bashrc  ~/
-mv      ~/bashrc                 ~/.bashrc
+mv      ~/bashrc              ~/.bashrc
 
 success
 
