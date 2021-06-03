@@ -25,20 +25,16 @@ success () {
 clear
 
 #Ask for confirmation to run
-echo "This script will pull the newest configs from the .config/ directory"
-echo "This script is to be used by the maintainer of this dotfile repo!"
+echo -e 'This script will pull the newest configs from the .config/ directory.
+This script is to be used by the maintainer of this dotfile repo!\n'
 sleep 2
-read -p "Proceed? (y|n) " answer
+read -p "Proceed? (y|n) " answerProceed
 
-if [ $answer = 'y' ]; then
+if [ $answerProceed = 'y' ]; then
     clear
-elif [ $answer = 'n' ]; then
+elif [ $answerProceed = 'n' ]; then
     clear
     echo "Exiting..."
-    exit
-elif [ $answer = ]; then
-    clear
-    echo "No answer was given, exiting..."
     exit
 else 
     clear
@@ -46,24 +42,35 @@ else
     exit
 fi
 
-read -p "Are you on a Laptop? (y|n) " answer2
+read -p "Are you on a Laptop? (y|n) " answerLaptop
 
-if [ $answer2 = 'y' ]; then
+if [ $answerLaptop = 'y' ]; then
+    clear
     echo "On Laptop"
     sleep 2
+    clear
+
+    read -p "Would you like to pull combined too? (y|n) " answerCombined
+    clear
+    echo "Including combined in pull"
+    sleep 2
+    clear
+
     timeout "Deleting old configs in..."
 
     #device specific configs
-    rm -rf laptop/dunst/
-    rm -rf laptop/herbstluftwm/
-    rm -rf laptop/polybar/
+    rm -rf  laptop/dunst/
+    rm -rf  laptop/herbstluftwm/
+    rm -rf  laptop/polybar/
 
+    if [ $answerCombined = 'y' ]; then
     #combined configs
-    rm -rf combined/kitty/
-    rm -rf combined/pacwall/
-    rm -rf combined/bash/bashrc
-    rm -rf combined/nano/
-    rm -rf combined/picom/
+    rm -rf  combined/kitty/
+    rm -rf  combined/pacwall/
+    rm -rf  combined/bash/bashrc
+    rm -rf  combined/nano/
+    rm -rf  combined/picom/
+    fi
 
     success
     
@@ -74,19 +81,30 @@ if [ $answer2 = 'y' ]; then
     cp -r ~/.config/dunst laptop/
     cp -r ~/.config/polybar laptop/
 
+    if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r ~/.config/kitty combined/
-    cp -r ~/.config/pacwall combined/
-    cp -r ~/.bashrc combined/bash/
-    cp -r ~/.config/nano combined/
-    cp -r ~/.config/picom combined/
-    mv combined/bash/.bashrc combined/bash/bashrc 
+    cp -r ~/.config/kitty       combined/
+    cp -r ~/.config/pacwall     combined/
+    cp -r ~/.bashrc             combined/bash/
+    cp -r ~/.config/nano        combined/
+    cp -r ~/.config/picom       combined/
+    mv combined/bash/.bashrc    combined/bash/bashrc 
+    fi
 
     success
 
-elif [ $answer2 = 'n' ]; then
+elif [ $answerLaptop = 'n' ]; then
+    clear
     echo "On PC"
     sleep 2
+    clear
+
+    read -p "Would you like to pull combined too? (y|n) " answerCombined
+    clear
+    echo "Including combined in pull"
+    sleep 2
+    clear
+
     timeout "Deleting old configs in..."
 
     #device specific configs
@@ -94,12 +112,15 @@ elif [ $answer2 = 'n' ]; then
     rm -rf pc/herbstluftwm/
     rm -rf pc/polybar/
 
+    if [ $answerCombined = 'y' ]; then
     #combined configs
-    rm -rf combined/kitty/
-    rm -rf combined/pacwall/
-    rm -rf combined/bash/bashrc
-    rm -rf combined/nano/
-    rm -rf combined/picom/
+    cp -r ~/.config/kitty       combined/
+    cp -r ~/.config/pacwall     combined/
+    cp -r ~/.bashrc             combined/bash/
+    cp -r ~/.config/nano        combined/
+    cp -r ~/.config/picom       combined/
+    mv combined/bash/.bashrc    combined/bash/bashrc 
+    fi
 
     success
 
@@ -110,20 +131,18 @@ elif [ $answer2 = 'n' ]; then
     cp -r ~/.config/dunst pc/
     cp -r ~/.config/polybar pc/
 
+    if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r ~/.config/kitty combined/
-    cp -r ~/.config/pacwall combined/
-    cp -r ~/.bashrc combined/bash/
-    cp -r ~/.config/nano combined/
-    cp -r ~/.config/picom combined/
-    mv combined/bash/.bashrc combined/bash/bashrc 
+    cp -r ~/.config/kitty       combined/
+    cp -r ~/.config/pacwall     combined/
+    cp -r ~/.bashrc             combined/bash/
+    cp -r ~/.config/nano        combined/
+    cp -r ~/.config/picom       combined/
+    mv combined/bash/.bashrc    combined/bash/bashrc 
+    fi
 
     success
 
-elif [ $answer2 = ]; then
-    clear
-    echo "No answer was given, exiting..."
-    exit
 else
     clear
     echo "Unsure, Exiting..."
