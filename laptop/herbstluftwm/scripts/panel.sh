@@ -19,9 +19,9 @@ y=${geometry[1]}
 panel_width=${geometry[2]}
 panel_height=34
 font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
-bgcolor='#00000000'
-selbg='#00000000'
-selfg='#00000000'
+bgcolor='#ffffffff'
+selbg='#ffffffff'
+selfg='#101010ff'
 
 ####
 # Try to find textwidth binary.
