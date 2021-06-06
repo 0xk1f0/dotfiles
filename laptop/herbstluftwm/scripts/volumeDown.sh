@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 #Down Volume
 pamixer -d 5
 
