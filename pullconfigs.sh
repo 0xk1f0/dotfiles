@@ -73,7 +73,7 @@ if [ $answerLaptop = 'y' ]; then
     fi
 
     success
-    
+
     timeout "Pulling new configs in..."
 
     #device specific configs
