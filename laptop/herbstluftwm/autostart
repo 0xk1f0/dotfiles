@@ -146,14 +146,14 @@ hc set frame_border_normal_color "$colorNormal"
 hc set frame_border_width 0
 hc set frame_active_opacity 0
 hc set frame_normal_opacity 0
-hc set always_show_frame off
+hc set always_show_frame on
 hc set frame_gap 0
 
 #theme2
 hc attr theme.active.color "$colorActive"
 hc attr theme.normal.color "$colorNormal"
 hc attr theme.urgent.color "$colorUrgent"
-hc attr theme.border_width 2.5
+hc attr theme.border_width 2
 hc attr theme.floating.border_width 2
 
 #window rules/theme
