@@ -105,7 +105,11 @@ elif [ $answerLaptop = 'n' ]; then
 
     read -p "Would you like to pull combined too? (y|n) " answerCombined
     clear
+    if [ $answerCombined = 'y' ]; then
     echo "Including combined in pull"
+    else
+    echo "NOT including combined in pull"
+    fi
     sleep 2
     clear
 

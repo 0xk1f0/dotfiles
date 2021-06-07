@@ -44,14 +44,12 @@ hc keybind $Mod-Up    focus up
 hc keybind $Mod-Right focus right
 
 # moving clients in tiling and floating mode (multi monitor)
-hc keybind $Mod-Shift-Down  shift down
-hc keybind $Mod-Shift-Up    shift up
-hc keybind $Mod-Shift-Control-Left     shift left
-hc keybind $Mod-Shift-Control-Right     shift right
-hc keybind $Mod-Shift-Left  chain , lock , shift_to_monitor -l , focus_monitor -l , unlock
-hc keybind $Mod-Shift-Right chain , lock , shift_to_monitor -r , focus_monitor -r , unlock
-hc keybind $Mod-Shift-j     chain , lock , shift_to_monitor -d , focus_monitor -d , unlock
-hc keybind $Mod-Shift-k     chain , lock , shift_to_monitor -u , focus_monitor -u , unlock
+hc keybind $Mod-Shift-Down  	shift down
+hc keybind $Mod-Shift-Up    	shift up
+hc keybind $Mod-Shift-Left     	shift left
+hc keybind $Mod-Shift-Right     shift right
+hc keybind $Mod-Shift-j     	shift left
+hc keybind $Mod-Shift-k     	shift right
 
 # splitting frames
 hc keybind $Mod-u       split   bottom  0.5
