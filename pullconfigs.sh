@@ -74,6 +74,7 @@ if [ $answerLaptop = 'y' ]; then
     rm -rf  combined/bash/bashrc
     rm -rf  combined/nano/
     rm -rf  combined/picom/
+    rm -f   combined/ncspot/config.toml
     fi
 
     success
@@ -87,12 +88,13 @@ if [ $answerLaptop = 'y' ]; then
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r   ~/.config/kitty         combined/
-    cp -r   ~/.config/pacwall       combined/
-    cp -r   ~/.bashrc               combined/bash/
-    cp -r   ~/.config/nano          combined/
-    cp -r   ~/.config/picom         combined/
-    mv      combined/bash/.bashrc   combined/bash/bashrc 
+    cp -r   ~/.config/kitty                     combined/
+    cp -r   ~/.config/pacwall                   combined/
+    cp -r   ~/.bashrc                           combined/bash/
+    cp -r   ~/.config/nano                      combined/
+    cp -r   ~/.config/picom                     combined/
+    cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
+    mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
 
     success
@@ -122,12 +124,12 @@ elif [ $answerLaptop = 'n' ]; then
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r   ~/.config/kitty         combined/
-    cp -r   ~/.config/pacwall       combined/
-    cp -r   ~/.bashrc               combined/bash/
-    cp -r   ~/.config/nano          combined/
-    cp -r   ~/.config/picom         combined/
-    mv      combined/bash/.bashrc   combined/bash/bashrc 
+    rm -rf  combined/kitty/
+    rm -rf  combined/pacwall/
+    rm -rf  combined/bash/bashrc
+    rm -rf  combined/nano/
+    rm -rf  combined/picom/
+    rm -f   combined/ncspot/config.toml
     fi
 
     success
@@ -141,12 +143,13 @@ elif [ $answerLaptop = 'n' ]; then
 
     if [ $answerCombined = 'y' ]; then
     #combined configs
-    cp -r   ~/.config/kitty         combined/
-    cp -r   ~/.config/pacwall       combined/
-    cp -r   ~/.bashrc               combined/bash/
-    cp -r   ~/.config/nano          combined/
-    cp -r   ~/.config/picom         combined/
-    mv      combined/bash/.bashrc   combined/bash/bashrc 
+    cp -r   ~/.config/kitty                     combined/
+    cp -r   ~/.config/pacwall                   combined/
+    cp -r   ~/.bashrc                           combined/bash/
+    cp -r   ~/.config/nano                      combined/
+    cp -r   ~/.config/picom                     combined/
+    cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
+    mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
 
     success

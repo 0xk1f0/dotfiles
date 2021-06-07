@@ -75,16 +75,18 @@ if [ $answer2 = 'y' ]; then
     timeout "Backing up present configs to .old in..."
 
     #backup configs if present
-    mv  ~/.config/herbstluftwm  ~/.config/herbstluftwm.old
-    mv  ~/.config/dunst         ~/.config/dunst.old
-    mv  ~/.config/polybar       ~/.config/polybar.old
-    mv  ~/.config/kitty         ~/.config/kitty.old
-    mv  ~/.config/pacwall       ~/.config/pacwall.old
-    mv  ~/.bashrc               ~/.bashrc.old
-    mv  ~/.config/nano          ~/.config/nano.old
-    mv  ~/.config/picom         ~/.config/picom.old
+    mv  ~/.config/herbstluftwm              ~/.config/herbstluftwm.old
+    mv  ~/.config/dunst                     ~/.config/dunst.old
+    mv  ~/.config/polybar                   ~/.config/polybar.old
+    mv  ~/.config/kitty                     ~/.config/kitty.old
+    mv  ~/.config/pacwall                   ~/.config/pacwall.old
+    mv  ~/.bashrc                           ~/.bashrc.old
+    mv  ~/.config/nano                      ~/.config/nano.old
+    mv  ~/.config/picom                     ~/.config/picom.old
+    mv  ~/.config/ncspot/config.toml        ~/.config/ncspot/config.toml.old
 
     success
+
 elif [ $answer2 = 'n' ]; then
     clear
     echo ""
@@ -108,6 +110,7 @@ elif [ $answer2 = 'n' ]; then
     rm -f   ~/.bashrc
     rm -rf  ~/.config/nano/
     rm -rf  ~/.config/picom/
+    rm -f   ~/.config/ncspot/config.toml
 
     success
 
@@ -138,12 +141,13 @@ else
 fi
 
 #combined configs
-cp -r   combined/kitty/       ~/.config/
-cp -r   combined/pacwall/     ~/.config/
-cp -r   combined/nano/        ~/.config/
-cp -r   combined/picom/       ~/.config/
-cp -r   combined/bash/bashrc  ~/
-mv      ~/bashrc              ~/.bashrc
+cp -r   combined/kitty/                 ~/.config/
+cp -r   combined/pacwall/               ~/.config/
+cp -r   combined/nano/                  ~/.config/
+cp -r   combined/picom/                 ~/.config/
+cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
+cp -r   combined/bash/bashrc            ~/
+mv      ~/bashrc                        ~/.bashrc
 
 success
 
