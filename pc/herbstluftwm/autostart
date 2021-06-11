@@ -4,14 +4,14 @@
 #░█▀█░█░░░█▄█░█░█░▄▄▄░█░░░█░█░█░█░█▀▀░░█░░█░█░▄▄▄░█▀▄░░█░░█▀▀░█/█
 #░▀░▀░▀▀▀░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
-# apply correct resolution and orientation
-~/.config/herbstluftwm/scripts/xrandrapply.sh &
-
 hc() {
     herbstclient "$@"
 }
 
 hc emit_hook reload
+
+#configure monitors
+~/.config/herbstluftwm/scripts/xrandrapply.sh &
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -85,18 +85,11 @@ done
 
 # set default layout for tags
 for i in 0 1 2 3 4 ; do
-  if [ "$i" == 1 ]; then
+  if [ "$i" == 0 ]; then
     hc use_index "$i"
     hc set_layout vertical
-  else
-    hc use_index "$i"
-    hc set_layout grid
   fi
 done
-
-# switch to main monitor
-hc use_index 1
-hc focus_monitor 1
 
 # cycle through tags
 hc keybind $Mod-period use_index +1 --skip-visible
