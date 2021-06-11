@@ -3,7 +3,7 @@ My personal .config Collection for hlwm, polybar, dunst, etc.
 
 Installation guide provided below.
 
-# "installpackages.sh" PACKAGE LIST
+## "installpackages.sh" PACKAGE LIST
 
 | Package | Link |
 | ------------- | ------------- |
@@ -37,7 +37,7 @@ Installation guide provided below.
 | ipcalc | Content Cell  |
 | nm-connection-editor | Content Cell  |
 
-# INSTALLATION
+## INSTALLATION
 ```
 git clone https://github.com/K1llf0rce/dotfiles.git
 cd dotfiles/
