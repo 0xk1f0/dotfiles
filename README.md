@@ -3,7 +3,7 @@ My personal .config Collection for hlwm, polybar, dunst, etc.
 
 Installation guide provided below.
 
-## "installpackages.sh" PACKAGE LIST
+## PACKAGE LIST "installpackages.sh" 
 
 | Package | Link |
 | ------------- | ------------- |
@@ -36,6 +36,14 @@ Installation guide provided below.
 | iphogs | Content Cell  |
 | ipcalc | Content Cell  |
 | nm-connection-editor | Content Cell  |
+
+## AUR-PACKAGES
+
+| Package | Link |
+| ------------- | ------------- |
+| polybar | Content Cell  |
+| ncspot-bin | Content Cell  |
+| firefox-nightly | Content Cell  |
 
 ## INSTALLATION
 ```
