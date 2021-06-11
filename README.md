@@ -41,9 +41,9 @@ Installation guide provided below.
 
 | Package | Link |
 | ------------- | ------------- |
-| polybar | Content Cell  |
-| ncspot-bin | Content Cell  |
-| firefox-nightly | Content Cell  |
+| polybar | https://aur.archlinux.org/packages/polybar/  |
+| ncspot | https://aur.archlinux.org/packages/ncspot/  |
+| firefox-nightly | https://aur.archlinux.org/packages/firefox-nightly/  |
 
 ## INSTALLATION
 ```
