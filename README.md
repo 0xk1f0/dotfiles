@@ -27,12 +27,12 @@ Installation guide provided below.
 | flameshot | https://archlinux.org/packages/community/x86_64/flameshot/  |
 | gimp | https://archlinux.org/packages/extra/x86_64/gimp/  |
 | signal-desktop | https://archlinux.org/packages/community/x86_64/signal-desktop/  |
-| telegram-desktop| https://archlinux.org/packages/community/x86_64/telegram-desktop/  |
+| telegram-desktop | https://archlinux.org/packages/community/x86_64/telegram-desktop/  |
 | discord | https://archlinux.org/packages/community/x86_64/discord/  |
 | wireshark-qt | https://archlinux.org/packages/community/x86_64/wireshark-qt/  |
 | reflector | https://archlinux.org/packages/community/any/reflector/ |
 | pacman-mirrorlist | https://archlinux.org/packages/core/any/pacman-mirrorlist/  |
-| iproute | https://archlinux.org/packages/core/x86_64/iproute2/ |
+| traceroute | https://archlinux.org/packages/core/x86_64/traceroute/ |
 | ipcalc | https://archlinux.org/packages/community/any/ipcalc/  |
 | nm-connection-editor | https://archlinux.org/packages/extra/x86_64/nm-connection-editor/  |
 
