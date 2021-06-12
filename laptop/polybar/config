@@ -49,7 +49,7 @@ font-5 = "Roboto:style=Medium"
 [colors]
 colorUnderlineNormal = #ffffff
 colorUnderlineAlt = #00ff00
-colorBackground = #302550
+colorBackground = #000018
 colorForeground = #ffffff
 
 ###########################################################

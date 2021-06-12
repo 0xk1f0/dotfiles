@@ -92,7 +92,7 @@ label-font = 0
 [colors]
 colorUnderlineNormal = #ffffff
 colorUnderlineAlt = #00ff00
-colorBackground = #302550
+colorBackground = #000018
 colorForeground = #ffffff
 colorBorder = #ffffff
 
