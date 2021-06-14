@@ -57,6 +57,9 @@ alias cleancache='paru -Scc'
 #update AUR packages (req paru)
 alias aurup='paru -a -Syu'
 
+#updategpg keys
+alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
+
 #typos
 alias pdw="pwd"
 
