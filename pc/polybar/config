@@ -11,7 +11,6 @@
 monitor = DisplayPort-2
 width = 99%
 height = 26
-padding = 2
 border-size = 2
 border-color = ${colors.colorBorder}
 offset-x = 0.5%
@@ -19,7 +18,6 @@ offset-y = 0.5%
 radius = 0.0
 fixed-center = true
 bottom = false
-separator = 
 
 background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
@@ -29,7 +27,7 @@ override-redirect = true
 module-margin-left = 2
 module-margin-right = 2
 
-line-size = 2
+line-size = 1
 
 modules-left = ewmh
 modules-center = date
@@ -42,8 +40,6 @@ font-3 = awesome-terminal-fonts/devicons-regular.ttf: icomoon:style=Regular
 font-4 = awesome-terminal-fonts/octicons-regular.ttf: octicons:style=Medium
 font-5 = awesome-terminal-fonts/programming-languages.ttf: Programming\-Languages:style=Regular
 
-label-font = 0
-
 ###########################################################
 #######HDMI-BAR############################################
 ###########################################################
@@ -52,15 +48,13 @@ label-font = 0
 monitor = HDMI-A-0
 width = 98%
 height = 22
-padding = 2
 border-size = 2
 border-color = ${colors.colorBorder}
 offset-x = 1%
 offset-y = 0.4%
 radius = 0.0
 fixed-center = true
-bottom = false
-separator = 
+bottom = false 
 
 background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
@@ -70,7 +64,7 @@ override-redirect = true
 module-margin-left = 2
 module-margin-right = 2
 
-line-size = 2
+line-size = 1
 
 modules-left = ewmh
 modules-center = date
@@ -82,8 +76,6 @@ font-2 = awesome-terminal-fonts/fontawesome-regular.ttf: FontAwesome:style=Regul
 font-3 = awesome-terminal-fonts/devicons-regular.ttf: icomoon:style=Regular
 font-4 = awesome-terminal-fonts/octicons-regular.ttf: octicons:style=Medium
 font-5 = awesome-terminal-fonts/programming-languages.ttf: Programming\-Languages:style=Regular
-
-label-font = 0
 
 ###########################################################
 ###########################################################
@@ -106,8 +98,10 @@ mount-0 = /
 
 format-mounted-underline = ${colors.colorUnderlineNormal}
 label-mounted = %mountpoint%: %percentage_used%% usd
+label-mounted-font = 0
 format-unmounted-underline = #ff0000
 label-unmounted = %mountpoint% umtd
+label-unmounted-font = 0
 
 ###########################################################
 
@@ -120,8 +114,10 @@ mount-0 = /hdd1
 
 format-mounted-underline = ${colors.colorUnderlineNormal}
 label-mounted = %mountpoint%: %percentage_used%% usd
+label-mounted-font = 0
 format-unmounted-underline = ${colors.colorUnderlineAlt}
 label-unmounted = %mountpoint% umtd
+label-unmounted-font = 0
 
 ###########################################################
 
@@ -130,6 +126,7 @@ type = internal/cpu
 interval = 2
 format-underline = ${colors.colorUnderlineNormal}
 label = cpu: %percentage%% utl
+label-font = 0
 
 ###########################################################
 
@@ -138,6 +135,7 @@ type = internal/memory
 interval = 2
 format-underline = ${colors.colorUnderlineNormal}
 label = memory: %percentage_used%% usd
+label-font = 0
 
 ###########################################################
 
@@ -148,9 +146,11 @@ interval = 5
 
 format-connected-underline = ${colors.colorUnderlineNormal}
 label-connected = eth con
+label-connected-font = 0
 
 format-disconnected-underline = ${colors.colorUnderlineAlt}
 label-disconnected = eth disc
+label-disconnect-font = 0
 
 ###########################################################
 
@@ -167,6 +167,7 @@ time-alt = %H:%M:%S
 format-underline = ${colors.colorUnderlineNormal}
 
 label = %date% %time%
+label-font = 0
 
 ###########################################################
 
@@ -181,6 +182,8 @@ format-underline = ${colors.colorUnderlineNormal}
 label-open = pwr >
 label-close = pwr <
 label-separator = /
+label-open-font = 0
+label-close-font = 0
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -225,16 +228,21 @@ label-monitor = %name%
 label-active = %name%
 label-active-underline= ${colors.colorUnderlineNormal}
 label-active-padding = 2
+label-active-overline = ${colors.colorUnderlineNormal}
+label-active-font = 0
 
 label-occupied = %name%o
 label-occupied-padding = 2
+label-occupied-font = 0
 
 label-urgent = %name%
 label-urgent-underline = ${colors.colorUnderlineAlt}
 label-urgent-padding = 2
+label-urgent-font = 0
 
 label-empty = %name%e
 label-empty-padding = 2
+label-empty-font = 0
 
 ###########################################################
 
@@ -244,6 +252,7 @@ type = internal/xwindow
 label = %title%
 label-maxlen = 30
 label-underline = ${colors.colorUnderlineNormal}
+label-font = 0
 
 ##########################################################
 
