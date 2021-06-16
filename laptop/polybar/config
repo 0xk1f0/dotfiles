@@ -12,14 +12,13 @@ monitor = eDP
 width = 98.8%
 height = 28
 padding = 2
-border-size = 2
+border-size = 1
 border-color = #ffffff
 offset-x = 0.6%
 offset-y = 0.6%
 radius = 0.0
 fixed-center = true
 bottom = false
-separator =
 
 background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
@@ -29,18 +28,18 @@ override-redirect = true
 module-margin-left = 2
 module-margin-right = 2
 
-line-size = 2
+line-size = 1
 
-modules-left = ewmh xwindow
+modules-left = ewmh cpu memory
 modules-center = date
-modules-right = cpu memory filesystem network battery powermenu
+modules-right = filesystem wireless-network wired-network battery powermenu
 
 font-0 = "Open Sans:style=Regular"
-font-1 = "FontAwesome:style=Regular"
-;font-2 = "icomoon:style=Regular"
-;font-3 = "octicons:style=Medium"
-font-4 = "Twemoji:style=Regular;size=11"
-font-5 = "Roboto:style=Medium"
+font-1 = "icomoon:style=Regular"
+font-2 = "octicons:style=Medium"
+font-3 = "Twemoji:style=Regular;size=11"
+font-4 = "Roboto:style=Medium"
+font-5 = "FontAwesome:style=Regular"
 
 ###########################################################
 ###########################################################
@@ -60,34 +59,34 @@ interval = 30
 
 mount-0 = /
 
-format-mounted-underline = ${colors.colorUnderlineNormal}
+#format-mounted-underline = ${colors.colorUnderlineNormal}
 label-mounted = %mountpoint%: %percentage_used%% usd
-format-unmounted-underline = ${colors.colorUnderlineAlt}
+#format-unmounted-underline = ${colors.colorUnderlineAlt}
 label-unmounted = %mountpoint% umtd
-label-mounted-font = 6
-label-unmounted-font = 6
+label-mounted-font = 0
+label-unmounted-font = 0
 
 ###########################################################
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-underline = ${colors.colorUnderlineNormal}
+#format-underline = ${colors.colorUnderlineNormal}
 label = cpu: %percentage%% utl
-label-font = 6
+label-font = 0
 
 ###########################################################
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-underline = ${colors.colorUnderlineNormal}
+#format-underline = ${colors.colorUnderlineNormal}
 label = memory: %percentage_used%% usd
-label-font = 6
+label-font = 0
 
 ###########################################################
 
-[module/network]
+[module/wireless-network]
 type = internal/network
 ; Name of the network interface to display. You can get the names of the
 ; interfaces on your machine with `ip link`
@@ -113,19 +112,19 @@ unknown-as-up = false
 ;   <label-connected> (default)
 ;   <ramp-signal>
 format-connected = <label-connected> <ramp-signal>
-format-connected-underline = ${colors.colorUnderlineNormal}
+#format-connected-underline = ${colors.colorUnderlineNormal}
 
 ; Available tags:
 ;   <label-disconnected> (default)
 format-disconnected = <label-disconnected>
-format-disconnected-underline = ${colors.colorUnderlineAlt}
+#format-disconnected-underline = ${colors.colorUnderlineNormal}
 
 ; Available tags:
 ;   <label-connected> (default)
 ;   <label-packetloss>
 ;   <animation-packetloss>
 format-packetloss = <label-packetloss>
-format-packetloss-underline = ${colors.colorUnderlineAlt}
+#format-packetloss-underline = ${colors.colorUnderlineAlt}
 
 ; All labels support the following tokens:
 ;   %ifname%    [wireless+wired]
@@ -138,17 +137,32 @@ format-packetloss-underline = ${colors.colorUnderlineAlt}
 ;   %linkspeed% [wired]
 
 ; Default: %ifname% %local_ip%
-label-connected = %ifname% con @ %essid%
-;label-connected-font = 6
+label-connected = %ifname% @ %essid%
+label-connected-font = 0
 label-disconnected = %ifname% dsc
-;label-disconnected-font = 6
+label-disconnected-font = 0
 
-ramp-signal-0 = -
+ramp-signal-0 = + 
 ramp-signal-1 = /
-ramp-signal-2 = /-
+ramp-signal-2 = /+
 ramp-signal-3 = //
-ramp-signal-4 = //-
+ramp-signal-4 = //+
 ramp-signal-5 = ///
+
+###########################################################
+
+[module/wired-network]
+type = internal/network
+interface = enp34s0
+interval = 5
+
+#format-connected-underline = ${colors.colorUnderlineNormal}
+label-connected = eth con
+label-connected-font = 0
+
+#format-disconnected-underline = ${colors.colorUnderlineAlt}
+label-disconnected = eth disc
+label-disconnect-font = 0
 
 ###########################################################
 
@@ -162,10 +176,10 @@ date-alt = "%d.%m.%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-underline = ${colors.colorUnderlineNormal}
+#format-underline = ${colors.colorUnderlineNormal}
 
 label = %date% %time%
-label-font = 6
+label-font = 0
 
 ###########################################################
 
@@ -190,8 +204,8 @@ adapter = ADP1
 ;
 ; Default: 5
 poll-interval = 1
-format-discharging-underline = ${colors.colorUnderlineNormal}
-format-charging-underline = ${colors.colorUnderlineNormal}
+#format-discharging-underline = ${colors.colorUnderlineNormal}
+#format-charging-underline = ${colors.colorUnderlineNormal}
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -199,7 +213,7 @@ format-charging-underline = ${colors.colorUnderlineNormal}
 ;   %time%
 ;   %consumption% (shows current charge rate in watts)
 label-charging = chr %percentage%% @ %consumption%W
-label-charging-font = 6
+label-charging-font = 0
 
 ; Available tokens:
 ;   %percentage% (default) - is set to 100 if full-at is reached
@@ -207,7 +221,7 @@ label-charging-font = 6
 ;   %time%
 ;   %consumption% (shows current discharge rate in watts)
 label-discharging = dsc %percentage%%
-label-discharging-font = 6
+label-discharging-font = 0
 
 ###########################################################
 
@@ -217,13 +231,13 @@ type = custom/menu
 expand-right = true
 
 format-spacing = 2
-format-underline = ${colors.colorUnderlineNormal}
+#format-underline = ${colors.colorUnderlineNormal}
 
 label-open = pwr >
 label-close = pwr <
 label-separator = /
-label-open-font = 6
-label-close-font = 6
+label-open-font = 0
+label-close-font = 0
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -264,25 +278,29 @@ icon-3 = 4;
 icon-4 = 5;
 format = <label-state>
 label-monitor = %name%
-label-monitor-font = 6
+label-monitor-font = 0
 
-label-active = %name%
-label-active-underline= ${colors.colorUnderlineNormal}
-label-active-padding = 2
-label-active-font = 6
+label-active = |%name%|
+#label-active-underline= ${colors.colorUnderlineNormal}
+label-active-margin = 1
+label-active-padding = 0 
+label-active-font = 0
 
-label-occupied = %name%o
-label-occupied-padding = 2
-label-occupied-font = 6
+label-occupied = %name%
+label-occupied-margin = 1
+label-occupied-padding = 0
+label-occupied-font = 0
 
 label-urgent = %name%
-label-urgent-underline = ${colors.colorUnderlineAlt}
-label-urgent-padding = 2
-label-urgent-font = 6
+#label-urgent-underline = ${colors.colorUnderlineAlt}
+label-urgent-margin = 1
+label-urgent-padding = 0
+label-urgent-font = 0
 
-label-empty = %name%e
-label-empty-padding = 2
-label-empty-font = 6
+label-empty = %name%
+label-empty-margin = 1
+label-empty-padding = 0
+label-empty-font = 0
 
 ###########################################################
 
@@ -290,9 +308,9 @@ label-empty-font = 6
 type = internal/xwindow
 
 label = %title%
-label-underline = ${colors.colorUnderlineNormal}
+#label-underline = ${colors.colorUnderlineNormal}
 label-maxlen = 30
-label-font = 6
+label-font = 0
 
 ##########################################################
 
