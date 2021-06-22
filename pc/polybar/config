@@ -9,6 +9,7 @@
 
 [bar/main-hlwm]
 monitor = DisplayPort-2
+
 width = 99%
 height = 26
 border-size = 2
@@ -17,7 +18,7 @@ offset-x = 0.5%
 offset-y = 0.5%
 radius = 0.0
 fixed-center = true
-bottom = false
+padding = 2
 
 background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
@@ -28,17 +29,18 @@ module-margin-left = 2
 module-margin-right = 2
 
 line-size = 1
+line-color = ${colors.colorUnderline}
 
-modules-left = ewmh
+modules-left = ewmh cpu memory
 modules-center = date
-modules-right = cpu memory filesystem filesystem2 eth powermenu
+modules-right = filesystemSSD filesystemHDD eth powermenu
 
-font-0 = OpenSans-Regular.ttf: Open Sans:style=Regular
-font-1 = awesome-terminal-fonts/pomicons-regular.ttf: Pomodoro:style=Regular
-font-2 = awesome-terminal-fonts/fontawesome-regular.ttf: FontAwesome:style=Regular
-font-3 = awesome-terminal-fonts/devicons-regular.ttf: icomoon:style=Regular
-font-4 = awesome-terminal-fonts/octicons-regular.ttf: octicons:style=Medium
-font-5 = awesome-terminal-fonts/programming-languages.ttf: Programming\-Languages:style=Regular
+font-0 = "Open Sans:style=Regular"
+font-1 = "icomoon:style=Regular"
+font-2 = "octicons:style=Medium"
+font-3 = "Twemoji:style=Regular;size=11"
+font-4 = "Roboto:style=Medium"
+font-5 = "FontAwesome:style=Regular"
 
 ###########################################################
 #######HDMI-BAR############################################
@@ -54,7 +56,7 @@ offset-x = 1%
 offset-y = 0.4%
 radius = 0.0
 fixed-center = true
-bottom = false 
+padding = 2
 
 background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
@@ -65,57 +67,53 @@ module-margin-left = 2
 module-margin-right = 2
 
 line-size = 1
+line-color = ${colors.colorUnderline}
 
 modules-left = ewmh
 modules-center = date
 modules-right = powermenu
 
-font-0 = OpenSans-Regular.ttf: Open Sans:style=Regular
-font-1 = awesome-terminal-fonts/pomicons-regular.ttf: Pomodoro:style=Regular
-font-2 = awesome-terminal-fonts/fontawesome-regular.ttf: FontAwesome:style=Regular
-font-3 = awesome-terminal-fonts/devicons-regular.ttf: icomoon:style=Regular
-font-4 = awesome-terminal-fonts/octicons-regular.ttf: octicons:style=Medium
-font-5 = awesome-terminal-fonts/programming-languages.ttf: Programming\-Languages:style=Regular
+font-0 = "Open Sans:style=Regular"
+font-1 = "icomoon:style=Regular"
+font-2 = "octicons:style=Medium"
+font-3 = "Twemoji:style=Regular;size=11"
+font-4 = "Roboto:style=Medium"
+font-5 = "FontAwesome:style=Regular"
 
 ###########################################################
 ###########################################################
 ###########################################################
 
 [colors]
-colorUnderlineNormal = #ffffff
-colorUnderlineAlt = #00ff00
+colorUnderline = #ffffff
 colorBackground = #000018
 colorForeground = #ffffff
 colorBorder = #ffffff
 
 ###########################################################
 
-[module/filesystem]
+[module/filesystemSSD]
 type = internal/fs
 interval = 30
 
 mount-0 = /
 
-format-mounted-underline = ${colors.colorUnderlineNormal}
-label-mounted = %mountpoint%: %percentage_used%% usd
+label-mounted = %mountpoint%: %free% free
 label-mounted-font = 0
-format-unmounted-underline = #ff0000
 label-unmounted = %mountpoint% umtd
 label-unmounted-font = 0
 
 ###########################################################
 
 
-[module/filesystem2]
+[module/filesystemHDD]
 type = internal/fs
 interval = 30
 
 mount-0 = /hdd1
 
-format-mounted-underline = ${colors.colorUnderlineNormal}
-label-mounted = %mountpoint%: %percentage_used%% usd
+label-mounted = %mountpoint%: %free% free
 label-mounted-font = 0
-format-unmounted-underline = ${colors.colorUnderlineAlt}
 label-unmounted = %mountpoint% umtd
 label-unmounted-font = 0
 
@@ -124,7 +122,6 @@ label-unmounted-font = 0
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-underline = ${colors.colorUnderlineNormal}
 label = cpu: %percentage%% utl
 label-font = 0
 
@@ -133,8 +130,7 @@ label-font = 0
 [module/memory]
 type = internal/memory
 interval = 2
-format-underline = ${colors.colorUnderlineNormal}
-label = memory: %percentage_used%% usd
+label = memory: %gb_used% usd
 label-font = 0
 
 ###########################################################
@@ -144,11 +140,9 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-format-connected-underline = ${colors.colorUnderlineNormal}
 label-connected = eth con
 label-connected-font = 0
 
-format-disconnected-underline = ${colors.colorUnderlineAlt}
 label-disconnected = eth disc
 label-disconnect-font = 0
 
@@ -164,8 +158,6 @@ date-alt = "%d.%m.%Y"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-underline = ${colors.colorUnderlineNormal}
-
 label = %date% %time%
 label-font = 0
 
@@ -177,7 +169,6 @@ type = custom/menu
 expand-right = true
 
 format-spacing = 2
-format-underline = ${colors.colorUnderlineNormal}
 
 label-open = pwr >
 label-close = pwr <
@@ -225,23 +216,24 @@ icon-4 = 5;
 format = <label-state>
 label-monitor = %name%
 
-label-active = %name%
-label-active-underline= ${colors.colorUnderlineNormal}
-label-active-padding = 2
-label-active-overline = ${colors.colorUnderlineNormal}
+label-active = |%name%|
+label-active-margin = 1
+label-active-padding = 0
 label-active-font = 0
 
-label-occupied = %name%o
-label-occupied-padding = 2
+label-occupied = %name%
+label-occupied-margin = 1
+label-occupied-padding = 0
 label-occupied-font = 0
 
-label-urgent = %name%
-label-urgent-underline = ${colors.colorUnderlineAlt}
-label-urgent-padding = 2
+label-urgent = !%name%!
+label-urgent-margin = 1
+label-urgent-padding = 0
 label-urgent-font = 0
 
-label-empty = %name%e
-label-empty-padding = 2
+label-empty = %name%
+label-empty-margin = 1
+label-empty-padding = 0
 label-empty-font = 0
 
 ###########################################################
@@ -251,14 +243,13 @@ type = internal/xwindow
 
 label = %title%
 label-maxlen = 30
-label-underline = ${colors.colorUnderlineNormal}
 label-font = 0
 
 ##########################################################
 
 [settings]
 screenchange-reload = true
-pseudo-transparency = true
+#pseudo-transparency = true
 
 ###########################################################
 

@@ -10,7 +10,7 @@ Installation guide provided below.
 | herbstluftwm | https://archlinux.org/packages/community/x86_64/herbstluftwm/  |
 | nitrogen | https://archlinux.org/packages/extra/x86_64/nitrogen/  |
 | picom | https://archlinux.org/packages/community/x86_64/picom/  |
-| dzenz2 | https://archlinux.org/packages/community/x86_64/dzen2/  |
+| dzen2 | https://archlinux.org/packages/community/x86_64/dzen2/  |
 | dmenu | https://archlinux.org/packages/community/x86_64/dmenu/  |
 | dunst | https://archlinux.org/packages/community/x86_64/dunst/  |
 | pamixer | https://archlinux.org/packages/community/x86_64/pamixer/  |

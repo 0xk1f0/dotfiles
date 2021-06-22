@@ -39,12 +39,15 @@ echo -e '1. Always examine a bash script before you execute it to understand wha
 sleep 2
 
 #ask for confirmation to run
-read -p "Do you want to proceed? (y|n) " answer1
+read -p "Do you want to proceed? (y|n) " answerProceed
 clear
-read -p "Are you on a Laptop? (y|n) " answer3
+read -p "Are you on a Laptop? (y|n) " answerLaptop
+clear
+read -p "Only install non device-specific configs? (y|n) " answerAll
+clear
 
-if [ $answer1 = 'y' ]; then
-    if [ $answer3 = 'y' ]; then
+if [ $answerProceed = 'y' ]; then
+    if [ $answerLaptop = 'y' ]; then
         clear
         echo "On Laptop"
         sleep 2
@@ -54,8 +57,8 @@ if [ $answer1 = 'y' ]; then
         sleep 2
     fi
     clear
-    read -p "Do you want to back up your present configs? (y|n) " answer2
-elif [ $answer1 = 'n' ]; then
+    read -p "Do you want to back up your present configs? (y|n) " answerBackup
+elif [ $answerProceed = 'n' ]; then
     clear
     echo "Exiting..."
     exit
@@ -66,7 +69,7 @@ else
 fi
 
 #ask for backup
-if [ $answer2 = 'y' ]; then
+if [ $answerBackup = 'y' ]; then
     clear
     echo "Chose Backup"
     sleep 2
@@ -75,9 +78,12 @@ if [ $answer2 = 'y' ]; then
     timeout "Backing up present configs to .old in..."
 
     #backup configs if present
-    mv  ~/.config/herbstluftwm              ~/.config/herbstluftwm.old
-    mv  ~/.config/dunst                     ~/.config/dunst.old
-    mv  ~/.config/polybar                   ~/.config/polybar.old
+    if [ $answerAll = 'y' ]; then 
+        mv  ~/.config/herbstluftwm              ~/.config/herbstluftwm.old
+        mv  ~/.config/dunst                     ~/.config/dunst.old
+        mv  ~/.config/polybar                   ~/.config/polybar.old
+    fi
+
     mv  ~/.config/kitty                     ~/.config/kitty.old
     mv  ~/.config/pacwall                   ~/.config/pacwall.old
     mv  ~/.bashrc                           ~/.bashrc.old
@@ -88,7 +94,7 @@ if [ $answer2 = 'y' ]; then
 
     success
 
-elif [ $answer2 = 'n' ]; then
+elif [ $answerBackup = 'n' ]; then
     clear
     echo ""
     echo "#############"
@@ -103,9 +109,12 @@ elif [ $answer2 = 'n' ]; then
     timeout "Deleting old configs (if present) in..."
 
     #delete old configs
+    if [ $answerAll = 'y' ]; then 
     rm -rf  ~/.config/herbstluftwm/
     rm -rf  ~/.config/dunst/
     rm -rf  ~/.config/polybar/
+    fi
+
     rm -rf  ~/.config/kitty/
     rm -rf  ~/.config/pacwall/
     rm -f   ~/.bashrc
@@ -122,18 +131,22 @@ else
     exit
 fi
 
-if [ $answer3 = 'y' ]; then
+if [ $answerLaptop = 'y' ]; then
     timeout "Copying new configs in..."
     #device specific
+    if [ $answerAll = 'y' ]; then 
     cp -r   laptop/herbstluftwm/    ~/.config/
     cp -r   laptop/dunst/           ~/.config/
     cp -r   laptop/polybar/         ~/.config/
-elif [ $answer3 = 'n' ]; then
+    fi
+elif [ $answerLaptop = 'n' ]; then
     timeout "Copying new configs in..."
     #device specific
+    if [ $answerAll = 'y' ]; then 
     cp -r   pc/herbstluftwm/  ~/.config/
     cp -r   pc/dunst/         ~/.config/
     cp -r   pc/polybar/       ~/.config/
+    fi
 else
     clear
     echo "Device not specified!"
