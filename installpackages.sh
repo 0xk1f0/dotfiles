@@ -28,9 +28,9 @@ if [ $answerProceed = 'y' ]; then
     echo "Installing packages ..."
     sleep 1
     echo "WM + stuff ..."
-    pacman -S herbstluftwm picom nitrogen dunst dzen2 dmenu --noconfirm
+    pacman -S herbstluftwm picom nitrogen dunst dzen2 dmenu rofi rofi-calc --noconfirm
     echo "Audio"
-    pacman -S pamixer playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa --noconfirm
+    pacman -S pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa --noconfirm
     echo "Terminal + File Manager"
     pacman -S kitty nemo nemo-fileroller nemo-preview gzip --noconfirm
     echo "Image ..."

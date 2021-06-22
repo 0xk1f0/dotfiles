@@ -83,6 +83,7 @@ if [ $answer2 = 'y' ]; then
     mv  ~/.bashrc                           ~/.bashrc.old
     mv  ~/.config/nano                      ~/.config/nano.old
     mv  ~/.config/picom                     ~/.config/picom.old
+    mv  ~/.config/rofi                      ~/.config/rofi.old
     mv  ~/.config/ncspot/config.toml        ~/.config/ncspot/config.toml.old
 
     success
@@ -110,6 +111,7 @@ elif [ $answer2 = 'n' ]; then
     rm -f   ~/.bashrc
     rm -rf  ~/.config/nano/
     rm -rf  ~/.config/picom/
+    rm -rf  ~/.config/rofi/
     rm -f   ~/.config/ncspot/config.toml
 
     success
@@ -145,6 +147,7 @@ cp -r   combined/kitty/                 ~/.config/
 cp -r   combined/pacwall/               ~/.config/
 cp -r   combined/nano/                  ~/.config/
 cp -r   combined/picom/                 ~/.config/
+cp -r   combined/rofi/                  ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/bash/bashrc            ~/
 mv      ~/bashrc                        ~/.bashrc

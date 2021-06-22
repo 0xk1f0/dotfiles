@@ -36,7 +36,7 @@ elif [ $answerProceed = 'n' ]; then
     clear
     echo "Exiting..."
     exit
-else 
+else
     clear
     echo "Unsure, Exiting..."
     exit
@@ -74,6 +74,7 @@ if [ $answerLaptop = 'y' ]; then
     rm -rf  combined/bash/bashrc
     rm -rf  combined/nano/
     rm -rf  combined/picom/
+    rm -rf  combined/rofi/
     rm -f   combined/ncspot/config.toml
     fi
 
@@ -93,6 +94,7 @@ if [ $answerLaptop = 'y' ]; then
     cp -r   ~/.bashrc                           combined/bash/
     cp -r   ~/.config/nano                      combined/
     cp -r   ~/.config/picom                     combined/
+    cp -r   ~/.config/rofi                      combined/
     cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
     mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
@@ -129,6 +131,7 @@ elif [ $answerLaptop = 'n' ]; then
     rm -rf  combined/bash/bashrc
     rm -rf  combined/nano/
     rm -rf  combined/picom/
+    rm -rf  combined/rofi/
     rm -f   combined/ncspot/config.toml
     fi
 
@@ -148,6 +151,7 @@ elif [ $answerLaptop = 'n' ]; then
     cp -r   ~/.bashrc                           combined/bash/
     cp -r   ~/.config/nano                      combined/
     cp -r   ~/.config/picom                     combined/
+    cp -r   ~/.config/rofi                      combined/
     cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
     mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
