@@ -78,7 +78,7 @@ if [ $answerBackup = 'y' ]; then
     timeout "Backing up present configs to .old in..."
 
     #backup configs if present
-    if [ $answerAll = 'y' ]; then 
+    if [ $answerAll = 'n' ]; then 
         mv  ~/.config/herbstluftwm              ~/.config/herbstluftwm.old
         mv  ~/.config/dunst                     ~/.config/dunst.old
         mv  ~/.config/polybar                   ~/.config/polybar.old
@@ -109,7 +109,7 @@ elif [ $answerBackup = 'n' ]; then
     timeout "Deleting old configs (if present) in..."
 
     #delete old configs
-    if [ $answerAll = 'y' ]; then 
+    if [ $answerAll = 'n' ]; then 
     rm -rf  ~/.config/herbstluftwm/
     rm -rf  ~/.config/dunst/
     rm -rf  ~/.config/polybar/
@@ -125,7 +125,7 @@ elif [ $answerBackup = 'n' ]; then
 
     success
 
-else 
+else
     clear
     echo "Unsure, Exiting..."
     exit
@@ -134,7 +134,7 @@ fi
 if [ $answerLaptop = 'y' ]; then
     timeout "Copying new configs in..."
     #device specific
-    if [ $answerAll = 'y' ]; then 
+    if [ $answerAll = 'n' ]; then
     cp -r   laptop/herbstluftwm/    ~/.config/
     cp -r   laptop/dunst/           ~/.config/
     cp -r   laptop/polybar/         ~/.config/
@@ -142,7 +142,7 @@ if [ $answerLaptop = 'y' ]; then
 elif [ $answerLaptop = 'n' ]; then
     timeout "Copying new configs in..."
     #device specific
-    if [ $answerAll = 'y' ]; then 
+    if [ $answerAll = 'n' ]; then
     cp -r   pc/herbstluftwm/  ~/.config/
     cp -r   pc/dunst/         ~/.config/
     cp -r   pc/polybar/       ~/.config/
