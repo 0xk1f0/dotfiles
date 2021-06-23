@@ -10,12 +10,12 @@
 [bar/main-hlwm]
 monitor = eDP
 width = 98.8%
-height = 28
+height = 26
 padding = 2
-border-size = 1
+border-size = 2
 border-color = #ffffff
 offset-x = 0.6%
-offset-y = 0.6%
+offset-y = 0
 radius = 0.0
 fixed-center = true
 bottom = false
@@ -59,10 +59,10 @@ interval = 30
 
 mount-0 = /
 
-label-mounted = %used% of %total% usd
-label-unmounted = %mountpoint% umtd
-label-mounted-font = 0
-label-unmounted-font = 0
+label-mounted = %mountpoint%: %free% free
+label-unmounted = %mountpoint%: umtd
+label-mounted-font = 1
+label-unmounted-font = 1
 
 ###########################################################
 
@@ -70,7 +70,7 @@ label-unmounted-font = 0
 type = internal/cpu
 interval = 2
 label = cpu: %percentage%% utl
-label-font = 0
+label-font = 1
 
 ###########################################################
 
@@ -78,62 +78,23 @@ label-font = 0
 type = internal/memory
 interval = 2
 label = mry: %gb_used% usd
-label-font = 0
+label-font = 1
 
 ###########################################################
 
 [module/wireless-network]
 type = internal/network
-; Name of the network interface to display. You can get the names of the
-; interfaces on your machine with `ip link`
-; Wireless interfaces often start with `wl` and ethernet interface with `eno` or `eth`
 interface = wlo1
+interval = 5
 
-; Seconds to sleep between updates
-; Default: 1
-interval = 3.0
-
-; Accumulate values from all interfaces
-; when querying for up/downspeed rate
-; Default: false
-accumulate-stats = false
-
-; Consider an `UNKNOWN` interface state as up.
-; Some devices like USB network adapters have 
-; an unknown state, even when they're running
-; Default: false
-unknown-as-up = false
-
-; Available tags:
-;   <label-connected> (default)
-;   <ramp-signal>
 format-connected = <label-connected> <ramp-signal>
-
-; Available tags:
-;   <label-disconnected> (default)
 format-disconnected = <label-disconnected>
-
-; Available tags:
-;   <label-connected> (default)
-;   <label-packetloss>
-;   <animation-packetloss>
 format-packetloss = <label-packetloss>
 
-; All labels support the following tokens:
-;   %ifname%    [wireless+wired]
-;   %local_ip%  [wireless+wired]
-;   %local_ip6% [wireless+wired]
-;   %essid%     [wireless]
-;   %signal%    [wireless]
-;   %upspeed%   [wireless+wired]
-;   %downspeed% [wireless+wired]
-;   %linkspeed% [wired]
-
-; Default: %ifname% %local_ip%
 label-connected = %ifname% @ %essid%
-label-connected-font = 0
+label-connected-font = 1
 label-disconnected = %ifname% dsc
-label-disconnected-font = 0
+label-disconnected-font = 1
 
 ramp-signal-0 = + 
 ramp-signal-1 = /
@@ -150,10 +111,10 @@ interface = enp34s0
 interval = 5
 
 label-connected = eth con
-label-connected-font = 0
+label-connected-font = 1
 
 label-disconnected = eth disc
-label-disconnect-font = 0
+label-disconnect-font = 1
 
 ###########################################################
 
@@ -168,7 +129,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 label = %date% %time%
-label-font = 0
+label-font = 1
 
 ###########################################################
 
@@ -178,37 +139,17 @@ type = internal/battery
 ; This is useful in case the battery never reports 100% charge
 full-at = 99
 
-; Use the following command to list batteries and adapters:
 ; $ ls -1 /sys/class/power_supply/
 battery = BAT0
 adapter = ADP1
 
-; If an inotify event haven't been reported in this many
-; seconds, manually poll for new values.
-;
-; Needed as a fallback for systems that don't report events
-; on sysfs/procfs.
-;
-; Disable polling by setting the interval to 0.
-;
-; Default: 5
-poll-interval = 1
+poll-interval = 5
 
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-;   %time%
-;   %consumption% (shows current charge rate in watts)
 label-charging = chr %percentage%% @ %consumption%W
-label-charging-font = 0
+label-charging-font = 1
 
-; Available tokens:
-;   %percentage% (default) - is set to 100 if full-at is reached
-;   %percentage_raw%
-;   %time%
-;   %consumption% (shows current discharge rate in watts)
 label-discharging = dsc %percentage%%
-label-discharging-font = 0
+label-discharging-font = 1
 
 ###########################################################
 
@@ -222,8 +163,8 @@ format-spacing = 2
 label-open = pwr >
 label-close = pwr <
 label-separator = /
-label-open-font = 0
-label-close-font = 0
+label-open-font = 1
+label-close-font = 1
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -264,27 +205,27 @@ icon-3 = 4;
 icon-4 = 5;
 format = <label-state>
 label-monitor = %name%
-label-monitor-font = 0
+label-monitor-font = 1
 
 label-active = |%name%|
 label-active-margin = 1
 label-active-padding = 0 
-label-active-font = 0
+label-active-font = 1
 
 label-occupied = %name%
 label-occupied-margin = 1
 label-occupied-padding = 0
-label-occupied-font = 0
+label-occupied-font = 1
 
 label-urgent = %name%
 label-urgent-margin = 1
 label-urgent-padding = 0
-label-urgent-font = 0
+label-urgent-font = 1
 
 label-empty = %name%
 label-empty-margin = 1
 label-empty-padding = 0
-label-empty-font = 0
+label-empty-font = 1
 
 ###########################################################
 
@@ -293,13 +234,13 @@ type = internal/xwindow
 
 label = %title%
 label-maxlen = 30
-label-font = 0
+label-font = 1
 
 ##########################################################
 
 [settings]
-screenchange-reload = true
-pseudo-transparency = true
+#screenchange-reload = true
+#pseudo-transparency = true
 
 ###########################################################
 
