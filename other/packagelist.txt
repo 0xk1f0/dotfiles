@@ -1,0 +1,11 @@
+#Normal Packages#
+
+herbstluftwm picom nitrogen dunst dzen2 dmenu rofi rofi-calc nm-connection-editor
+pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa
+kitty nemo nemo-fileroller nemo-preview gzip nomacs flameshot gimp signal-desktop 
+telegram-desktop wireshark-qt reflector pacman-mirrorlist traceroute ipcalc gparted
+code lxappearance qt5ct
+
+#AUR Packages#
+
+paru-bin polybar ncspot firefox-nightly spotify discord-canary beautyline

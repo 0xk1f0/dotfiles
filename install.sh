@@ -110,9 +110,9 @@ elif [ $answerBackup = 'n' ]; then
 
     #delete old configs
     if [ $answerAll = 'n' ]; then 
-    rm -rf  ~/.config/herbstluftwm/
-    rm -rf  ~/.config/dunst/
-    rm -rf  ~/.config/polybar/
+        rm -rf  ~/.config/herbstluftwm/
+        rm -rf  ~/.config/dunst/
+        rm -rf  ~/.config/polybar/
     fi
 
     rm -rf  ~/.config/kitty/
@@ -135,17 +135,17 @@ if [ $answerLaptop = 'y' ]; then
     timeout "Copying new configs in..."
     #device specific
     if [ $answerAll = 'n' ]; then
-    cp -r   laptop/herbstluftwm/    ~/.config/
-    cp -r   laptop/dunst/           ~/.config/
-    cp -r   laptop/polybar/         ~/.config/
+        cp -r   laptop/herbstluftwm/    ~/.config/
+        cp -r   laptop/dunst/           ~/.config/
+        cp -r   laptop/polybar/         ~/.config/
     fi
 elif [ $answerLaptop = 'n' ]; then
     timeout "Copying new configs in..."
     #device specific
     if [ $answerAll = 'n' ]; then
-    cp -r   pc/herbstluftwm/  ~/.config/
-    cp -r   pc/dunst/         ~/.config/
-    cp -r   pc/polybar/       ~/.config/
+        cp -r   pc/herbstluftwm/  ~/.config/
+        cp -r   pc/dunst/         ~/.config/
+        cp -r   pc/polybar/       ~/.config/
     fi
 else
     clear
