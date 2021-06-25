@@ -162,8 +162,7 @@ cp -r   combined/nano/                  ~/.config/
 cp -r   combined/picom/                 ~/.config/
 cp -r   combined/rofi/                  ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
-cp -r   combined/bash/bashrc            ~/
-mv      ~/bashrc                        ~/.bashrc
+cp -r   combined/.bashrc            	~/
 
 success
 

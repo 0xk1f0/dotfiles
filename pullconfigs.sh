@@ -71,7 +71,7 @@ if [ $answerLaptop = 'y' ]; then
     #combined configs
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
-    rm -rf  combined/bash/bashrc
+    rm -f   combined/.bashrc
     rm -rf  combined/nano/
     rm -rf  combined/picom/
     rm -rf  combined/rofi/
@@ -91,12 +91,11 @@ if [ $answerLaptop = 'y' ]; then
     #combined configs
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/
-    cp -r   ~/.bashrc                           combined/bash/
+    cp -r   ~/.bashrc                           combined/
     cp -r   ~/.config/nano                      combined/
     cp -r   ~/.config/picom                     combined/
     cp -r   ~/.config/rofi                      combined/
     cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-    mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
 
     success
@@ -128,7 +127,7 @@ elif [ $answerLaptop = 'n' ]; then
     #combined configs
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
-    rm -rf  combined/bash/bashrc
+    rm -r   combined/.bashrc
     rm -rf  combined/nano/
     rm -rf  combined/picom/
     rm -rf  combined/rofi/
@@ -148,12 +147,11 @@ elif [ $answerLaptop = 'n' ]; then
     #combined configs
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/
-    cp -r   ~/.bashrc                           combined/bash/
+    cp -r   ~/.bashrc                           combined/
     cp -r   ~/.config/nano                      combined/
     cp -r   ~/.config/picom                     combined/
     cp -r   ~/.config/rofi                      combined/
     cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-    mv      combined/bash/.bashrc               combined/bash/bashrc 
     fi
 
     success
