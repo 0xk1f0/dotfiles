@@ -25,25 +25,18 @@ success () {
 clear
 
 #WARNINGS
-echo -e 'This script will install k1f0´s dotfiles to your .config/ directory\n'
+echo -e 'This script will install dotfiles from combined/ to your .config/ directory\n'
 sleep 1
-echo -e '#############
-# !WARNING! #
-#############\n'
-sleep 1
-echo -e '1. Always examine a bash script before you execute it to understand what it does!
-2. This script deletes, moves and copies files in the process!\n
+echo -e 'This script deletes, moves and copies files in the process!\n
 ##############################################################################
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################\n'
-sleep 2
+sleep 1
 
 #ask for confirmation to run
 read -p "Do you want to proceed? (y|n) " answerProceed
 clear
 read -p "Are you on a Laptop? (y|n) " answerLaptop
-clear
-read -p "Only install non device-specific configs? (y|n) " answerAll
 clear
 
 if [ $answerProceed = 'y' ]; then
@@ -77,13 +70,6 @@ if [ $answerBackup = 'y' ]; then
 
     timeout "Backing up present configs to .old in..."
 
-    #backup configs if present
-    if [ $answerAll = 'n' ]; then 
-        mv  ~/.config/herbstluftwm              ~/.config/herbstluftwm.old
-        mv  ~/.config/dunst                     ~/.config/dunst.old
-        mv  ~/.config/polybar                   ~/.config/polybar.old
-    fi
-
     mv  ~/.config/kitty                     ~/.config/kitty.old
     mv  ~/.config/pacwall                   ~/.config/pacwall.old
     mv  ~/.bashrc                           ~/.bashrc.old
@@ -108,13 +94,6 @@ elif [ $answerBackup = 'n' ]; then
 
     timeout "Deleting old configs (if present) in..."
 
-    #delete old configs
-    if [ $answerAll = 'n' ]; then 
-        rm -rf  ~/.config/herbstluftwm/
-        rm -rf  ~/.config/dunst/
-        rm -rf  ~/.config/polybar/
-    fi
-
     rm -rf  ~/.config/kitty/
     rm -rf  ~/.config/pacwall/
     rm -f   ~/.bashrc
@@ -134,19 +113,9 @@ fi
 if [ $answerLaptop = 'y' ]; then
     timeout "Copying new configs in..."
     #device specific
-    if [ $answerAll = 'n' ]; then
-        cp -r   laptop/herbstluftwm/    ~/.config/
-        cp -r   laptop/dunst/           ~/.config/
-        cp -r   laptop/polybar/         ~/.config/
-    fi
 elif [ $answerLaptop = 'n' ]; then
     timeout "Copying new configs in..."
     #device specific
-    if [ $answerAll = 'n' ]; then
-        cp -r   pc/herbstluftwm/  ~/.config/
-        cp -r   pc/dunst/         ~/.config/
-        cp -r   pc/polybar/       ~/.config/
-    fi
 else
     clear
     echo "Device not specified!"
