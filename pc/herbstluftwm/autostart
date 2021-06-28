@@ -67,7 +67,7 @@ hc keybind $Mod-Control-Up      resize up +$resizestep
 hc keybind $Mod-Control-Right   resize right +$resizestep
 
 # tags
-tag_names=( {1..5} )
+tag_names=( I II III IV V )
 tag_keys=( {1..5} 0 )
 
 # set default frame layout
@@ -130,8 +130,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#0000aa'
-colorActive='#ffffff'
+colorNormal='#090909'
+colorActive='#aaaaaa'
 colorUrgent='#ff0000'
 
 # theme
