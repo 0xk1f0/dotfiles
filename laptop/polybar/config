@@ -13,7 +13,7 @@ width = 98.8%
 height = 26
 padding = 2
 border-size = 2
-border-color = #ffffff
+border-color = ${colors.colorBorder}
 offset-x = 0.6%
 offset-y = 0
 radius = 0.0
@@ -48,8 +48,9 @@ font-5 = "FontAwesome:style=Regular"
 
 [colors]
 colorUnderline = #ffffff
-colorBackground = #011b78
+colorBackground = #181818
 colorForeground = #ffffff
+colorBorder = #011b78
 
 ###########################################################
 
