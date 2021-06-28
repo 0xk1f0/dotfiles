@@ -17,7 +17,7 @@ fi
 x=${geometry[0]}
 y=${geometry[1]}
 panel_width=${geometry[2]}
-panel_height=26
+panel_height=30
 font="-*-fixed-medium-*-*-*-12-*-*-*-*-*-*-*"
 bgcolor='#00000000'
 selbg='#00000000'

@@ -11,16 +11,15 @@
 monitor = eDP
 width = 98.8%
 height = 26
-padding = 2
-border-size = 2
-border-color = ${colors.colorBorder}
+#border-size = 2
+#border-color = ${colors.colorBorder}
 offset-x = 0.6%
-offset-y = 0
+offset-y = 6
 radius = 0.0
 fixed-center = true
 bottom = false
 
-background = ${colors.colorBackground}
+background = #00000000
 foreground = ${colors.colorForeground}
 
 override-redirect = true
@@ -35,12 +34,12 @@ modules-left = ewmh cpu memory
 modules-center = date
 modules-right = filesystem wireless-network wired-network battery powermenu
 
-font-0 = "Open Sans:style=Regular"
-font-1 = "icomoon:style=Regular"
-font-2 = "octicons:style=Medium"
-font-3 = "Twemoji:style=Regular;size=11"
-font-4 = "Roboto:style=Medium"
-font-5 = "FontAwesome:style=Regular"
+font-0 = Open Sans:style=Semibold;3
+font-1 = icomoon:style=Regular
+font-2 = octicons:style=Medium
+font-3 = Twemoji:style=Regular;size=11
+font-4 = Roboto:style=Medium;3
+font-5 = FontAwesome:style=Regular;3
 
 ###########################################################
 ###########################################################
@@ -48,7 +47,7 @@ font-5 = "FontAwesome:style=Regular"
 
 [colors]
 colorUnderline = #ffffff
-colorBackground = #181818
+colorBackground = #090909
 colorForeground = #ffffff
 colorBorder = #011b78
 
@@ -159,13 +158,13 @@ type = custom/menu
 
 expand-right = true
 
-format-spacing = 2
-
 label-open = pwr >
 label-close = pwr <
 label-separator = /
 label-open-font = 1
 label-close-font = 1
+
+format-spacing = 2
 
 menu-0-0 = reboot
 menu-0-0-exec = menu-open-1
@@ -208,25 +207,26 @@ format = <label-state>
 label-monitor = %name%
 label-monitor-font = 1
 
-label-active = |%name%|
+label-active = %name%
 label-active-margin = 1
-label-active-padding = 0 
-label-active-font = 1
+#label-active-padding = 2
+label-active-font = 5
+label-active-foreground = #ff0000
 
 label-occupied = %name%
 label-occupied-margin = 1
-label-occupied-padding = 0
-label-occupied-font = 1
+#label-occupied-padding = 2
+label-occupied-font = 5
 
 label-urgent = %name%
 label-urgent-margin = 1
-label-urgent-padding = 0
-label-urgent-font = 1
+#label-urgent-padding = 2
+label-urgent-font = 5
 
 label-empty = %name%
 label-empty-margin = 1
-label-empty-padding = 0
-label-empty-font = 1
+#label-empty-padding = 2
+label-empty-font = 5
 
 ###########################################################
 
@@ -242,6 +242,9 @@ label-font = 1
 [settings]
 #screenchange-reload = true
 #pseudo-transparency = true
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+format-padding = 2
 
 ###########################################################
 
