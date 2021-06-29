@@ -34,7 +34,7 @@
     # the top and down respectively.
     # The width can be negative.  In this case the actual width is the
     # screen width minus the width defined in within the geometry option.
-    geometry = "400x3-12+43"
+    geometry = "400x3-12+42"
 
     # Show how many messages are currently hidden (because of geometry).
     indicate_hidden = yes
@@ -66,7 +66,7 @@
     
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 2
+    frame_width = 1
 
     # Defines color of the frame around the notification window.
     frame_color = "#aaaaaa"

@@ -153,8 +153,8 @@ hc set frame_gap 0
 hc attr theme.active.color "$colorActive"
 hc attr theme.normal.color "$colorNormal"
 hc attr theme.urgent.color "$colorUrgent"
-hc attr theme.border_width 2
-hc attr theme.floating.border_width 2
+hc attr theme.border_width 1
+hc attr theme.floating.border_width 1
 
 #window rules/theme
 hc set window_gap 12
