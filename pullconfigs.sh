@@ -17,7 +17,7 @@ timeout () {
 
 success () {
     echo "Done!"
-    sleep 2
+    sleep 1
     clear
 }
 
@@ -27,7 +27,7 @@ clear
 #Ask for confirmation to run
 echo -e 'This script will pull the newest configs from the .config/ directory.
 This script is to be used by the maintainer of this dotfile repo!\n'
-sleep 2
+sleep 1
 read -p "Proceed? (y|n) " answerProceed
 
 if [ $answerProceed = 'y' ]; then
@@ -47,7 +47,7 @@ read -p "Are you on a Laptop? (y|n) " answerLaptop
 if [ $answerLaptop = 'y' ]; then
     clear
     echo "On Laptop"
-    sleep 2
+    sleep 1
     clear
 
     read -p "Would you like to pull combined too? (y|n) " answerCombined
@@ -57,7 +57,7 @@ if [ $answerLaptop = 'y' ]; then
     else
     echo "NOT including combined in pull"
     fi
-    sleep 2
+    sleep 1
     clear
 
     timeout "Deleting old configs in..."
@@ -103,7 +103,7 @@ if [ $answerLaptop = 'y' ]; then
 elif [ $answerLaptop = 'n' ]; then
     clear
     echo "On PC"
-    sleep 2
+    sleep 1
     clear
 
     read -p "Would you like to pull combined too? (y|n) " answerCombined
@@ -113,7 +113,7 @@ elif [ $answerLaptop = 'n' ]; then
     else
     echo "NOT including combined in pull"
     fi
-    sleep 2
+    sleep 1
     clear
 
     timeout "Deleting old configs in..."
