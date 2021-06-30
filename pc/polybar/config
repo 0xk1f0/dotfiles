@@ -99,10 +99,8 @@ interval = 30
 
 mount-0 = /
 
-label-mounted-padding = 2
 label-mounted = %mountpoint%: %free% free
 label-mounted-font = 1
-label-unmounted-padding = 2
 label-unmounted = %mountpoint% umtd
 label-unmounted-font = 1
 
@@ -115,10 +113,8 @@ interval = 30
 
 mount-0 = /hdd1
 
-label-mounted-padding = 2
 label-mounted = %mountpoint%: %free% free
 label-mounted-font = 1
-label-unmounted-padding = 2
 label-unmounted = %mountpoint% umtd
 label-unmounted-font = 1
 
@@ -129,7 +125,6 @@ type = internal/cpu
 interval = 2
 label = cpu: %percentage%% utl
 label-font = 1
-label-padding = 2
 
 ###########################################################
 
@@ -138,7 +133,6 @@ type = internal/memory
 interval = 2
 label = memory: %gb_used% usd
 label-font = 1
-label-padding = 2
 
 ###########################################################
 
@@ -147,11 +141,9 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-label-connected-padding = 2
 label-connected = eth con
 label-connected-font = 1
 
-label-disconnected-padding = 2
 label-disconnected = eth disc
 label-disconnect-font = 1
 
@@ -169,10 +161,6 @@ time-alt = %H:%M:%S
 
 label = %date% %time%
 label-font = 1
-label-padding = 2
-
-format-border-size = 2
-format-border-color = ${colors.colorBorder}
 
 ###########################################################
 
@@ -183,9 +171,7 @@ expand-right = true
 
 format-spacing = 2
 
-label-open-padding = 2
 label-open = pwr >
-label-close-padding = 2
 label-close = pwr <
 label-separator = /
 label-open-font = 1
@@ -232,24 +218,20 @@ format = <label-state>
 label-monitor = %name%
 
 label-active = %name%
-#label-active-margin = 1
-label-active-padding = 2
+label-active-margin = 1
 label-active-font = 7
 label-active-foreground = #ff0000
 
 label-occupied = %name%
-#label-occupied-margin = 1
-label-occupied-padding = 2
+label-occupied-margin = 1
 label-occupied-font = 7
 
 label-urgent = !%name%!
-#label-urgent-margin = 1
-label-urgent-padding = 2
+label-urgent-margin = 1
 label-urgent-font = 7
 
 label-empty = %name%
-#label-empty-margin = 1
-label-empty-padding = 2
+label-empty-margin = 1
 label-empty-font = 7
 
 ###########################################################
@@ -268,6 +250,7 @@ label-font = 1
 #pseudo-transparency = true
 format-background = ${colors.colorBackground}
 format-foreground = ${colors.colorForeground}
+format-padding = 3
 
 ###########################################################
 
