@@ -2,6 +2,10 @@
 
 #This is a script to pull all dotfiles to this repo
 
+##############################################################################
+### I take NO responsibility for any deleted configs or destroyed systems! ###
+##############################################################################
+
 #functions
 
 timeout () {
@@ -25,8 +29,7 @@ success () {
 clear
 
 #Ask for confirmation to run
-echo -e 'This script will pull the newest configs from the .config/ directory.
-This script is to be used by the maintainer of this dotfile repo!\n'
+echo -e 'This script will pull the newest configs from the .config/ directory.'
 sleep 1
 read -p "Proceed? (y|n) " answerProceed
 

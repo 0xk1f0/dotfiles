@@ -2,6 +2,10 @@
 
 #This is a script to install my dotfiles
 
+##############################################################################
+### I take NO responsibility for any deleted configs or destroyed systems! ###
+##############################################################################
+
 #functions
 
 timeout () {
@@ -17,7 +21,7 @@ timeout () {
 
 success () {
     echo "Done!"
-    sleep 2
+    sleep 1
     clear
 }
 
@@ -25,47 +29,30 @@ success () {
 clear
 
 #WARNINGS
-echo -e 'This script will install dotfiles from combined/ to your .config/ directory\n'
+echo -e 'This script will install dotfiles from combined/'
 sleep 1
-echo -e 'This script deletes, moves and copies files in the process!\n
-##############################################################################
-### I take NO responsibility for any deleted configs or destroyed systems! ###
-##############################################################################\n'
-sleep 1
-
 #ask for confirmation to run
-read -p "Do you want to proceed? (y|n) " answerProceed
-clear
-read -p "Are you on a Laptop? (y|n) " answerLaptop
+read -p "Proceed? (y|n) " answerProceed
 clear
 
 if [ $answerProceed = 'y' ]; then
-    if [ $answerLaptop = 'y' ]; then
-        clear
-        echo "On Laptop"
-        sleep 2
-    else
-        clear
-        echo "On PC"
-        sleep 2
-    fi
     clear
-    read -p "Do you want to back up your present configs? (y|n) " answerBackup
+    read -p "Back up present configs? (y|n) " answerBackup
 elif [ $answerProceed = 'n' ]; then
     clear
     echo "Exiting..."
-    exit
+    exit 0
 else 
     clear
     echo "Unsure, Exiting..."
-    exit
+    exit 0
 fi
 
 #ask for backup
 if [ $answerBackup = 'y' ]; then
     clear
     echo "Chose Backup"
-    sleep 2
+    sleep 1
     clear
 
     timeout "Backing up present configs to .old in..."
@@ -82,14 +69,8 @@ if [ $answerBackup = 'y' ]; then
 
 elif [ $answerBackup = 'n' ]; then
     clear
-    echo ""
-    echo "#############"
-    echo "# !WARNING! #"
-    echo "#############"
-    echo ""
-    echo "NO BACKUP OF YOUR OLD CONFIGS WILL BE CREATED!"
-    echo ""
-    sleep 2
+    echo "NO Backup present configs will be created"
+    sleep 1
     clear
 
     timeout "Deleting old configs (if present) in..."
@@ -107,7 +88,7 @@ elif [ $answerBackup = 'n' ]; then
 else
     clear
     echo "Unsure, Exiting..."
-    exit
+    exit 0
 fi
 
 if [ $answerLaptop = 'y' ]; then
@@ -121,10 +102,10 @@ else
     echo "Device not specified!"
     sleep 2
     echo "Exiting..."
-    exit
+    exit 0
 fi
 
-#combined configs
+#copy new configs
 cp -r   combined/kitty/                 ~/.config/
 cp -r   combined/pacwall/               ~/.config/
 cp -r   combined/nano/                  ~/.config/
@@ -135,7 +116,5 @@ cp -r   combined/.bashrc            	~/
 
 success
 
-echo "Enjoy your new configs!"
-sleep 2
 echo "Exiting..."
-exit
+exit 0

@@ -4,7 +4,7 @@ herbstluftwm picom nitrogen dunst dzen2 dmenu rofi rofi-calc nm-connection-edito
 pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa
 kitty nemo nemo-fileroller nemo-preview gzip nomacs flameshot gimp signal-desktop 
 telegram-desktop wireshark-qt reflector pacman-mirrorlist traceroute ipcalc gparted
-code lxappearance qt5ct
+code lxappearance qt5ct arc-dark
 
 #AUR Packages#
 
