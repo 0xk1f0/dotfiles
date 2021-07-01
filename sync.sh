@@ -91,19 +91,7 @@ else
     exit 0
 fi
 
-if [ $answerLaptop = 'y' ]; then
-    timeout "Copying new configs in..."
-    #device specific
-elif [ $answerLaptop = 'n' ]; then
-    timeout "Copying new configs in..."
-    #device specific
-else
-    clear
-    echo "Device not specified!"
-    sleep 2
-    echo "Exiting..."
-    exit 0
-fi
+timeout "Copying new configs in..."
 
 #copy new configs
 cp -r   combined/kitty/                 ~/.config/
