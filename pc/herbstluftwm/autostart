@@ -184,7 +184,7 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
 done
 
 # start compton (req compton)
-picom &
+picom -b --experimental-backends &
 
 # start polybars (req polybar)
 killall -q polybar

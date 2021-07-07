@@ -210,10 +210,10 @@ set errorcolor bold,white,red
 set spotlightcolor white,green
 set selectedcolor white,magenta
 set stripecolor yellow
-set scrollercolor magenta
-set numbercolor magenta
-set keycolor magenta
-set functioncolor green
+set scrollercolor red
+set numbercolor blue
+set keycolor blue
+set functioncolor magenta
 
 ## In root's .nanorc you might want to use:
 #set titlecolor bold,lightwhite,magenta
