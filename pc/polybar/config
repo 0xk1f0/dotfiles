@@ -4,7 +4,7 @@
 # ░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
 ###########################################################
-########DP-BAR#############################################
+####                     DP-BAR                        ####
 ###########################################################
 
 [bar/main-hlwm]
@@ -15,21 +15,17 @@ height = 26
 #border-size = 2
 #border-color = ${colors.colorBorder}
 offset-x = 0.5%
-offset-y = 6
+offset-y = 12
 radius = 0.0
 fixed-center = true
 
 background = #00000000
 foreground = ${colors.colorForeground}
 
-override-redirect = true
+#override-redirect = true
 
 module-margin-left = 2
 module-margin-right = 2
-
-#line-size = 1
-#line-color = ${colors.colorUnderline}
-
 modules-left = ewmh cpu memory
 modules-center = date
 modules-right = filesystemSSD filesystemHDD eth powermenu
@@ -39,36 +35,32 @@ font-1 = icomoon:style=Regular
 font-2 = octicons:style=Medium
 font-3 = Twemoji:style=Regular
 font-4 = Roboto:style=Medium;3
-font-5 = FontAwesome:style=Regular
+font-5 = FontAwesome:style=Regular;3
 font-6 = SourceCodePro:style=Regular;3
 
 ###########################################################
-#######HDMI-BAR############################################
+####                     HDMI-BAR                      ####
 ###########################################################
 
 [bar/sec-hlwm]
 monitor = HDMI-A-0
 
-width = 98%
+width = 97.5%
 height = 26
 #border-size = 2
 #border-color = ${colors.colorBorder}
-offset-x = 1%
-offset-y = 6
+offset-x = 1.25%
+offset-y = 12
 radius = 0.0
 fixed-center = true
 
 background = #00000000
 foreground = ${colors.colorForeground}
 
-override-redirect = true
+#override-redirect = true
 
 module-margin-left = 2
 module-margin-right = 2
-
-#line-size = 1
-#line-color = ${colors.colorUnderline}
-
 modules-left = ewmh
 modules-center = date
 modules-right = powermenu
@@ -78,7 +70,7 @@ font-1 = icomoon:style=Regular
 font-2 = octicons:style=Medium
 font-3 = Twemoji:style=Regular
 font-4 = Roboto:style=Medium;3
-font-5 = FontAwesome:style=Regular
+font-5 = FontAwesome:style=Regular;3
 font-6 = SourceCodePro:style=Regular;3
 
 ###########################################################
@@ -90,6 +82,7 @@ colorUnderline = #ffffff
 colorBackground = #090909
 colorForeground = #ffffff
 colorBorder = #ffffff
+colorActive = #666666
 
 ###########################################################
 
@@ -99,13 +92,12 @@ interval = 30
 
 mount-0 = /
 
-label-mounted = %mountpoint%: %free% free
+label-mounted =   %free% free
 label-mounted-font = 1
-label-unmounted = %mountpoint% umtd
+label-unmounted =   umtd
 label-unmounted-font = 1
 
 ###########################################################
-
 
 [module/filesystemHDD]
 type = internal/fs
@@ -113,9 +105,9 @@ interval = 30
 
 mount-0 = /hdd1
 
-label-mounted = %mountpoint%: %free% free
+label-mounted =   %free% free
 label-mounted-font = 1
-label-unmounted = %mountpoint% umtd
+label-unmounted =   umtd
 label-unmounted-font = 1
 
 ###########################################################
@@ -123,7 +115,7 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = cpu: %percentage%% utl
+label =   %percentage%% utl
 label-font = 1
 
 ###########################################################
@@ -131,7 +123,7 @@ label-font = 1
 [module/memory]
 type = internal/memory
 interval = 2
-label = memory: %gb_used% usd
+label =   %gb_used% usd
 label-font = 1
 
 ###########################################################
@@ -141,10 +133,10 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-label-connected = eth con
+label-connected = eth 
 label-connected-font = 1
 
-label-disconnected = eth disc
+label-disconnected = eth 
 label-disconnect-font = 1
 
 ###########################################################
@@ -171,8 +163,8 @@ expand-right = true
 
 format-spacing = 2
 
-label-open = pwr >
-label-close = pwr <
+label-open =   >
+label-close =   <
 label-separator = /
 label-open-font = 1
 label-close-font = 1
@@ -220,7 +212,7 @@ label-monitor = %name%
 label-active = %name%
 label-active-margin = 1
 label-active-font = 7
-label-active-foreground = #ff0000
+label-active-foreground = ${colors.colorActive}
 
 label-occupied = %name%
 label-occupied-margin = 1

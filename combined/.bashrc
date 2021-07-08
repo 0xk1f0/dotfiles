@@ -69,4 +69,4 @@ PS1='\[\033[01;36m\]\W\[\033[01;35m\] >\[\033[00;37m\] '
 
 #custom start thingies
 echo
-PF_INFO="ascii title os kernel pkgs uptime wm " /usr/bin/pfetch 
+PF_INFO="title os kernel wm uptime" /usr/bin/pfetch 

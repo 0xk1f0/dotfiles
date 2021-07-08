@@ -130,8 +130,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#090909'
-colorActive='#aaaaaa'
+colorNormal='#00000000'
+colorActive='#ffffff'
 colorUrgent='#ff0000'
 
 # theme
@@ -145,8 +145,8 @@ hc set frame_gap 0
 hc attr theme.active.color "$colorActive"
 hc attr theme.normal.color "$colorNormal"
 hc attr theme.urgent.color "$colorUrgent"
-hc attr theme.border_width 2
-hc attr theme.floating.border_width 2
+hc attr theme.border_width 1
+hc attr theme.floating.border_width 1
 hc attr theme.floating.active.color "$colorActive"
 hc attr theme.floating.normal.color "$colorNormal"
 hc attr theme.active.inner_color '$colorActive'
