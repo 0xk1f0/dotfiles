@@ -14,7 +14,7 @@ height = 26
 #border-size = 2
 #border-color = ${colors.colorBorder}
 offset-x = 0.6%
-offset-y = 6
+offset-y = 12
 radius = 0.0
 fixed-center = true
 bottom = false
@@ -22,14 +22,10 @@ bottom = false
 background = #00000000
 foreground = ${colors.colorForeground}
 
-override-redirect = true
+#override-redirect = true
 
 module-margin-left = 2
 module-margin-right = 2
-
-line-size = 0
-line-color = ${colors.colorUnderline}
-
 modules-left = ewmh cpu memory
 modules-center = date
 modules-right = filesystem wireless-network wired-network battery powermenu
@@ -40,6 +36,7 @@ font-2 = octicons:style=Medium
 font-3 = Twemoji:style=Regular;size=11
 font-4 = Roboto:style=Medium;3
 font-5 = FontAwesome:style=Regular;3
+font-6 = SourceCodePro:style=Regular;3
 
 ###########################################################
 ###########################################################
@@ -59,8 +56,8 @@ interval = 30
 
 mount-0 = /
 
-label-mounted = %mountpoint%: %free% free
-label-unmounted = %mountpoint%: umtd
+label-mounted =   %free% free
+label-unmounted =   umtd
 label-mounted-font = 1
 label-unmounted-font = 1
 
@@ -69,7 +66,7 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-label = cpu: %percentage%% utl
+label =   %percentage%% utl
 label-font = 1
 
 ###########################################################
@@ -77,7 +74,7 @@ label-font = 1
 [module/memory]
 type = internal/memory
 interval = 2
-label = mry: %gb_used% usd
+label =   %gb_used% usd
 label-font = 1
 
 ###########################################################
@@ -91,9 +88,9 @@ format-connected = <label-connected> <ramp-signal>
 format-disconnected = <label-disconnected>
 format-packetloss = <label-packetloss>
 
-label-connected = %ifname% @ %essid%
+label-connected =   %essid%
 label-connected-font = 1
-label-disconnected = %ifname% dsc
+label-disconnected =   dsc
 label-disconnected-font = 1
 
 ramp-signal-0 = + 
@@ -122,13 +119,13 @@ label-disconnect-font = 1
 type = internal/date
 interval = 1
 
-date = "%d. "
-date-alt = "%d.%m.%Y"
+date = "  %d."
+date-alt = "  %d.%m.%Y"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = " %H:%M"
+time-alt = " %H:%M:%S"
 
-label = %date% %time%
+label = %time% %date%
 label-font = 1
 
 ###########################################################
@@ -145,10 +142,10 @@ adapter = ADP1
 
 poll-interval = 5
 
-label-charging = chr %percentage%% @ %consumption%W
+label-charging =   %percentage%% @ %consumption%W
 label-charging-font = 1
 
-label-discharging = dsc %percentage%%
+label-discharging =   %percentage%%
 label-discharging-font = 1
 
 ###########################################################
@@ -158,8 +155,8 @@ type = custom/menu
 
 expand-right = true
 
-label-open = pwr >
-label-close = pwr <
+label-open =  >
+label-close =  <
 label-separator = /
 label-open-font = 1
 label-close-font = 1
@@ -210,23 +207,23 @@ label-monitor-font = 1
 label-active = %name%
 label-active-margin = 1
 #label-active-padding = 2
-label-active-font = 5
+label-active-font = 7
 label-active-foreground = #ff0000
 
 label-occupied = %name%
 label-occupied-margin = 1
 #label-occupied-padding = 2
-label-occupied-font = 5
+label-occupied-font = 7
 
 label-urgent = %name%
 label-urgent-margin = 1
 #label-urgent-padding = 2
-label-urgent-font = 5
+label-urgent-font = 7
 
 label-empty = %name%
 label-empty-margin = 1
 #label-empty-padding = 2
-label-empty-font = 5
+label-empty-font = 7
 
 ###########################################################
 
