@@ -82,7 +82,7 @@ colorUnderline = #ffffff
 colorBackground = #090909
 colorForeground = #ffffff
 colorBorder = #ffffff
-colorActive = #666666
+colorActive = #00aeef
 
 ###########################################################
 
@@ -145,13 +145,13 @@ label-disconnect-font = 1
 type = internal/date
 interval = 1
 
-date = "%d. "
-date-alt = "%d.%m.%Y"
+date = "  %d."
+date-alt = "  %d.%m.%Y"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = " %H:%M"
+time-alt = " %H:%M:%S"
 
-label = %date% %time%
+label = %time% %date%
 label-font = 1
 
 ###########################################################
