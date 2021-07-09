@@ -65,10 +65,10 @@ alias pdw="pwd"
 
 #prompt
 #PS1='\[\033[34m\]┌─[\[\033[37m\]\u@\h\[\033[34m\]]─[\[\033[37m\]\W\[\033[34m\]]─[\[\033[37m\]\A\[\033[34m\]]\n\[\033[34m\]└─> \[\033[37m\]'
-PS1='\[\033[01;36m\]\W\[\033[01;35m\] >\[\033[00;37m\] '
+PS1='\[\033[01;36m\]\W\[\033[01;37m\] >\[\033[00;37m\] '
 
 #custom start thingies
 echo
 figlet ArchLinux
 echo
-#PF_INFO="title os kernel wm uptime" /usr/bin/pfetch 
+#PF_INFO="title os kernel wm uptime" /usr/bin/pfetch
