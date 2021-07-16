@@ -130,8 +130,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#ffffff'
-colorActive='#00aeef'
+colorNormal='#000000'
+colorActive='#dddddd'
 colorUrgent='#ff0000'
 
 # theme
