@@ -39,9 +39,6 @@ alias ps="procs"
 alias ls="exa -l"
 alias cat="bat"
 
-#put system to sleep
-alias suspendsystem="systemctl suspend && betterlockscreen -l"
-
 #get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 15 --verbose --save /etc/pacman.d/mirrorlist"
 
