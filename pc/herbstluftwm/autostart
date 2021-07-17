@@ -28,7 +28,7 @@ hc keybind $Mod-Return spawn kitty
 hc keybind $Mod-a spawn rofi -show run
 hc keybind $Mod-Shift-a spawn rofi -show calc
 hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
-hc keybind $Mod-q spawn nemo
+hc keybind $Mod-q spawn pcmanfm
 hc keybind $Mod-Shift-s spawn flameshot gui
 
 #fn keys (req pamixer and playerctl)
@@ -130,8 +130,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 #colors
-colorNormal='#000000'
-colorActive='#dddddd'
+colorNormal='#000030'
+colorActive='#a0a8f8'
 colorUrgent='#ff0000'
 
 # theme
