@@ -1,19 +1,40 @@
-#Normal Packages#
+##################
+#####Packages#####
+##################
+###########
+######
 
-#basic
-herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc nm-connection-editor
-pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa
-kitty nemo nemo-fileroller nemo-preview gzip nomacs flameshot gimp signal-desktop 
-telegram-desktop wireshark-qt reflector pacman-mirrorlist traceroute ipcalc gparted
-code lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
+#DE
+herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc flameshot lxappearance qt5ct 
+arc-gtk-theme ttf-font-awesome ttf-opensans kitty pcmanfm nemo-fileroller nemo-preview
+
+#functionality
+nm-connection-editor pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack 
+pipewire-alsa gzip nomacs pacman-mirrorlist
+
+#other
+gimp signal-desktop telegram-desktop wireshark-qt reflector traceroute ipcalc gparted
+code
 
 #gaming
 steam lutris
 
-#AUR Packages#
+######
+###########
+##################
+###AUR Packages###
+##################
+###########
+######
 
-#basic
-paru-bin polybar ncspot firefox-nightly spotify discord-canary beautyline picom-git ly-reloaded-git
+#DE
+picom-git polybar beautyline  ly-reloaded-git
+
+#functionality
+paru-bin
+
+#other
+ncspot firefox-nightly spotify discord-canary
 
 #gaming
-proton wine-valve
+proton wine-valve libstrangle

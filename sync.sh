@@ -6,8 +6,6 @@
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
 
-#functions
-
 timeout () {
     echo $1
     sleep 1
@@ -25,19 +23,16 @@ success () {
     clear
 }
 
-#clear terminal window
 clear
 
-#WARNINGS
 echo -e 'This script will install dotfiles from combined/'
 sleep 1
-#ask for confirmation to run
-read -p "Proceed? (y|n) " answerProceed
+read -p "Proceed? (Y|n) " answerProceed
 clear
 
-if [ $answerProceed = 'y' ]; then
+if [ $answerProceed = 'y' ] || [ -z $answerProceed ]; then
+    echo "combined excluded"; then
     clear
-    read -p "Back up present configs? (y|n) " answerBackup
 elif [ $answerProceed = 'n' ]; then
     clear
     echo "Exiting..."
@@ -48,48 +43,17 @@ else
     exit 0
 fi
 
-#ask for backup
-if [ $answerBackup = 'y' ]; then
-    clear
-    echo "Chose Backup"
-    sleep 1
-    clear
+timeout "Deleting old configs (if present) in..."
 
-    timeout "Backing up present configs to .old in..."
+rm -rf  ~/.config/kitty/
+rm -rf  ~/.config/pacwall/
+rm -f   ~/.bashrc
+rm -rf  ~/.config/nano/
+rm -rf  ~/.config/picom/
+rm -rf  ~/.config/rofi/
+rm -f   ~/.config/ncspot/config.toml
 
-    mv  ~/.config/kitty                     ~/.config/kitty.old
-    mv  ~/.config/pacwall                   ~/.config/pacwall.old
-    mv  ~/.bashrc                           ~/.bashrc.old
-    mv  ~/.config/nano                      ~/.config/nano.old
-    mv  ~/.config/picom                     ~/.config/picom.old
-    mv  ~/.config/rofi                      ~/.config/rofi.old
-    mv  ~/.config/ncspot/config.toml        ~/.config/ncspot/config.toml.old
-
-    success
-
-elif [ $answerBackup = 'n' ]; then
-    clear
-    echo "NO Backup present configs will be created"
-    sleep 1
-    clear
-
-    timeout "Deleting old configs (if present) in..."
-
-    rm -rf  ~/.config/kitty/
-    rm -rf  ~/.config/pacwall/
-    rm -f   ~/.bashrc
-    rm -rf  ~/.config/nano/
-    rm -rf  ~/.config/picom/
-    rm -rf  ~/.config/rofi/
-    rm -f   ~/.config/ncspot/config.toml
-
-    success
-
-else
-    clear
-    echo "Unsure, Exiting..."
-    exit 0
-fi
+success
 
 timeout "Copying new configs in..."
 
