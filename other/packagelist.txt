@@ -1,11 +1,19 @@
 #Normal Packages#
 
+#basic
 herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc nm-connection-editor
 pamixer pavucontrol playerctl pipewire pipewire-pulse pipewirejack pipewire-alsa
 kitty nemo nemo-fileroller nemo-preview gzip nomacs flameshot gimp signal-desktop 
 telegram-desktop wireshark-qt reflector pacman-mirrorlist traceroute ipcalc gparted
-code lxappearance qt5ct arc-dark
+code lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
+
+#gaming
+steam lutris
 
 #AUR Packages#
 
-paru-bin polybar ncspot firefox-nightly spotify discord-canary beautyline picom-git
+#basic
+paru-bin polybar ncspot firefox-nightly spotify discord-canary beautyline picom-git ly-reloaded-git
+
+#gaming
+proton wine-valve
