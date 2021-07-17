@@ -2,15 +2,16 @@
 
 B='#00000000'
 C='#ffffff11'
-D='#4444ffff'
+D='#ffffffff'
 W='#ffffffff'
 E='#ff0000ff'
+F='#444444ff'
 
 i3lock \
---insidever-color=$C \
+--insidever-color=$B \
 --ringver-color=$D \
 \
---insidewrong-color=$C \
+--insidewrong-color=$B \
 --ringwrong-color=$E \
 \
 --inside-color=$B \
@@ -19,15 +20,14 @@ i3lock \
 --separator-color=$D \
 \
 --verif-color=$W \
---wrong-color=$W \
+--wrong-color=$E \
 --time-color=$W \
 --date-color=$W \
 --layout-color=$W \
---keyhl-color=$E \
---bshl-color=$E \
+--keyhl-color=$F \
+--bshl-color=$F \
 \
 --blur 8 \
 --clock \
---indicator \
 --time-str="%H:%M:%S" \
---date-str="%A, %m %Y" \
+--date-str="%d.%m.%Y" \
