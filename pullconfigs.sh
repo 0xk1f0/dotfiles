@@ -33,9 +33,9 @@ echo -e 'This script will pull the newest configs from the .config/ directory.'
 sleep 1
 read -p "Proceed? (Y|n) " answerProceed
 
-if [ $answerProceed = 'y' ] || [ -z $answerProceed ]; then
+if [ $answerProceed == 'y' ] || [ -z $answerProceed ]; then
     clear
-elif [ $answerProceed = 'n' ]; then
+elif [ $answerProceed == 'n' ]; then
     clear
     echo "Exiting..."
     exit
@@ -47,7 +47,7 @@ fi
 
 read -p "Are you on a Laptop? (y|N) " answerLaptop
 
-if [ $answerLaptop = 'y' ]; then
+if [ $answerLaptop == 'y' ]; then
     clear
     echo "On Laptop"
     sleep 1
@@ -55,7 +55,7 @@ if [ $answerLaptop = 'y' ]; then
 
     read -p "Would you like to pull combined too? (y|N) " answerCombined
     clear
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     echo "Including combined in pull"
     else
     echo "NOT including combined in pull"
@@ -70,7 +70,7 @@ if [ $answerLaptop = 'y' ]; then
     rm -rf  laptop/herbstluftwm/
     rm -rf  laptop/polybar/
 
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     #combined configs
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
@@ -90,7 +90,7 @@ if [ $answerLaptop = 'y' ]; then
     cp -r   ~/.config/dunst laptop/
     cp -r   ~/.config/polybar laptop/
 
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     #combined configs
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/
@@ -103,7 +103,7 @@ if [ $answerLaptop = 'y' ]; then
 
     success
 
-elif [ $answerLaptop = 'n' ] || [ -z $answerProceed ]; then
+elif [ $answerLaptop == 'n' ] || [ -z $answerLaptop ]; then
     clear
     echo "On PC"
     sleep 1
@@ -111,7 +111,7 @@ elif [ $answerLaptop = 'n' ] || [ -z $answerProceed ]; then
 
     read -p "Would you like to pull combined too? (y|N) " answerCombined
     clear
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     echo "Including combined in pull"
     else
     echo "NOT including combined in pull"
@@ -126,7 +126,7 @@ elif [ $answerLaptop = 'n' ] || [ -z $answerProceed ]; then
     rm -rf pc/herbstluftwm/
     rm -rf pc/polybar/
 
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     #combined configs
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
@@ -146,7 +146,7 @@ elif [ $answerLaptop = 'n' ] || [ -z $answerProceed ]; then
     cp -r   ~/.config/dunst pc/
     cp -r   ~/.config/polybar pc/
 
-    if [ $answerCombined = 'y' ]; then
+    if [ "$answerCombined" == 'y' ]; then
     #combined configs
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/
