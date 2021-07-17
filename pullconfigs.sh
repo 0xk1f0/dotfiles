@@ -31,9 +31,9 @@ clear
 #Ask for confirmation to run
 echo -e 'This script will pull the newest configs from the .config/ directory.'
 sleep 1
-read -p "Proceed? (y|n) " answerProceed
+read -p "Proceed? (Y|n) " answerProceed
 
-if [ $answerProceed = 'y' ]; then
+if [ $answerProceed = 'y' ] || [ -z $answerProceed ]; then
     clear
 elif [ $answerProceed = 'n' ]; then
     clear
@@ -45,7 +45,7 @@ else
     exit
 fi
 
-read -p "Are you on a Laptop? (y|n) " answerLaptop
+read -p "Are you on a Laptop? (y|N) " answerLaptop
 
 if [ $answerLaptop = 'y' ]; then
     clear
@@ -53,7 +53,7 @@ if [ $answerLaptop = 'y' ]; then
     sleep 1
     clear
 
-    read -p "Would you like to pull combined too? (y|n) " answerCombined
+    read -p "Would you like to pull combined too? (y|N) " answerCombined
     clear
     if [ $answerCombined = 'y' ]; then
     echo "Including combined in pull"
@@ -103,13 +103,13 @@ if [ $answerLaptop = 'y' ]; then
 
     success
 
-elif [ $answerLaptop = 'n' ]; then
+elif [ $answerLaptop = 'n' ] || [ -z $answerProceed ]; then
     clear
     echo "On PC"
     sleep 1
     clear
 
-    read -p "Would you like to pull combined too? (y|n) " answerCombined
+    read -p "Would you like to pull combined too? (y|N) " answerCombined
     clear
     if [ $answerCombined = 'y' ]; then
     echo "Including combined in pull"
