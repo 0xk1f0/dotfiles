@@ -183,6 +183,9 @@ for monitor in $(hc list_monitors | cut -d: -f1) ; do
     "$panel" "$monitor" &
 done
 
+#numlock
+numlockx &
+
 # start compton (req compton)
 picom -b --experimental-backends &
 
