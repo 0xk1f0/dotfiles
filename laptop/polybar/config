@@ -9,17 +9,17 @@
 
 [bar/main-hlwm]
 monitor = eDP
-width = 98.8%
-height = 26
+width = 100%
+height = 40
 #border-size = 2
 #border-color = ${colors.colorBorder}
-offset-x = 0.6%
-offset-y = 12
+#offset-x = 0.6%
+#offset-y = 12
 radius = 0.0
 fixed-center = true
 bottom = false
 
-background = #00000000
+background = ${colors.colorBackground}
 foreground = ${colors.colorForeground}
 
 #override-redirect = true
@@ -44,9 +44,10 @@ font-6 = SourceCodePro:style=Regular;3
 
 [colors]
 colorUnderline = #ffffff
-colorBackground = #090909
+colorBackground = #000000
 colorForeground = #ffffff
 colorBorder = #011b78
+colorActive = #4444ff
 
 ###########################################################
 
@@ -119,11 +120,11 @@ label-disconnect-font = 1
 type = internal/date
 interval = 1
 
-date = "  %d."
+#date = ""
 date-alt = "  %d.%m.%Y"
 
-time = " %H:%M"
-time-alt = " %H:%M:%S"
+time = " %H:%M:%S"
+#time-alt = ""
 
 label = %time% %date%
 label-font = 1
@@ -208,7 +209,7 @@ label-active = %name%
 label-active-margin = 1
 #label-active-padding = 2
 label-active-font = 7
-label-active-foreground = #ff0000
+label-active-foreground = ${colors.colorActive}
 
 label-occupied = %name%
 label-occupied-margin = 1

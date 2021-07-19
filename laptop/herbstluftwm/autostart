@@ -180,12 +180,12 @@ hc unlock
 hc detect_monitors
 
 # apply the panel
-panel=~/.config/herbstluftwm/scripts/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-    "$panel" "$monitor" &
-done
+#panel=~/.config/herbstluftwm/scripts/panel.sh
+#[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
+#for monitor in $(hc list_monitors | cut -d: -f1) ; do
+#    # start it on each monitor
+#    "$panel" "$monitor" &
+#done
 
 # start compton (req compton)
 picom -b --experimental-backends &
