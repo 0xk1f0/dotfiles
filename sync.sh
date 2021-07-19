@@ -30,14 +30,13 @@ sleep 1
 read -p "Proceed? (Y|n) " answerProceed
 clear
 
-if [ $answerProceed = 'y' ] || [ -z $answerProceed ]; then
-    echo "combined excluded"; then
+if [ "$answerProceed" == 'y' ] || [ -z "$answerProceed" ]; then
     clear
-elif [ $answerProceed = 'n' ]; then
+elif [ "$answerProceed" == 'n' ]; then
     clear
     echo "Exiting..."
     exit 0
-else 
+else
     clear
     echo "Unsure, Exiting..."
     exit 0
