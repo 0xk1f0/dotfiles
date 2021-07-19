@@ -49,7 +49,7 @@ alias startssh='eval `ssh-agent -s` && ssh-add ~/git/.keystore/github_rsa'
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
 
 #clear pacman cache (req paru)
-alias cleancache='paru -Scc'
+alias cleancache='sudo pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/.cache/paru/clone/* && echo "Done!"'
 
 #update AUR packages (req paru)
 alias aurup='paru -a -Syu'
