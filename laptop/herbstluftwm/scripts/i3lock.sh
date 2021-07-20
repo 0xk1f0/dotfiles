@@ -15,17 +15,17 @@ i3lock \
 --ringwrong-color=$E \
 \
 --inside-color=$B \
---ring-color=$D \
+--ring-color=$B \
 --line-color=$B \
---separator-color=$D \
+--separator-color=$B \
 \
 --verif-color=$W \
 --wrong-color=$E \
 --time-color=$W \
 --date-color=$W \
 --layout-color=$W \
---keyhl-color=$F \
---bshl-color=$F \
+--keyhl-color=$W \
+--bshl-color=$E \
 \
 --blur 8 \
 --clock \
