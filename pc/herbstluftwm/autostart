@@ -27,6 +27,7 @@ hc keybind $Mod-Shift-c close
 hc keybind $Mod-Return spawn kitty
 hc keybind $Mod-a spawn rofi -show run
 hc keybind $Mod-Shift-a spawn rofi -show calc
+hc keybind $Mod-Shift-w spawn rofi -show window
 hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
 hc keybind $Mod-q spawn pcmanfm
 hc keybind $Mod-Shift-s spawn flameshot gui
@@ -174,14 +175,6 @@ hc unlock
 
 # detect monitors
 hc detect_monitors
-
-# apply the panel
-panel=~/.config/herbstluftwm/scripts/panel.sh
-[ -x "$panel" ] || panel=/etc/xdg/herbstluftwm/panel.sh
-for monitor in $(hc list_monitors | cut -d: -f1) ; do
-    # start it on each monitor
-    "$panel" "$monitor" &
-done
 
 #numlock
 numlockx &
