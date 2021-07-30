@@ -187,6 +187,9 @@ hc detect_monitors
 #    "$panel" "$monitor" &
 #done
 
+#numlock
+numlockx &
+
 # start compton (req compton)
 picom -b --experimental-backends &
 
