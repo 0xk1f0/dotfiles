@@ -79,10 +79,10 @@ font-6 = SourceCodePro:size=13:style=Regular;2
 
 [colors]
 colorUnderline = #888888
-colorBackground = #b8c8f8
-colorForeground = #000030
+colorForeground = #dddddd
+colorBackground = #000000
 colorBorder = #ffffff
-colorActive = #7078f8
+colorActive = #333333
 
 ###########################################################
 
