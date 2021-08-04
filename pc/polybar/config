@@ -26,9 +26,9 @@ foreground = ${colors.colorForeground}
 
 module-margin-left = 2
 module-margin-right = 2
-modules-left = ewmh cpu memory
+modules-left = ewmh
 modules-center = date
-modules-right = filesystemSSD filesystemHDD eth powermenu
+modules-right = cpu memory eth powermenu
 
 font-0 = Open Sans:size=13:style=Semibold;2
 font-1 = icomoon:style=Regular
@@ -105,9 +105,11 @@ interval = 30
 
 mount-0 = /hdd1
 
-label-mounted =   %free% free
+format-mounted =   <label-mounted>
+label-mounted = %free% free
 label-mounted-font = 1
-label-unmounted =   umtd
+format-unmounted =   <label-unmounted>
+label-unmounted = umtd
 label-unmounted-font = 1
 
 ###########################################################
@@ -115,7 +117,8 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-label =   %percentage%% utl
+format = cpu: <label>
+label = %percentage%% utl
 label-font = 1
 
 ###########################################################
@@ -123,7 +126,8 @@ label-font = 1
 [module/memory]
 type = internal/memory
 interval = 2
-label =   %gb_used% usd
+format = mry: <label>
+label = %percentage_used%% utl
 label-font = 1
 
 ###########################################################
@@ -133,10 +137,11 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-label-connected = eth 
+format-connected = eth: <label-connected>
+label-connected = con
 label-connected-font = 1
-
-label-disconnected = eth 
+format-disconnected = eth: <label-disconnected>
+label-disconnected = dsc
 label-disconnect-font = 1
 
 ###########################################################
@@ -145,8 +150,8 @@ label-disconnect-font = 1
 type = internal/date
 interval = 1
 
-date-alt = "  %d.%m.%Y"
-time = " %H:%M:%S"
+date-alt = " %d.%m.%Y"
+time = "%H:%M:%S"
 
 label = %time% %date%
 label-font = 1
@@ -160,8 +165,10 @@ expand-right = true
 
 format-spacing = 2
 
-label-open =   >
-label-close =   <
+format-open = <label-open>
+label-open = pwr >
+format-close = <label-close>
+label-close = pwr <
 label-separator = /
 label-open-font = 1
 label-close-font = 1
