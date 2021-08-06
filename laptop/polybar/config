@@ -28,7 +28,7 @@ module-margin-left = 2
 module-margin-right = 2
 modules-left = ewmh cpu memory
 modules-center = date
-modules-right = filesystem wireless-network wired-network battery powermenu
+modules-right = wireless-network battery powermenu
 
 font-0 = Open Sans:style=Semibold;3
 font-1 = icomoon:style=Regular
