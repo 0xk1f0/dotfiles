@@ -82,7 +82,7 @@ colorUnderline = #888888
 colorForeground = #dddddd
 colorBackground = #000000
 colorBorder = #ffffff
-colorActive = #333333
+colorActive = #ff7755
 
 ###########################################################
 
