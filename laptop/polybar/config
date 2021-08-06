@@ -68,7 +68,8 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-label =   %percentage%% utl
+format = cpu: <label>
+label = %percentage%% utl
 label-font = 1
 
 ###########################################################
@@ -76,7 +77,8 @@ label-font = 1
 [module/memory]
 type = internal/memory
 interval = 2
-label =   %gb_used% usd
+format = mry: <label>
+label = %percentage_used%% usd
 label-font = 1
 
 ###########################################################
@@ -86,8 +88,8 @@ type = internal/network
 interface = wlo1
 interval = 5
 
-format-connected =  <label-connected> <ramp-signal>
-format-disconnected =  <label-disconnected>
+format-connected = wifi: <label-connected> <ramp-signal>
+format-disconnected = <label-disconnected>
 format-packetloss = <label-packetloss>
 
 label-connected = %essid%
@@ -98,19 +100,6 @@ label-disconnected-font = 1
 ramp-signal-0 = /
 ramp-signal-1 = //
 ramp-signal-2 = ///
-
-###########################################################
-
-[module/wired-network]
-type = internal/network
-interface = enp34s0
-interval = 5
-
-label-connected = eth con
-label-connected-font = 1
-
-label-disconnected = eth disc
-label-disconnect-font = 1
 
 ###########################################################
 
@@ -172,8 +161,8 @@ type = custom/menu
 
 expand-right = true
 
-label-open =  >
-label-close =  <
+label-open = pwr >
+label-close = pwr <
 label-separator = /
 label-open-font = 1
 label-close-font = 1
@@ -198,7 +187,7 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
 menu-3-0 = %{F#ff0000}sleep%{F-}
-menu-3-0-exec = systemctl suspend && betterlockscreen -l
+menu-3-0-exec = systemctl suspend && ~/.config/herbstluftwm/scripts/i3lock.sh
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
