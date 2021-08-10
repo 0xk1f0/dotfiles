@@ -8,7 +8,7 @@
 ###########################################################
 
 [bar/main-hlwm]
-monitor = DisplayPort-2
+monitor = DisplayPort-1
 
 width = 100%
 height = 34
@@ -26,12 +26,12 @@ foreground = ${colors.colorForeground}
 
 module-margin-left = 2
 module-margin-right = 2
-modules-left = ewmh
+modules-left = ewmh weather
 modules-center = date
 modules-right = cpu memory eth powermenu
 
 font-0 = Open Sans:size=13:style=Semibold;2
-font-1 = icomoon:style=Regular
+font-1 = Weather Icons:size=12;1
 font-2 = octicons:style=Medium
 font-3 = Twemoji:style=Regular
 font-4 = Roboto:style=Medium;2
@@ -43,7 +43,7 @@ font-6 = SourceCodePro:size=13:style=Regular;2
 ###########################################################
 
 [bar/sec-hlwm]
-monitor = HDMI-A-0
+monitor = DisplayPort-2
 
 width = 100%
 height = 34
@@ -72,6 +72,7 @@ font-3 = Twemoji:style=Regular
 font-4 = Roboto:style=Medium;2
 font-5 = FontAwesome:size=13:style=Regular;2
 font-6 = SourceCodePro:size=13:style=Regular;2
+font-7 = Weather Icons:size=12;1
 
 ###########################################################
 ###########################################################
@@ -117,18 +118,20 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = cpu: <label>
-label = %percentage%% utl
+format = cpu: <label> utl
+label = %percentage%%
 label-font = 1
+label-foreground = ${colors.colorActive}
 
 ###########################################################
 
 [module/memory]
 type = internal/memory
 interval = 2
-format = mry: <label>
-label = %percentage_used%% utl
+format = mry: <label> utl
+label = %percentage_used%%
 label-font = 1
+label-foreground = ${colors.colorActive}
 
 ###########################################################
 
@@ -143,6 +146,7 @@ label-connected-font = 1
 format-disconnected = eth: <label-disconnected>
 label-disconnected = dsc
 label-disconnect-font = 1
+label-connected-foreground = ${colors.colorActive}
 
 ###########################################################
 
@@ -150,11 +154,23 @@ label-disconnect-font = 1
 type = internal/date
 interval = 1
 
-date-alt = " %d.%m.%Y"
+format = <label>
+
+date-alt = " %a, %d.%m.%Y"
 time = "%H:%M:%S"
 
 label = %time% %date%
 label-font = 1
+
+###########################################################
+
+[module/weather]
+type = custom/script
+exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
+interval = 120
+format = wthr:  <label>
+label-font = 1
+label-foreground = ${colors.colorActive}
 
 ###########################################################
 
@@ -180,18 +196,21 @@ menu-0-1-exec = menu-open-2
 menu-0-2 = sleep
 menu-0-2-exec = menu-open-3
 
+menu-1-0 = reboot
+menu-1-0-foreground = ${colors.colorActive}
+menu-1-0-exec = reboot
 menu-1-1 = cancel
 menu-1-1-exec = menu-open-0
-menu-1-0 = %{F#ff0000}reboot%{F-}
-menu-1-0-exec = reboot
 
-menu-2-0 = %{F#ff0000}power off%{F-}
+menu-2-0 = power off
+menu-2-0-foreground = ${colors.colorActive}
 menu-2-0-exec = poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 
-menu-3-0 = %{F#ff0000}sleep%{F-}
-menu-3-0-exec = systemctl suspend && betterlockscreen -l
+menu-3-0 = sleep
+menu-3-0-foreground = ${colors.colorActive}
+menu-3-0-exec = systemctl suspend && ~/.config/herbstluftwm/scripts/i3lock.sh
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
