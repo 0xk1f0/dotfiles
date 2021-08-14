@@ -26,7 +26,7 @@ foreground = ${colors.colorForeground}
 
 module-margin-left = 2
 module-margin-right = 2
-modules-left = ewmh weather
+modules-left = ewmh weather pihole-polybar
 modules-center = date
 modules-right = cpu memory eth powermenu
 
@@ -169,6 +169,16 @@ type = custom/script
 exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
 interval = 120
 format = wthr:  <label>
+label-font = 1
+label-foreground = ${colors.colorActive}
+
+###########################################################
+
+[module/pihole-polybar]
+type = custom/script
+exec = ~/.config/polybar/scripts/pihole-status.sh
+interval = 120
+format = pihole:  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
