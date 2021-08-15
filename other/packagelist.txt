@@ -8,8 +8,8 @@
 herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc flameshot kitty pcmanfm nm-connection-editor pavucontrol 
 
 #functionality
-playerctl pipewire pipewire-pulse pipewirejack pamixer pipewire-alsa gzip nomacs pacman-mirrorlist 
-numlockx nemo-fileroller nemo-preview lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
+playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip nomacs pacman-mirrorlist 
+numlockx file-roller ntfs-3g lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
 
 #other
 gimp signal-desktop telegram-desktop wireshark-qt reflector traceroute ipcalc gparted
@@ -27,13 +27,13 @@ steam lutris
 ######
 
 #DE
-picom-git polybar beautyline  ly-reloaded-git
+picom-git polybar beautyline  
 
 #functionality
-paru-bin
+ttf-weather-icons
 
 #other
 ncspot firefox-nightly spotify discord-canary
 
 #gaming
-proton wine-valve libstrangle
+proton libstrangle
