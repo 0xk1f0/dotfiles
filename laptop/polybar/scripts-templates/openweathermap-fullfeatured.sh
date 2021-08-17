@@ -85,7 +85,7 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
     current_icon=$(echo "$current" | jq -r ".weather[0].icon")
 
     actualCity=$(echo "$current" | jq ".name")
-    locationName=$(echo "$actualCity" | cut -c 2-${#actualCity})
+    locationName=$(echo "$actualCity" | cut -d ' ' -f 1 | tr '"' '\b')
 
     forecast_temp=$(echo "$forecast" | jq ".list[].main.temp" | cut -d "." -f 1)
     forecast_icon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
