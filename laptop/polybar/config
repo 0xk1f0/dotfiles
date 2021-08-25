@@ -172,7 +172,7 @@ format-charging = <animation-charging> <label-charging>
 [module/weather]
 type = custom/script
 exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
-interval = 120
+interval = 600
 format = wthr:  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
