@@ -5,11 +5,11 @@
 ######
 
 #DE
-herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc flameshot kitty pcmanfm nm-connection-editor pavucontrol 
+herbstluftwm nitrogen dunst dzen2 dmenu rofi rofi-calc flameshot kitty nemo nm-connection-editor pavucontrol 
 
 #functionality
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip nomacs pacman-mirrorlist 
-numlockx file-roller ntfs-3g lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
+numlockx nemo-fileroller ntfs-3g lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
 
 #other
 gimp signal-desktop telegram-desktop wireshark-qt reflector traceroute ipcalc gparted
