@@ -32,15 +32,17 @@ outputType="status"
 
 
 #check if at least one type of variable has been specified
-if [ ! -z "$API" ]; then
+if [ -n "$API" ]; then
 
     #get api data with curl
     current=$(curl -sf "$API")
+    exitStatus=$(echo $?)
 
-elif [ ! -z "$API_via_IP" ]; then
+elif [ -n "$API_via_IP" ]; then
 
     #get api data with curl
     current=$(curl -sf "$API_via_IP")
+    exitStatus=$(echo $?)
 
 else
 
@@ -75,4 +77,12 @@ case $outputType in
 esac
 
 # output based on user preference
-echo "$currentOutput"
+if [ "$exitStatus" -eq 0 ]; then
+
+    echo "$currentOutput"
+
+else
+
+    echo "Pi-hole unreachable!"
+
+fi

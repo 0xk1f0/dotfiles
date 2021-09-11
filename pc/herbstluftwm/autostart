@@ -154,7 +154,7 @@ hc attr theme.active.inner_color '$colorActive'
 hc attr theme.active.outer_color '$colorNormal'
 
 #window rules/theme
-hc set window_gap 12
+hc set window_gap 14
 hc set frame_padding on
 hc set smart_window_surroundings off
 hc set smart_frame_surroundings on
