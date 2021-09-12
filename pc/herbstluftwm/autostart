@@ -183,7 +183,7 @@ numlockx &
 picom -b --experimental-backends &
 
 # start polybars (req polybar)
-~/.config/polybar/scripts/startbars.sh
+~/.config/polybar/startbars.sh
 
 # start dunst (req dunst)
 killall -q dunst
