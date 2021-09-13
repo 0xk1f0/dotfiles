@@ -30,7 +30,7 @@ hc keybind $Mod-Shift-a spawn rofi -show calc
 hc keybind $Mod-Shift-w spawn rofi -show window
 hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
 hc keybind $Mod-q spawn nemo
-hc keybind $Mod-Shift-s spawn ~/.config/herbstluftwm/scripts/takeScreenshot.sh
+hc keybind $Mod-Shift-s spawn maim -s ~/screenshot.png && xclip -selection clipboard -t image/png -i screenshot.png
 
 #fn keys (req pamixer and playerctl)
 hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/scripts/volumeUp.sh
