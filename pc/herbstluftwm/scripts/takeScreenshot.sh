@@ -1,5 +1,5 @@
 #take screenshot and copy it to clipboard
-maim -s /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
+maim -su /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
 
 exitCode=$(echo $?)
 

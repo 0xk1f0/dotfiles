@@ -1,0 +1,193 @@
+#!/usr/bin/env bash
+
+#░█░█░█░░░█░█░█▄█░░░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░░░░░█░█░▀█░░█▀▀░▄▀▄
+#░█▀█░█░░░█▄█░█░█░▄▄▄░█░░░█░█░█░█░█▀▀░░█░░█░█░▄▄▄░█▀▄░░█░░█▀▀░█/█
+#░▀░▀░▀▀▀░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
+
+hc() {
+    herbstclient "$@"
+}
+
+hc emit_hook reload
+
+#configure monitors
+~/.config/herbstluftwm/scripts/xrandrapply.sh &
+
+# remove all existing keybindings
+hc keyunbind --all
+
+# Use the super key as the main modifier
+Mod=Mod4
+
+hc keybind $Mod-Shift-q quit
+hc keybind $Mod-Shift-r reload
+hc keybind $Mod-Shift-c close
+
+#custom kb (req betterlockscreen, nemo, kitty, dmenu, flameshot)
+hc keybind $Mod-Return spawn kitty
+hc keybind $Mod-a spawn rofi -show run
+hc keybind $Mod-Shift-a spawn rofi -show calc
+hc keybind $Mod-Shift-w spawn rofi -show window
+hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
+hc keybind $Mod-q spawn nemo
+hc keybind $Mod-Shift-s spawn maim -s ~/screenshot.png && xclip -selection clipboard -t image/png -i screenshot.png
+
+#fn keys (req pamixer and playerctl)
+hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/scripts/volumeUp.sh
+hc keybind XF86AudioLowerVolume spawn ~/.config/herbstluftwm/scripts/volumeDown.sh
+hc keybind XF86AudioNext spawn playerctl next
+hc keybind XF86AudioPrev spawn playerctl previous
+hc keybind XF86AudioPlay spawn playerctl play-pause
+
+# basic movement in tiling and floating mode for focusing
+hc keybind $Mod-Left  focus left
+hc keybind $Mod-Down  focus down
+hc keybind $Mod-Up    focus up
+hc keybind $Mod-Right focus right
+
+# moving clients in tiling and floating mode (multi monitor)
+hc keybind $Mod-Shift-Down  	shift down
+hc keybind $Mod-Shift-Up    	shift up
+hc keybind $Mod-Shift-Left     	shift left
+hc keybind $Mod-Shift-Right     shift right
+hc keybind $Mod-Shift-j     	shift left
+hc keybind $Mod-Shift-k     	shift right
+
+# splitting frames
+hc keybind $Mod-u       split   bottom  0.5
+hc keybind $Mod-o       split   right   0.5
+
+# let the current frame explode into subframes
+hc keybind $Mod-Control-space split explode
+
+# resizing frames and floating clients
+resizestep=0.02
+hc keybind $Mod-Control-Left    resize left +$resizestep
+hc keybind $Mod-Control-Down    resize down +$resizestep
+hc keybind $Mod-Control-Up      resize up +$resizestep
+hc keybind $Mod-Control-Right   resize right +$resizestep
+
+# tags
+tag_names=( I II III IV V )
+tag_keys=( {1..5} 0 )
+
+# set default frame layout
+hc set default_frame_layout grid
+
+# create workspaces
+hc rename default "${tag_names[0]}" || true
+for i in "${!tag_names[@]}" ; do
+    hc add "${tag_names[$i]}"
+    key="${tag_keys[$i]}"
+    if ! [ -z "$key" ] ; then
+        hc keybind "$Mod-$key" use_index "$i"
+        hc keybind "$Mod-Shift-$key" move_index "$i"
+    fi
+done
+
+# set default layout for tags
+for i in 0 1 2 3 4 ; do
+  if [ "$i" == 0 ]; then
+    hc use_index "$i"
+    hc set_layout vertical
+  fi
+done
+
+# cycle through tags
+hc keybind $Mod-period use_index +1 --skip-visible
+hc keybind $Mod-comma  use_index -1 --skip-visible
+
+# layouting
+hc keybind $Mod-r remove
+hc keybind $Mod-s floating toggle
+hc keybind $Mod-f fullscreen toggle
+hc keybind $Mod-Shift-f set_attr clients.focus.floating toggle
+hc keybind $Mod-p pseudotile toggle
+hc keybind $Mod-space                                                           \
+            or , and . compare tags.focus.curframe_wcount = 2                   \
+                     . cycle_layout +1 vertical horizontal max vertical grid    \
+               , cycle_layout +1
+
+# mouse
+hc mouseunbind --all
+hc mousebind $Mod-Button1 move
+hc mousebind $Mod-Button2 zoom
+hc mousebind $Mod-Button3 resize
+
+# focus
+hc keybind $Mod-BackSpace   cycle_monitor
+hc keybind $Mod-Tab         cycle_all +1
+hc keybind $Mod-Shift-Tab   cycle_all -1
+hc keybind $Mod-c cycle
+hc keybind $Mod-i jumpto urgent
+
+#set multi monitor focus
+hc set focus_crosses_monitor_boundaries true
+
+#focus follows mouse
+hc set focus_follows_mouse true
+
+#dont swap monitors to get tag if already on monitor
+hc set swap_monitors_to_get_tag false
+
+#colors
+colorNormal='#000000'
+colorActive='#dddddd'
+colorUrgent='#dd0000'
+
+# theme
+hc attr theme.tiling.reset 1
+hc attr theme.floating.reset 1
+hc set frame_border_width 0
+hc set frame_active_opacity 0
+hc set frame_normal_opacity 0
+hc set always_show_frame off
+hc set frame_gap 0
+hc attr theme.active.color "$colorActive"
+hc attr theme.normal.color "$colorNormal"
+hc attr theme.urgent.color "$colorUrgent"
+hc attr theme.border_width 2
+hc attr theme.floating.border_width 2
+hc attr theme.floating.active.color "$colorActive"
+hc attr theme.floating.normal.color "$colorNormal"
+hc attr theme.active.inner_color '$colorActive'
+hc attr theme.active.outer_color '$colorNormal'
+
+#window rules/theme
+hc set window_gap 14
+hc set frame_padding on
+hc set smart_window_surroundings off
+hc set smart_frame_surroundings on
+hc set mouse_recenter_gap 10
+
+# rules
+hc unrule -F
+
+# focus new clients
+hc rule focus=on
+hc rule floatplacement=smart
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(DIALOG|UTILITY|SPLASH)' floating=on
+hc rule windowtype='_NET_WM_WINDOW_TYPE_DIALOG' focus=on
+hc rule windowtype~'_NET_WM_WINDOW_TYPE_(NOTIFICATION|DOCK|DESKTOP)' manage=off
+
+# unlock, just to be sure
+hc unlock
+
+# detect monitors
+hc detect_monitors
+
+#numlock
+numlockx &
+
+# start compton (req compton)
+picom -b --experimental-backends &
+
+# start polybars (req polybar)
+~/.config/polybar/startbars.sh
+
+# start dunst (req dunst)
+killall -q dunst
+dunst &
+
+# restore wallpapers
+nitrogen --restore &
