@@ -4,19 +4,19 @@
 # ░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
 ###########################################################
-####                     DP-BAR                        ####
+####                  DP1-BAR-RIGHT                    ####
 ###########################################################
 
-[bar/main-hlwm]
+[bar/main-hlwm-right]
 monitor = DisplayPort-1
 
-width = 100%
-height = 34
-#border-size = 2
-#border-color = ${colors.colorBorder}
-#offset-x = 0.5%
-#offset-y = 12
-#radius = 15
+width = 10%
+height = 32
+border-size = 2
+border-color = ${colors.colorBorder}
+offset-x = 90%:-15
+offset-y = 5
+#radius = 10
 fixed-center = true
 
 background = ${colors.colorBackground}
@@ -24,11 +24,9 @@ foreground = ${colors.colorForeground}
 
 #override-redirect = true
 
-module-margin-left = 2
-module-margin-right = 2
-modules-left = ewmh weather pihole-polybar
-modules-center = date
-modules-right = cpu memory eth powermenu
+module-margin-left = 1
+module-margin-right = 1
+modules-center = cpu memory eth
 
 font-0 = Open Sans:size=13:style=Semibold;2
 font-1 = Weather Icons:size=12;1
@@ -39,19 +37,87 @@ font-5 = FontAwesome:size=13:style=Regular;2
 font-6 = SourceCodePro:size=13:style=Regular;2
 
 ###########################################################
-####                     HDMI-BAR                      ####
+####                 DP1-BAR-CENTER                    ####
+###########################################################
+
+[bar/main-hlwm-center]
+monitor = DisplayPort-1
+
+width = 30%
+height = 32
+border-size = 2
+border-color = ${colors.colorBorder}
+offset-x = 35%
+offset-y = 5
+#radius = 10
+fixed-center = true
+
+background = ${colors.colorBackground}
+foreground = ${colors.colorForeground}
+
+#override-redirect = true
+
+module-margin-left = 2
+module-margin-right = 2
+modules-left = weather
+modules-center = date
+modules-right = pihole-polybar
+
+font-0 = Open Sans:size=13:style=Semibold;2
+font-1 = Weather Icons:size=12;1
+font-2 = octicons:style=Medium
+font-3 = Twemoji:style=Regular
+font-4 = Roboto:style=Medium;2
+font-5 = FontAwesome:size=13:style=Regular;2
+font-6 = SourceCodePro:size=13:style=Regular;2
+
+###########################################################
+####                  DP1-BAR-LEFT                     ####
+###########################################################
+
+[bar/main-hlwm-left]
+monitor = DisplayPort-1
+
+width = 7%
+height = 32
+border-size = 2
+border-color = ${colors.colorBorder}
+offset-x = 15
+offset-y = 5
+#radius = 10
+fixed-center = true
+
+background = ${colors.colorBackground}
+foreground = ${colors.colorForeground}
+
+#override-redirect = true
+
+module-margin-left = 2
+module-margin-right = 2
+modules-center = ewmh
+
+font-0 = Open Sans:size=13:style=Semibold;2
+font-1 = Weather Icons:size=12;1
+font-2 = octicons:style=Medium
+font-3 = Twemoji:style=Regular
+font-4 = Roboto:style=Medium;2
+font-5 = FontAwesome:size=13:style=Regular;2
+font-6 = SourceCodePro:size=13:style=Regular;2
+
+###########################################################
+####                     DP2-BAR                       ####
 ###########################################################
 
 [bar/sec-hlwm]
 monitor = DisplayPort-2
 
-width = 100%
-height = 34
-#border-size = 2
-#border-color = ${colors.colorBorder}
-#offset-x = 1.25%
-#offset-y = 12
-#radius = 15
+width = 97.5%
+height = 32
+border-size = 2
+border-color = ${colors.colorBorder}
+offset-x = 1.25%
+offset-y = 5
+#radius = 10
 fixed-center = true
 
 background = ${colors.colorBackground}
@@ -81,7 +147,7 @@ font-7 = Weather Icons:size=12;1
 [colors]
 colorUnderline = #888888
 colorForeground = #dddddd
-colorBackground = #000000
+colorBackground = #000022
 colorBorder = #ffffff
 colorActive = #c93d3c
 
@@ -118,7 +184,7 @@ label-unmounted-font = 1
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = cpu: <label> utl
+format = cpu: <label>
 label = %percentage%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -128,7 +194,7 @@ label-foreground = ${colors.colorActive}
 [module/memory]
 type = internal/memory
 interval = 2
-format = mry: <label> utl
+format = mry: <label>
 label = %percentage_used%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -271,11 +337,11 @@ label-font = 1
 ##########################################################
 
 [settings]
-#screenchange-reload = true
+screenchange-reload = true
 #pseudo-transparency = true
 #format-background = ${colors.colorBackground}
 format-foreground = ${colors.colorForeground}
-format-padding = 3
+format-padding = 1
 
 ###########################################################
 

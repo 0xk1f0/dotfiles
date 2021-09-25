@@ -65,7 +65,5 @@ alias pdw="pwd"
 PS1='\[\033[01;36m\]\W\[\033[01;37m\] >\[\033[00;37m\] '
 
 #custom start thingies
-echo
-figlet -t -f small "ArchLinux"
-echo
+echo -e 'Nvidia, fuck you! \n - Linus Torvalds' | cowsay -f tux
 #PF_INFO="title os kernel wm uptime" /usr/bin/pfetch
