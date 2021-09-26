@@ -23,38 +23,36 @@ success () {
     clear
 }
 
-clear
-
-echo -e 'This script will pull the newest configs from the .config/ directory.'
-sleep 1
-read -p "Proceed? (Y|n) " answerProceed
-
-if [ $answerProceed == 'y' ] || [ -z $answerProceed ]; then
-    clear
-elif [ $answerProceed == 'n' ]; then
+exiting() {
     clear
     echo "Exiting..."
     exit 0
+}
+
+menuwidth=10
+menuheight=60
+optionwidth=2
+
+whiptail --defaultno --title "Installer Script" --yesno "Proceed?" $menuwidth $menuheight
+
+if [ $(echo $?) -eq 0 ]; then
+    CHOICE=$(whiptail --title "Choose Device" --menu "What Device are you on?" $menuwidth $menuheight $optionwidth \
+	"1)" "PC"   \
+	"2)" "Laptop"  3>&2 2>&1 1>&3
+    )
 else
-    clear
-    echo "Unsure, Exiting..."
-    exit 0
+    exiting
 fi
 
-read -p "Are you on a Laptop? (y|N) " answerLaptop
+if [ $CHOICE == '2)' ]; then
+    platform="Laptop"
+    whiptail --defaultno --clear --title "Pulling from $platform" --yesno "Include combined in Pull?" $menuwidth $menuheight
 
-if [ $answerLaptop == 'y' ]; then
-    clear
-    echo "On Laptop"
-    sleep 1
-    clear
-
-    read -p "Would you like to pull combined too? (y|N) " answerCombined
-    clear
-
-    if [ "$answerCombined" == 'y' ]; then
+    if [ $(echo $?) -eq 0 ]; then
+        answerCombined="y"
         echo "Including combined in pull"
     else
+        answerCombined="n"
         echo "NOT including combined in pull"
     fi
 
@@ -96,18 +94,15 @@ if [ $answerLaptop == 'y' ]; then
     fi
 
     success
-elif [ $answerLaptop == 'n' ] || [ -z $answerLaptop ]; then
-    clear
-    echo "On PC"
-    sleep 1
-    clear
+elif [ $CHOICE == '1)' ]; then
+    platform="PC"
+    whiptail --defaultno --clear --title "Pulling from $platform" --yesno "Include combined in Pull?" $menuwidth $menuheight
 
-    read -p "Would you like to pull combined too? (y|N) " answerCombined
-    clear
-
-    if [ "$answerCombined" == 'y' ]; then
+    if [ $(echo $?) -eq 0 ]; then
+        answerCombined="y"
         echo "Including combined in pull"
     else
+        answerCombined="n"
         echo "NOT including combined in pull"
     fi
 
@@ -150,10 +145,8 @@ elif [ $answerLaptop == 'n' ] || [ -z $answerLaptop ]; then
 
     success
 else
-    clear
-    echo "Unsure, Exiting..."
-    exit 0
+    exiting
 fi
 
-echo "Exiting..."
+echo "Done!"
 exit 0
