@@ -23,23 +23,21 @@ success () {
     clear
 }
 
-clear
-
-echo -e 'This script will install dotfiles from combined/'
-sleep 1
-read -p "Proceed? (Y|n) " answerProceed
-clear
-
-if [ "$answerProceed" == 'y' ] || [ -z "$answerProceed" ]; then
-    clear
-elif [ "$answerProceed" == 'n' ]; then
+exiting() {
     clear
     echo "Exiting..."
     exit 0
-else
+}
+
+menuwidth=10
+menuheight=60
+
+whiptail --defaultno --title "Sync Script" --yesno "Proceed?" $menuwidth $menuheight
+
+if [ $(echo $?) -eq 0 ]; then
     clear
-    echo "Unsure, Exiting..."
-    exit 0
+else
+    exiting
 fi
 
 timeout "Deleting old configs (if present) in..."
@@ -67,5 +65,5 @@ cp -r   combined/.bashrc            	~/
 
 success
 
-echo "Exiting..."
+echo "Done!"
 exit 0
