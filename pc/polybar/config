@@ -12,8 +12,8 @@ monitor = DisplayPort-1
 
 width = 10%
 height = 32
-border-size = 2
-border-color = ${colors.colorBorder}
+#border-size = 2
+#border-color = ${colors.colorBorder}
 offset-x = 90%:-15
 offset-y = 5
 #radius = 10
@@ -45,8 +45,8 @@ monitor = DisplayPort-1
 
 width = 30%
 height = 32
-border-size = 2
-border-color = ${colors.colorBorder}
+#border-size = 2
+#border-color = ${colors.colorBorder}
 offset-x = 35%
 offset-y = 5
 #radius = 10
@@ -80,8 +80,8 @@ monitor = DisplayPort-1
 
 width = 7%
 height = 32
-border-size = 2
-border-color = ${colors.colorBorder}
+#border-size = 2
+#border-color = ${colors.colorBorder}
 offset-x = 15
 offset-y = 5
 #radius = 10
@@ -113,8 +113,8 @@ monitor = DisplayPort-2
 
 width = 97.5%
 height = 32
-border-size = 2
-border-color = ${colors.colorBorder}
+#border-size = 2
+#border-color = ${colors.colorBorder}
 offset-x = 1.25%
 offset-y = 5
 #radius = 10
@@ -146,10 +146,10 @@ font-7 = Weather Icons:size=12;1
 
 [colors]
 colorUnderline = #888888
-colorForeground = #dddddd
-colorBackground = #000022
+colorForeground = #000000
+colorBackground = #c93d3c
 colorBorder = #ffffff
-colorActive = #c93d3c
+colorActive = #ffffff
 
 ###########################################################
 

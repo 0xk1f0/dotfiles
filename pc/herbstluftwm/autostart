@@ -132,7 +132,7 @@ hc set swap_monitors_to_get_tag false
 
 #colors
 colorNormal='#000000'
-colorActive='#dddddd'
+colorActive='#c93d3c'
 colorUrgent='#dd0000'
 
 # theme
