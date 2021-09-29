@@ -1,0 +1,171 @@
+configuration {
+	modi: "run,calc,window,ssh";
+	font: "Source Code Pro 10";
+ }
+
+* {
+    foreground:                  rgba ( 255, 255, 255, 100 % );
+    background:                  #c93d3c;
+    background-color:            rgba ( 0, 0, 0, 0 % );
+    normal-foreground:           @foreground;
+    normal-background:           @background;
+    urgent-foreground:           @foreground;
+    urgent-background:           @background;
+    active-foreground:           @foreground;
+    active-background:		 @background;
+    selected-urgent-background:  @background;
+    selected-urgent-foreground:  @foreground;
+    selected-active-background:  @background;
+    selected-active-foreground:  @foreground;
+    selected-normal-background:  rgba ( 0, 0, 0, 100% );
+    selected-normal-foreground:  @foreground;
+    alternate-active-background: @background;
+    alternate-active-foreground: @foreground;
+    alternate-urgent-background: @background;
+    alternate-urgent-foreground: @foreground;
+    alternate-normal-background: @background;
+    alternate-normal-foreground: @foreground;
+    border-color:                @selected-normal-background;
+    spacing:                     0;
+    separatorcolor:              rgba ( 0, 0, 0, 0 % );
+}
+
+window {
+    background-color: @background;
+    border:           3;
+    padding:          3;
+}
+
+mainbox {
+    border:  0;
+    padding: 0;
+}
+
+message {
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+    padding:      1px ;
+}
+
+textbox {
+    text-color: @background;
+}
+
+listview {
+    fixed-height: 0;
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+    spacing:      2px ;
+    scrollbar:    true;
+    padding:      2px 0px 0px ;
+}
+
+element {
+    border:  0;
+    padding: 1px ;
+}
+
+element-text {
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+element.normal.normal {
+    background-color: @normal-background;
+    text-color:       @normal-foreground;
+}
+
+element.normal.urgent {
+    background-color: @urgent-background;
+    text-color:       @urgent-foreground;
+}
+
+element.normal.active {
+    background-color: @active-background;
+    text-color:       @active-foreground;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+element.selected.urgent {
+    background-color: @selected-urgent-background;
+    text-color:       @selected-urgent-foreground;
+}
+
+element.selected.active {
+    background-color: @selected-active-background;
+    text-color:       @selected-active-foreground;
+}
+
+element.alternate.normal {
+    background-color: @alternate-normal-background;
+    text-color:       @alternate-normal-foreground;
+}
+
+element.alternate.urgent {
+    background-color: @alternate-urgent-background;
+    text-color:       @alternate-urgent-foreground;
+}
+
+element.alternate.active {
+    background-color: @alternate-active-background;
+    text-color:       @alternate-active-foreground;
+}
+
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @selected-normal-background;
+    handle-width: 8px ;
+    padding:      0;
+}
+
+mode-switcher {
+    border:       2px 0px 0px ;
+    border-color: @separatorcolor;
+}
+
+button {
+    spacing:    0;
+    text-color: @normal-foreground;
+}
+
+button.selected {
+    background-color: @selected-normal-background;
+    text-color:       @selected-normal-foreground;
+}
+
+inputbar {
+    spacing:    0;
+    text-color: @selected-normal-background;
+    padding:    1px ;
+}
+
+case-indicator {
+    spacing:    0;
+    text-color: @selected-normal-background;
+}
+
+entry {
+    spacing:    0;
+    text-color: @selected-normal-background;
+}
+
+prompt {
+    spacing:    0;
+    text-color: @selected-normal-background;
+}
+
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @normal-foreground;
+}
