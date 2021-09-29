@@ -64,6 +64,7 @@ if [ $CHOICE == '2)' ]; then
     rm -rf  laptop/dunst/
     rm -rf  laptop/herbstluftwm/
     rm -rf  laptop/polybar/
+    rm -rf  laptop/rofi/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -71,7 +72,6 @@ if [ $CHOICE == '2)' ]; then
         rm -f   combined/.bashrc
         rm -rf  combined/nano/
         rm -rf  combined/picom/
-        rm -rf  combined/rofi/
         rm -f   combined/ncspot/config.toml
     fi
 
@@ -79,9 +79,10 @@ if [ $CHOICE == '2)' ]; then
 
     timeout "Pulling new configs in..."
 
-    cp -r   ~/.config/herbstluftwm laptop/
-    cp -r   ~/.config/dunst laptop/
-    cp -r   ~/.config/polybar laptop/
+    cp -r   ~/.config/herbstluftwm 	laptop/
+    cp -r   ~/.config/dunst 		laptop/
+    cp -r   ~/.config/polybar 		laptop/
+    cp -r   ~/.config/rofi 		laptop/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
@@ -89,7 +90,6 @@ if [ $CHOICE == '2)' ]; then
         cp -r   ~/.bashrc                           combined/
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
-        cp -r   ~/.config/rofi                      combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
     fi
 
@@ -114,6 +114,7 @@ elif [ $CHOICE == '1)' ]; then
     rm -rf pc/dunst/
     rm -rf pc/herbstluftwm/
     rm -rf pc/polybar/
+    rm -rf pc/rofi/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -121,7 +122,6 @@ elif [ $CHOICE == '1)' ]; then
         rm -r   combined/.bashrc
         rm -rf  combined/nano/
         rm -rf  combined/picom/
-        rm -rf  combined/rofi/
         rm -f   combined/ncspot/config.toml
     fi
 
@@ -129,9 +129,10 @@ elif [ $CHOICE == '1)' ]; then
 
     timeout "Pulling new configs in..."
 
-    cp -r   ~/.config/herbstluftwm pc/
-    cp -r   ~/.config/dunst pc/
-    cp -r   ~/.config/polybar pc/
+    cp -r   ~/.config/herbstluftwm 	pc/
+    cp -r   ~/.config/dunst 		pc/
+    cp -r   ~/.config/polybar   	pc/
+    cp -r   ~/.config/rofi 		pc/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
@@ -139,7 +140,6 @@ elif [ $CHOICE == '1)' ]; then
         cp -r   ~/.bashrc                           combined/
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
-        cp -r   ~/.config/rofi                      combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
     fi
 
