@@ -1,10 +1,11 @@
 configuration {
 	modi: "run,calc,window,ssh";
+	font: "Source Code Pro 10";
  }
 
 * {
     foreground:                  rgba ( 255, 255, 255, 100 % );
-    background:                  rgba ( 0, 0, 200, 100 % );
+    background:                  #4444ff;
     background-color:            rgba ( 0, 0, 0, 0 % );
     normal-foreground:           @foreground;
     normal-background:           @background;
@@ -139,23 +140,23 @@ button.selected {
 
 inputbar {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @selected-normal-background;
     padding:    1px ;
 }
 
 case-indicator {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @selected-normal-background;
 }
 
 entry {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @selected-normal-background;
 }
 
 prompt {
     spacing:    0;
-    text-color: @normal-foreground;
+    text-color: @selected-normal-background;
 }
 
 inputbar {
