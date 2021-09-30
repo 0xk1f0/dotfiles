@@ -4,97 +4,31 @@
 # ░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
 ###########################################################
-####                  DP1-BAR-RIGHT                    ####
+####                      DP1-BAR                      ####
 ###########################################################
 
-[bar/main-hlwm-right]
+[bar/main-hlwm]
 monitor = DisplayPort-1
 
-width = 10%
-height = 32
-#border-size = 2
+width = 98.8%
+height = 30
+#border-size = 1
 #border-color = ${colors.colorBorder}
-offset-x = 90%:-15
-offset-y = 5
+offset-x = 0.6%
+offset-y = 10
 #radius = 10
 fixed-center = true
 
-background = ${colors.colorBackground}
+background = #00000000
 foreground = ${colors.colorForeground}
 
 #override-redirect = true
 
-module-margin-left = 1
-module-margin-right = 1
-modules-center = cpu memory eth
-
-font-0 = Open Sans:size=13:style=Semibold;2
-font-1 = Weather Icons:size=12;1
-font-2 = octicons:style=Medium
-font-3 = Twemoji:style=Regular
-font-4 = Roboto:style=Medium;2
-font-5 = FontAwesome:size=13:style=Regular;2
-font-6 = SourceCodePro:size=13:style=Regular;2
-
-###########################################################
-####                 DP1-BAR-CENTER                    ####
-###########################################################
-
-[bar/main-hlwm-center]
-monitor = DisplayPort-1
-
-width = 30%
-height = 32
-#border-size = 2
-#border-color = ${colors.colorBorder}
-offset-x = 35%
-offset-y = 5
-#radius = 10
-fixed-center = true
-
-background = ${colors.colorBackground}
-foreground = ${colors.colorForeground}
-
-#override-redirect = true
-
-module-margin-left = 2
-module-margin-right = 2
-modules-left = weather
+module-margin-left = 0
+module-margin-right = 0
+modules-left = ewmh weather
 modules-center = date
-modules-right = pihole-polybar
-
-font-0 = Open Sans:size=13:style=Semibold;2
-font-1 = Weather Icons:size=12;1
-font-2 = octicons:style=Medium
-font-3 = Twemoji:style=Regular
-font-4 = Roboto:style=Medium;2
-font-5 = FontAwesome:size=13:style=Regular;2
-font-6 = SourceCodePro:size=13:style=Regular;2
-
-###########################################################
-####                  DP1-BAR-LEFT                     ####
-###########################################################
-
-[bar/main-hlwm-left]
-monitor = DisplayPort-1
-
-width = 7%
-height = 32
-#border-size = 2
-#border-color = ${colors.colorBorder}
-offset-x = 15
-offset-y = 5
-#radius = 10
-fixed-center = true
-
-background = ${colors.colorBackground}
-foreground = ${colors.colorForeground}
-
-#override-redirect = true
-
-module-margin-left = 2
-module-margin-right = 2
-modules-center = ewmh
+modules-right = cpu memory pihole-polybar powermenu
 
 font-0 = Open Sans:size=13:style=Semibold;2
 font-1 = Weather Icons:size=12;1
@@ -111,22 +45,22 @@ font-6 = SourceCodePro:size=13:style=Regular;2
 [bar/sec-hlwm]
 monitor = DisplayPort-2
 
-width = 97.5%
-height = 32
-#border-size = 2
+width = 97%
+height = 30
+#border-size = 1
 #border-color = ${colors.colorBorder}
-offset-x = 1.25%
-offset-y = 5
+offset-x = 1.5%
+offset-y = 10
 #radius = 10
 fixed-center = true
 
-background = ${colors.colorBackground}
+background = #00000000
 foreground = ${colors.colorForeground}
 
 #override-redirect = true
 
-module-margin-left = 2
-module-margin-right = 2
+module-margin-left = 0
+module-margin-right = 0
 modules-left = ewmh
 modules-center = date
 modules-right = powermenu
@@ -148,7 +82,7 @@ font-7 = Weather Icons:size=12;1
 colorUnderline = #888888
 colorForeground = #000000
 colorBackground = #c93d3c
-colorBorder = #ffffff
+colorBorder = #000000
 colorActive = #ffffff
 
 ###########################################################
@@ -163,6 +97,9 @@ label-mounted =   %free% free
 label-mounted-font = 1
 label-unmounted =   umtd
 label-unmounted-font = 1
+
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -179,6 +116,9 @@ format-unmounted =   <label-unmounted>
 label-unmounted = umtd
 label-unmounted-font = 1
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/cpu]
@@ -189,6 +129,9 @@ label = %percentage%%
 label-font = 1
 label-foreground = ${colors.colorActive}
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/memory]
@@ -198,6 +141,9 @@ format = mry: <label>
 label = %percentage_used%%
 label-font = 1
 label-foreground = ${colors.colorActive}
+
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -214,6 +160,9 @@ label-disconnected = dsc
 label-disconnect-font = 1
 label-connected-foreground = ${colors.colorActive}
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/date]
@@ -225,8 +174,12 @@ format = <label>
 date-alt = " %a, %d.%m.%Y"
 time = "%H:%M:%S"
 
-label = %time% %date%
+label = %time%%date%
 label-font = 1
+#label-foreground = ${colors.colorActive}
+
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -238,6 +191,9 @@ format = wthr:  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/pihole-polybar]
@@ -247,6 +203,9 @@ interval = 120
 format = pihole:  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
+
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -290,6 +249,9 @@ menu-3-0-exec = systemctl suspend && ~/.config/herbstluftwm/scripts/i3lock.sh
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/ewmh]
@@ -325,6 +287,9 @@ label-empty = %name%
 label-empty-margin = 1
 label-empty-font = 7
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ###########################################################
 
 [module/xwindow]
@@ -334,6 +299,9 @@ label = %title%
 label-maxlen = 30
 label-font = 1
 
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
+
 ##########################################################
 
 [settings]
@@ -341,7 +309,7 @@ screenchange-reload = true
 #pseudo-transparency = true
 #format-background = ${colors.colorBackground}
 format-foreground = ${colors.colorForeground}
-format-padding = 1
+format-padding = 3
 
 ###########################################################
 

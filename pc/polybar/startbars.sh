@@ -4,7 +4,5 @@
 killall -q polybar
 
 # Launch bar1 and bar2
-polybar main-hlwm-right & disown
-polybar main-hlwm-center & disown
-polybar main-hlwm-left & disown
+polybar main-hlwm & disown
 polybar sec-hlwm & disown
