@@ -62,7 +62,7 @@ hc keybind $Mod-Shift-l	        shift right
 
 # splitting frames
 hc keybind $Mod-u       split   bottom  0.5
-hc keybind $Mod-o       split   right   0.5
+hc keybind $Mod-o       split   top     0.5
 
 # explode into subframes
 hc keybind $Mod-Control-space split explode
@@ -125,8 +125,8 @@ hc set focus_follows_mouse true
 hc set swap_monitors_to_get_tag false
 
 # colors
-colorNormal='#000000'
-colorActive='#c93d3c'
+colorNormal='#384048'
+colorActive='#b0b0c8'
 colorUrgent='#ffffff'
 
 # theme / behaviour

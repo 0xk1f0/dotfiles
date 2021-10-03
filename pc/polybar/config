@@ -27,8 +27,8 @@ foreground = ${colors.colorForeground}
 module-margin-left = 0
 module-margin-right = 0
 modules-left = ewmh weather
-modules-center = date
-modules-right = cpu memory pihole-polybar powermenu
+modules-center = cpu date memory
+modules-right = SSD HDD eth powermenu
 
 font-0 = Open Sans:size=13:style=Semibold;2
 font-1 = Weather Icons:size=12;1
@@ -80,51 +80,62 @@ font-7 = Weather Icons:size=12;1
 
 [colors]
 colorUnderline = #888888
-colorForeground = #000000
-colorBackground = #c93d3c
+colorForeground = #b0b0c8
+colorBackground = #384048
 colorBorder = #000000
 colorActive = #ffffff
 
 ###########################################################
 
-[module/filesystemSSD]
+[module/SSD]
 type = internal/fs
 interval = 30
 
 mount-0 = /
 
-label-mounted =   %free% free
+format-mounted = ssd <label-mounted>
+label-mounted = %percentage_used%%
 label-mounted-font = 1
-label-unmounted =   umtd
+format-unmounted = ssd <label-unmounted>
+label-unmounted = umtd
 label-unmounted-font = 1
+label-mounted-foreground = ${colors.colorActive}
+label-unmounted-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
+format-mounted-background = ${colors.colorBackground}
+format-mounted-foreground = ${colors.colorForeground}
+format-unmounted-background = ${colors.colorBackground}
+format-unmounted-foreground = ${colors.colorForeground}
 
 ###########################################################
 
-[module/filesystemHDD]
+[module/HDD]
 type = internal/fs
 interval = 30
 
-mount-0 = /hdd1
+mount-0 = /hdd
 
-format-mounted =   <label-mounted>
-label-mounted = %free% free
+format-mounted = hdd <label-mounted>
+label-mounted = %percentage_used%%
 label-mounted-font = 1
-format-unmounted =   <label-unmounted>
+format-unmounted = hdd <label-unmounted>
 label-unmounted = umtd
 label-unmounted-font = 1
+label-mounted-foreground = ${colors.colorActive}
+label-unmounted-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
+
+format-mounted-background = ${colors.colorBackground}
+format-mounted-foreground = ${colors.colorForeground}
+format-unmounted-background = ${colors.colorBackground}
+format-unmounted-foreground = ${colors.colorForeground}
 
 ###########################################################
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format = cpu: <label>
+format = cpu <label>
 label = %percentage%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -137,7 +148,7 @@ format-foreground = ${colors.colorForeground}
 [module/memory]
 type = internal/memory
 interval = 2
-format = mry: <label>
+format = mry <label>
 label = %percentage_used%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -152,16 +163,18 @@ type = internal/network
 interface = enp34s0
 interval = 5
 
-format-connected = eth: <label-connected>
+format-connected = eth <label-connected>
 label-connected = con
 label-connected-font = 1
-format-disconnected = eth: <label-disconnected>
+format-disconnected = eth <label-disconnected>
 label-disconnected = dsc
 label-disconnect-font = 1
 label-connected-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
+format-connected-background = ${colors.colorBackground}
+format-connected-foreground = ${colors.colorForeground}
+format-disconnected-background = ${colors.colorBackground}
+format-disconnected-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -187,7 +200,7 @@ format-foreground = ${colors.colorForeground}
 type = custom/script
 exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
 interval = 600
-format = wthr:  <label>
+format = wthr  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
@@ -200,7 +213,7 @@ format-foreground = ${colors.colorForeground}
 type = custom/script
 exec = ~/.config/polybar/scripts/pihole-status.sh
 interval = 120
-format = pihole:  <label>
+format = pihole  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
