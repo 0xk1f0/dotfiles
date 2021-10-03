@@ -53,7 +53,7 @@ get_duration() {
 }
 
 KEY=""
-CITY="2762453"
+CITY=""
 UNITS="metric"
 SYMBOL="°"
 
@@ -85,7 +85,8 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
     current_icon=$(echo "$current" | jq -r ".weather[0].icon")
 
     actualCity=$(echo "$current" | jq ".name")
-    locationName=$(echo "$actualCity" | cut -d ' ' -f 1 | tr '"' '\b')
+    locationName=$(echo "$actualCity" | cut -d " " -f 1| cut -c 2-10)
+    outLocation=$(echo "$locationName" | tr '[:upper:]' '[:lower:]')
 
     forecast_temp=$(echo "$forecast" | jq ".list[].main.temp" | cut -d "." -f 1)
     forecast_icon=$(echo "$forecast" | jq -r ".list[].weather[0].icon")
@@ -111,5 +112,5 @@ if [ -n "$current" ] && [ -n "$forecast" ]; then
         daytime=" $(get_duration "$((sun_rise-now))")"
     fi
 
-    echo "$locationName  $(get_icon "$current_icon") $current_temp$SYMBOL  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
+    echo "$outLocation  $(get_icon "$current_icon") $current_temp$SYMBOL  $trend  $(get_icon "$forecast_icon") $forecast_temp$SYMBOL"
 fi

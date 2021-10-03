@@ -43,11 +43,9 @@ fi
 timeout "Deleting old configs (if present) in..."
 
 rm -rf  ~/.config/kitty/
-rm -rf  ~/.config/pacwall/
 rm -f   ~/.bashrc
 rm -rf  ~/.config/nano/
 rm -rf  ~/.config/picom/
-rm -rf  ~/.config/rofi/
 rm -f   ~/.config/ncspot/config.toml
 
 success
@@ -56,10 +54,8 @@ timeout "Copying new configs in..."
 
 #copy new configs
 cp -r   combined/kitty/                 ~/.config/
-cp -r   combined/pacwall/               ~/.config/
 cp -r   combined/nano/                  ~/.config/
 cp -r   combined/picom/                 ~/.config/
-cp -r   combined/rofi/                  ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/.bashrc            	~/
 

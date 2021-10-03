@@ -10,25 +10,24 @@
 [bar/main-hlwm]
 monitor = eDP
 width = 98.5%
-height = 35
+height = 32
 #border-size = 2
 #border-color = ${colors.colorBorder}
 offset-x = 0.75%
-offset-y = 5
+offset-y = 10
 radius = 0.0
 fixed-center = true
 bottom = false
 
-background = ${colors.colorBackground}
-foreground = ${colors.colorForeground}
-
 #override-redirect = true
 
-module-margin-left = 2
-module-margin-right = 2
-modules-left = ewmh cpu memory
-modules-center = date
-modules-right = weather wireless-network battery powermenu
+background = #00000000
+
+module-margin-left = 0
+module-margin-right = 0
+modules-left = ewmh weather
+modules-center = cpu date memory
+modules-right = SSD wireless-network battery powermenu
 
 font-0 = Open Sans:style=Semibold;3
 font-1 = Weather Icons:size=12;1
@@ -45,34 +44,51 @@ font-7 = SauceCodePro Nerd Font:style=Medium;3
 
 [colors]
 colorUnderline = #ffffff
-colorBackground = #000000
-colorForeground = #ffffff
+colorBackground = #384048
+colorForeground = #a8b0b0
 colorBorder = #011b78
-colorActive = #4444ff
+colorActive = #ffffff
 
 ###########################################################
 
-[module/filesystem]
+[module/SSD]
 type = internal/fs
 interval = 30
 
 mount-0 = /
 
-format = fsrt: <label>
-
-label-mounted = %free% free
-label-unmounted = umtd
+format-mounted = ssd <label-mounted>
+label-mounted = %percentage_used%%
 label-mounted-font = 1
+format-unmounted = ssd <label-unmounted>
+label-unmounted = umtd
 label-unmounted-font = 1
+label-mounted-foreground = ${colors.colorActive}
+label-unmounted-foreground = ${colors.colorActive}
+
+###########################################################
+
+[module/HDD]
+type = internal/fs
+interval = 30
+
+mount-0 = /hdd
+
+format-mounted = hdd <label-mounted>
+label-mounted = %percentage_used%%
+label-mounted-font = 1
+format-unmounted = hdd <label-unmounted>
+label-unmounted = umtd
+label-unmounted-font = 1
+label-mounted-foreground = ${colors.colorActive}
+label-unmounted-foreground = ${colors.colorActive}
 
 ###########################################################
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-
-format = cpu: <label> utl
-
+format = cpu <label>
 label = %percentage%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -82,9 +98,7 @@ label-foreground = ${colors.colorActive}
 [module/memory]
 type = internal/memory
 interval = 2
-
-format = mry: <label> utl
-
+format = mry <label>
 label = %percentage_used%%
 label-font = 1
 label-foreground = ${colors.colorActive}
@@ -96,7 +110,7 @@ type = internal/network
 interface = wlo1
 interval = 5
 
-format-connected = wifi: <label-connected> <ramp-signal>
+format-connected = wifi <label-connected> <ramp-signal>
 format-disconnected = <label-disconnected>
 format-packetloss = <label-packetloss>
 
@@ -173,7 +187,7 @@ format-charging = <animation-charging> <label-charging>
 type = custom/script
 exec = ~/.config/polybar/scripts/openweathermap-fullfeatured.sh
 interval = 600
-format = wthr:  <label>
+format = wthr  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
