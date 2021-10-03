@@ -11,6 +11,7 @@ herbstluftwm nitrogen dunst rofi rofi-calc flameshot kitty nemo nm-connection-ed
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip nomacs pacman-mirrorlist 
 numlockx nemo-fileroller ntfs-3g lxappearance qt5ct arc-gtk-theme ttf-font-awesome ttf-opensans
 adobe-source-code-pro-fonts procs exa bat reflector lib32-fontconfig ttf-liberation wqy-zenhei
+cups system-config-printer
 
 #other
 gimp signal-desktop telegram-desktop wireshark-qt traceroute ipcalc gparted
