@@ -248,28 +248,28 @@ icon-3 = 4;
 icon-4 = 5;
 format = <label-state>
 label-monitor = %name%
-label-monitor-font = 1
 
 label-active = %name%
 label-active-margin = 1
-#label-active-padding = 2
 label-active-font = 7
 label-active-foreground = ${colors.colorActive}
 
 label-occupied = %name%
 label-occupied-margin = 1
-#label-occupied-padding = 2
 label-occupied-font = 7
+label-occupied-foreground = ${colors.colorForeground}
 
-label-urgent = %name%
+label-urgent = !%name%!
 label-urgent-margin = 1
-#label-urgent-padding = 2
 label-urgent-font = 7
 
 label-empty = %name%
 label-empty-margin = 1
-#label-empty-padding = 2
 label-empty-font = 7
+label-empty-foreground = ${colors.colorForeground}
+
+format-background = ${colors.colorBackground}
+format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
