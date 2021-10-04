@@ -124,12 +124,6 @@ label-unmounted-font = 1
 label-mounted-foreground = ${colors.colorActive}
 label-unmounted-foreground = ${colors.colorActive}
 
-
-format-mounted-background = ${colors.colorBackground}
-format-mounted-foreground = ${colors.colorForeground}
-format-unmounted-background = ${colors.colorBackground}
-format-unmounted-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/cpu]
@@ -140,9 +134,6 @@ label = %percentage%%
 label-font = 1
 label-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/memory]
@@ -152,9 +143,6 @@ format = mry <label>
 label = %percentage_used%%
 label-font = 1
 label-foreground = ${colors.colorActive}
-
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -171,11 +159,6 @@ label-disconnected = dsc
 label-disconnect-font = 1
 label-connected-foreground = ${colors.colorActive}
 
-format-connected-background = ${colors.colorBackground}
-format-connected-foreground = ${colors.colorForeground}
-format-disconnected-background = ${colors.colorBackground}
-format-disconnected-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/date]
@@ -191,9 +174,6 @@ label = %time%%date%
 label-font = 1
 #label-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/weather]
@@ -204,9 +184,6 @@ format = wthr  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/pihole-polybar]
@@ -216,9 +193,6 @@ interval = 120
 format = pihole  <label>
 label-font = 1
 label-foreground = ${colors.colorActive}
-
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
 
 ###########################################################
 
@@ -262,9 +236,6 @@ menu-3-0-exec = systemctl suspend && ~/.config/herbstluftwm/scripts/i3lock.sh
 menu-3-1 = cancel
 menu-3-1-exec = menu-open-0
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/ewmh]
@@ -300,9 +271,6 @@ label-empty = %name%
 label-empty-margin = 1
 label-empty-font = 7
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ###########################################################
 
 [module/xwindow]
@@ -312,16 +280,15 @@ label = %title%
 label-maxlen = 30
 label-font = 1
 
-format-background = ${colors.colorBackground}
-format-foreground = ${colors.colorForeground}
-
 ##########################################################
 
 [settings]
 screenchange-reload = true
 #pseudo-transparency = true
-#format-background = ${colors.colorBackground}
+
+format-background = ${colors.colorBackground}
 format-foreground = ${colors.colorForeground}
+
 format-padding = 3
 
 ###########################################################
