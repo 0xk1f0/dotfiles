@@ -31,7 +31,7 @@ modules-center = cpu date memory
 modules-right = SSD HDD eth powermenu
 
 font-0 = Open Sans:size=13:style=Semibold;2
-font-1 = Weather Icons:size=12;1
+font-1 = Weather Icons:size=12;2
 font-2 = octicons:style=Medium
 font-3 = Twemoji:style=Regular
 font-4 = Roboto:style=Medium;2
