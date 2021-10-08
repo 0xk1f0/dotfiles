@@ -42,9 +42,6 @@ alias cat="bat"
 #get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 -c Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
 
-#start ssh agent and add keys
-alias startssh='eval `ssh-agent -s` && ssh-add ~/git/.keystore/github_rsa'
-
 #remove orphans
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
 
