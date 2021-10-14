@@ -22,7 +22,7 @@ fixed-center = true
 background = #00000000
 foreground = ${colors.colorForeground}
 
-#override-redirect = true
+override-redirect = false
 
 module-margin-left = 0
 module-margin-right = 0
@@ -57,7 +57,86 @@ fixed-center = true
 background = #00000000
 foreground = ${colors.colorForeground}
 
-#override-redirect = true
+override-redirect = true
+
+module-margin-left = 0
+module-margin-right = 0
+modules-left = ewmh
+modules-center = date
+modules-right = powermenu
+
+font-0 = Open Sans:size=13:style=Semibold;2
+font-1 = icomoon:style=Regular
+font-2 = octicons:style=Medium
+font-3 = Twemoji:style=Regular
+font-4 = Roboto:style=Medium;2
+font-5 = FontAwesome:size=13:style=Regular;2
+font-6 = SourceCodePro:size=13:style=Regular;2
+font-7 = Weather Icons:size=12;1
+
+###########################################################
+###########################################################
+###########################################################
+
+###########################################################
+####                      DP1-BAR                      ####
+###########################################################
+
+[bar/main-qtile]
+monitor = DisplayPort-1
+
+width = 98.8%
+height = 30
+#border-size = 1
+#border-color = ${colors.colorBorder}
+offset-x = 0.6%
+offset-y = 10
+#radius = 10
+fixed-center = true
+
+background = #00000000
+foreground = ${colors.colorForeground}
+
+;wm-restack = qtile
+override-redirect = false
+enable-ipc = true
+
+module-margin-left = 0
+module-margin-right = 0
+modules-left = ewmh weather
+modules-center = cpu date memory
+modules-right = SSD HDD eth powermenu
+
+font-0 = Open Sans:size=13:style=Semibold;2
+font-1 = Weather Icons:size=12;2
+font-2 = octicons:style=Medium
+font-3 = Twemoji:style=Regular
+font-4 = Roboto:style=Medium;2
+font-5 = FontAwesome:size=13:style=Regular;2
+font-6 = SourceCodePro:size=13:style=Regular;2
+
+###########################################################
+####                     DP2-BAR                       ####
+###########################################################
+
+[bar/sec-qtile]
+monitor = DisplayPort-2
+
+width = 97%
+height = 30
+#border-size = 1
+#border-color = ${colors.colorBorder}
+offset-x = 1.5%
+offset-y = 10
+#radius = 10
+fixed-center = true
+
+background = #00000000
+foreground = ${colors.colorForeground}
+
+;wm-restack = qtile
+override-redirect = false
+enable-ipc = true
 
 module-margin-left = 0
 module-margin-right = 0

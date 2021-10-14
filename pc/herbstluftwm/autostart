@@ -175,7 +175,7 @@ numlockx &
 picom -b --experimental-backends &
 
 # start polybars
-~/.config/polybar/startbars.sh
+~/.config/polybar/startbars-hlwm.sh
 
 # start dunst
 killall -q dunst
