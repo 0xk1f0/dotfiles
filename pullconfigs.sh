@@ -59,6 +59,7 @@ if [ $CHOICE == '2)' ]; then
 
     rm -rf  laptop/dunst/
     rm -rf  laptop/herbstluftwm/
+    rm -rf  laptop/qtile/
     rm -rf  laptop/polybar/
     rm -rf  laptop/rofi/
 
@@ -76,6 +77,7 @@ if [ $CHOICE == '2)' ]; then
     timeout "Pulling new configs in..."
 
     cp -r   ~/.config/herbstluftwm 	laptop/
+    cp -r   ~/.config/qtile		laptop/
     cp -r   ~/.config/dunst 		laptop/
     cp -r   ~/.config/polybar 		laptop/
     cp -r   ~/.config/rofi 		laptop/
@@ -109,6 +111,7 @@ elif [ $CHOICE == '1)' ]; then
 
     rm -rf pc/dunst/
     rm -rf pc/herbstluftwm/
+    rm -rf pc/qtile/
     rm -rf pc/polybar/
     rm -rf pc/rofi/
 
@@ -126,6 +129,7 @@ elif [ $CHOICE == '1)' ]; then
     timeout "Pulling new configs in..."
 
     cp -r   ~/.config/herbstluftwm 	pc/
+    cp -r   ~/.config/qtile		pc/
     cp -r   ~/.config/dunst 		pc/
     cp -r   ~/.config/polybar   	pc/
     cp -r   ~/.config/rofi 		pc/
