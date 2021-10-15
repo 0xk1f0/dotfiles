@@ -57,7 +57,7 @@ fixed-center = true
 background = #00000000
 foreground = ${colors.colorForeground}
 
-override-redirect = true
+override-redirect = false
 
 module-margin-left = 0
 module-margin-right = 0

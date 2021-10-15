@@ -2,14 +2,13 @@
 
 import os
 import subprocess
-import re
-import socket
 from libqtile import qtile
-from libqtile import layout, hook
+from libqtile import layout, hook, widget, bar
+from libqtile.command.graph import _WidgetGraphNode
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-from typing import List
 
+# initial config
 mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
@@ -17,10 +16,17 @@ filemanager = "nemo"
 scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
-def reset_after_switch():
-    lazy.next_layout()
-    lazy.window.toggle_fullscreen()
+# theming
+accentNormal="#384048"
+accentUrgent="ff0000"
+accentActive="#ffffff"
+accentForeground="#a8b0b0"
+accentBackground="#384048"
+font="Open Sans Semibold"
+fontsize=14
+bordersize=2
 
+# key binds
 keys = [
     # move windows
     Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
@@ -37,15 +43,14 @@ keys = [
     Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
 
     # modify windows / layout
-    Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
-    Key([mod], "s", lazy.function(reset_after_switch), desc="Toggle between layouts"),
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "s", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # custom keybinds
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "a", lazy.spawn(f"{applauncher} -show run"), desc="Launch rofi run"),
     Key([mod, "shift"], "a", lazy.spawn(f"{applauncher} -show calc"), desc="Launch rofi calc"),
@@ -63,47 +68,137 @@ keys = [
     Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause"))
 ]
 
+# mouse binds
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front())
+]
+
 # add groups
 groups = [
-    Group(name="1", label="I", layout="Columns"),
-    Group(name="2", label="II", layout="Columns"),
-    Group(name="3", label="III", layout="Columns"),
-    Group(name="4", label="IV", layout="Columns"),
-    Group(name="5", label="V", layout="Columns"),
+    Group(name="1", label="I",),
+    Group(name="2", label="II"),
+    Group(name="3", label="III"),
+    Group(name="4", label="IV"),
+    Group(name="5", label="V"),
 ]
 
 for i in groups:
     keys.extend([
-        Key([mod], i.name, lazy.group[i.name].toscreen(),
-            desc="Switch to group {}".format(i.name)),
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False),
-            desc="Switch to & move focused window to group {}".format(i.name)),
+        Key([mod], i.name, lazy.group[i.name].toscreen(),),
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
     ])
 
 # set layout options
-layout_theme = {
-    "border_width": 2,
+layout_theme_column = {
+    "border_width": bordersize,
     "margin": 14,
-    "border_focus": "#ffffff",
-    "border_normal": "333333",
+    "border_focus": accentActive,
+    "border_normal": accentNormal,
     "border_on_single": True
 }
 
+# set layout options
+layout_theme_floating = {
+    "border_width": bordersize,
+    "border_focus": accentActive,
+    "border_normal": accentNormal
+}
+
 layouts = [
-    layout.Columns(**layout_theme),
-    layout.Floating(**layout_theme),
+    layout.Columns(**layout_theme_column),
+    layout.Floating(**layout_theme_floating),
 ]
 
-# add two Screens
-screens = [Screen(), Screen()]
+#widget settings
+widget_defaults = dict(
+    font=font,
+    fontsize=fontsize,
+    background=accentBackground,
+    foreground=accentForeground,
+    padding=6
+)
 
-# mouse binds
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
+extension_defaults = widget_defaults.copy()
+
+sep_default = dict(
+    size_percent=100
+)
+
+#add screen
+screens = [
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    this_screen_border="ffffff",
+                    this_current_screen_border="ffffff",
+                    active=accentActive,
+                    inactive=accentForeground,
+                    borderwidth=2,
+                    padding=3,
+                    rounded=False
+                ),
+                widget.Sep(**sep_default),
+                widget.Spacer(),
+                widget.Sep(**sep_default),
+                widget.CPU(
+                    update_interval=3,
+                    format='cpu {load_percent}%'
+                ),
+                widget.Sep(**sep_default),
+                widget.Clock(
+                    format='%H:%M:%S'
+                ),
+                widget.Sep(**sep_default),
+                widget.Memory(
+                    update_interval=3,
+                    format='mem {MemPercent}%'
+                ),
+                widget.Sep(**sep_default),
+                widget.Spacer(),
+                widget.Sep(**sep_default),
+                widget.Net(
+                    interface="enp34s0",
+                    format='{interface} {up} - {down}'
+                ),
+                widget.Sep(**sep_default),
+                widget.QuickExit(
+                    default_text="[ pwr ]"
+                ),
+            ],
+            28,
+        ),
+    ),
+    Screen(
+        top=bar.Bar(
+            [
+                widget.GroupBox(
+                    this_screen_border="ffffff",
+                    this_current_screen_border="ffffff",
+                    active=accentActive,
+                    inactive=accentForeground,
+                    borderwidth=2,
+                    padding=3,
+                    rounded=False
+                ),
+                widget.Sep(**sep_default),
+                widget.Spacer(),
+                widget.Sep(**sep_default),
+                widget.Clock(
+                    format='%H:%M:%S'
+                ),
+                widget.Sep(**sep_default),
+                widget.Spacer(),
+                widget.Sep(**sep_default),
+                widget.QuickExit(
+                    default_text="[ pwr ]"
+                ),
+            ],
+            28,
+        ),
+    )
 ]
 
 # floating settings
@@ -120,20 +215,15 @@ floating_layout = layout.Floating(float_rules=[
 # bools
 follow_mouse_focus = True
 bring_front_click = True
-cursor_warp = True
-auto_fullscreen = False
+cursor_warp = False
+auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "qTile"
+wmname = "LG3D"
 
-# start important things first and once
-@hook.subscribe.startup_once
-def autostart():
-    home = os.path.expanduser('~/.config/qtile/autostartOnce.sh')
-    subprocess.call([home])
-    # apply res+orientation
-    subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
+#xrandr apply
+subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
 
 # start other thingies last
 subprocess.Popen([home + '/.config/qtile/autostart.sh'])
