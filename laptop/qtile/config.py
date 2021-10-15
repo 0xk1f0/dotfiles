@@ -17,6 +17,16 @@ filemanager = "nemo"
 scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
+# theming
+accentNormal="#384048"
+accentUrgent="ff0000"
+accentActive="#ffffff"
+accentForeground="#a8b0b0"
+accentBackground="#384048"
+font="Open Sans Semibold"
+fontsize=14
+bordersize=2
+
 # key binds
 keys = [
     # move windows
@@ -34,6 +44,7 @@ keys = [
     Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
 
     # modify windows / layout
+    Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "s", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
@@ -41,7 +52,6 @@ keys = [
     Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     # custom keybinds
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "a", lazy.spawn(f"{applauncher} -show run"), desc="Launch rofi run"),
     Key([mod, "shift"], "a", lazy.spawn(f"{applauncher} -show calc"), desc="Launch rofi calc"),
@@ -61,10 +71,8 @@ keys = [
 
 # mouse binds
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
+    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
@@ -84,27 +92,35 @@ for i in groups:
     ])
 
 # set layout options
-layout_theme = {
-    "border_width": 2,
+layout_theme_column = {
+    "border_width": bordersize,
     "margin": 14,
-    "border_focus": "#ffffff",
-    "border_normal": "333333",
+    "border_focus": accentActive,
+    "border_normal": accentNormal,
     "border_on_single": True
 }
 
+# set layout options
+layout_theme_floating = {
+    "border_width": bordersize,
+    "border_focus": accentActive,
+    "border_normal": accentNormal
+}
+
 layouts = [
-    layout.Columns(**layout_theme),
-    layout.Floating(**layout_theme),
+    layout.Columns(**layout_theme_column),
+    layout.Floating(**layout_theme_floating),
 ]
 
 #widget settings
 widget_defaults = dict(
-    font='Open Sans Semibold',
-    fontsize=14,
-    background="252525",
-    foreground="ffffff",
+    font=font,
+    fontsize=fontsize,
+    background=accentBackground,
+    foreground=accentForeground,
     padding=6
 )
+
 extension_defaults = widget_defaults.copy()
 
 sep_default = dict(
@@ -119,8 +135,8 @@ screens = [
                 widget.GroupBox(
                     this_screen_border="ffffff",
                     this_current_screen_border="ffffff",
-                    active="ffffff",
-                    inactive="111111",
+                    active=accentActive,
+                    inactive=accentForeground,
                     borderwidth=2,
                     padding=3,
                     rounded=False
@@ -180,12 +196,12 @@ floating_layout = layout.Floating(float_rules=[
 # bools
 follow_mouse_focus = True
 bring_front_click = True
-cursor_warp = True
+cursor_warp = False
 auto_fullscreen = False
 focus_on_window_activation = "smart"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "qtile"
+wmname = "LG3D"
 
 # start important things first and once
 @hook.subscribe.startup_once
