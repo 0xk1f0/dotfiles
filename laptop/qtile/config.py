@@ -159,6 +159,12 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
+                widget.CurrentLayout(
+                    background=accentModBackground
+                ),
                 widget.Spacer(),
                 widget.CPU(
                     background=accentModBackground,
@@ -170,7 +176,7 @@ screens = [
                 ),
                 widget.Clock(
                     background=accentModBackground,
-                    format='%H:%M:%S'
+                    format='%a, %d.%m.%y - %H:%M:%S'
                 ),
                 widget.Spacer(
                     length=accentModSpace
@@ -231,7 +237,7 @@ wmname = "LG3D"
 @hook.subscribe.startup_once
 def autostart():
     subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
-    subprocess.Popen([home + '/.config/qtile/autostartOnce.sh'])
+    subprocess.Popen([home + '/.config/qtile/autostartReload.sh'])
 
 # start other thingies last
 subprocess.Popen([home + '/.config/qtile/autostart.sh'])
