@@ -1,9 +1,12 @@
-# qTile - config - k1f0
+# ██████╗ ████████╗██╗██╗     ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗       ██╗  ██╗ ██╗███████╗ ██████╗ 
+#██╔═══██╗╚══██╔══╝██║██║     ██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝       ██║ ██╔╝███║██╔════╝██╔═████╗
+#██║   ██║   ██║   ██║██║     █████╗█████╗██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗█████╗█████╔╝ ╚██║█████╗  ██║██╔██║
+#██║▄▄ ██║   ██║   ██║██║     ██╔══╝╚════╝██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║╚════╝██╔═██╗  ██║██╔══╝  ████╔╝██║
+#╚██████╔╝   ██║   ██║███████╗███████╗    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝      ██║  ██╗ ██║██║     ╚██████╔╝
+# ╚══▀▀═╝    ╚═╝   ╚═╝╚══════╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝       ╚═╝  ╚═╝ ╚═╝╚═╝      ╚═════╝ 
 
 import os
 import subprocess
-from time import sleep
-from libqtile import qtile
 from libqtile import layout, hook, widget, bar
 from libqtile.command.graph import _WidgetGraphNode
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -18,11 +21,15 @@ scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
 # theming
-accentNormal="#384048"
+accentNormal="#708898"
 accentUrgent="ff0000"
 accentActive="#ffffff"
 accentForeground="#a8b0b0"
-accentBackground="#384048"
+accentBackground="#101010"
+accentModBackground="#384048"
+accentModSpace=5
+layoutmargin=15
+sideSpace=layoutmargin
 font="Open Sans Semibold"
 fontsize=14
 bordersize=2
@@ -38,10 +45,15 @@ keys = [
     Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "mod1"], "Down", lazy.layout.flip_down(), desc="Flip Layout downwards"),
+    Key([mod, "mod1"], "Up", lazy.layout.flip_up(), desc="Flip Layout upwards"),
+    Key([mod, "mod1"], "Left", lazy.layout.flip_left(), desc="Flip Layout leftside"),
+    Key([mod, "mod1"], "Right", lazy.layout.flip_right(), desc="Flip Layout rightside"),
     Key([mod, "control"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Normalize Layout"),
 
     # modify windows / layout
     Key([mod], "f", lazy.window.toggle_fullscreen()),
@@ -63,6 +75,8 @@ keys = [
     # fn keybinds
     Key([], "XF86AudioLowerVolume", lazy.spawn(f"{scriptPath}volumeDown.sh")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn(f"{scriptPath}volumeUp.sh")),
+    Key([], "XF86MonBrightnessDown", lazy.spawn(f"{scriptPath}brightDown.sh")),
+    Key([], "XF86MonBrightnessUp", lazy.spawn(f"{scriptPath}brightUp.sh")),
     Key([], "XF86AudioMute", lazy.spawn(f"{scriptPath}volumeMute.sh")),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
@@ -92,12 +106,12 @@ for i in groups:
     ])
 
 # set layout options
-layout_theme_column = {
+layout_theme_bsp = {
     "border_width": bordersize,
-    "margin": 14,
+    "margin": layoutmargin,
     "border_focus": accentActive,
     "border_normal": accentNormal,
-    "border_on_single": True
+    "fair": True
 }
 
 # set layout options
@@ -108,7 +122,7 @@ layout_theme_floating = {
 }
 
 layouts = [
-    layout.Columns(**layout_theme_column),
+    layout.Bsp(**layout_theme_bsp),
     layout.Floating(**layout_theme_floating),
 ]
 
@@ -132,7 +146,11 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Spacer(
+                    length=sideSpace
+                ),
                 widget.GroupBox(
+                    background=accentModBackground,
                     this_screen_border="ffffff",
                     this_current_screen_border="ffffff",
                     active=accentActive,
@@ -141,40 +159,46 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
                 widget.CPU(
+                    background=accentModBackground,
                     update_interval=3,
                     format='cpu {load_percent}%'
                 ),
-                widget.Sep(**sep_default),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
                 widget.Clock(
+                    background=accentModBackground,
                     format='%H:%M:%S'
                 ),
-                widget.Sep(**sep_default),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
                 widget.Memory(
+                    background=accentModBackground,
                     update_interval=3,
                     format='mem {MemPercent}%'
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
                 widget.Wlan(
+                    background=accentModBackground,
                     interface="wlo1",
                     update_interval=5,
                     disconnected_message="dsc",
                     format="wifi {essid} lq {percent:2.0%}"
                 ),
-                widget.Sep(**sep_default),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
                 widget.Battery(
+                    background=accentModBackground,
                     format='{char} {percent:2.0%}',
                     charge_char="chr",
                     discharge_char="dsc"
                 ),
-                widget.Sep(**sep_default),
-                widget.QuickExit(
-                    default_text="[ pwr ]"
+                widget.Spacer(
+                    length=sideSpace
                 ),
             ],
             28,

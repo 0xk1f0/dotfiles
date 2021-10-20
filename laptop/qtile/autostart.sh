@@ -3,6 +3,3 @@
 # dunst
 killall -q dunst
 dunst &
-
-# nitrogen
-nitrogen --restore &
