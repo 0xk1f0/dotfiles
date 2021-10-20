@@ -4,8 +4,9 @@ notify = true
 gapless = true
 
 [theme]
+background = "black"
 primary = "white"
-secondary = "black"
+secondary = "white"
 title = "#009900"
 playing = "#009900"
 playing_bg = "black"
@@ -18,3 +19,4 @@ statusbar_progress = "#009900"
 statusbar_bg = "#009900"
 cmdline = "light white"
 cmdline_bg = "black"
+search_match = "red"

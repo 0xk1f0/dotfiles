@@ -1,8 +1,12 @@
-# qTile - config - k1f0
+# ██████╗ ████████╗██╗██╗     ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗       ██╗  ██╗ ██╗███████╗ ██████╗ 
+#██╔═══██╗╚══██╔══╝██║██║     ██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝       ██║ ██╔╝███║██╔════╝██╔═████╗
+#██║   ██║   ██║   ██║██║     █████╗█████╗██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗█████╗█████╔╝ ╚██║█████╗  ██║██╔██║
+#██║▄▄ ██║   ██║   ██║██║     ██╔══╝╚════╝██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║╚════╝██╔═██╗  ██║██╔══╝  ████╔╝██║
+#╚██████╔╝   ██║   ██║███████╗███████╗    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝      ██║  ██╗ ██║██║     ╚██████╔╝
+# ╚══▀▀═╝    ╚═╝   ╚═╝╚══════╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝       ╚═╝  ╚═╝ ╚═╝╚═╝      ╚═════╝ 
 
 import os
 import subprocess
-from libqtile import qtile
 from libqtile import layout, hook, widget, bar
 from libqtile.command.graph import _WidgetGraphNode
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
@@ -17,11 +21,15 @@ scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
 # theming
-accentNormal="#384048"
+accentNormal="#708898"
 accentUrgent="ff0000"
 accentActive="#ffffff"
 accentForeground="#a8b0b0"
-accentBackground="#384048"
+accentBackground="#101010"
+accentModBackground="#384048"
+accentModSpace=5
+layoutmargin=15
+sideSpace=layoutmargin
 font="Open Sans Semibold"
 fontsize=14
 bordersize=2
@@ -37,14 +45,20 @@ keys = [
     Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
     Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
+    Key([mod, "mod1"], "Down", lazy.layout.flip_down(), desc="Flip Layout downwards"),
+    Key([mod, "mod1"], "Up", lazy.layout.flip_up(), desc="Flip Layout upwards"),
+    Key([mod, "mod1"], "Left", lazy.layout.flip_left(), desc="Flip Layout leftside"),
+    Key([mod, "mod1"], "Right", lazy.layout.flip_right(), desc="Flip Layout rightside"),
     Key([mod, "control"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
     Key([mod, "control"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
     Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
     Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Normalize Layout"),
 
     # modify windows / layout
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
     Key([mod], "s", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([mod], "space", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
@@ -77,7 +91,7 @@ mouse = [
 
 # add groups
 groups = [
-    Group(name="1", label="I",),
+    Group(name="1", label="I"),
     Group(name="2", label="II"),
     Group(name="3", label="III"),
     Group(name="4", label="IV"),
@@ -91,12 +105,13 @@ for i in groups:
     ])
 
 # set layout options
-layout_theme_column = {
+layout_theme_bsp = {
     "border_width": bordersize,
-    "margin": 14,
+    "margin": layoutmargin,
     "border_focus": accentActive,
     "border_normal": accentNormal,
-    "border_on_single": True
+    "fair": True,
+    "grow_amount": 5 
 }
 
 # set layout options
@@ -106,8 +121,9 @@ layout_theme_floating = {
     "border_normal": accentNormal
 }
 
+# layouts
 layouts = [
-    layout.Columns(**layout_theme_column),
+    layout.Bsp(**layout_theme_bsp),
     layout.Floating(**layout_theme_floating),
 ]
 
@@ -131,7 +147,11 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Spacer(
+                    length=sideSpace
+                ),
                 widget.GroupBox(
+                    background=accentModBackground,
                     this_screen_border="ffffff",
                     this_current_screen_border="ffffff",
                     active=accentActive,
@@ -140,32 +160,35 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
                 widget.CPU(
+                    background=accentModBackground,
                     update_interval=3,
                     format='cpu {load_percent}%'
                 ),
-                widget.Sep(**sep_default),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
                 widget.Clock(
+                    background=accentModBackground,
                     format='%H:%M:%S'
                 ),
-                widget.Sep(**sep_default),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
                 widget.Memory(
+                    background=accentModBackground,
                     update_interval=3,
                     format='mem {MemPercent}%'
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
                 widget.Net(
+                    background=accentModBackground,
                     interface="enp34s0",
                     format='{interface} {up} - {down}'
                 ),
-                widget.Sep(**sep_default),
-                widget.QuickExit(
-                    default_text="[ pwr ]"
+                widget.Spacer(
+                    length=sideSpace
                 ),
             ],
             28,
@@ -174,7 +197,11 @@ screens = [
     Screen(
         top=bar.Bar(
             [
+                widget.Spacer(
+                    length=sideSpace
+                ),
                 widget.GroupBox(
+                    background=accentModBackground,
                     this_screen_border="ffffff",
                     this_current_screen_border="ffffff",
                     active=accentActive,
@@ -183,17 +210,19 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
                 widget.Clock(
+                    background=accentModBackground,
                     format='%H:%M:%S'
                 ),
-                widget.Sep(**sep_default),
                 widget.Spacer(),
-                widget.Sep(**sep_default),
-                widget.QuickExit(
-                    default_text="[ pwr ]"
+                widget.Net(
+                    background=accentModBackground,
+                    interface="enp34s0",
+                    format='{interface} {up} - {down}'
+                ),
+                widget.Spacer(
+                    length=sideSpace
                 ),
             ],
             28,
@@ -217,13 +246,18 @@ follow_mouse_focus = True
 bring_front_click = True
 cursor_warp = False
 auto_fullscreen = True
-focus_on_window_activation = "smart"
+focus_on_window_activation = "urgent"
 reconfigure_screens = True
 auto_minimize = True
 wmname = "LG3D"
 
-#xrandr apply
-subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
+# start thingies ONCE
+@hook.subscribe.startup_once
+def start_once():
+    home = os.path.expanduser('~')
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
+    #xrandr apply
+    subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
 
-# start other thingies last
-subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+# start other thingies on startup AND reload
+subprocess.call([home + '/.config/qtile/autostartReload.sh'])
