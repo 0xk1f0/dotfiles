@@ -160,6 +160,22 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
+                widget.CurrentScreen(
+                    background=accentModBackground,
+                    inactive_color=accentNormal,
+                    inactive_text="idl",
+                    active_color=accentActive,
+                    active_text="act"
+                ),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
+                widget.CurrentLayout(
+                    background=accentModBackground
+                ),
                 widget.Spacer(),
                 widget.CPU(
                     background=accentModBackground,
@@ -171,7 +187,7 @@ screens = [
                 ),
                 widget.Clock(
                     background=accentModBackground,
-                    format='%H:%M:%S'
+                    format='%a, %d.%m.%y - %H:%M:%S'
                 ),
                 widget.Spacer(
                     length=accentModSpace
@@ -210,10 +226,26 @@ screens = [
                     padding=3,
                     rounded=False
                 ),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
+                widget.CurrentScreen(
+                    background=accentModBackground,
+                    inactive_color=accentNormal,
+                    inactive_text="idl",
+                    active_color=accentActive,
+                    active_text="act"
+                ),
+                widget.Spacer(
+                    length=accentModSpace
+                ),
+                widget.CurrentLayout(
+                    background=accentModBackground
+                ),
                 widget.Spacer(),
                 widget.Clock(
                     background=accentModBackground,
-                    format='%H:%M:%S'
+                    format='%a, %d.%m.%y - %H:%M:%S'
                 ),
                 widget.Spacer(),
                 widget.Net(
