@@ -7,6 +7,7 @@
 
 #color
 export TERM="xterm-256color"
+export PATH="$PATH:/home/k1f0/.local/bin"
 
 #archive extraction
 ex ()
@@ -38,6 +39,7 @@ ex ()
 alias ps="procs"
 alias ls="exa -1"
 alias cat="bat --plain --style grid"
+alias nv="wmctrl -c :ACTIVE: && neovide"
 
 #get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 -c Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
@@ -58,8 +60,4 @@ alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 alias pdw="pwd"
 
 #prompt
-#PS1='\[\033[34m\]┌─[\[\033[37m\]\u@\h\[\033[34m\]]─[\[\033[37m\]\W\[\033[34m\]]─[\[\033[37m\]\A\[\033[34m\]]\n\[\033[34m\]└─> \[\033[37m\]'
 PS1='\[\033[01;36m\]\W\[\033[01;37m\] >\[\033[00;37m\] '
-
-# Created by `pipx` on 2021-10-10 18:44:07
-export PATH="$PATH:/home/k1f0/.local/bin"
