@@ -39,7 +39,7 @@ ex ()
 alias ps="procs"
 alias ls="exa -1"
 alias cat="bat --plain --style grid"
-alias nv="wmctrl -c :ACTIVE: && neovide"
+alias nv="neovide"
 
 #get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 -c Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"

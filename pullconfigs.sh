@@ -9,8 +9,7 @@
 timeout () {
     echo $1
     sleep 1
-    echo "Now"
-    sleep 1
+    echo "Now!"
 }
 
 success () {
@@ -74,7 +73,6 @@ if [ $CHOICE == '2)' ]; then
     fi
 
     success
-
     timeout "Pulling new configs in..."
 
     cp -r   ~/.config/herbstluftwm 	laptop/
@@ -94,6 +92,7 @@ if [ $CHOICE == '2)' ]; then
     fi
 
     success
+
 elif [ $CHOICE == '1)' ]; then
     platform="PC"
     whiptail --defaultno --clear --title "Pulling from $platform" --yesno "Include combined in Pull?" $menuwidth $menuheight
@@ -128,7 +127,6 @@ elif [ $CHOICE == '1)' ]; then
     fi
 
     success
-
     timeout "Pulling new configs in..."
 
     cp -r   ~/.config/herbstluftwm 	pc/
@@ -148,9 +146,11 @@ elif [ $CHOICE == '1)' ]; then
     fi
 
     success
+
 else
+
     exiting
+
 fi
 
-echo "Done!"
 exit 0
