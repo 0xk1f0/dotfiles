@@ -237,7 +237,7 @@ wmname = "LG3D"
 @hook.subscribe.startup_once
 def autostart():
     subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
-    subprocess.Popen([home + '/.config/qtile/autostartReload.sh'])
+    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
 
 # start other thingies last
-subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+subprocess.Popen([home + '/.config/qtile/autostartReload.sh'])
