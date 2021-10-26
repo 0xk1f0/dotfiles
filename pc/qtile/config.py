@@ -275,7 +275,7 @@ floating_layout = layout.Floating(float_rules=[
 
 # bools
 follow_mouse_focus = True
-bring_front_click = True
+bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"
@@ -286,10 +286,8 @@ wmname = "LG3D"
 # start thingies ONCE
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/autostart.sh'])
-    #xrandr apply
     subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 
 # start other thingies on startup AND reload
 subprocess.call([home + '/.config/qtile/autostartReload.sh'])
