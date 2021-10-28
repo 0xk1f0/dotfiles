@@ -27,11 +27,12 @@ accentActive="#ffffff"
 accentForeground="#a8b0b0"
 accentBackground="#101010"
 accentModBackground="#384048"
+barHeight=24
 accentModSpace=5
 layoutmargin=15
 sideSpace=layoutmargin
 font="Open Sans Semibold"
-fontsize=14
+fontsize=int(barHeight/1.8)
 bordersize=2
 
 # key binds
@@ -152,13 +153,17 @@ screens = [
                 ),
                 widget.GroupBox(
                     background=accentModBackground,
-                    this_screen_border="ffffff",
-                    this_current_screen_border="ffffff",
+                    this_screen_border=accentNormal,
+                    this_current_screen_border=accentNormal,
                     active=accentActive,
                     inactive=accentForeground,
-                    borderwidth=2,
-                    padding=3,
-                    rounded=False
+                    urgent_border=accentUrgent,
+                    highlight_method="block",
+                    padding=2,
+                    rounded=False,
+                    disable_drag=True,
+                    use_mouse_wheel=False,
+                    font="Roboto Regular"
                 ),
                 widget.Spacer(
                     length=accentModSpace
@@ -207,7 +212,7 @@ screens = [
                     length=sideSpace
                 ),
             ],
-            28,
+            barHeight,
         ),
     ),
     Screen(
@@ -218,13 +223,17 @@ screens = [
                 ),
                 widget.GroupBox(
                     background=accentModBackground,
-                    this_screen_border="ffffff",
-                    this_current_screen_border="ffffff",
+                    this_screen_border=accentNormal,
+                    this_current_screen_border=accentNormal,
                     active=accentActive,
                     inactive=accentForeground,
-                    borderwidth=2,
-                    padding=3,
-                    rounded=False
+                    urgent_border=accentUrgent,
+                    highlight_method="block",
+                    padding=2,
+                    rounded=False,
+                    disable_drag=True,
+                    use_mouse_wheel=False,
+                    font="Roboto Regular"
                 ),
                 widget.Spacer(
                     length=accentModSpace
@@ -257,7 +266,7 @@ screens = [
                     length=sideSpace
                 ),
             ],
-            28,
+            barHeight,
         ),
     )
 ]
