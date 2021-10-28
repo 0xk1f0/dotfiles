@@ -32,7 +32,7 @@ accentModSpace=5
 layoutmargin=15
 sideSpace=layoutmargin
 font="Open Sans Semibold"
-fontsize=int(barHeight/1.8)
+fontsize=int(barHeight/2)
 bordersize=2
 
 # key binds
