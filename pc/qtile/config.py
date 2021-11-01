@@ -21,12 +21,12 @@ scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
 # theming
-accentNormal="#708898"
+accentNormal="#204038"
 accentUrgent="ff0000"
-accentActive="#ffffff"
-accentForeground="#a8b0b0"
-accentBackground="#101010"
-accentModBackground="#384048"
+accentActive="#70e870"
+accentForeground="#70e870"
+accentBackground="#182828"
+accentModBackground="#182828"
 barHeight=24
 accentModSpace=5
 layoutmargin=15
@@ -153,12 +153,14 @@ screens = [
                 ),
                 widget.GroupBox(
                     background=accentModBackground,
-                    this_screen_border=accentNormal,
-                    this_current_screen_border=accentNormal,
+                    other_screen_border=accentNormal,
+                    other_current_screen_border=accentNormal,
+                    this_screen_border=accentActive,
+                    this_current_screen_border=accentActive,
                     active=accentActive,
                     inactive=accentForeground,
                     urgent_border=accentUrgent,
-                    highlight_method="block",
+                    highlight_method="border",
                     padding=2,
                     rounded=False,
                     disable_drag=True,
@@ -223,12 +225,14 @@ screens = [
                 ),
                 widget.GroupBox(
                     background=accentModBackground,
-                    this_screen_border=accentNormal,
-                    this_current_screen_border=accentNormal,
+                    other_screen_border=accentNormal,
+                    other_current_screen_border=accentNormal,
+                    this_screen_border=accentActive,
+                    this_current_screen_border=accentActive,
                     active=accentActive,
                     inactive=accentForeground,
                     urgent_border=accentUrgent,
-                    highlight_method="block",
+                    highlight_method="border",
                     padding=2,
                     rounded=False,
                     disable_drag=True,

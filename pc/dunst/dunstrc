@@ -94,9 +94,6 @@
     # Set to 0 to disable.
     frame_width = 2
 
-    # Defines color of the frame around the notification window.
-    frame_color = "#b0b0c8"
-
     # Define a color for the separator.
     # possible values are:
     #  * auto: dunst tries to find a color fitting to the background;
@@ -284,6 +281,9 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
+    # Defines color of the frame around the notification window.
+    frame_color = "#204038"
+
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -298,15 +298,15 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#384048"
-    foreground = "#ffffff"
+    background = "#182828"
+    foreground = "#70e870"
     timeout = 3
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#384048"
-    foreground = "#ffffff"
+    background = "#182828"
+    foreground = "#70e870"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon
