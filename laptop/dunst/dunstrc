@@ -1,7 +1,9 @@
-# ░█▀▄░█░█░█▀█░█▀▀░▀█▀░░░░░█▀▀░█▀█░█▀█░█▀▀░▀█▀░█▀▀░░░░░█░█░▀█░░█▀▀░▄▀▄
-# ░█░█░█░█░█░█░▀▀█░░█░░▄▄▄░█░░░█░█░█░█░█▀▀░░█░░█░█░▄▄▄░█▀▄░░█░░█▀▀░█/█
-# ░▀▀░░▀▀▀░▀░▀░▀▀▀░░▀░░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
-
+#        __                 __        __  ___________ 
+#   ____/ /_  ______  _____/ /_      / /_<  / __/ __ \
+#  / __  / / / / __ \/ ___/ __/_____/ //_/ / /_/ / / /
+# / /_/ / /_/ / / / (__  ) /_/_____/ ,< / / __/ /_/ / 
+# \__,_/\__,_/_/ /_/____/\__/     /_/|_/_/_/  \____/  
+ 
 [global]
     ### Display ###
 
@@ -29,19 +31,21 @@
     width = 300
 
     # The maximum height of a single notification, excluding the frame.
-    height = 300
+    height = 150
 
     # Position the notification in the top right corner
-    origin = top-right
+    # origin = top-right
+    origin = bottom-right
 
     # Offset from the origin
-    offset = 15x43
+    # offset = 15x39
+    offset = 15x15
 
     # Scale factor. It is auto-detected if value is 0.
     scale = 0
 
     # Maximum number of notification (0 means no limit)
-    notification_limit = 3
+    notification_limit = 5
 
     ### Progress bar ###
 
@@ -78,20 +82,17 @@
     separator_height = 2
 
     # Padding between text and separator.
-    padding = 8
+    padding = 10
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 10
 
     # Padding between text and icon.
     text_icon_padding = 0
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
-    frame_width = 3
-
-    # Defines color of the frame around the notification window.
-    frame_color = "#b0b0c8"
+    frame_width = 2
 
     # Define a color for the separator.
     # possible values are:
@@ -280,6 +281,9 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
+    # Defines color of the frame around the notification window.
+    frame_color = "#683090"
+
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
 [experimental]
@@ -294,15 +298,15 @@
 [urgency_low]
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#384048"
-    foreground = "#ffffff"
+    background = "#301840"
+    foreground = "#d890d0"
     timeout = 3
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
-    background = "#384048"
-    foreground = "#ffffff"
+    background = "#301840"
+    foreground = "#d890d0"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon

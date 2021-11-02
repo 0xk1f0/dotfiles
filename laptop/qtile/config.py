@@ -1,9 +1,9 @@
-# ██████╗ ████████╗██╗██╗     ███████╗     ██████╗ ██████╗ ███╗   ██╗███████╗██╗ ██████╗       ██╗  ██╗ ██╗███████╗ ██████╗ 
-#██╔═══██╗╚══██╔══╝██║██║     ██╔════╝    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██║██╔════╝       ██║ ██╔╝███║██╔════╝██╔═████╗
-#██║   ██║   ██║   ██║██║     █████╗█████╗██║     ██║   ██║██╔██╗ ██║█████╗  ██║██║  ███╗█████╗█████╔╝ ╚██║█████╗  ██║██╔██║
-#██║▄▄ ██║   ██║   ██║██║     ██╔══╝╚════╝██║     ██║   ██║██║╚██╗██║██╔══╝  ██║██║   ██║╚════╝██╔═██╗  ██║██╔══╝  ████╔╝██║
-#╚██████╔╝   ██║   ██║███████╗███████╗    ╚██████╗╚██████╔╝██║ ╚████║██║     ██║╚██████╔╝      ██║  ██╗ ██║██║     ╚██████╔╝
-# ╚══▀▀═╝    ╚═╝   ╚═╝╚══════╝╚══════╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝     ╚═╝ ╚═════╝       ╚═╝  ╚═╝ ╚═╝╚═╝      ╚═════╝ 
+#          __  _ __           __  ___________
+#   ____ _/ /_(_) /__        / /_<  / __/ __ \
+#  / __ `/ __/ / / _ \______/ //_/ / /_/ / / /
+# / /_/ / /_/ / /  __/_____/ ,< / / __/ /_/ /
+# \__, /\__/_/_/\___/     /_/|_/_/_/  \____/
+#   /_/
 
 import os
 import subprocess
@@ -21,17 +21,18 @@ scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
 # theming
-accentNormal="#708898"
+accentNormal="#683090"
 accentUrgent="ff0000"
-accentActive="#ffffff"
-accentForeground="#a8b0b0"
-accentBackground="#101010"
-accentModBackground="#384048"
+accentActive="#ffaaee"
+accentForeground="#d890d0"
+accentBackground="#301840"
+accentModBackground="#301840"
+barHeight=24
 accentModSpace=5
 layoutmargin=15
 sideSpace=layoutmargin
 font="Open Sans Semibold"
-fontsize=14
+fontsize=13
 bordersize=2
 
 # key binds
@@ -111,7 +112,8 @@ layout_theme_bsp = {
     "margin": layoutmargin,
     "border_focus": accentActive,
     "border_normal": accentNormal,
-    "fair": True
+    "fair": True,
+    "grow_amount": 5 
 }
 
 # set layout options
@@ -151,13 +153,20 @@ screens = [
                 ),
                 widget.GroupBox(
                     background=accentModBackground,
-                    this_screen_border="ffffff",
-                    this_current_screen_border="ffffff",
+                    other_screen_border=accentNormal,
+                    other_current_screen_border=accentNormal,
+                    this_screen_border=accentActive,
+                    this_current_screen_border=accentActive,
                     active=accentActive,
                     inactive=accentForeground,
-                    borderwidth=2,
-                    padding=3,
-                    rounded=False
+                    urgent_border=accentUrgent,
+                    highlight_method="border",
+                    padding=2,
+                    rounded=False,
+                    disable_drag=True,
+                    use_mouse_wheel=False,
+                    font="Source Code Pro Semibold",
+                    fontsize=fontsize
                 ),
                 widget.Spacer(
                     length=accentModSpace
@@ -207,7 +216,7 @@ screens = [
                     length=sideSpace
                 ),
             ],
-            28,
+            barHeight,
         ),
     ),
 ]
@@ -225,19 +234,19 @@ floating_layout = layout.Floating(float_rules=[
 
 # bools
 follow_mouse_focus = True
-bring_front_click = True
+bring_front_click = False
 cursor_warp = False
-auto_fullscreen = False
-focus_on_window_activation = "smart"
+auto_fullscreen = True
+focus_on_window_activation = "urgent"
 reconfigure_screens = True
 auto_minimize = True
 wmname = "LG3D"
 
-# start important things first and once
+# start thingies ONCE
 @hook.subscribe.startup_once
-def autostart():
-    subprocess.Popen([home + '/.config/qtile/scripts/xrandrapply.sh'])
-    subprocess.Popen([home + '/.config/qtile/autostart.sh'])
+def start_once():
+    subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
+    subprocess.call([home + '/.config/qtile/autostart.sh'])
 
-# start other thingies last
-subprocess.Popen([home + '/.config/qtile/autostartReload.sh'])
+# start other thingies on startup AND reload
+subprocess.call([home + '/.config/qtile/autostartReload.sh'])
