@@ -61,7 +61,7 @@ keys = [
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+    Key([mod, "shift"], "q", lazy.spawn(f"{scriptPath}rofipower.sh"), desc="Power Menu"),
 
     # custom keybinds
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
