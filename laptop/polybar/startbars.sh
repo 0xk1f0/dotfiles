@@ -3,5 +3,6 @@
 # Terminate already running bar instances
 killall -q polybar
 
-# Launch bar1 and bar2
-polybar main-hlwm & disown
+# Launch bar
+#polybar main-hlwm & disown
+polybar main-leftwm & disown

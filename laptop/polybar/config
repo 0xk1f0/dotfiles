@@ -4,7 +4,7 @@
 # ░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀░░░░░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░░░░▀░▀░▀▀▀░▀░░░░▀░
 
 ###########################################################
-########DP-BAR#############################################
+########HLWM-BAR###########################################
 ###########################################################
 
 [bar/main-hlwm]
@@ -29,14 +29,43 @@ modules-left = ewmh weather
 modules-center = cpu date memory
 modules-right = SSD wireless-network battery powermenu
 
-font-0 = Open Sans:style=Semibold;3
+font-0 = Open Sans:size=12:style=Semibold;3
 font-1 = Weather Icons:size=12;1
-font-2 = octicons:style=Medium
-font-3 = Twemoji:style=Regular;size=11
-font-4 = Roboto:style=Medium;3
-font-5 = FontAwesome:style=Regular;3
-font-6 = SourceCodePro:style=Regular;3
-font-7 = SauceCodePro Nerd Font:style=Medium;3
+font-2 = Roboto:size=12:style=Medium;3
+font-3 = FontAwesome:size=12:style=Regular;3
+font-4 = SourceCodePro:size=12:style=Regular;3
+
+###########################################################
+########LEFTWM-BAR#########################################
+###########################################################
+
+[bar/main-leftwm]
+monitor = eDP
+width = 100%
+height = 24
+#border-size = 2
+#border-color = ${colors.colorBorder}
+#offset-x = 1%
+#offset-y = 0
+radius = 0.0
+fixed-center = true
+bottom = false
+
+#override-redirect = true
+
+background = ${colors.colorBackground}
+
+module-margin-left = 0
+module-margin-right = 0
+modules-left = ewmh weather
+modules-center = cpu date memory
+modules-right = SSD wireless-network battery
+
+font-0 = Open Sans:size=10:style=Semibold;2
+font-1 = Weather Icons:size=10;1
+font-2 = Roboto:size=10:style=Medium;3
+font-3 = FontAwesome:size=10:style=Regular;3
+font-4 = SourceCodePro:size=10:style=Regular;3
 
 ###########################################################
 ###########################################################
@@ -44,8 +73,8 @@ font-7 = SauceCodePro Nerd Font:style=Medium;3
 
 [colors]
 colorUnderline = #ffffff
-colorBackground = #384048
-colorForeground = #a8b0b0
+colorBackground = #301840
+colorForeground = #d890d0
 colorBorder = #011b78
 colorActive = #ffffff
 
@@ -251,21 +280,21 @@ label-monitor = %name%
 
 label-active = %name%
 label-active-margin = 1
-label-active-font = 7
+label-active-font = 3
 label-active-foreground = ${colors.colorActive}
 
 label-occupied = %name%
 label-occupied-margin = 1
-label-occupied-font = 7
+label-occupied-font = 3
 label-occupied-foreground = ${colors.colorForeground}
 
 label-urgent = !%name%!
 label-urgent-margin = 1
-label-urgent-font = 7
+label-urgent-font = 3
 
 label-empty = %name%
 label-empty-margin = 1
-label-empty-font = 7
+label-empty-font = 3
 label-empty-foreground = ${colors.colorForeground}
 
 format-background = ${colors.colorBackground}
@@ -287,7 +316,7 @@ label-font = 1
 #pseudo-transparency = true
 format-background = ${colors.colorBackground}
 format-foreground = ${colors.colorForeground}
-format-padding = 2
+format-padding = 4
 
 ###########################################################
 
