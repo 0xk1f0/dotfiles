@@ -61,6 +61,7 @@ if [ $CHOICE == '2)' ]; then
     rm -rf  laptop/qtile/
     rm -rf  laptop/polybar/
     rm -rf  laptop/rofi/
+    rm -rf  laptop/leftwm/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -80,6 +81,7 @@ if [ $CHOICE == '2)' ]; then
     cp -r   ~/.config/dunst 		laptop/
     cp -r   ~/.config/polybar 		laptop/
     cp -r   ~/.config/rofi 		laptop/
+    cp -r   ~/.config/leftwm            laptop/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
@@ -115,6 +117,7 @@ elif [ $CHOICE == '1)' ]; then
     rm -rf pc/qtile/
     rm -rf pc/polybar/
     rm -rf pc/rofi/
+    rm -rf pc/leftwm/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -134,6 +137,7 @@ elif [ $CHOICE == '1)' ]; then
     cp -r   ~/.config/dunst 		pc/
     cp -r   ~/.config/polybar   	pc/
     cp -r   ~/.config/rofi 		pc/
+    cp -r   ~/.config/leftwm            pc/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
