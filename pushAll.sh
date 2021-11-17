@@ -12,6 +12,7 @@ echo "done"
 clear
 echo "Adding all files"
 git add .
+sleep 1
 echo "done"
 
 #commit with message

@@ -1,0 +1,243 @@
+modkey = "Mod4"
+mousekey = "Mod4"
+workspaces = []
+tags = ["I", "II", "III", "IV", "V"]
+#layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
+layouts = ["GridHorizontal", "EvenVertical", "CenterMain", "MainAndVertStack"]
+layout_mode = "Workspace"
+scratchpad = []
+disable_current_tag_swap = false
+focus_behaviour = "Sloppy"
+focus_new_windows = true
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show run"
+modifier = ["modkey"]
+key = "a"
+
+[[keybind]]
+command = "Execute"
+value = "nemo"
+modifier = ["modkey"]
+key = "q"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/rofipower.sh"
+modifier = ["modkey", "Shift"]
+key = "q"
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show calc"
+modifier = ["modkey", "Shift"]
+key = "a"
+
+[[keybind]]
+command = "Execute"
+value = "rofi -show window"
+modifier = ["modkey", "Shift"]
+key = "w"
+
+[[keybind]]
+command = "Execute"
+value = "kitty"
+modifier = ["modkey"]
+key = "Return"
+
+[[keybind]]
+command = "CloseWindow"
+modifier = ["modkey", "Shift"]
+key = "c"
+
+[[keybind]]
+command = "SoftReload"
+modifier = ["modkey", "Shift"]
+key = "r"
+
+[[keybind]]
+command = "Execute"
+value = "loginctl kill-session $XDG_SESSION_ID"
+modifier = ["modkey", "Shift"]
+key = "x"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/i3lock.sh"
+modifier = ["modkey"]
+key = "l"
+
+[[keybind]]
+command = "MoveWindowUp"
+modifier = ["modkey", "Shift"]
+key = "Up"
+
+[[keybind]]
+command = "MoveWindowDown"
+modifier = ["modkey", "Shift"]
+key = "Down"
+
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "Up"
+
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "Down"
+
+[[keybind]]
+command = "FocusWindowUp"
+modifier = ["modkey"]
+key = "Up"
+
+[[keybind]]
+command = "FocusWindowDown"
+modifier = ["modkey"]
+key = "Down"
+
+[[keybind]]
+command = "NextLayout"
+modifier = ["modkey", "Control"]
+key = "Up"
+
+[[keybind]]
+command = "PreviousLayout"
+modifier = ["modkey", "Control"]
+key = "Down"
+
+[[keybind]]
+command = "FocusWorkspaceNext"
+modifier = ["modkey"]
+key = "Right"
+
+[[keybind]]
+command = "FocusWorkspacePrevious"
+modifier = ["modkey"]
+key = "Left"
+
+[[keybind]]
+command = "GotoTag"
+value = "1"
+modifier = ["modkey"]
+key = "1"
+
+[[keybind]]
+command = "GotoTag"
+value = "2"
+modifier = ["modkey"]
+key = "2"
+
+[[keybind]]
+command = "GotoTag"
+value = "3"
+modifier = ["modkey"]
+key = "3"
+
+[[keybind]]
+command = "GotoTag"
+value = "4"
+modifier = ["modkey"]
+key = "4"
+
+[[keybind]]
+command = "GotoTag"
+value = "5"
+modifier = ["modkey"]
+key = "5"
+
+[[keybind]]
+command = "MoveToTag"
+value = "1"
+modifier = ["modkey", "Shift"]
+key = "1"
+
+[[keybind]]
+command = "MoveToTag"
+value = "2"
+modifier = ["modkey", "Shift"]
+key = "2"
+
+[[keybind]]
+command = "MoveToTag"
+value = "3"
+modifier = ["modkey", "Shift"]
+key = "3"
+
+[[keybind]]
+command = "MoveToTag"
+value = "4"
+modifier = ["modkey", "Shift"]
+key = "4"
+
+[[keybind]]
+command = "MoveToTag"
+value = "5"
+modifier = ["modkey", "Shift"]
+key = "5"
+
+[[keybind]]
+command = "ToggleFullScreen"
+modifier = ["modkey"]
+key = "f"
+
+[[keybind]]
+command = "RotateTag"
+modifier = ["modkey", "Shift"]
+key = "z"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/volumeDown.sh"
+modifier = []
+key = "XF86XK_AudioLowerVolume"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/volumeUp.sh"
+modifier = []
+key = "XF86XK_AudioRaiseVolume"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/volumeMute.sh"
+modifier = []
+key = "XF86XK_AudioMute"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/brightDown.sh"
+modifier = []
+key = "XF86XK_MonBrightnessDown"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/brightUp.sh"
+modifier = []
+key = "XF86XK_MonBrightnessUp"
+
+[[keybind]]
+command = "Execute"
+value = "playerctl next"
+modifier = []
+key = "XF86XK_AudioNext"
+
+[[keybind]]
+command = "Execute"
+value = "playerctl prev"
+modifier = []
+key = "XF86XK_AudioPrev"
+
+[[keybind]]
+command = "Execute"
+value = "playerctl play-pause"
+modifier = []
+key = "XF86XK_AudioPlay"
+
+[[keybind]]
+command = "Execute"
+value = "~/.config/leftwm/scripts/takeScreenshot.sh"
+modifier = ["modkey", "Shift"]
+key = "s"

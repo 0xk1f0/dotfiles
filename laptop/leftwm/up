@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+export SCRIPTPATH="$( cd "$(dirname "$0")" ; pwd -P )"
+
+# Down the last running theme
+if [ -f "/tmp/leftwm-theme-down" ]; then
+    /tmp/leftwm-theme-down
+    rm /tmp/leftwm-theme-down
+fi
+ln -s $SCRIPTPATH/down /tmp/leftwm-theme-down
+
+# dunst
+dunst --startup_notification &
+
+# picom
+picom --experimental-backends &
+if [ "$(echo $?)" -eq 0 ]; then
+    notify-send "Picom Success" "Started Successfully!" -h string:x-canonical-private-synchronous:pi
+com
+fi
+
+# numlock
+numlockx &
+
+# polybar
+~/.config/polybar/startbars.sh
+
+# nitrogen
+nitrogen --restore &
+if [ "$(echo $?)" -eq 0 ]; then
+    notify-send "Nitrogen Success" "Wallpaper Resored!" -h string:x-canonical-private-synchronous:ni
+trogen
+fi
