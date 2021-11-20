@@ -71,6 +71,7 @@ if [ $CHOICE == '2)' ]; then
         rm -rf  combined/picom/
 	rm -rf  combined/nvim/
         rm -f   combined/ncspot/config.toml
+	rm -rf  combined/zathura/
     fi
 
     success
@@ -91,6 +92,7 @@ if [ $CHOICE == '2)' ]; then
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
         cp -r   ~/.config/nvim/        		    combined/
+	cp -r   ~/.config/zathura/		    combined/
     fi
 
     success
@@ -127,6 +129,7 @@ elif [ $CHOICE == '1)' ]; then
         rm -rf  combined/picom/
         rm -rf  combined/nvim/
 	rm -f   combined/ncspot/config.toml
+	rm -rf  combined/zathura/
     fi
 
     success
@@ -147,6 +150,7 @@ elif [ $CHOICE == '1)' ]; then
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
 	cp -r   ~/.config/nvim/        		    combined/
+	cp -r   ~/.config/zathura/		    combined/
     fi
 
     success

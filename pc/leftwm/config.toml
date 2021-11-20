@@ -18,7 +18,7 @@ key = "a"
 
 [[keybind]]
 command = "Execute"
-value = "nemo"
+value = "thunar"
 modifier = ["modkey"]
 key = "q"
 
@@ -179,9 +179,24 @@ modifier = ["modkey", "Shift"]
 key = "5"
 
 [[keybind]]
+command = "MoveWindowToNextWorkspace"
+modifier = ["modkey", "Shift"]
+key = "Right"
+
+[[keybind]]
+command = "MoveWindowToPreviousWorkspace"
+modifier = ["modkey", "Shift"]
+key = "Left"
+
+[[keybind]]
 command = "ToggleFullScreen"
 modifier = ["modkey"]
 key = "f"
+
+[[keybind]]
+command = "ToggleFloating"
+modifier = ["modkey"]
+key = "s"
 
 [[keybind]]
 command = "RotateTag"

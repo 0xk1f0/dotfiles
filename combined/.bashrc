@@ -39,7 +39,7 @@ ex ()
 
 #use new rust programs for these commands (req procs, exa, bat)
 alias ps="procs"
-alias ls="exa -1"
+alias ls="exa -1g@"
 alias cat="bat --plain --style grid"
 alias nv="neovide"
 

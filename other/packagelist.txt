@@ -9,9 +9,9 @@ herbstluftwm nitrogen dunst rofi rofi-calc kitty nemo lxappearance qt5ct
 
 #functionality
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip pacman-mirrorlist 
-numlockx nemo-fileroller ntfs-3g arc-gtk-theme ttf-font-awesome ttf-opensansadobe-source-code-pro-fonts 
+numlockx nemo-fileroller arc-gtk-theme ttf-font-awesome ttf-opensansadobe-source-code-pro-fonts 
 procs exa bat reflector lib32-fontconfig ttf-liberation wqy-zenheicups system-config-printer zathura-pdf-poppler
-cdrkit mtpfs gvfs-mtp
+cdrkit mtpfs gvfs gvfs-mtp thunar thunar-media-atgs-plugin thunar-archive-plugin
 
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop nomacs maim wireshark-qt bind traceroute ipcalc gparted
