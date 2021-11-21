@@ -2,8 +2,7 @@ modkey = "Mod4"
 mousekey = "Mod4"
 workspaces = []
 tags = ["I", "II", "III", "IV", "V"]
-#layouts = ["MainAndVertStack", "MainAndHorizontalStack", "MainAndDeck", "GridHorizontal", "EvenHorizontal", "EvenVertical", "Fibonacci", "CenterMain", "CenterMainBalanced", "Monocle", "RightWiderLeftStack", "LeftWiderRightStack"]
-layouts = ["GridHorizontal", "EvenVertical", "CenterMain", "MainAndVertStack"]
+layouts = ["GridHorizontal", "EvenVertical", "CenterMain"]
 layout_mode = "Workspace"
 scratchpad = []
 disable_current_tag_swap = false
@@ -76,16 +75,6 @@ key = "Up"
 [[keybind]]
 command = "MoveWindowDown"
 modifier = ["modkey", "Shift"]
-key = "Down"
-
-[[keybind]]
-command = "FocusWindowUp"
-modifier = ["modkey"]
-key = "Up"
-
-[[keybind]]
-command = "FocusWindowDown"
-modifier = ["modkey"]
 key = "Down"
 
 [[keybind]]
@@ -197,11 +186,6 @@ key = "f"
 command = "ToggleFloating"
 modifier = ["modkey"]
 key = "s"
-
-[[keybind]]
-command = "RotateTag"
-modifier = ["modkey", "Shift"]
-key = "z"
 
 [[keybind]]
 command = "Execute"
