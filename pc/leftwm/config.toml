@@ -17,7 +17,7 @@ key = "a"
 
 [[keybind]]
 command = "Execute"
-value = "thunar"
+value = "pcmanfm"
 modifier = ["modkey"]
 key = "q"
 

@@ -16,7 +16,7 @@ from libqtile.lazy import lazy
 mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
-filemanager = "nemo"
+filemanager = "pcmanfm"
 scriptPath = "/home/k1f0/.config/qtile/scripts/"
 home = os.path.expanduser('~')
 
