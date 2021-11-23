@@ -30,7 +30,7 @@ hc keybind $Mod-a spawn rofi -show run
 hc keybind $Mod-Shift-a spawn rofi -show calc
 hc keybind $Mod-Shift-w spawn rofi -show window
 hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
-hc keybind $Mod-q spawn nemo
+hc keybind $Mod-q spawn pcmanfm
 hc keybind $Mod-Shift-s spawn ~/.config/herbstluftwm/scripts/takeScreenshot.sh
 
 # function keys
