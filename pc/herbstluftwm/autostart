@@ -13,7 +13,7 @@ hc() {
 hc emit_hook reload
 
 #configure monitors
-~/.config/herbstluftwm/scripts/xrandrapply.sh &
+~/.config/scripts/xrandrapply.sh &
 
 # remove all existing keybindings
 hc keyunbind --all
@@ -31,13 +31,14 @@ hc keybind $Mod-Return spawn kitty
 hc keybind $Mod-a spawn rofi -show run
 hc keybind $Mod-Shift-a spawn rofi -show calc
 hc keybind $Mod-Shift-w spawn rofi -show window
-hc keybind $Mod-l spawn ~/.config/herbstluftwm/scripts/i3lock.sh
+hc keybind $Mod-l spawn ~/.config/scripts/i3lock.sh
 hc keybind $Mod-q spawn pcmanfm
-hc keybind $Mod-Shift-s spawn ~/.config/herbstluftwm/scripts/takeScreenshot.sh
+hc keybind $Mod-Shift-s spawn ~/.config/scripts/takeScreenshot.sh
 
 # function keys
-hc keybind XF86AudioRaiseVolume spawn ~/.config/herbstluftwm/scripts/volumeUp.sh
-hc keybind XF86AudioLowerVolume spawn ~/.config/herbstluftwm/scripts/volumeDown.sh
+hc keybind XF86AudioRaiseVolume spawn ~/.config/scripts/volumeUp.sh
+hc keybind XF86AudioLowerVolume spawn ~/.config/scripts/volumeDown.sh
+hc keybind XF86AudioMute spawn ~/.config/scripts/volumeMute.sh
 hc keybind XF86AudioNext spawn playerctl next
 hc keybind XF86AudioPrev spawn playerctl previous
 hc keybind XF86AudioPlay spawn playerctl play-pause

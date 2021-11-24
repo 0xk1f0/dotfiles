@@ -23,7 +23,7 @@ key = "q"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/rofipower.sh"
+value = "~/.config/scripts/rofipower.sh"
 modifier = ["modkey", "Shift"]
 key = "q"
 
@@ -63,7 +63,7 @@ key = "x"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/i3lock.sh"
+value = "~/.config/scripts/i3lock.sh"
 modifier = ["modkey"]
 key = "l"
 
@@ -189,19 +189,19 @@ key = "s"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/volumeDown.sh"
+value = "~/.config/scripts/volumeDown.sh"
 modifier = []
 key = "XF86XK_AudioLowerVolume"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/volumeUp.sh"
+value = "~/.config/scripts/volumeUp.sh"
 modifier = []
 key = "XF86XK_AudioRaiseVolume"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/volumeMute.sh"
+value = "~/.config/scripts/volumeMute.sh"
 modifier = []
 key = "XF86XK_AudioMute"
 
@@ -225,6 +225,6 @@ key = "XF86XK_AudioPlay"
 
 [[keybind]]
 command = "Execute"
-value = "~/.config/leftwm/scripts/takeScreenshot.sh"
+value = "~/.config/scripts/takeScreenshot.sh"
 modifier = ["modkey", "Shift"]
 key = "s"

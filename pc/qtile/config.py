@@ -17,7 +17,7 @@ mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
 filemanager = "pcmanfm"
-scriptPath = "/home/k1f0/.config/qtile/scripts/"
+scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
 
 # theming
@@ -293,5 +293,5 @@ auto_minimize = True
 wmname = "LG3D"
 
 # autostart
-subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
-subprocess.call([home + '/.config/qtile/autostartReload.sh'])
+subprocess.call([home + '/.config/scripts/xrandrapply.sh'])
+subprocess.call([home + '/.config/qtile/autostart.sh'])

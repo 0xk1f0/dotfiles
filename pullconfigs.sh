@@ -62,6 +62,7 @@ if [ $CHOICE == '2)' ]; then
     rm -rf  laptop/polybar/
     rm -rf  laptop/rofi/
     rm -rf  laptop/leftwm/
+    rm -rf  laptop/scripts/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -69,20 +70,21 @@ if [ $CHOICE == '2)' ]; then
         rm -f   combined/.bashrc
         rm -rf  combined/nano/
         rm -rf  combined/picom/
-	rm -rf  combined/nvim/
+	    rm -rf  combined/nvim/
         rm -f   combined/ncspot/config.toml
-	rm -rf  combined/zathura/
+	    rm -rf  combined/zathura/
     fi
 
     success
     timeout "Pulling new configs in..."
 
-    cp -r   ~/.config/herbstluftwm 	laptop/
-    cp -r   ~/.config/qtile		laptop/
-    cp -r   ~/.config/dunst 		laptop/
-    cp -r   ~/.config/polybar 		laptop/
-    cp -r   ~/.config/rofi 		laptop/
+    cp -r   ~/.config/herbstluftwm 	    laptop/
+    cp -r   ~/.config/qtile		        laptop/
+    cp -r   ~/.config/dunst 		    laptop/
+    cp -r   ~/.config/polybar 		    laptop/
+    cp -r   ~/.config/rofi 		        laptop/
     cp -r   ~/.config/leftwm            laptop/
+    cp -r   ~/.config/scripts           laptop/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
@@ -91,8 +93,8 @@ if [ $CHOICE == '2)' ]; then
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-        cp -r   ~/.config/nvim/        		    combined/
-	cp -r   ~/.config/zathura/		    combined/
+        cp -r   ~/.config/nvim/        		        combined/
+	    cp -r   ~/.config/zathura/		            combined/
     fi
 
     success
@@ -120,6 +122,7 @@ elif [ $CHOICE == '1)' ]; then
     rm -rf pc/polybar/
     rm -rf pc/rofi/
     rm -rf pc/leftwm/
+    rm -rf pc/scripts/
 
     if [ "$answerCombined" == 'y' ]; then
         rm -rf  combined/kitty/
@@ -128,19 +131,20 @@ elif [ $CHOICE == '1)' ]; then
         rm -rf  combined/nano/
         rm -rf  combined/picom/
         rm -rf  combined/nvim/
-	rm -f   combined/ncspot/config.toml
-	rm -rf  combined/zathura/
+	    rm -f   combined/ncspot/config.toml
+	    rm -rf  combined/zathura/
     fi
 
     success
     timeout "Pulling new configs in..."
 
-    cp -r   ~/.config/herbstluftwm 	pc/
-    cp -r   ~/.config/qtile		pc/
-    cp -r   ~/.config/dunst 		pc/
-    cp -r   ~/.config/polybar   	pc/
-    cp -r   ~/.config/rofi 		pc/
+    cp -r   ~/.config/herbstluftwm 	    pc/
+    cp -r   ~/.config/qtile		        pc/
+    cp -r   ~/.config/dunst 		    pc/
+    cp -r   ~/.config/polybar   	    pc/
+    cp -r   ~/.config/rofi 		        pc/
     cp -r   ~/.config/leftwm            pc/
+    cp -r   ~/.config/scripts           pc/
 
     if [ "$answerCombined" == 'y' ]; then
         cp -r   ~/.config/kitty                     combined/
@@ -149,8 +153,8 @@ elif [ $CHOICE == '1)' ]; then
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-	cp -r   ~/.config/nvim/        		    combined/
-	cp -r   ~/.config/zathura/		    combined/
+	    cp -r   ~/.config/nvim/        		        combined/
+	    cp -r   ~/.config/zathura/		            combined/
     fi
 
     success
