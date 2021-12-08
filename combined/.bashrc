@@ -7,7 +7,7 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#color
+#exports
 export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
 
@@ -55,11 +55,15 @@ alias cleancache='sudo pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/
 #update AUR packages (req paru)
 alias aurup='paru -a -Syu'
 
+#update Flatpak packages (req flatpak)
+alias flatup='flatpak update'
+
 #updategpg keys
 alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 
 #typos
 alias pdw="pwd"
+alias chwon="chown"
 
 #prompt
 PS1='\[\033[01;36m\]\W\[\033[01;37m\] >\[\033[00;37m\] '

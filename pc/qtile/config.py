@@ -290,8 +290,9 @@ auto_fullscreen = True
 focus_on_window_activation = "urgent"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "LG3D"
+wmname = "qtile"
 
 # autostart
 subprocess.call([home + '/.config/scripts/xrandrapply.sh'])
 subprocess.call([home + '/.config/qtile/autostart.sh'])
+
