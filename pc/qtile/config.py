@@ -11,6 +11,7 @@ from libqtile import layout, hook, widget, bar
 from libqtile.command.graph import _WidgetGraphNode
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+import themes
 
 # initial config
 mod = "mod4"
@@ -19,14 +20,15 @@ applauncher = "rofi"
 filemanager = "pcmanfm"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
+currentTheme = themes.pink
 
 # theming
-accentNormal="#204038"
-accentUrgent="ff0000"
-accentActive="#70e870"
-accentForeground="#70e870"
-accentBackground="#182828"
-accentModBackground="#182828"
+accentNormal=currentTheme["accentNormal"]
+accentUrgent=currentTheme["accentUrgent"]
+accentActive=currentTheme["accentActive"]
+accentForeground=currentTheme["accentForeground"]
+accentBackground=currentTheme["accentBackground"]
+accentModBackground=currentTheme["accentModuleBackground"]
 barHeight=24
 accentModSpace=5
 layoutmargin=15
@@ -115,13 +117,31 @@ layout_theme_bsp = {
 layout_theme_floating = {
     "border_width": bordersize,
     "border_focus": accentActive,
-    "border_normal": accentNormal
+    "border_normal": accentNormal,
 }
 
 # layouts
 layouts = [
     layout.Bsp(**layout_theme_bsp),
-    layout.Floating(**layout_theme_floating),
+    layout.Floating(**layout_theme_floating,
+    float_rules=[
+        *layout.Floating.default_float_rules,
+        Match(wm_class='confirmreset'),
+        Match(wm_class='makebranch'),
+        Match(wm_class='maketag'),
+        Match(wm_class='ssh-askpass'),
+        Match(title='branchdialog'),
+        Match(title='pinentry'),
+        Match(wm_class='confirm'),
+        Match(wm_class='dialog'),
+        Match(wm_class='download'),
+        Match(wm_class='error'),
+        Match(wm_class='file_progress'),
+        Match(wm_class='notification'),
+        Match(wm_class='splash'),
+        Match(wm_class='pinentry')
+        ]
+    ),
 ]
 
 #widget settings
@@ -270,17 +290,6 @@ screens = [
         ),
     )
 ]
-
-# floating settings
-floating_layout = layout.Floating(float_rules=[
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),
-    Match(wm_class='makebranch'),
-    Match(wm_class='maketag'),
-    Match(wm_class='ssh-askpass'),
-    Match(title='branchdialog'),
-    Match(title='pinentry'),
-])
 
 # bools
 follow_mouse_focus = True
