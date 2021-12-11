@@ -11,7 +11,7 @@ herbstluftwm qtile nitrogen dunst rofi rofi-calc kitty pcmanfm-gtk3 lxappearance
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip pacman-mirrorlist 
 numlockx arc-gtk-theme ttf-font-awesome ttf-opensansadobe-source-code-pro-fonts procs exa bat 
 reflector lib32-fontconfig ttf-liberation wqy-zenheicups system-config-printer zathura-pdf-poppler
-cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak
+cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak rsync
 
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop nomacs maim wireshark-qt
@@ -20,8 +20,8 @@ bind traceroute ipcalc gparted
 #gaming
 steam lutris
 
-#virtualization
-qemu libvirt virt-manager edk2-ovmf
+#virtualization (for copy pasting "spice-vdagent" on guest)
+qemu libvirt virt-manager edk2-ovmf spice
 
 ######
 ###########
@@ -35,7 +35,7 @@ qemu libvirt virt-manager edk2-ovmf
 picom-git polybar leftwm-git beautyline  
 
 #functionality
-jmtpfs epson-inkjet-printer-escpr2 xfce-polkit ttf-weather-icons ttf-twemoji
+epson-inkjet-printer-escpr2 xfce-polkit ttf-weather-icons ttf-twemoji
 
 #other
 ncspot firefox-nightly spotify discord_arch_electron visual-studio-code-bin

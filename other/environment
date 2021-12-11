@@ -9,6 +9,6 @@ QT_QPA_PLATFORMTHEME=qt5ct
 MOZ_WEBRENDER=1
 EDITOR=nano
 # amdvlk
-VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd64.json
+VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/amd_icd32.json:/usr/share/vulkan/icd.d/amd_icd64.json
 # radv
-#VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+#VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
