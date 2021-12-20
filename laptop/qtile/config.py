@@ -240,13 +240,8 @@ auto_fullscreen = True
 focus_on_window_activation = "urgent"
 reconfigure_screens = True
 auto_minimize = True
-wmname = "LG3D"
+wmname = "qtile"
 
-# start thingies ONCE
-@hook.subscribe.startup_once
-def start_once():
-    subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
-    subprocess.call([home + '/.config/qtile/autostart.sh'])
-
-# start other thingies on startup AND reload
-subprocess.call([home + '/.config/qtile/autostartReload.sh'])
+# start thingies
+subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
+subprocess.call([home + '/.config/qtile/autostart.sh'])

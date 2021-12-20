@@ -1,11 +1,12 @@
 #!/usr/bin/bash
 
-# picom
+killall -q picom
 picom --experimental-backends &
-if [ "$(echo $?)" -eq 0 ]; then
-    notify-send "Picom Success" "Started Successfully!" -h string:x-canonical-private-synchronous:pi
-com
-fi
+
+killall -q dunst
+dunst --startup_notification &
+
+nitrogen --restore &
 
 # numlock
 numlockx &

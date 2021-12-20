@@ -1,4 +1,4 @@
-background            #050505
+background            #121212
 foreground            #bbbbbb
 cursor                #bbbbbb
 selection_background  #b4d5ff
@@ -18,5 +18,5 @@ color6                #42a7cf
 color14               #50cdfe
 color7                #bbbbbb
 color15               #ffffff
-selection_foreground  #050505
-background_opacity    0.92
+selection_foreground  #121212
+background_opacity    0.9
