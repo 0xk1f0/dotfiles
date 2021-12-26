@@ -9,13 +9,13 @@ herbstluftwm qtile nitrogen dunst rofi rofi-calc kitty pcmanfm-gtk3 lxappearance
 
 #functionality
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip pacman-mirrorlist 
-numlockx arc-gtk-theme ttf-font-awesome ttf-opensansadobe-source-code-pro-fonts procs exa bat 
-reflector lib32-fontconfig ttf-liberation wqy-zenheicups system-config-printer zathura-pdf-poppler
+numlockx arc-gtk-theme ttf-font-awesome ttf-opensans adobe-source-code-pro-fonts procs exa bat 
+reflector lib32-fontconfig ttf-liberation wqy-zenhei cups system-config-printer zathura-pdf-poppler
 cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak rsync
 
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop nomacs maim wireshark-qt
-bind traceroute ipcalc gparted
+bind traceroute ipcalc gparted gping
 
 #gaming
 steam lutris
@@ -38,4 +38,4 @@ picom-git polybar leftwm-git beautyline
 epson-inkjet-printer-escpr2 xfce-polkit ttf-weather-icons ttf-twemoji
 
 #other
-ncspot firefox-nightly spotify discord_arch_electron visual-studio-code-bin
+ncspot firefox-nightly spotify discord_arch_electron visual-studio-code-bin cheat-bin
