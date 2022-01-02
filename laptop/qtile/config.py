@@ -17,16 +17,16 @@ mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
 filemanager = "pcmanfm"
-scriptPath = "/home/k1f0/.config/qtile/scripts/"
+scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
 
 # theming
-accentNormal="#683090"
+accentNormal="#703028"
 accentUrgent="ff0000"
-accentActive="#ffaaee"
-accentForeground="#d890d0"
-accentBackground="#301840"
-accentModBackground="#301840"
+accentActive="#e8a8a0"
+accentForeground="#c85048"
+accentBackground="#282028"
+accentModBackground="#282028"
 barHeight=24
 accentModSpace=5
 layoutmargin=15
@@ -113,7 +113,7 @@ layout_theme_bsp = {
     "border_focus": accentActive,
     "border_normal": accentNormal,
     "fair": True,
-    "grow_amount": 5 
+    "grow_amount": 5
 }
 
 # set layout options
@@ -243,5 +243,5 @@ auto_minimize = True
 wmname = "qtile"
 
 # start thingies
-subprocess.call([home + '/.config/qtile/scripts/xrandrapply.sh'])
+subprocess.call([home + '/.config/scripts/xrandrapply.sh'])
 subprocess.call([home + '/.config/qtile/autostart.sh'])

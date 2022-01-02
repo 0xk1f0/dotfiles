@@ -9,7 +9,7 @@ prompt { enabled: false; }
 * {
 	bg:				#282028;
 	fg:				#c85048;
-	nrm:				#703028;
+	nrm:				#703028a;
 	background-color:		@bg;
 	text-color:			@fg;
 }
