@@ -20,7 +20,7 @@ applauncher = "rofi"
 filemanager = "pcmanfm"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
-currentTheme = themes.pink
+currentTheme = themes.grey
 
 # theming
 accentNormal=currentTheme["accentNormal"]

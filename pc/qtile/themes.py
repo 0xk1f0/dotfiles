@@ -26,3 +26,14 @@ pink = dict(
 	accentBackground="#201828",
 	accentModuleBackground="#201828"
 )
+
+# purpleGreyish
+
+grey = dict(
+	accentNormal="#786868",
+	accentUrgent="ff0000",
+	accentActive="#f0e8d0",
+	accentForeground="#887880",
+	accentBackground="#101010",
+	accentModuleBackground="#101010"
+)

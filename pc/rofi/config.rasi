@@ -7,9 +7,9 @@ configuration {
 prompt { enabled: false; }
 
 * {
-	bg:				#201828;
-	fg:				#e890b0;
-	nrm:				#784068;
+	bg:				#101010;
+	fg:				#887880;
+	nrm:				#786868;
 	background-color:		@bg;
 	text-color:			@fg;
 }
