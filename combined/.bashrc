@@ -66,4 +66,10 @@ alias pdw="pwd"
 alias chwon="chown"
 
 #prompt
-PS1='\[\e[01;1m\]\[\033[03;34m\]\W\[\033[01;37m\] >\[\033[00;37m\] '
+#PS1='\[\]\[\]\W\[\033[01;37m\] >\[\033[00;37m\] '
+CURSIVE="\[\e[3m\]"
+BOLD="\[\e[1m\]"
+CROSSED="\[\e[9m\]"
+COLOR="\[\e[02;35m\]"
+END="\[\e[0m\]"
+PS1="${BOLD}${CURSIVE}${COLOR}\W${END} > "
