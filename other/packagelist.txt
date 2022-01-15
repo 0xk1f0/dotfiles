@@ -3,7 +3,8 @@
 ##################
 
 #DE
-herbstluftwm qtile nitrogen dunst rofi rofi-calc kitty pcmanfm-gtk3 lxappearance qt5ct 
+herbstluftwm qtile nitrogen dunst rofi rofi-calc kitty pcmanfm lxappearance qt5ct papirus-icon-theme 
+xcursor-neutral 
 
 #functionality
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip pacman-mirrorlist 
@@ -21,12 +22,15 @@ steam lutris
 #virtualization (for copy pasting "spice-vdagent" on guest)
 qemu libvirt virt-manager edk2-ovmf spice
 
+#laptop
+tlp
+
 ##################
 ###AUR Packages###
 ##################
 
 #DE
-picom-git polybar leftwm-git beautyline  
+picom-git polybar leftwm
 
 #functionality
 epson-inkjet-printer-escpr2 xfce-polkit ttf-weather-icons ttf-twemoji
