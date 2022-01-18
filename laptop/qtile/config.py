@@ -198,7 +198,7 @@ screens = [
                 widget.Spacer(),
                 widget.Wlan(
                     background=accentModBackground,
-                    interface="wlo1",
+                    interface="wlan0",
                     update_interval=5,
                     disconnected_message="dsc",
                     format="wifi {essid} lq {percent:2.0%}"

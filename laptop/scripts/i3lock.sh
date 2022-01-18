@@ -25,7 +25,7 @@ i3lock \
 --keyhl-color=$W \
 --bshl-color=$G \
 \
---image=/home/$USER/Documents/Wallpapers/lockscreen.png \
+--image=/home/$USER/Documents/wallpapers/lockscreen.png \
 --fill \
 --clock \
 --time-str="%H:%M:%S" \
