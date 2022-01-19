@@ -223,7 +223,7 @@ screens = [
                 widget.Spacer(),
                 widget.Net(
                     background=accentModBackground,
-                    interface="enp34s0",
+                    interface="eth",
                     format='{interface} {up} - {down}'
                 ),
                 widget.Spacer(
