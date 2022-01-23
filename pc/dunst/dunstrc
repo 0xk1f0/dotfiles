@@ -31,7 +31,7 @@
     width = 300
 
     # The maximum height of a single notification, excluding the frame.
-    height = 150
+    height = 180
 
     # Position the notification in the top right corner
     # origin = top-right
@@ -282,7 +282,7 @@
     mouse_right_click = close_all
 
     # Defines color of the frame around the notification window.
-    frame_color = "#786868"
+    frame_color = "#68b8e8"
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -299,14 +299,14 @@
     # IMPORTANT: colors have to be defined in quotation marks.
     # Otherwise the "#" and following would be interpreted as a comment.
     background = "#101010"
-    foreground = "#f0e8d0"
+    foreground = "#98a8c8"
     timeout = 3
     # Icon for notifications with low urgency, uncomment to enable
     #icon = /path/to/icon
 
 [urgency_normal]
     background = "#101010"
-    foreground = "#f0e8d0"
+    foreground = "#98a8c8"
     timeout = 5
     # Icon for notifications with normal urgency, uncomment to enable
     #icon = /path/to/icon

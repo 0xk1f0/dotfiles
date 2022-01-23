@@ -6,8 +6,8 @@
 #   /_/
 
 # neon/green
-
-greenery = dict(
+"""
+grey = dict(
 	accentNormal="#204038",
 	accentUrgent="ff0000",
 	accentActive="#70e870",
@@ -15,10 +15,11 @@ greenery = dict(
 	accentBackground="#182828",
 	accentModuleBackground="#182828"
 )
+"""
 
 # neon/pink
-
-pink = dict(
+"""
+grey = dict(
 	accentNormal="#784068",
 	accentUrgent="ff0000",
 	accentActive="#e890b0",
@@ -26,9 +27,10 @@ pink = dict(
 	accentBackground="#201828",
 	accentModuleBackground="#201828"
 )
+"""
 
-# purpleGreyish
-
+# greyish
+"""
 grey = dict(
 	accentNormal="#786868",
 	accentUrgent="ff0000",
@@ -37,3 +39,16 @@ grey = dict(
 	accentBackground="#101010",
 	accentModuleBackground="#101010"
 )
+"""
+
+# neon/pink
+
+grey = dict(
+	accentNormal="#3060a0",
+	accentUrgent="ff0000",
+	accentActive="#68b8e8",
+	accentForeground="#98a8c8",
+	accentBackground="#002038",
+	accentModuleBackground="#002038"
+)
+
