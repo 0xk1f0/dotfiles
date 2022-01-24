@@ -37,13 +37,16 @@ ex ()
   fi
 }
 
-#use new rust programs for these commands (req procs, exa, bat)
+#aliases (req procs, exa, bat)
 alias ps="procs"
 alias ls="exa -1g@"
+alias ll="exa -1g@l"
+alias la="exa -1g@a"
+alias lla="exa -1g@la"
 alias cat="bat --plain --style grid"
 
 #get fastest mirrors
-alias mirror="sudo reflector -f 30 -l 30 -c Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirror="sudo reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
 
 #remove orphans
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
@@ -52,7 +55,7 @@ alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
 alias cleancache='sudo pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/.cache/paru/clone/* && echo "Done!"'
 
 #update AUR packages (req paru)
-alias aurup='paru -a -Syu'
+alias aurup='paru -aSyu'
 
 #update Flatpak packages (req flatpak)
 alias flatup='flatpak update'
@@ -65,7 +68,6 @@ alias pdw="pwd"
 alias chwon="chown"
 
 #prompt
-#PS1='\[\]\[\]\W\[\033[01;37m\] >\[\033[00;37m\] '
 CURSIVE="\[\e[3m\]"
 BOLD="\[\e[1m\]"
 CROSSED="\[\e[9m\]"
