@@ -14,7 +14,7 @@ cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak rsync tpm2-tools
 
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop nomacs maim wireshark-qt
-bind traceroute ipcalc gparted gping
+bind traceroute ipcalc gparted gping mypaint 
 
 #gaming
 steam lutris
