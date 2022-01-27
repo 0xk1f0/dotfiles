@@ -4,3 +4,6 @@ ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 # custom name interfaces /etc/udev/rules.d/10-network.rules
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="<mac>", NAME="<name>"
 SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="<mac>", NAME="<name>"
+
+# change default print size to a4
+paperconfig -p a4
