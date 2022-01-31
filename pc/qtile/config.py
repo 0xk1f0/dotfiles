@@ -103,29 +103,26 @@ for i in groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
     ])
 
-# set layout options
-layout_theme_bsp = {
-    "border_width": bordersize,
-    "margin": layoutmargin,
-    "border_focus": accentActive,
-    "border_normal": accentNormal,
-    "fair": True,
-    "grow_amount": 5 
-}
+layout_border = dict(
+    border_focus = accentActive,
+    border_normal = accentNormal,
+)
 
-# set layout options
-layout_theme_floating = {
-    "border_width": bordersize,
-    "border_focus": accentActive,
-    "border_normal": accentNormal,
-}
-
-# layouts
 layouts = [
-    layout.Bsp(**layout_theme_bsp),
-    layout.Floating(**layout_theme_floating,
+    layout.Bsp(**layout_border,
+        border_width = bordersize,
+        margin = layoutmargin,
+        fair = True,
+        grow_amount = 5 
+    ),
+
+    layout.Floating(**layout_border,
+        border_width = bordersize,
+    ),
+]
+
+floating_layout = layout.Floating(**layout_border, 
     float_rules=[
-        *layout.Floating.default_float_rules,
         Match(wm_class='confirmreset'),
         Match(wm_class='makebranch'),
         Match(wm_class='maketag'),
@@ -140,9 +137,8 @@ layouts = [
         Match(wm_class='notification'),
         Match(wm_class='splash'),
         Match(wm_class='pinentry')
-        ]
-    ),
-]
+    ]
+)
 
 #widget settings
 widget_defaults = dict(
@@ -152,7 +148,6 @@ widget_defaults = dict(
     foreground=accentForeground,
     padding=6
 )
-
 extension_defaults = widget_defaults.copy()
 
 sep_default = dict(
