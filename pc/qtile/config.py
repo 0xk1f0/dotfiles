@@ -21,6 +21,8 @@ filemanager = "pcmanfm"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
 currentTheme = themes.grey
+rofiPower = f"rofi -show power-menu -modi 'power-menu:{scriptPath}rofi-power.sh --no-symbols --choices=shutdown/reboot/logout'"
+rofiScreenshot = f"rofi -show screenshot -modi 'screenshot:{scriptPath}rofiScreenshot.sh'"
 
 # theming
 accentNormal=currentTheme["accentNormal"]
@@ -61,7 +63,7 @@ keys = [
     Key([mod], "Left", lazy.prev_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.spawn(f"{scriptPath}rofipower.sh"), desc="Power Menu"),
+    Key([mod, "shift"], "q", lazy.spawn(rofiPower), desc="Power Menu"),
 
     # custom keybinds
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -70,7 +72,7 @@ keys = [
     Key([mod, "shift"], "w", lazy.spawn(f"{applauncher} -show window"), desc="Launch rofi window"),
     Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"), desc="Lock Screen"),
     Key([mod], "q", lazy.spawn(filemanager), desc="Lock Screen"),
-    Key([mod, "shift"], "s", lazy.spawn(f"{scriptPath}takeScreenshot.sh"), desc="Take Screen"),
+    Key([mod, "shift"], "s", lazy.spawn(rofiScreenshot), desc="Take Screen"),
 
     # fn keybinds
     Key([], "XF86AudioLowerVolume", lazy.spawn(f"{scriptPath}volumeDown.sh")),
@@ -116,12 +118,7 @@ layouts = [
         grow_amount = 5 
     ),
 
-    layout.Floating(**layout_border,
-        border_width = bordersize,
-    ),
-]
-
-floating_layout = layout.Floating(**layout_border, 
+    layout.Floating(**layout_border, 
     float_rules=[
         Match(wm_class='confirmreset'),
         Match(wm_class='makebranch'),
@@ -137,8 +134,9 @@ floating_layout = layout.Floating(**layout_border,
         Match(wm_class='notification'),
         Match(wm_class='splash'),
         Match(wm_class='pinentry')
-    ]
-)
+        ]
+    )
+]
 
 #widget settings
 widget_defaults = dict(

@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
+TIMESTAMP=$(date +%H_%M_%S)
+
 #take screenshot and copy it to clipboard
-maim -su /tmp/screenshot.png && xclip -selection clipboard -t image/png -i /tmp/screenshot.png
+maim -su /tmp/screenshot_$TIMESTAMP.png && xclip -selection clipboard -t image/png -i /tmp/screenshot_$TIMESTAMP.png
 
 exitCode=$(echo $?)
 
