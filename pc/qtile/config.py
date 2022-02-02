@@ -138,6 +138,7 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
     Match(wm_class='pinentry'),
     Match(wm_class="telegram-desktop"),
     Match(wm_class="signal"),
+    Match(wm_class="nomacs"),
 ])
 
 #widget settings

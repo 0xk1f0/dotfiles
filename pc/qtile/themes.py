@@ -41,8 +41,8 @@ grey = dict(
 )
 """
 
-# neon/pink
-
+# bluish
+"""
 grey = dict(
 	accentNormal="#3060a0",
 	accentUrgent="ff0000",
@@ -51,4 +51,15 @@ grey = dict(
 	accentBackground="#002038",
 	accentModuleBackground="#002038"
 )
+"""
 
+# dark/light mix bluish
+
+grey = dict(
+	accentNormal="#305080",
+	accentUrgent="ff0000",
+	accentActive="#50a8c8",
+	accentForeground="#d0e0e8",
+	accentBackground="#101018",
+	accentModuleBackground="#101018"
+)
