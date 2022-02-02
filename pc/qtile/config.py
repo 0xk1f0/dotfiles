@@ -117,28 +117,28 @@ layouts = [
         fair = True,
         grow_amount = 5 
     ),
-
-    layout.Floating(**layout_border,
-        float_rules=[
-            Match(wm_class='confirmreset'),
-            Match(wm_class='makebranch'),
-            Match(wm_class='maketag'),
-            Match(wm_class='ssh-askpass'),
-            Match(title='branchdialog'),
-            Match(title='pinentry'),
-            Match(wm_class='confirm'),
-            Match(wm_class='dialog'),
-            Match(wm_class='download'),
-            Match(wm_class='error'),
-            Match(wm_class='file_progress'),
-            Match(wm_class='notification'),
-            Match(wm_class='splash'),
-            Match(wm_class='pinentry')
-        ]
-    ),
+    layout.Floating(**layout_border),
 ]
 
-floating_layout = layout.Floating(**layout_border)
+floating_layout = layout.Floating(**layout_border, float_rules=[
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirmreset'),
+    Match(wm_class='makebranch'),
+    Match(wm_class='maketag'),
+    Match(wm_class='ssh-askpass'),
+    Match(title='branchdialog'),
+    Match(title='pinentry'),
+    Match(wm_class='confirm'),
+    Match(wm_class='dialog'),
+    Match(wm_class='download'),
+    Match(wm_class='error'),
+    Match(wm_class='file_progress'),
+    Match(wm_class='notification'),
+    Match(wm_class='splash'),
+    Match(wm_class='pinentry'),
+    Match(wm_class="telegram-desktop"),
+    Match(wm_class="signal"),
+])
 
 #widget settings
 widget_defaults = dict(
