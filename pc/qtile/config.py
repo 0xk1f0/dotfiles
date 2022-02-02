@@ -108,35 +108,37 @@ for i in groups:
 layout_border = dict(
     border_focus = accentActive,
     border_normal = accentNormal,
+    border_width = bordersize,
 )
 
 layouts = [
     layout.Bsp(**layout_border,
-        border_width = bordersize,
         margin = layoutmargin,
         fair = True,
         grow_amount = 5 
     ),
 
-    layout.Floating(**layout_border, 
-    float_rules=[
-        Match(wm_class='confirmreset'),
-        Match(wm_class='makebranch'),
-        Match(wm_class='maketag'),
-        Match(wm_class='ssh-askpass'),
-        Match(title='branchdialog'),
-        Match(title='pinentry'),
-        Match(wm_class='confirm'),
-        Match(wm_class='dialog'),
-        Match(wm_class='download'),
-        Match(wm_class='error'),
-        Match(wm_class='file_progress'),
-        Match(wm_class='notification'),
-        Match(wm_class='splash'),
-        Match(wm_class='pinentry')
+    layout.Floating(**layout_border,
+        float_rules=[
+            Match(wm_class='confirmreset'),
+            Match(wm_class='makebranch'),
+            Match(wm_class='maketag'),
+            Match(wm_class='ssh-askpass'),
+            Match(title='branchdialog'),
+            Match(title='pinentry'),
+            Match(wm_class='confirm'),
+            Match(wm_class='dialog'),
+            Match(wm_class='download'),
+            Match(wm_class='error'),
+            Match(wm_class='file_progress'),
+            Match(wm_class='notification'),
+            Match(wm_class='splash'),
+            Match(wm_class='pinentry')
         ]
-    )
+    ),
 ]
+
+floating_layout = layout.Floating(**layout_border)
 
 #widget settings
 widget_defaults = dict(

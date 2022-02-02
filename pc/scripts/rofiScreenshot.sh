@@ -2,13 +2,13 @@
 
 if [ x"$@" = x"Full" ]
 then
-    coproc ( ~/.config/scripts/takeFullScreenshot.sh  > /dev/null  2>1 )
+    coproc ( ~/.config/scripts/takeFullScreenshot.sh > /dev/null )
     exit 0
 fi
 
 if [ x"$@" = x"Selection" ]
 then
-    coproc ( ~/.config/scripts/takeSelectScreenshot.sh  > /dev/null  2>1 )
+    coproc ( ~/.config/scripts/takeSelectScreenshot.sh > /dev/null )
     exit 0
 fi
 
