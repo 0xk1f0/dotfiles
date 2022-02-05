@@ -37,13 +37,14 @@ ex ()
   fi
 }
 
-#aliases (req procs, exa, bat)
+#aliases (req procs, exa, bat, fd)
 alias ps="procs"
 alias ls="exa -1g@"
 alias ll="exa -1g@l"
 alias la="exa -1g@a"
 alias lla="exa -1g@la"
 alias cat="bat --plain --style grid"
+alias find="fd"
 
 #get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
@@ -66,6 +67,21 @@ alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 #typos
 alias pdw="pwd"
 alias chwon="chown"
+alias udo="sudo"
+alias sduo="sudo"
+
+#git aliases
+alias gtc="git status"
+alias gta="git add"
+alias gtc="git commit"
+alias gtp="git push"
+alias gtu="git pull"
+
+#more aliases
+alias yt2audio="youtube-dl -f bestaudio"
+alias pingscan="nmap -sP"
+alias netscan="nmap -sV"
+alias whatislove='echo "baby don\`t hurt me"'
 
 #prompt
 CURSIVE="\[\e[3m\]"

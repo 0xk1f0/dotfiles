@@ -139,6 +139,7 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
     Match(wm_class="telegram-desktop"),
     Match(wm_class="signal"),
     Match(wm_class="nomacs"),
+    Match(wm_class="Zathura"),
 ])
 
 #widget settings
@@ -289,12 +290,12 @@ screens = [
 
 # bools
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"
 reconfigure_screens = True
-auto_minimize = True
+auto_minimize = False
 wmname = "qtile"
 
 # autostart
