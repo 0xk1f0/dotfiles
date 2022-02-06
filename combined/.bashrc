@@ -71,7 +71,7 @@ alias udo="sudo"
 alias sduo="sudo"
 
 #git aliases
-alias gtc="git status"
+alias gts="git status"
 alias gta="git add"
 alias gtc="git commit"
 alias gtp="git push"
