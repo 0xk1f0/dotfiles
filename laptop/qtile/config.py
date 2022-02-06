@@ -11,6 +11,7 @@ from libqtile import layout, hook, widget, bar
 from libqtile.command.graph import _WidgetGraphNode
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
+import themes
 
 # initial config
 mod = "mod4"
@@ -19,20 +20,23 @@ applauncher = "rofi"
 filemanager = "pcmanfm"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
+currentTheme = themes.grey
+rofiPower = f"rofi -show power-menu -modi 'power-menu:{scriptPath}rofi-power.sh --no-symbols --choices=shutdown/reboot/logout'"
+rofiScreenshot = f"rofi -show screenshot -modi 'screenshot:{scriptPath}rofiScreenshot.sh'"
 
 # theming
-accentNormal="#703028"
-accentUrgent="ff0000"
-accentActive="#e8a8a0"
-accentForeground="#c85048"
-accentBackground="#282028"
-accentModBackground="#282028"
+accentNormal=currentTheme["accentNormal"]
+accentUrgent=currentTheme["accentUrgent"]
+accentActive=currentTheme["accentActive"]
+accentForeground=currentTheme["accentForeground"]
+accentBackground=currentTheme["accentBackground"]
+accentModBackground=currentTheme["accentModuleBackground"]
 barHeight=24
 accentModSpace=5
 layoutmargin=15
 sideSpace=layoutmargin
 font="Open Sans Semibold"
-fontsize=13
+fontsize=int(barHeight/2)
 bordersize=2
 
 # key binds
@@ -62,7 +66,7 @@ keys = [
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.spawn(f"{scriptPath}rofipower.sh"), desc="Power Menu"),
+    Key([mod, "shift"], "q", lazy.spawn(rofiPower), desc="Power Menu"),
 
     # custom keybinds
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
@@ -71,7 +75,7 @@ keys = [
     Key([mod, "shift"], "w", lazy.spawn(f"{applauncher} -show window"), desc="Launch rofi window"),
     Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"), desc="Lock Screen"),
     Key([mod], "q", lazy.spawn(filemanager), desc="Lock Screen"),
-    Key([mod, "shift"], "s", lazy.spawn(f"{scriptPath}takeScreenshot.sh"), desc="Take Screen"),
+    Key([mod, "shift"], "s", lazy.spawn(rofiScreenshot), desc="Take Screen"),
 
     # fn keybinds
     Key([], "XF86AudioLowerVolume", lazy.spawn(f"{scriptPath}volumeDown.sh")),
@@ -106,27 +110,42 @@ for i in groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
     ])
 
-# set layout options
-layout_theme_bsp = {
-    "border_width": bordersize,
-    "margin": layoutmargin,
-    "border_focus": accentActive,
-    "border_normal": accentNormal,
-    "fair": True,
-    "grow_amount": 5
-}
-
-# set layout options
-layout_theme_floating = {
-    "border_width": bordersize,
-    "border_focus": accentActive,
-    "border_normal": accentNormal
-}
+layout_border = dict(
+    border_focus = accentActive,
+    border_normal = accentNormal,
+    border_width = bordersize,
+)
 
 layouts = [
-    layout.Bsp(**layout_theme_bsp),
-    layout.Floating(**layout_theme_floating),
+    layout.Bsp(**layout_border,
+        margin = layoutmargin,
+        fair = True,
+        grow_amount = 5 
+    ),
+    layout.Floating(**layout_border),
 ]
+
+floating_layout = layout.Floating(**layout_border, float_rules=[
+    *layout.Floating.default_float_rules,
+    Match(wm_class='confirmreset'),
+    Match(wm_class='makebranch'),
+    Match(wm_class='maketag'),
+    Match(wm_class='ssh-askpass'),
+    Match(title='branchdialog'),
+    Match(title='pinentry'),
+    Match(wm_class='confirm'),
+    Match(wm_class='dialog'),
+    Match(wm_class='download'),
+    Match(wm_class='error'),
+    Match(wm_class='file_progress'),
+    Match(wm_class='notification'),
+    Match(wm_class='splash'),
+    Match(wm_class='pinentry'),
+    Match(wm_class="telegram-desktop"),
+    Match(wm_class="signal"),
+    Match(wm_class="nomacs"),
+    Match(wm_class="Zathura"),
+])
 
 #widget settings
 widget_defaults = dict(
@@ -221,25 +240,14 @@ screens = [
     ),
 ]
 
-# floating settings
-floating_layout = layout.Floating(float_rules=[
-    *layout.Floating.default_float_rules,
-    Match(wm_class='confirmreset'),
-    Match(wm_class='makebranch'),
-    Match(wm_class='maketag'),
-    Match(wm_class='ssh-askpass'),
-    Match(title='branchdialog'),
-    Match(title='pinentry'),
-])
-
 # bools
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"
 reconfigure_screens = True
-auto_minimize = True
+auto_minimize = False
 wmname = "qtile"
 
 # start thingies
