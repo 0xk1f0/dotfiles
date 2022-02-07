@@ -68,7 +68,7 @@ keys = [
     # custom keybinds
     Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     Key([mod], "a", lazy.spawn(f"{applauncher} -show run"), desc="Launch rofi run"),
-    Key([mod, "shift"], "a", lazy.spawn(f"{applauncher} -show calc"), desc="Launch rofi calc"),
+    Key([mod, "shift"], "a", lazy.spawn(f"{applauncher} -show calc -modi calc -no-show-match -no-sort"), desc="Launch rofi calc"),
     Key([mod, "shift"], "w", lazy.spawn(f"{applauncher} -show window"), desc="Launch rofi window"),
     Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"), desc="Lock Screen"),
     Key([mod], "q", lazy.spawn(filemanager), desc="Lock Screen"),
