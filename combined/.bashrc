@@ -7,11 +7,11 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-#exports
+# exports
 export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
 
-#archive extraction
+# archive extraction
 ex ()
 {
   if [ -f "$1" ] ; then
@@ -37,57 +37,44 @@ ex ()
   fi
 }
 
-#aliases (req procs, exa, bat, fd)
+# base aliases (req procs, exa, bat, fd, paru, flatpak)
 alias ps="procs"
 alias ls="exa -1g@"
 alias ll="exa -1g@l"
 alias la="exa -1g@a"
 alias lla="exa -1g@la"
 alias cat="bat --plain --style grid"
-alias find="fd"
-
-#get fastest mirrors
+alias find="fd -p"
 alias mirror="sudo reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
-
-#remove orphans
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
-
-#clear pacman cache (req paru)
 alias cleancache='sudo pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/.cache/paru/clone/* && echo "Done!"'
-
-#update AUR packages (req paru)
 alias aurup='paru -aSyu'
-
-#update Flatpak packages (req flatpak)
 alias flatup='flatpak update'
-
-#updategpg keys
 alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 
-#typos
+# typos
 alias pdw="pwd"
 alias chwon="chown"
 alias udo="sudo"
 alias sduo="sudo"
 
-#git aliases
+# git aliases
 alias gts="git status"
 alias gta="git add"
 alias gtc="git commit"
 alias gtp="git push"
 alias gtu="git pull"
+alias gtcl="git clone"
 
-#more aliases
+# more aliases (req youtube-dl, nmap)
 alias yt2audio="youtube-dl -f bestaudio"
 alias pingscan="nmap -sP"
-alias netscan="nmap -sV"
 alias whatislove='echo "baby don\`t hurt me"'
 
-#prompt
+# prompt
 CURSIVE="\[\e[3m\]"
 BOLD="\[\e[1m\]"
-CROSSED="\[\e[9m\]"
-COLOR="\[\e[02;35m\]"
+COLOR="\[\e[35m\]"
 END="\[\e[0m\]"
 PS1="${BOLD}${CURSIVE}${COLOR}\W${END} > "
 
