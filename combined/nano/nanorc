@@ -47,9 +47,6 @@ set quickblank
 ## Try to work around a mismatching terminfo terminal description.
 set rawsequences
 
-## Fix Backspace/Delete confusion problem.
-set rebinddelete
-
 ## Make the Home key smarter: when Home is pressed anywhere but at the
 ## very beginning of non-whitespace characters on a line, the cursor
 ## will jump to that beginning (either forwards or backwards).  If the
