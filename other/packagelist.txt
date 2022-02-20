@@ -16,6 +16,7 @@ ueberzug maim hdparm nomacs
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop maim wireshark-qt
 bind traceroute ipcalc gparted gping nmap mypaint ethtool barrier youtube-dl smartmontools
+inetutils net-tools
 
 #gaming
 steam lutris
