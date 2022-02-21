@@ -42,10 +42,10 @@ bordersize=2
 # key binds
 keys = [
     # move windows
-    Key([mod], "Left", lazy.layout.left(), desc="Move focus to left"),
-    Key([mod], "Right", lazy.layout.right(), desc="Move focus to right"),
-    Key([mod], "Down", lazy.layout.down(), desc="Move focus down"),
-    Key([mod], "Up", lazy.layout.up(), desc="Move focus up"),
+    Key([mod], "Right", lazy.next_screen(), desc="Toggle between screens"),
+    Key([mod], "Left", lazy.prev_screen(), desc="Toggle between screens"),
+    Key([mod], "Down", lazy.group.next_window(), desc="Move focus down"),
+    Key([mod], "Up", lazy.group.prev_window(), desc="Move focus up"),
     Key([mod, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
     Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
     Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
