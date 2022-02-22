@@ -67,6 +67,7 @@ grey = dict(
 
 # light red/pink
 
+"""
 grey = dict(
 	accentNormal="#b85868",
 	accentUrgent="ff0000",
@@ -74,4 +75,16 @@ grey = dict(
 	accentForeground="#e83850",
 	accentBackground="#302028",
 	accentModuleBackground="#302028"
+)
+"""
+
+#orange/bluish/greish
+
+grey = dict(
+	accentNormal="#986880",
+	accentUrgent="ff0000",
+	accentActive="#e89098",
+	accentForeground="#d8d0d8",
+	accentBackground="#101028",
+	accentModuleBackground="#101028"
 )
