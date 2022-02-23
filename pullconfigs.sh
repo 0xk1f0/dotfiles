@@ -4,13 +4,45 @@
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
 
-menuwidth=10
-menuheight=60
-optionwidth=2
+# i yoinked this from here
+# https://askubuntu.com/a/1386907
+# and modified it slightly
+choose_from_menu() {
+    local prompt="$1" outvar="$2"
+    shift
+    shift
+    local options=("$@") cur=0 count=${#options[@]} index=0
+    local esc=$(echo -en "\e")
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "$prompt"
+    while true
+    do
+        index=0 
+        for o in "${options[@]}"
+        do
+            if [ "$index" == "$cur" ]
+            then echo -e "> \e[1m\e[92m$o\e[0m"
+            else echo -e "  \e[90m$o\e[0m"
+            fi
+            index=$(( $index + 1 ))
+        done
+        read -s -n3 key
+        if [[ $key == $esc[A ]]
+        then cur=$(( $cur - 1 ))
+            [ "$cur" -lt 0 ] && cur=0
+        elif [[ $key == $esc[B ]]
+        then cur=$(( $cur + 1 ))
+            [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
+        elif [[ $key == "" ]]
+        then break
+        fi
+        echo -en "\e[${count}A"
+    done
+    printf -v $outvar "${options[$cur]}"
+}
 
 exiting() {
     clear
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "Exiting..."
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Exiting..."
     exit 0
 }
 
@@ -63,9 +95,12 @@ copyConfigsCombined() {
 }
 
 handleCombined() {
-    whiptail --defaultno --clear --title "Configs Puller Script" --yesno "Include combined in Pull?" $menuwidth $menuheight
-
-    if [ $(echo $?) -eq 0 ]; then
+    selections=(
+        "no"
+        "yes"
+    )
+    choose_from_menu "Include combined in Pull?" selected_choice "${selections[@]}"
+    if [ "$selected_choice" == "yes" ]; then
         answerCombined="y"
     else
         answerCombined="n"
@@ -73,19 +108,27 @@ handleCombined() {
 }
 
 confirmActions() {
-    whiptail --defaultno --clear --title "Configs Puller Script" --yesno "Are these Options correct?\n- Platform: $1\n- Combined in Pull: $2" $menuwidth $menuheight
-
-    if [ $(echo $?) -eq 0 ]; then
+    selections=(
+        "no"
+        "yes"
+    )
+    choose_from_menu "Are all options correct?" selected_choice "${selections[@]}"
+    if [ "$selected_choice" == "yes" ]; then
+        clear
         printf "\e[3m\e[1m%s\e[0m\n" "pullconfigs.sh"
+    else
+        exiting
     fi
 }
 
-CHOICE=$(whiptail --title "Configs Puller Script" --menu "What Device are you on?" $menuwidth $menuheight $optionwidth \
-"1)" "PC"   \
-"2)" "Laptop"  3>&2 2>&1 1>&3
+clear
+selections=(
+    "PC"
+    "Laptop"
 )
+choose_from_menu "What device are you on?" selected_choice "${selections[@]}"
 
-if [ $CHOICE == '2)' ]; then 
+if [ "$selected_choice" == "Laptop" ]; then 
     platform="Laptop"
     handleCombined
     confirmActions $platform $answerCombined
@@ -100,7 +143,7 @@ if [ $CHOICE == '2)' ]; then
     if [ "$answerCombined" == 'y' ]; then
         copyConfigsCombined
     fi
-elif [ $CHOICE == '1)' ]; then
+elif [ "$selected_choice" == "PC" ]; then
     platform="PC"
     handleCombined
     confirmActions $platform $answerCombined
@@ -119,4 +162,4 @@ else
     exiting
 fi
 
-exit 0
+exiting
