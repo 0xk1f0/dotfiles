@@ -1,6 +1,12 @@
+//                _____       __  ___________
+//    _________  / __(_)     / /_<  / __/ __ \
+//   / ___/ __ \/ /_/ /_____/ //_/ / /_/ / / /
+//  / /  / /_/ / __/ /_____/ ,< / / __/ /_/ / 
+// /_/   \____/_/ /_/     /_/|_/_/_/  \____/
+
 configuration {
 	modi:				"run,calc,window";
-	font:				"Source Code Pro 10";
+	font:				"Source Code Pro Semibold 10";
 }
 
 @theme "/dev/null"
@@ -9,7 +15,7 @@ prompt { enabled: false; }
 * {
 	bg:				#101028;
 	fg:				#d8d0d8;
-	nrm:				#986880;
+	nrm:				#e89098;
 	background-color:		@bg;
 	text-color:			@fg;
 }
