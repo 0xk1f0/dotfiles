@@ -1,2 +1,2 @@
 # k1f0's dotfiles
-My personal .config Collection for qtile, leftwm, hlwm, polybar, dunst, etc.
+Personal `~/.config` collection and other stuff for my GNU/Linux Desktop
