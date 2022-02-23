@@ -4,20 +4,18 @@
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
 
-success () {
-    echo "Done!"
-    sleep 1
-    clear
-}
+menuwidth=10
+menuheight=60
+optionwidth=2
 
 exiting() {
     clear
-    echo "Exiting..."
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "Exiting..."
     exit 0
 }
 
 deleteConfigs() {
-    echo "Deleting old configs for $2"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old configs for $2"
     sleep 1
     rm -rf  $1/dunst/
     rm -rf  $1p/herbstluftwm/
@@ -29,7 +27,7 @@ deleteConfigs() {
 }
 
 copyConfigs() {
-    echo "Pulling new configs for $2"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Pulling new configs for $2"
     sleep 1
     cp -r   ~/.config/herbstluftwm 	    $1/
     cp -r   ~/.config/qtile		        $1/
@@ -41,7 +39,7 @@ copyConfigs() {
 }
 
 delConfigsCombined() {
-    echo "Deleting old combined configs"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old combined configs"
     sleep 1
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
@@ -53,7 +51,7 @@ delConfigsCombined() {
 }
 
 copyConfigsCombined() {
-    echo "Pulling new combined configs"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Pulling new combined configs"
     sleep 1
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/
@@ -64,37 +62,33 @@ copyConfigsCombined() {
     cp -r   ~/.config/zathura/		            combined/
 }
 
-menuwidth=10
-menuheight=60
-optionwidth=2
-
-whiptail --defaultno --title "Configs Puller Script" --yesno "Proceed?" $menuwidth $menuheight
-
-if [ $(echo $?) -eq 0 ]; then
-    CHOICE=$(whiptail --title "Choose Device" --menu "What Device are you on?" $menuwidth $menuheight $optionwidth \
-	"1)" "PC"   \
-	"2)" "Laptop"  3>&2 2>&1 1>&3
-    )
-else
-    exiting
-fi
-
-if [ $CHOICE == '2)' ]; then
-    platform="Laptop"
-    whiptail --defaultno --clear --title "Pulling from $platform" --yesno "Include combined in Pull?" $menuwidth $menuheight
+handleCombined() {
+    whiptail --defaultno --clear --title "Configs Puller Script" --yesno "Include combined in Pull?" $menuwidth $menuheight
 
     if [ $(echo $?) -eq 0 ]; then
         answerCombined="y"
-        echo "Including combined in pull"
-        sleep 1
     else
         answerCombined="n"
-        echo "NOT including combined in pull"
-        sleep 1
     fi
+}
 
-    clear
+confirmActions() {
+    whiptail --defaultno --clear --title "Configs Puller Script" --yesno "Are these Options correct?\n- Platform: $1\n- Combined in Pull: $2" $menuwidth $menuheight
 
+    if [ $(echo $?) -eq 0 ]; then
+        printf "\e[3m\e[1m%s\e[0m\n" "pullconfigs.sh"
+    fi
+}
+
+CHOICE=$(whiptail --title "Configs Puller Script" --menu "What Device are you on?" $menuwidth $menuheight $optionwidth \
+"1)" "PC"   \
+"2)" "Laptop"  3>&2 2>&1 1>&3
+)
+
+if [ $CHOICE == '2)' ]; then 
+    platform="Laptop"
+    handleCombined
+    confirmActions $platform $answerCombined
     deleteConfigs "laptop" $platform
 
     if [ "$answerCombined" == 'y' ]; then
@@ -106,25 +100,10 @@ if [ $CHOICE == '2)' ]; then
     if [ "$answerCombined" == 'y' ]; then
         copyConfigsCombined
     fi
-
-    success
-
 elif [ $CHOICE == '1)' ]; then
     platform="PC"
-    whiptail --defaultno --clear --title "Pulling from $platform" --yesno "Include combined in Pull?" $menuwidth $menuheight
-
-    if [ $(echo $?) -eq 0 ]; then
-        answerCombined="y"
-        echo "Including combined in pull"
-        sleep 1
-    else
-        answerCombined="n"
-        echo "NOT including combined in pull"
-        sleep 1
-    fi
-
-    clear
-
+    handleCombined
+    confirmActions $platform $answerCombined
     deleteConfigs "pc" $platform
 
     if [ "$answerCombined" == 'y' ]; then
@@ -136,9 +115,6 @@ elif [ $CHOICE == '1)' ]; then
     if [ "$answerCombined" == 'y' ]; then
         copyConfigsCombined
     fi
-
-    success
-
 else
     exiting
 fi

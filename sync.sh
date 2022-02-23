@@ -4,27 +4,19 @@
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
 
-success () {
-    echo "Done!"
-    sleep 1
-    clear
-}
-
 exiting() {
     clear
-    echo "Exiting..."
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "Exiting..."
     exit 0
 }
 
-whiptail --defaultno --title "Sync Script" --yesno "Proceed?" 10 60
+whiptail --defaultno --title "Combined configs sync script" --yesno "Proceed?" 10 60
 
 if [ $(echo $?) -eq 0 ]; then
-    clear
-else
-    exiting
+    printf "\e[3m\e[1m%s\e[0m\n" "sync.sh"
 fi
 
-echo "Deleting old combined configs"
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old combined configs"
 sleep 1
 
 rm -rf  ~/.config/kitty/
@@ -34,9 +26,7 @@ rm -rf  ~/.config/picom/
 rm -f   ~/.config/ncspot/config.toml
 rm -rf  ~/.config/zathura/
 
-success
-
-echo "Copying new combined configs"
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Copying new combined configs"
 sleep 1
 
 cp -r   combined/kitty/                 ~/.config/
@@ -45,7 +35,5 @@ cp -r   combined/picom/                 ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/.bashrc            	~/
 cp -r   combined/zathura/		        ~/.config/
-
-success
 
 exit 0
