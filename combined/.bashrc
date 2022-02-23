@@ -39,10 +39,11 @@ ex ()
 
 # base aliases (req procs, exa, bat, fd, paru, flatpak)
 alias ps="procs"
-alias ls="exa -1g@"
-alias ll="exa -1g@l"
-alias la="exa -1g@a"
-alias lla="exa -1g@la"
+alias tree="exa -Tg@"
+alias ls="exa -1g@ --icons"
+alias ll="exa -1g@lhUm --icons"
+alias la="exa -1g@a --icons"
+alias lla="exa -1g@lahUm --icons"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
 alias mirror="sudo reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
@@ -77,8 +78,3 @@ BOLD="\[\e[1m\]"
 COLOR="\[\e[35m\]"
 END="\[\e[0m\]"
 PS1="${BOLD}${CURSIVE}${COLOR}\W${END} > "
-
-
-# BEGIN_KITTY_SHELL_INTEGRATION
-if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
-# END_KITTY_SHELL_INTEGRATION

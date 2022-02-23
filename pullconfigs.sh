@@ -70,7 +70,6 @@ if [ $CHOICE == '2)' ]; then
         rm -f   combined/.bashrc
         rm -rf  combined/nano/
         rm -rf  combined/picom/
-	    rm -rf  combined/nvim/
         rm -f   combined/ncspot/config.toml
 	    rm -rf  combined/zathura/
     fi
@@ -93,7 +92,6 @@ if [ $CHOICE == '2)' ]; then
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-        cp -r   ~/.config/nvim/        		        combined/
 	    cp -r   ~/.config/zathura/		            combined/
     fi
 
@@ -130,7 +128,6 @@ elif [ $CHOICE == '1)' ]; then
         rm -r   combined/.bashrc
         rm -rf  combined/nano/
         rm -rf  combined/picom/
-        rm -rf  combined/nvim/
 	    rm -f   combined/ncspot/config.toml
 	    rm -rf  combined/zathura/
     fi
@@ -153,7 +150,6 @@ elif [ $CHOICE == '1)' ]; then
         cp -r   ~/.config/nano                      combined/
         cp -r   ~/.config/picom                     combined/
         cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-	    cp -r   ~/.config/nvim/        		        combined/
 	    cp -r   ~/.config/zathura/		            combined/
     fi
 

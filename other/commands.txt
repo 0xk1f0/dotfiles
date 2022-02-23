@@ -7,3 +7,7 @@ SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="<mac>", NAME="<name>"
 
 # change default print size to a4
 paperconfig -p a4
+
+# make yubikey auth work (PC/SC Smart Card Daemon)
+systemctl enable pcscd.service
+systemctl start pcscd.service

@@ -41,7 +41,6 @@ rm -rf  ~/.config/kitty/
 rm -f   ~/.bashrc
 rm -rf  ~/.config/nano/
 rm -rf  ~/.config/picom/
-rm -rf  ~/.config/nvim/
 rm -f   ~/.config/ncspot/config.toml
 rm -rf  ~/.config/zathura/
 
@@ -53,7 +52,6 @@ timeout "Copying new configs in..."
 cp -r   combined/kitty/                 ~/.config/
 cp -r   combined/nano/                  ~/.config/
 cp -r   combined/picom/                 ~/.config/
-cp -r   combined/nvim/                  ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/.bashrc            	~/
 cp -r   combined/zathura/		~/.config/

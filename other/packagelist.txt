@@ -10,13 +10,13 @@ xcursor-neutral
 playerctl pipewire pipewire-pulse pipewire-jack pamixer pipewire-alsa gzip pacman-mirrorlist 
 numlockx arc-gtk-theme ttf-font-awesome ttf-opensans adobe-source-code-pro-fonts procs exa bat 
 reflector lib32-fontconfig ttf-liberation wqy-zenhei cups system-config-printer zathura-pdf-poppler
-cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak rsync tpm2-tools tree expac fd tpm2-tools tpm2-tss
-ueberzug maim hdparm nomacs
+cdrkit mtpfs gvfs gvfs-mtp xarchiver zip flatpak rsync tpm2-tools expac fd tpm2-tools tpm2-tss
+ueberzug maim hdparm nomacs dust
 
 #other
 nm-connection-editor pavucontrol gimp zathura signal-desktop telegram-desktop maim wireshark-qt
 bind traceroute ipcalc gparted gping nmap mypaint ethtool barrier youtube-dl smartmontools
-inetutils net-tools
+inetutils net-tools github-cli
 
 #gaming
 steam lutris
@@ -26,6 +26,9 @@ qemu qemu-arch-extra libvirt virt-manager edk2-ovmf spice docker
 
 #laptop
 tlp
+
+# Yubikey
+yubikey-manager yubikey-manager-qt yubikey-personalization yubioath-desktop python-fido2
 
 ##################
 ###AUR Packages###
@@ -38,5 +41,5 @@ picom-git polybar leftwm
 downgrade epson-inkjet-printer-escpr2 xfce-polkit ttf-weather-icons ttf-twemoji steam-fonts
 
 #other
-ncspot firefox-nightly discord_arch_electron visual-studio-code-bin cheat-bin heroic-games-launcher-bin legendary
-obs-vkcapture-git v4l2loopback-dkms 
+ncspot-bin firefox-nightly discord_arch_electron visual-studio-code-bin cheat-bin heroic-games-launcher-bin 
+legendary obs-vkcapture-git v4l2loopback-dkms 
