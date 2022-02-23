@@ -1,16 +1,8 @@
-#!/usr/bin/env bash
-
-#This is a script to pull all dotfiles to this repo
+#!/bin/bash
 
 ##############################################################################
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
-
-timeout () {
-    echo $1
-    sleep 1
-    echo "Now!"
-}
 
 success () {
     echo "Done!"
@@ -24,11 +16,59 @@ exiting() {
     exit 0
 }
 
+deleteConfigs() {
+    echo "Deleting old configs for $2"
+    sleep 1
+    rm -rf  $1/dunst/
+    rm -rf  $1p/herbstluftwm/
+    rm -rf  $1/qtile/
+    rm -rf  $1/polybar/
+    rm -rf  $1/rofi/
+    rm -rf  $1/leftwm/
+    rm -rf  $1/scripts/
+}
+
+copyConfigs() {
+    echo "Pulling new configs for $2"
+    sleep 1
+    cp -r   ~/.config/herbstluftwm 	    $1/
+    cp -r   ~/.config/qtile		        $1/
+    cp -r   ~/.config/dunst 		    $1/
+    cp -r   ~/.config/polybar 		    $1/
+    cp -r   ~/.config/rofi 		        $1/
+    cp -r   ~/.config/leftwm            $1/
+    cp -r   ~/.config/scripts           $1/
+}
+
+delConfigsCombined() {
+    echo "Deleting old combined configs"
+    sleep 1
+    rm -rf  combined/kitty/
+    rm -rf  combined/pacwall/
+    rm -f   combined/.bashrc
+    rm -rf  combined/nano/
+    rm -rf  combined/picom/
+    rm -f   combined/ncspot/config.toml
+    rm -rf  combined/zathura/
+}
+
+copyConfigsCombined() {
+    echo "Pulling new combined configs"
+    sleep 1
+    cp -r   ~/.config/kitty                     combined/
+    cp -r   ~/.config/pacwall                   combined/
+    cp -r   ~/.bashrc                           combined/
+    cp -r   ~/.config/nano                      combined/
+    cp -r   ~/.config/picom                     combined/
+    cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
+    cp -r   ~/.config/zathura/		            combined/
+}
+
 menuwidth=10
 menuheight=60
 optionwidth=2
 
-whiptail --defaultno --title "Installer Script" --yesno "Proceed?" $menuwidth $menuheight
+whiptail --defaultno --title "Configs Puller Script" --yesno "Proceed?" $menuwidth $menuheight
 
 if [ $(echo $?) -eq 0 ]; then
     CHOICE=$(whiptail --title "Choose Device" --menu "What Device are you on?" $menuwidth $menuheight $optionwidth \
@@ -46,53 +86,25 @@ if [ $CHOICE == '2)' ]; then
     if [ $(echo $?) -eq 0 ]; then
         answerCombined="y"
         echo "Including combined in pull"
+        sleep 1
     else
         answerCombined="n"
         echo "NOT including combined in pull"
+        sleep 1
     fi
 
-    sleep 1
     clear
 
-    timeout "Deleting old configs in..."
-
-    rm -rf  laptop/dunst/
-    rm -rf  laptop/herbstluftwm/
-    rm -rf  laptop/qtile/
-    rm -rf  laptop/polybar/
-    rm -rf  laptop/rofi/
-    rm -rf  laptop/leftwm/
-    rm -rf  laptop/scripts/
+    deleteConfigs "laptop" $platform
 
     if [ "$answerCombined" == 'y' ]; then
-        rm -rf  combined/kitty/
-        rm -rf  combined/pacwall/
-        rm -f   combined/.bashrc
-        rm -rf  combined/nano/
-        rm -rf  combined/picom/
-        rm -f   combined/ncspot/config.toml
-	    rm -rf  combined/zathura/
+        delConfigsCombined
     fi
 
-    success
-    timeout "Pulling new configs in..."
-
-    cp -r   ~/.config/herbstluftwm 	    laptop/
-    cp -r   ~/.config/qtile		        laptop/
-    cp -r   ~/.config/dunst 		    laptop/
-    cp -r   ~/.config/polybar 		    laptop/
-    cp -r   ~/.config/rofi 		        laptop/
-    cp -r   ~/.config/leftwm            laptop/
-    cp -r   ~/.config/scripts           laptop/
+    copyConfigs "laptop" $platform
 
     if [ "$answerCombined" == 'y' ]; then
-        cp -r   ~/.config/kitty                     combined/
-        cp -r   ~/.config/pacwall                   combined/
-        cp -r   ~/.bashrc                           combined/
-        cp -r   ~/.config/nano                      combined/
-        cp -r   ~/.config/picom                     combined/
-        cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-	    cp -r   ~/.config/zathura/		            combined/
+        copyConfigsCombined
     fi
 
     success
@@ -104,61 +116,31 @@ elif [ $CHOICE == '1)' ]; then
     if [ $(echo $?) -eq 0 ]; then
         answerCombined="y"
         echo "Including combined in pull"
+        sleep 1
     else
         answerCombined="n"
         echo "NOT including combined in pull"
+        sleep 1
     fi
 
-    sleep 1
     clear
 
-    timeout "Deleting old configs in..."
-
-    rm -rf pc/dunst/
-    rm -rf pc/herbstluftwm/
-    rm -rf pc/qtile/
-    rm -rf pc/polybar/
-    rm -rf pc/rofi/
-    rm -rf pc/leftwm/
-    rm -rf pc/scripts/
+    deleteConfigs "pc" $platform
 
     if [ "$answerCombined" == 'y' ]; then
-        rm -rf  combined/kitty/
-        rm -rf  combined/pacwall/
-        rm -r   combined/.bashrc
-        rm -rf  combined/nano/
-        rm -rf  combined/picom/
-	    rm -f   combined/ncspot/config.toml
-	    rm -rf  combined/zathura/
+        delConfigsCombined
     fi
 
-    success
-    timeout "Pulling new configs in..."
-
-    cp -r   ~/.config/herbstluftwm 	    pc/
-    cp -r   ~/.config/qtile		        pc/
-    cp -r   ~/.config/dunst 		    pc/
-    cp -r   ~/.config/polybar   	    pc/
-    cp -r   ~/.config/rofi 		        pc/
-    cp -r   ~/.config/leftwm            pc/
-    cp -r   ~/.config/scripts           pc/
+    copyConfigs "pc" $platform
 
     if [ "$answerCombined" == 'y' ]; then
-        cp -r   ~/.config/kitty                     combined/
-        cp -r   ~/.config/pacwall                   combined/
-        cp -r   ~/.bashrc                           combined/
-        cp -r   ~/.config/nano                      combined/
-        cp -r   ~/.config/picom                     combined/
-        cp -r   ~/.config/ncspot/config.toml        combined/ncspot/config.toml
-	    cp -r   ~/.config/zathura/		            combined/
+        copyConfigsCombined
     fi
 
     success
 
 else
-
     exiting
-
 fi
 
 exit 0

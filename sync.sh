@@ -1,16 +1,8 @@
-#!/usr/bin/env bash
-
-#This is a script to install my dotfiles
+#!/bin/bash
 
 ##############################################################################
 ### I take NO responsibility for any deleted configs or destroyed systems! ###
 ##############################################################################
-
-timeout () {
-    echo $1
-    sleep 1
-    echo "Now!"
-}
 
 success () {
     echo "Done!"
@@ -24,10 +16,7 @@ exiting() {
     exit 0
 }
 
-menuwidth=10
-menuheight=60
-
-whiptail --defaultno --title "Sync Script" --yesno "Proceed?" $menuwidth $menuheight
+whiptail --defaultno --title "Sync Script" --yesno "Proceed?" 10 60
 
 if [ $(echo $?) -eq 0 ]; then
     clear
@@ -35,7 +24,8 @@ else
     exiting
 fi
 
-timeout "Deleting old configs (if present) in..."
+echo "Deleting old combined configs"
+sleep 1
 
 rm -rf  ~/.config/kitty/
 rm -f   ~/.bashrc
@@ -46,15 +36,16 @@ rm -rf  ~/.config/zathura/
 
 success
 
-timeout "Copying new configs in..."
+echo "Copying new combined configs"
+sleep 1
 
-#copy new configs
 cp -r   combined/kitty/                 ~/.config/
 cp -r   combined/nano/                  ~/.config/
 cp -r   combined/picom/                 ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/.bashrc            	~/
-cp -r   combined/zathura/		~/.config/
+cp -r   combined/zathura/		        ~/.config/
+
 success
 
 exit 0
