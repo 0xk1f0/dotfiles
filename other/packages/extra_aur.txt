@@ -1,0 +1,11 @@
+ncspot-bin
+steam-fonts
+discord_arch_electron
+visual-studio-code-bin
+cheat-bin
+heroic-games-launcher-bin
+legendary
+obs-vkcapture-git
+v4l2loopback-dkms
+leftwm
+polybar

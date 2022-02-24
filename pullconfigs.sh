@@ -13,7 +13,7 @@ choose_from_menu() {
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "$prompt"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" ":: " "$prompt"
     while true
     do
         index=0 
@@ -42,12 +42,12 @@ choose_from_menu() {
 
 exiting() {
     clear
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Exiting..."
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
     exit 0
 }
 
 deleteConfigs() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old configs for $2"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old configs for $2"
     sleep 1
     rm -rf  $1/dunst/
     rm -rf  $1p/herbstluftwm/
@@ -59,7 +59,7 @@ deleteConfigs() {
 }
 
 copyConfigs() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Pulling new configs for $2"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new configs for $2"
     sleep 1
     cp -r   ~/.config/herbstluftwm 	    $1/
     cp -r   ~/.config/qtile		        $1/
@@ -71,7 +71,7 @@ copyConfigs() {
 }
 
 delConfigsCombined() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old combined configs"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
     sleep 1
     rm -rf  combined/kitty/
     rm -rf  combined/pacwall/
@@ -83,7 +83,7 @@ delConfigsCombined() {
 }
 
 copyConfigsCombined() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Pulling new combined configs"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new combined configs"
     sleep 1
     cp -r   ~/.config/kitty                     combined/
     cp -r   ~/.config/pacwall                   combined/

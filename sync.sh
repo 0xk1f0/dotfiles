@@ -13,7 +13,7 @@ choose_from_menu() {
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" "::" "$prompt"
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" ":: " "$prompt"
     while true
     do
         index=0 
@@ -42,7 +42,7 @@ choose_from_menu() {
 
 exiting() {
     clear
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Exiting..."
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
     exit 0
 }
 
@@ -59,7 +59,7 @@ else
     exiting
 fi
 
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" "::" "Deleting old combined configs"
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
 sleep 1
 
 rm -rf  ~/.config/kitty/
@@ -69,7 +69,7 @@ rm -rf  ~/.config/picom/
 rm -f   ~/.config/ncspot/config.toml
 rm -rf  ~/.config/zathura/
 
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" "::" "Copying new combined configs"
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying new combined configs"
 sleep 1
 
 cp -r   combined/kitty/                 ~/.config/
