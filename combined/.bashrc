@@ -37,7 +37,7 @@ ex ()
   fi
 }
 
-# base aliases (req procs, exa, bat, fd, paru, flatpak)
+# base aliases (req procs, exa, bat, fd, paru, flatpak, opendoas)
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@ --icons"
@@ -46,6 +46,7 @@ alias la="exa -1g@a --icons"
 alias lla="exa -1g@lahUm --icons"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
+alias sudo="doas"
 alias mirror="sudo reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
 alias cleanup='sudo pacman -Rs $(pacman -Qtdq)'
 alias cleancache='sudo pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/.cache/paru/clone/* && echo "Done!"'
@@ -56,8 +57,6 @@ alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 # typos
 alias pdw="pwd"
 alias chwon="chown"
-alias udo="sudo"
-alias sduo="sudo"
 
 # git aliases
 alias gts="git status"
