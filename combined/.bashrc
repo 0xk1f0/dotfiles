@@ -37,7 +37,7 @@ ex ()
   fi
 }
 
-# base aliases (req procs, exa, bat, fd, paru, flatpak, opendoas)
+# base aliases (req procs, exa, bat, fd, paru, flatpak, opendoas, dust)
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@ --icons"
@@ -46,6 +46,7 @@ alias la="exa -1g@a --icons"
 alias lla="exa -1g@lahUm --icons"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
+alias du="dust"
 alias sudo="doas"
 alias upMirrors="doas reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
 alias cleanup='doas pacman -Rs $(pacman -Qtdq)'
