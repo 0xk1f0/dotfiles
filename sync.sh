@@ -1,9 +1,5 @@
 #!/bin/bash
 
-##############################################################################
-### I take NO responsibility for any deleted configs or destroyed systems! ###
-##############################################################################
-
 # i yoinked this from here
 # https://askubuntu.com/a/1386907
 # and modified it slightly
@@ -69,6 +65,13 @@ rm -rf  ~/.config/picom/
 rm -f   ~/.config/ncspot/config.toml
 rm -rf  ~/.config/zathura/
 
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
+sleep 1
+
+rm -f ~/.local/bin/gitMergeRebase
+rm -f ~/.local/bin/mntExt
+rm -f ~/.local/bin/sharePwnagotchy
+
 printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying new combined configs"
 sleep 1
 
@@ -78,5 +81,12 @@ cp -r   combined/picom/                 ~/.config/
 cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
 cp -r   combined/.bashrc            	~/
 cp -r   combined/zathura/		        ~/.config/
+
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying ~/.local/bin/ scripts"
+sleep 1
+
+cp  other/bin/gitMergeRebase        ~/.local/bin/
+cp  other/bin/mntExt                ~/.local/bin/
+cp  other/bin/sharePwnagotchy       ~/.local/bin/
 
 exiting

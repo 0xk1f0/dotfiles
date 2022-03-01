@@ -1,9 +1,5 @@
 #!/bin/bash
 
-##############################################################################
-### I take NO responsibility for any deleted configs or destroyed systems! ###
-##############################################################################
-
 # i yoinked this from here
 # https://askubuntu.com/a/1386907
 # and modified it slightly
@@ -94,16 +90,45 @@ copyConfigsCombined() {
     cp -r   ~/.config/zathura/		            combined/
 }
 
+delScripts() {
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
+    sleep 1
+    rm -f other/bin/gitMergeRebase
+    rm -f other/bin/mntExt
+    rm -f other/bin/sharePwnagotchy
+}
+
+copyScripts() {
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new ~/.local/bin/ scripts"
+    sleep 1
+    cp  ~/.local/bin/gitMergeRebase         other/bin/
+    cp  ~/.local/bin/mntExt                 other/bin/
+    cp  ~/.local/bin/sharePwnagotchy        other/bin/
+}
+
 handleCombined() {
     selections=(
         "no"
         "yes"
     )
-    choose_from_menu "Include combined in Pull?" selected_choice "${selections[@]}"
+    choose_from_menu "Include combined?" selected_choice "${selections[@]}"
     if [ "$selected_choice" == "yes" ]; then
         answerCombined="y"
     else
         answerCombined="n"
+    fi
+}
+
+handleScripts() {
+    selections=(
+        "no"
+        "yes"
+    )
+    choose_from_menu "Include ~/.local/bin/ scripts?" selected_choice "${selections[@]}"
+    if [ "$selected_choice" == "yes" ]; then
+        answerScripts="y"
+    else
+        answerScripts="n"
     fi
 }
 
@@ -131,11 +156,16 @@ choose_from_menu "What device are you on?" selected_choice "${selections[@]}"
 if [ "$selected_choice" == "Laptop" ]; then 
     platform="Laptop"
     handleCombined
-    confirmActions $platform $answerCombined
+    handleScripts
+    confirmActions
     deleteConfigs "laptop" $platform
 
     if [ "$answerCombined" == 'y' ]; then
         delConfigsCombined
+    fi
+
+    if [ "$answerScripts" == 'y' ]; then
+        delScripts
     fi
 
     copyConfigs "laptop" $platform
@@ -143,20 +173,33 @@ if [ "$selected_choice" == "Laptop" ]; then
     if [ "$answerCombined" == 'y' ]; then
         copyConfigsCombined
     fi
+
+    if [ "$answerScripts" == 'y' ]; then
+        copyScripts
+    fi
 elif [ "$selected_choice" == "PC" ]; then
     platform="PC"
     handleCombined
-    confirmActions $platform $answerCombined
+    handleScripts
+    confirmActions
     deleteConfigs "pc" $platform
 
     if [ "$answerCombined" == 'y' ]; then
         delConfigsCombined
     fi
 
+    if [ "$answerScripts" == 'y' ]; then
+        delScripts
+    fi
+
     copyConfigs "pc" $platform
 
     if [ "$answerCombined" == 'y' ]; then
         copyConfigsCombined
+    fi
+
+    if [ "$answerScripts" == 'y' ]; then
+        copyScripts
     fi
 else
     exiting

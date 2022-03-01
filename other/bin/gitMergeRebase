@@ -1,0 +1,16 @@
+#!/bin/bash
+
+message() {
+cat <<'EOF'
+1. first checkout new branch f.E. git checkout -b MarlinFirmware-2.0.x 2.0.x
+2. then rebase f.E. git pull --no-rebase MarlinFirmware-2.0.x 2.0.x
+3. solve conflicts
+4. git add files that were in conflict f.E. git add foo.sh
+5. git commit
+6. checkout main branch f.E. git checkout 2.0.x
+7. merge branches with no-ff f.E. git merge --no-ff MarlinFirmware-2.0.x
+8. git push to desired origin f.E. git push origin 2.0.x
+EOF
+}
+
+echo "$(message)"
