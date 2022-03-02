@@ -37,6 +37,26 @@ ex ()
   fi
 }
 
+# to encr-archive
+ncryptArch() {
+  if [ -n "$1" ]; then
+    read -esp "Enter Passphrase: " pass
+    tar -czf - $1 | gpg -c --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
+  else
+    echo "No Input"
+  fi
+}
+
+# encr-archive decryption
+dcryptArch() {
+  if [ -n "$1" ]; then
+    read -esp "Enter Passphrase: " pass
+    gpg -d --passphrase $pass --batch $1 | tar -xzf -
+  else
+    echo "No Input"
+  fi
+}
+
 # base aliases (req procs, exa, bat, fd, paru, flatpak, opendoas, dust)
 alias ps="procs"
 alias tree="exa -Tg@"
