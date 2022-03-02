@@ -37,15 +37,30 @@ choose_from_menu() {
 }
 
 exiting() {
-    clear
     printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
     exit 0
 }
+
+combinedList=(
+    "kitty/"
+    "pacwall/"
+    "nano/"
+    "picom/"
+    "zathura/"
+)
+
+binList=(
+    "gitMergeRebase"
+    "mntExt"
+    "sharePwnagotchy"
+)
 
 selections=(
     "no"
     "yes"
 )
+
+clear
 choose_from_menu "Proceed?" selected_choice "${selections[@]}"
 
 if [ "$selected_choice" == "yes" ]; then
@@ -57,36 +72,30 @@ fi
 
 printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
 sleep 1
-
-rm -rf  ~/.config/kitty/
-rm -f   ~/.bashrc
-rm -rf  ~/.config/nano/
-rm -rf  ~/.config/picom/
-rm -f   ~/.config/ncspot/config.toml
-rm -rf  ~/.config/zathura/
-
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
-sleep 1
-
-rm -f ~/.local/bin/gitMergeRebase
-rm -f ~/.local/bin/mntExt
-rm -f ~/.local/bin/sharePwnagotchy
+for i in ${combinedList[@]}; do
+    rm -rf ~/.config/$i
+done
+rm -f ~/.bashrc
+rm -f ~/.config/ncspot/config.toml
 
 printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying new combined configs"
 sleep 1
+for i in ${combinedList[@]}; do
+    cp -r combined/$i    ~/.config/
+done
+cp -r combined/ncspot/config.toml       ~/.config/ncspot/
+cp -r combined/.bashrc            	    ~/
 
-cp -r   combined/kitty/                 ~/.config/
-cp -r   combined/nano/                  ~/.config/
-cp -r   combined/picom/                 ~/.config/
-cp -r   combined/ncspot/config.toml     ~/.config/ncspot/
-cp -r   combined/.bashrc            	~/
-cp -r   combined/zathura/		        ~/.config/
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
+sleep 1
+for i in ${binList[@]}; do
+    rm -f ~/.local/bin/$i
+done
 
 printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying ~/.local/bin/ scripts"
 sleep 1
-
-cp  other/bin/gitMergeRebase        ~/.local/bin/
-cp  other/bin/mntExt                ~/.local/bin/
-cp  other/bin/sharePwnagotchy       ~/.local/bin/
+for i in ${binList[@]}; do
+    cp -r other/bin/$i    ~/.local/bin/
+done
 
 exiting

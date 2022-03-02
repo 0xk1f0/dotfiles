@@ -37,7 +37,6 @@ choose_from_menu() {
 }
 
 exiting() {
-    clear
     printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
     exit 0
 }
@@ -158,11 +157,12 @@ binList=(
     "sharePwnagotchy"
 )
 
-clear
 selections=(
     "pc"
     "laptop"
 )
+
+clear
 choose_from_menu "What device are you on?" selected_choice "${selections[@]}"
 
 platform="$selected_choice"
