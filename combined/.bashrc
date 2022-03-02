@@ -41,7 +41,7 @@ ex ()
 ncryptArch() {
   if [ -n "$1" ]; then
     read -esp "Enter Passphrase: " pass
-    tar -czf - $1 | gpg -c --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
+    tar -czf - $1 | gpg -c --no-symkey-cache --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
   else
     echo "No Input"
   fi
@@ -51,7 +51,7 @@ ncryptArch() {
 dcryptArch() {
   if [ -n "$1" ]; then
     read -esp "Enter Passphrase: " pass
-    gpg -d --passphrase $pass --batch $1 | tar -xzf -
+    gpg -d --no-symkey-cache --passphrase $pass --batch $1 | tar -xzf -
   else
     echo "No Input"
   fi
