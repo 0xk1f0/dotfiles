@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# i yoinked this from here
-# https://askubuntu.com/a/1386907
-# and modified it slightly
+# "bash strict mode"
+set -uo pipefail
+
+# modified version of https://askubuntu.com/a/1386907
 choose_from_menu() {
     local prompt="$1" outvar="$2"
     shift
@@ -50,7 +51,6 @@ combinedList=(
 )
 
 binList=(
-    "gitMergeRebase"
     "mntExt"
     "sharePwnagotchy"
 )
@@ -69,6 +69,10 @@ if [ "$selected_choice" == "yes" ]; then
 else
     exiting
 fi
+
+
+## TODO: redo using rsync, more efficient ##
+
 
 printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
 sleep 1
@@ -97,5 +101,9 @@ sleep 1
 for i in ${binList[@]}; do
     cp -r other/bin/$i    ~/.local/bin/
 done
+
+
+## ... ##
+
 
 exiting

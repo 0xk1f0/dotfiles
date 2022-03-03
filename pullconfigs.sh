@@ -1,8 +1,9 @@
 #!/bin/bash
 
-# i yoinked this from here
-# https://askubuntu.com/a/1386907
-# and modified it slightly
+# "bash strict mode"
+set -uo pipefail
+
+# modified version of https://askubuntu.com/a/1386907
 choose_from_menu() {
     local prompt="$1" outvar="$2"
     shift
@@ -40,6 +41,10 @@ exiting() {
     printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
     exit 0
 }
+
+
+## TODO: redo using rsync, more efficient ##
+
 
 deleteConfigs() {
     printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old configs for $1"
@@ -92,6 +97,10 @@ copyScripts() {
         cp -r ~/.local/bin/$i    other/bin/
     done
 }
+
+
+## ... ##
+
 
 handleCombined() {
     selections=(
@@ -152,7 +161,6 @@ normalList=(
 )
 
 binList=(
-    "gitMergeRebase"
     "mntExt"
     "sharePwnagotchy"
 )
