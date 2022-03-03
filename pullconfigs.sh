@@ -42,65 +42,20 @@ exiting() {
     exit 0
 }
 
-
-## TODO: redo using rsync, more efficient ##
-
-
-deleteConfigs() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old configs for $1"
-    sleep 1
-    for i in ${normalList[@]}; do
-        rm -rf $1/$i
-    done
+syncCombined() {
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing combined configs"
+    rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
 }
 
-copyConfigs() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new configs for $1"
-    sleep 1
-    for i in ${normalList[@]}; do
-        cp -r ~/.config/$i    $1/
-    done
+syncBin() {
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing ~/.local/bin/ scripts"
+    rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
 }
 
-delConfigsCombined() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
-    sleep 1
-    for i in ${combinedList[@]}; do
-        rm -rf combined/$i
-    done
-    rm -f combined/ncspot/config.toml
-    rm -f combined/.bashrc
+syncNormal() {
+    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing configs for $1"
+    rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
 }
-
-copyConfigsCombined() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new combined configs"
-    sleep 1
-    for i in ${combinedList[@]}; do
-        cp -r  ~/.config/$i    combined/
-    done
-    cp ~/.config/ncspot/config.toml     combined/ncspot/
-    cp ~/.bashrc                        combined/.bashrc
-}
-
-delScripts() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
-    sleep 1
-    for i in ${binList[@]}; do
-        rm -f other/bin/$i
-    done
-}
-
-copyScripts() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Pulling new ~/.local/bin/ scripts"
-    sleep 1
-    for i in ${binList[@]}; do
-        cp -r ~/.local/bin/$i    other/bin/
-    done
-}
-
-
-## ... ##
-
 
 handleCombined() {
     selections=(
@@ -142,27 +97,33 @@ confirmActions() {
     fi
 }
 
-combinedList=(
-    "kitty/"
-    "pacwall/"
-    "nano/"
-    "picom/"
-    "zathura/"
+binExt="/home/$USER/.local/bin"
+homeCfgExt="/home/$USER/.config"
+homeExt="/home/$USER"
+
+combinedLIST=(
+    "$homeCfgExt/kitty"
+    "$homeCfgExt/ncspot"
+    "$homeCfgExt/pacwall"
+    "$homeCfgExt/nano"
+    "$homeCfgExt/picom"
+    "$homeCfgExt/zathura"
+    "$homeExt/.bashrc"
 )
 
-normalList=(
-    "dunst/"
-    "herbstluftwm/"
-    "qtile/"
-    "polybar/"
-    "rofi/"
-    "leftwm/"
-    "scripts/"
+normalLIST=(
+    "$homeCfgExt/dunst"
+    "$homeCfgExt/herbstluftwm"
+    "$homeCfgExt/qtile"
+    "$homeCfgExt/polybar"
+    "$homeCfgExt/rofi"
+    "$homeCfgExt/leftwm"
+    "$homeCfgExt/scripts"
 )
 
-binList=(
-    "mntExt"
-    "sharePwnagotchy"
+binLIST=(
+    "$binExt/mntExt"
+    "$binExt/sharePwnagotchy"
 )
 
 selections=(
@@ -178,17 +139,14 @@ handleCombined
 handleScripts
 confirmActions
 
-deleteConfigs $platform
-copyConfigs $platform
+syncNormal $platform
 
 if [ "$answerCombined" == 'y' ]; then
-    delConfigsCombined
-    copyConfigsCombined
+    syncCombined
 fi
 
 if [ "$answerScripts" == 'y' ]; then
-    delScripts
-    copyScripts
+    syncBin
 fi
 
 exiting

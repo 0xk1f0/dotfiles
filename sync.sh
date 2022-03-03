@@ -42,17 +42,21 @@ exiting() {
     exit 0
 }
 
-combinedList=(
-    "kitty/"
-    "pacwall/"
-    "nano/"
-    "picom/"
-    "zathura/"
+binExt="./other/bin"
+combExt="./combined"
+
+combinedLIST=(
+    "$binExt/kitty"
+    "$binExt/ncspot"
+    "$binExt/pacwall"
+    "$binExt/nano"
+    "$binExt/picom"
+    "$binExt/zathura"
 )
 
-binList=(
-    "mntExt"
-    "sharePwnagotchy"
+binLIST=(
+    "$combExt/mntExt"
+    "$combExt/sharePwnagotchy"
 )
 
 selections=(
@@ -70,40 +74,11 @@ else
     exiting
 fi
 
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Syncing combined configs"
+rsync -aq --delete $(echo "${combinedLIST[@]}") /home/$USER/.config/
+rsync -aq --delete ./combined/.bashrc /home/$USER/
 
-## TODO: redo using rsync, more efficient ##
-
-
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old combined configs"
-sleep 1
-for i in ${combinedList[@]}; do
-    rm -rf ~/.config/$i
-done
-rm -f ~/.bashrc
-rm -f ~/.config/ncspot/config.toml
-
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying new combined configs"
-sleep 1
-for i in ${combinedList[@]}; do
-    cp -r combined/$i    ~/.config/
-done
-cp -r combined/ncspot/config.toml       ~/.config/ncspot/
-cp -r combined/.bashrc            	    ~/
-
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Deleting old ~/.local/bin/ scripts"
-sleep 1
-for i in ${binList[@]}; do
-    rm -f ~/.local/bin/$i
-done
-
-printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Copying ~/.local/bin/ scripts"
-sleep 1
-for i in ${binList[@]}; do
-    cp -r other/bin/$i    ~/.local/bin/
-done
-
-
-## ... ##
-
+printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Syncing ~/.local/bin/ scripts"
+rsync -aq --delete $(echo "${binLIST[@]}") /home/$USER/.local/bin/
 
 exiting
