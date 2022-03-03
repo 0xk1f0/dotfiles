@@ -1,15 +1,15 @@
 #!/bin/bash
 
-#"bash strict mode"
+# "bash strict mode"
 set -uo pipefail
 
-#check if run as root
+# check if run as root
 if [ "$EUID" -ne 0 ]; then 
   echo "Please run it as root!"
   exit 1
 fi
 
-#get supplied mountpoint
+# get supplied mountpoint
 if [ -v 1 ]; then
     MOUNTPOINT=$1
 else
