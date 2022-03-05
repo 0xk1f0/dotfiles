@@ -31,7 +31,8 @@ choose_from_menu() {
         for o in "${options[@]}"
         do
             if [ "$index" == "$cur" ]
-            then echo -e "> \e[1m\e[92m$o\e[0m"
+            space=$(lsblk -l | grep "$o" | tr -s ' ' ' ' | cut -d ' ' -f 4)
+            then echo -e "> \e[1m\e[92m$o ($space)\e[0m"
             else echo -e "  \e[90m$o\e[0m"
             fi
             index=$(( $index + 1 ))
@@ -70,6 +71,7 @@ chooseFS() {
     selections=(
         "ntfs3"
         "ext4"
+        "vfat"
         "auto"
     )
     choose_from_menu "What filesystem to mount with?" selected_choice ${selections[@]}
@@ -91,15 +93,16 @@ handleMount() {
         if [ $? ]; then
             clear
             printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" ":: " "Successfully mounted!"
+            exit 0
         else
             printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Some Error occured!"
+            exit 1
         fi
-        printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
-        exit 0
+        
     else
         clear
         printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
-        exit 1
+        exit 0
     fi
 }
 
