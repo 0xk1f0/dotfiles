@@ -41,7 +41,9 @@ ex ()
 ncryptArch() {
   if [ -n "$1" ]; then
     read -esp "Enter Passphrase: " pass
-    tar -czf - $1 | gpg -c --no-symkey-cache --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
+    tar -czf - $1 | gpg -c --cipher-algo AES256 --s2k-digest-algo SHA512 \
+    --s2k-count 100000 --no-symkey-cache \
+    --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
   else
     echo "No Input"
   fi
@@ -61,9 +63,9 @@ dcryptArch() {
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@ --icons"
-alias ll="exa -g@lhUm --icons"
+alias ll="exa -g@lhUm"
 alias la="exa -1g@a --icons"
-alias lla="exa -g@lahUm --icons"
+alias lla="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
 alias du="dust"
