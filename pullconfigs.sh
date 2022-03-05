@@ -10,7 +10,7 @@ choose_from_menu() {
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "2" ":: " "$prompt"
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "?" " $prompt"
     while true
     do
         index=0 
@@ -38,62 +38,35 @@ choose_from_menu() {
 }
 
 exiting() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "1" ":: " "Exiting..."
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" ".." " Exiting..."
     exit 0
 }
 
 syncCombined() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing combined configs"
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing combined configs"
     rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
 }
 
 syncBin() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing ~/.local/bin/ scripts"
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing ~/.local/bin/ scripts"
     rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
 }
 
 syncNormal() {
-    printf "\e[1m\e[9%sm%s\e[0m%s\n" "3" ":: " "Syncing configs for $1"
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing configs for $1"
     rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
 }
 
-handleCombined() {
+handleYesNo() {
     selections=(
         "no"
         "yes"
     )
-    choose_from_menu "Include combined?" selected_choice "${selections[@]}"
+    choose_from_menu "$1" selected_choice "${selections[@]}"
     if [ "$selected_choice" == "yes" ]; then
-        answerCombined="y"
+        return 0
     else
-        answerCombined="n"
-    fi
-}
-
-handleScripts() {
-    selections=(
-        "no"
-        "yes"
-    )
-    choose_from_menu "Include ~/.local/bin/ scripts?" selected_choice "${selections[@]}"
-    if [ "$selected_choice" == "yes" ]; then
-        answerScripts="y"
-    else
-        answerScripts="n"
-    fi
-}
-
-confirmActions() {
-    selections=(
-        "no"
-        "yes"
-    )
-    choose_from_menu "Are all options correct?" selected_choice "${selections[@]}"
-    if [ "$selected_choice" == "yes" ]; then
-        clear
-        printf "\e[3m\e[1m%s\e[0m\n" "pullconfigs.sh"
-    else
-        exiting
+        return 1
     fi
 }
 
@@ -135,18 +108,20 @@ clear
 choose_from_menu "What device are you on?" selected_choice "${selections[@]}"
 
 platform="$selected_choice"
-handleCombined
-handleScripts
-confirmActions
 
-syncNormal $platform
-
-if [ "$answerCombined" == 'y' ]; then
-    syncCombined
+if handleYesNo "Include normal?"; then
+    syncNormal $platform
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
 fi
 
-if [ "$answerScripts" == 'y' ]; then
+if handleYesNo "Include combined?"; then
+    syncCombined
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
+fi
+
+if handleYesNo "Include ~/.local/bin/ scripts?"; then
     syncBin
+    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
 fi
 
 exiting
