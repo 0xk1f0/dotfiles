@@ -46,17 +46,17 @@ binExt="./other/bin"
 combExt="./combined"
 
 combinedLIST=(
-    "$binExt/kitty"
-    "$binExt/ncspot"
-    "$binExt/pacwall"
-    "$binExt/nano"
-    "$binExt/picom"
-    "$binExt/zathura"
+    "$combExt/kitty"
+    "$combExt/ncspot"
+    "$combExt/pacwall"
+    "$combExt/nano"
+    "$combExt/picom"
+    "$combExt/zathura"
 )
 
 binLIST=(
-    "$combExt/mntExt"
-    "$combExt/sharePwnagotchy"
+    "$binExt/mntExt"
+    "$binExt/sharePwnagotchy"
 )
 
 selections=(
