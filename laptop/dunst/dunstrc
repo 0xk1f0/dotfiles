@@ -13,13 +13,13 @@
 
     # geometry
     width = 300
-    height = 180
+    #height = 100
     origin = bottom-right
-    offset = 15x15
+    offset = 8x8
     scale = 0
 
     # max number of notification
-    notification_limit = 5
+    notification_limit = 3
 
     # show progress bar
     progress_bar = true
@@ -55,7 +55,7 @@
     sort = yes
 
     # font
-    font = Open Sans Semibold 10
+    font = Open Sans Semibold 11
 
     # line spacing
     line_height = 0
