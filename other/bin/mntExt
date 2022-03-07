@@ -79,7 +79,6 @@ scriptFeedback() {
 
 # drive chooser
 chooseDrive() {
-    isDrivePrompt=true
     adj_selections=""
     for d in $FETCHDRIVES; do
         mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' | cut -d ' ' -f 7)
@@ -173,6 +172,7 @@ handleMount() {
     fi
 }
 
+isDrivePrompt=false
 # first get list of mountable drives
 FETCHDRIVES=$(lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
 
