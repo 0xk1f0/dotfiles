@@ -5,7 +5,7 @@ set -uo pipefail
 
 # check if run as root
 if [ "$EUID" -ne 0 ]; then 
-    echo "Please run it as root!"
+    echo "Run as root!"
     exit 1
 fi
 
@@ -13,27 +13,31 @@ fi
 if [ -v 1 ]; then
     MOUNTPOINT=$1
 else
-    echo "Please supply a mountpoint!"
+    echo "Supply a mountpoint!"
     exit 1
 fi
 
 # modified version of https://askubuntu.com/a/1386907
-choose_from_menu() {
+chooseMenu() {
     local prompt="$1" outvar="$2"
     shift
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $prompt"
+    scriptFeedback prompt "$prompt"
     while true
     do
-        index=0 
+        index=0
+        local spc=""
         for o in "${options[@]}"
         do
-            if [ "$index" == "$cur" ]; then 
-                echo -e "> \e[1m\e[92m$o\e[0m"
+            if [ $isDrivePrompt = true ]; then
+                spc=" ($(lsblk -l | grep "$o" | tr -s ' ' ' ' | cut -d ' ' -f 4))"
+            fi
+            if [ "$index" == "$cur" ]; then
+                echo -e "> \e[1m\e[92m$o\e[0m\e[3m$spc\e[0m"
             else
-                echo -e "  \e[90m$o\e[0m"
+                echo -e "  \e[90m$o\e[3m$spc\e[0m"
             fi
             index=$(( $index + 1 ))
         done
@@ -52,17 +56,45 @@ choose_from_menu() {
     printf -v $outvar "${options[$cur]}"
 }
 
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        prompt)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
+            ;;
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
+            ;;
+        proc)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
+            ;;
+        normExit)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
+            ;;
+    esac
+}
+
 # drive chooser
 chooseDrive() {
+    isDrivePrompt=true
     adj_selections=""
-    for d in $drives; do
+    for d in $FETCHDRIVES; do
         mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' | cut -d ' ' -f 7)
         if [ -z $mountStat ]; then
             adj_selections="$adj_selections""$d "
         fi
     done
-    choose_from_menu "What Drive to mount?" selected_choice ${adj_selections[@]}
-    DRIVE=$selected_choice
+    if [ -z "$adj_selections" ]; then
+        scriptFeedback normExit "No mountable drives found!"
+        exit 0
+    else
+        chooseMenu "What Drive to mount?" selected_choice ${adj_selections[@]}
+        DRIVE=$selected_choice
+        isDrivePrompt=false
+    fi
 }
 
 # fs chooser
@@ -73,15 +105,16 @@ chooseFS() {
         "vfat"
         "auto"
     )
-    choose_from_menu "What filesystem to mount with?" selected_choice ${selections[@]}
+    chooseMenu "What filesystem to mount with?" selected_choice ${selections[@]}
     FS=$selected_choice
 }
 
 # check if mountpoint is occupied
 alreadyMounted() {
-    for d in $drives; do
+    for d in $FETCHDRIVES; do
         mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' | cut -d ' ' -f 7)
-        if [ "$mountStat" == "$MOUNTPOINT" ]; then
+        if [ "$mountStat" == "$MOUNTPOINT" ] \
+        || [ "$mountStat" == "${MOUNTPOINT::-1}" ]; then
             return 0
         fi
     done
@@ -94,53 +127,56 @@ handleUnmount() {
         "no"
         "yes"
     )
-    choose_from_menu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
+    chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         umount -l $MOUNTPOINT
         if [ $? ]; then
             clear
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Successfully unmounted!"
+            scriptFeedback success "Successfully unmounted!"
             exit 0
         else
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "X" " Some Error occured!"
+            scriptFeedback error "Some error occured!"
             exit 1
         fi
     else
         clear
-        printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "X" " Selected mountpoint already occupied!"
+        scriptFeedback error "Selected mountpoint already occupied!"
         exit 1
     fi
 }
 
 # mount drive after selections
 handleMount() {
-    driveSpace=$(lsblk -l | grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
+    DRIVESPACE=$(lsblk -l | grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
     DRIVE="/dev/""$DRIVE"
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Mounting \"$DRIVE\" ($driveSpace) with \"$FS\" to \"$MOUNTPOINT\""
+    scriptFeedback proc "Mounting \"$DRIVE\" ($DRIVESPACE) with \"$FS\" to \"$MOUNTPOINT\""
     selections=(
         "no"
         "yes"
     )
-    choose_from_menu "Correct?" selected_choice ${selections[@]}
+    chooseMenu "Correct?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         mount -t $FS $DRIVE $MOUNTPOINT
         if [ $? ]; then
             clear
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Successfully mounted!"
+            scriptFeedback success "Successfully mounted!"
             exit 0
         else
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "X" " Some Error occured!"
+            scriptFeedback error "Some error occured!"
             exit 1
         fi
         
     else
         clear
-        printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "X" " Exiting..."
+        scriptFeedback normExit "Exiting..."
         exit 0
     fi
 }
 
-drives=$(lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
+# first get list of mountable drives
+FETCHDRIVES=$(lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
+
+# then check if mountpoint is occupied, if not continue
 if alreadyMounted; then
     handleUnmount
 else
