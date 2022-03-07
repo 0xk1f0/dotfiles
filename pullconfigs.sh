@@ -4,13 +4,13 @@
 set -uo pipefail
 
 # modified version of https://askubuntu.com/a/1386907
-choose_from_menu() {
+chooseMenu() {
     local prompt="$1" outvar="$2"
     shift
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "?" " $prompt"
+    scriptFeedback prompt "$prompt"
     while true
     do
         index=0 
@@ -37,23 +37,39 @@ choose_from_menu() {
     printf -v $outvar "${options[$cur]}"
 }
 
-exiting() {
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" ".." " Exiting..."
-    exit 0
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        prompt)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
+            ;;
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
+            ;;
+        proc)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
+            ;;
+        normExit)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
+            ;;
+    esac
 }
 
 syncCombined() {
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing combined configs"
+    scriptFeedback proc "Syncing combined configs"
     rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
 }
 
 syncBin() {
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing ~/.local/bin/ scripts"
+    scriptFeedback proc "Syncing ~/.local/bin/ scripts"
     rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
 }
 
 syncNormal() {
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " Syncing configs for $1"
+    scriptFeedback proc "Syncing configs for $1"
     rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
 }
 
@@ -62,7 +78,7 @@ handleYesNo() {
         "no"
         "yes"
     )
-    choose_from_menu "$1" selected_choice "${selections[@]}"
+    chooseMenu "$1" selected_choice "${selections[@]}"
     if [ "$selected_choice" == "yes" ]; then
         return 0
     else
@@ -105,23 +121,22 @@ selections=(
 )
 
 clear
-choose_from_menu "What device are you on?" selected_choice "${selections[@]}"
-
+chooseMenu "What device are you on?" selected_choice "${selections[@]}"
 platform="$selected_choice"
 
 if handleYesNo "Include normal?"; then
     syncNormal $platform
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
+    scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include combined?"; then
     syncCombined
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
+    scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include ~/.local/bin/ scripts?"; then
     syncBin
-    printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " Done"
+    scriptFeedback success "Done"
 fi
 
-exiting
+exit 0
