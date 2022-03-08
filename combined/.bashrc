@@ -12,9 +12,10 @@ export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
 
 # archive extraction
-ex ()
-{
-  if [ -f "$1" ] ; then
+ex () {
+  if [ -z "$1" ] ; then
+    echo "No input"
+  elif [ -f "$1" ] ; then
     case $1 in
       *.tar.bz2)   tar xjf "$1"    && echo "done" ;;
       *.tar.gz)    tar xzf "$1"    && echo "done" ;;
@@ -30,10 +31,10 @@ ex ()
       *.deb)       ar x "$1"       && echo "done" ;;
       *.tar.xz)    tar xf "$1"     && echo "done" ;;
       *.tar.zst)   unzstd "$1"     && echo "done" ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
+      *)           echo "'$1': unsupported filetype" ;;
     esac
   else
-    echo "'$1' is not a valid file"
+    echo "'$1': is invalid"
   fi
 }
 
@@ -59,7 +60,7 @@ dcryptArch() {
   fi
 }
 
-# base aliases (req procs, exa, bat, fd, paru, flatpak, opendoas, dust)
+# base replacement aliases
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@ --icons"
@@ -69,9 +70,11 @@ alias lla="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
 alias du="dust"
-alias upMirrors="doas reflector -f 30 -l 30 -c Austria,Switzerland,Italy --number 5 --verbose --save /etc/pacman.d/mirrorlist"
-alias cleanup='doas pacman -Rs $(pacman -Qtdq)'
-alias cleancache='doas pacman -Scc && echo "Clearing paru cache..." && rm -rf ~/.cache/paru/clone/* && echo "Done!"'
+
+# update aliases
+alias mirup="doas reflector -f 10 -l 10 -c ch,at -n 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias cup='doas pacman -Rs $(pacman -Qtdq)'
+alias cch='doas pacman -Scc && rm -rf ~/.cache/paru/clone/*'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
 alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'

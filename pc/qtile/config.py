@@ -33,7 +33,7 @@ accentBackground=currentTheme["accentBackground"]
 accentModBackground=currentTheme["accentModuleBackground"]
 barHeight=24
 accentModSpace=5
-layoutmargin=15
+layoutmargin=8
 sideSpace=layoutmargin
 font="Open Sans Semibold"
 fontsize=int(barHeight/2)
@@ -115,7 +115,7 @@ layouts = [
     layout.Bsp(**layout_border,
         margin = layoutmargin,
         fair = True,
-        grow_amount = 5 
+        grow_amount = 5
     ),
     layout.Floating(**layout_border),
 ]
