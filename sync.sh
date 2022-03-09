@@ -34,6 +34,8 @@ combinedLIST=(
     "$combExt/nano"
     "$combExt/picom"
     "$combExt/zathura"
+    "$combExt/pcmanfm"
+    "$combExt/paru"
 )
 
 binLIST=(
