@@ -35,6 +35,7 @@ combinedLIST=(
     "$combExt/picom"
     "$combExt/zathura"
     "$combExt/pcmanfm"
+    "$combExt/libfm"
     "$combExt/paru"
 )
 
