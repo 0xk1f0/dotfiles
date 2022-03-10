@@ -114,13 +114,14 @@ layout_border = dict(
     border_focus = accentActive,
     border_normal = accentNormal,
     border_width = bordersize,
+    border_on_single = True,
 )
 
 layouts = [
     layout.Bsp(**layout_border,
         margin = layoutmargin,
         fair = True,
-        grow_amount = 5 
+        grow_amount = 5
     ),
     layout.Floating(**layout_border),
 ]
