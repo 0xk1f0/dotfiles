@@ -97,7 +97,6 @@ combinedLIST=(
     "$homeCfgExt/nano"
     "$homeCfgExt/picom"
     "$homeCfgExt/zathura"
-    "$homeCfgExt/pcmanfm"
     "$homeCfgExt/libfm"
     "$homeCfgExt/paru"
     "$homeExt/.bashrc"

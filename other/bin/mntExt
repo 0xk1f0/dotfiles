@@ -28,9 +28,9 @@ chooseMenu() {
     while true
     do
         index=0
-        local spc=""
         for o in "${options[@]}"
         do
+            local spc=""
             if [ $isDrivePrompt = true ]; then
                 spc=" ($(lsblk -l | grep "$o" | tr -s ' ' ' ' | cut -d ' ' -f 4))"
             fi
@@ -90,6 +90,7 @@ chooseDrive() {
         scriptFeedback normExit "No mountable drives found!"
         exit 0
     else
+        isDrivePrompt=true
         chooseMenu "What Drive to mount?" selected_choice ${adj_selections[@]}
         DRIVE=$selected_choice
         isDrivePrompt=false
