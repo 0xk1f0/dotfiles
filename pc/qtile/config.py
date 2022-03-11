@@ -109,6 +109,7 @@ layout_border = dict(
     border_focus = accentActive,
     border_normal = accentNormal,
     border_width = bordersize,
+    border_on_single = True,
 )
 
 layouts = [
