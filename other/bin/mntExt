@@ -102,23 +102,12 @@ chooseFS() {
     selections=(
         "ntfs3"
         "ext4"
+        "xfs"
         "vfat"
         "auto"
     )
     chooseMenu "What filesystem to mount with?" selected_choice ${selections[@]}
     FS=$selected_choice
-}
-
-# check if mountpoint is occupied
-alreadyMounted() {
-    for d in $FETCHDRIVES; do
-        mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' | cut -d ' ' -f 7)
-        if [ "$mountStat" == "$MOUNTPOINT" ] \
-        || [ "$mountStat" == "${MOUNTPOINT::-1}" ]; then
-            return 0
-        fi
-    done
-    return 1
 }
 
 # unmount mountpoint if user wants
@@ -178,7 +167,7 @@ isDrivePrompt=false
 FETCHDRIVES=$(lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
 
 # then check if mountpoint is occupied, if not continue
-if alreadyMounted; then
+if mountpoint "$MOUNTPOINT" >> /dev/null; then
     handleUnmount
 else
     chooseDrive
