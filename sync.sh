@@ -37,6 +37,7 @@ combinedLIST=(
     "$combExt/pcmanfm"
     "$combExt/libfm"
     "$combExt/paru"
+    "$combExt/starship.toml"
 )
 
 binLIST=(

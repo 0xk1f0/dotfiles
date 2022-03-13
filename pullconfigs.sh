@@ -100,6 +100,7 @@ combinedLIST=(
     "$homeCfgExt/libfm"
     "$homeCfgExt/paru"
     "$homeExt/.bashrc"
+    "$homeCfgExt/starship.toml"
 )
 
 normalLIST=(
