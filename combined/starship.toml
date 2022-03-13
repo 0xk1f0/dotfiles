@@ -1,6 +1,7 @@
 add_newline = false
 
 format = """
+$cmd_duration\
 $python\
 $rust\
 $go\
@@ -10,8 +11,7 @@ $php\
 $git_branch\
 $git_state\
 $git_commit\
-$directory\n\
-$cmd_duration\
+$directory\
 $character"""
 
 [character]
@@ -24,6 +24,6 @@ style = "italic bold purple"
 read_only = ""
 
 [cmd_duration]
-format = "took [$duration]($style)\n"
+format = "\ntook [$duration]($style)\n\n"
 style = "bold green"
 show_milliseconds = false
