@@ -181,6 +181,7 @@ screens = [
                     inactive=accentForeground,
                     urgent_border=accentUrgent,
                     highlight_method="border",
+                    borderwidth=bordersize,
                     padding=2,
                     rounded=False,
                     disable_drag=True,

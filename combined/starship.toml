@@ -16,14 +16,14 @@ $character"""
 
 [character]
 format = "$symbol "
-success_symbol = "[>](bold white)"
+success_symbol = "[>](bold green)"
 error_symbol = "[>](bold red)"
 
 [directory]
-style = "italic bold purple"
+style = "italic bold white"
 read_only = ""
 
 [cmd_duration]
-format = "\ntook [$duration]($style)\n\n"
+format = "\ntook [$duration]($style)\n"
 style = "bold green"
 show_milliseconds = false
