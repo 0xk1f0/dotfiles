@@ -121,6 +121,7 @@ layouts = [
     layout.Bsp(**layout_border,
         margin = layoutmargin,
         fair = True,
+        lower_right = False,
         grow_amount = 5
     ),
     layout.Floating(**layout_border),
@@ -186,7 +187,7 @@ screens = [
                     rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font="Source Code Pro Semibold",
+                    font="Source Code Pro Medium",
                     fontsize=fontsize
                 ),
                 widget.Spacer(

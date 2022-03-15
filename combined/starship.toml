@@ -24,6 +24,6 @@ style = "italic bold white"
 read_only = ""
 
 [cmd_duration]
-format = "\ntook [$duration]($style)\n"
-style = "bold green"
+format = "\n[$duration]($style)\n"
+style = "italic bold green"
 show_milliseconds = false
