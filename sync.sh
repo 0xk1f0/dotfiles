@@ -42,6 +42,7 @@ combinedLIST=(
 
 binLIST=(
     "$binExt/mntExt"
+    "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
 )
 

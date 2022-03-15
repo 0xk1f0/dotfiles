@@ -3,10 +3,11 @@
 # "bash strict mode"
 set -uo pipefail
 
-# check if run as root
-if [ "$EUID" -ne 0 ]; then 
-    echo "Run as root!"
-    exit 1
+# detect su system
+if command -v sudo >> /dev/null; then
+    SU_SYS="sudo"
+else
+    SU_SYS="doas"
 fi
 
 # get supplied mountpoint
@@ -118,8 +119,9 @@ handleUnmount() {
     )
     chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
-        umount -l $MOUNTPOINT
-        if [ $? ]; then
+        if 
+        "$SU_SYS" umount -l $MOUNTPOINT; 
+        then
             clear
             scriptFeedback success "Successfully unmounted!"
             exit 0
@@ -145,8 +147,9 @@ handleMount() {
     )
     chooseMenu "Correct?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
-        mount -t $FS $DRIVE $MOUNTPOINT
-        if [ $? ]; then
+        if
+        "$SU_SYS" mount -t $FS $DRIVE $MOUNTPOINT;
+        then
             clear
             scriptFeedback success "Successfully mounted!"
             exit 0
