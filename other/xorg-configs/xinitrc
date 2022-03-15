@@ -38,5 +38,3 @@ fi
 
 exec /usr/lib/xfce-polkit/xfce-polkit &
 exec qtile start
-#exec dbus-launch leftwm
-#exec herbstluftwm --locked
