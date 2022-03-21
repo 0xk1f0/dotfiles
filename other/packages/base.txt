@@ -7,6 +7,7 @@ kitty
 pcmanfm
 lxappearance
 qt5ct
+qt6ct
 papirus-icon-theme
 xcursor-neutral
 opendoas
@@ -60,3 +61,5 @@ ethtool
 smartmontools
 inetutils
 net-tools
+starship
+pacman-contrib

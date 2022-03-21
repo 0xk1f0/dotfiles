@@ -298,7 +298,7 @@ screens = [
 
 # bools
 follow_mouse_focus = True
-bring_front_click = True
+bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"
