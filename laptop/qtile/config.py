@@ -61,7 +61,8 @@ keys = [
     Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Normalize Layout"),
 
     # modify windows / layout
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
+    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+    Key([mod], "b", lazy.window.bring_to_front(), desc="Bring Window to front"),
     Key([mod], "s", lazy.next_layout(), desc="Toggle between layouts"),
     Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
@@ -245,7 +246,7 @@ screens = [
 
 # bools
 follow_mouse_focus = True
-bring_front_click = True
+bring_front_click = False
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"
