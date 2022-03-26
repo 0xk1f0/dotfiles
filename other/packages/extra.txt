@@ -24,3 +24,4 @@ ipcalc
 signal-desktop
 telegram-desktop
 gimp
+minicom
