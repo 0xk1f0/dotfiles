@@ -13,9 +13,9 @@ configuration {
 prompt { enabled: false; }
 
 * {
-	bg:				#101028;
-	fg:				#d8d0d8;
-	nrm:				#e89098;
+	bg:				#181818;
+	fg:				#805868;
+	nrm:				#805868;
 	background-color:		@bg;
 	text-color:			@fg;
 }

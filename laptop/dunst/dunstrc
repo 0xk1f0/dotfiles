@@ -133,15 +133,15 @@
     mouse_right_click = close_all
 
     # frame
-    frame_color = "#e89098"
+    frame_color = "#d8c0e0"
     frame_width = 2
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#101028"
-    foreground = "#d8d0d8"
+    background = "#181818"
+    foreground = "#805868"
     timeout = 3
 
 [urgency_normal]
