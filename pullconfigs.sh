@@ -117,6 +117,7 @@ binLIST=(
     "$binExt/mntExt"
     "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
+    "$binExt/barrierLayout"
 )
 
 selections=(

@@ -44,6 +44,7 @@ binLIST=(
     "$binExt/mntExt"
     "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
+    "$binExt/barrierLayout"
 )
 
 scriptFeedback proc "Syncing combined configs"
