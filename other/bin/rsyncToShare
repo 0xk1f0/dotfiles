@@ -1,0 +1,108 @@
+#!/bin/bash
+
+# "bash strict mode"
+set -uo pipefail
+
+# detect su system
+if command -v sudo >> /dev/null; then
+    SU_SYS="sudo"
+else
+    SU_SYS="doas"
+fi
+
+# settings
+SMB_MOUNT="/smb"
+SMB_SERVER="//10.0.0.40/gomorrah"
+SMB_CREDS="/home/$USER/.smbcreds"
+BACKUP_CONF="/home/$USER/.bkupconf"
+
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
+            ;;
+        proc)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
+            ;;
+    esac
+}
+
+# mount SMB
+handleMount() {
+    if
+    "$SU_SYS" mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    then
+        clear
+        scriptFeedback success "Successfully mounted!"
+    else
+        scriptFeedback error "Some error occured!"
+        exit 1
+    fi
+}
+
+# unmount SMB
+handleUnmount() {
+    if
+    "$SU_SYS" umount -l "$SMB_MOUNT"; 
+    then
+        clear
+        scriptFeedback success "Successfully unmounted!"
+        exit 0
+    else
+        scriptFeedback error "Some error occured!"
+        exit 1
+    fi
+}
+
+# raed config
+readConfig() {
+    while read -r line; do
+        case $line in
+            "bkupTarget"*)
+                TARGET=$(echo "$line" | cut -d "=" -f 2)
+                ;;
+            "wpTarget"*)
+                WP_TARGET=$(echo "$line" | cut -d "=" -f 2)
+                ;;
+            "wpSource"*)
+                WP_SOURCE=$(echo "$line" | cut -d "=" -f 2)
+                ;;
+        esac
+    done < "$BACKUP_CONF"
+}
+
+# list backup folders
+dirList() {
+    while read -r line; do
+        if [[ "$line" == "/"* ]]; then
+            echo "$line"
+        fi
+    done < "$BACKUP_CONF"
+}
+
+# check if smb is mounted, handle accordingly
+if mountpoint "$SMB_MOUNT" >> /dev/null; then
+    scriptFeedback success "SMB already mounted!"
+else
+    scriptFeedback proc "Mounting SMB..."
+    handleMount
+fi
+
+# read config file
+readConfig
+
+# backup folder
+scriptFeedback proc "Backup to SMB"
+rsync -a --delete --info=name1 $(dirList) $TARGET/
+
+# pull wallpapers
+scriptFeedback proc "Pulling Wallpapers"
+rsync -a --info=name1 $WP_TARGET/ $WP_SOURCE
+
+# sync wallpapers
+scriptFeedback proc "Syncing Wallpapers"
+rsync -a --info=name1 $WP_SOURCE/ $WP_TARGET
