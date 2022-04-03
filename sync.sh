@@ -37,6 +37,7 @@ combinedLIST=(
     "$combExt/pcmanfm"
     "$combExt/libfm"
     "$combExt/paru"
+    "$combExt/easyeffects"
     "$combExt/starship.toml"
     "$combExt/electron-flags.conf"
     "$combExt/electron16-flags.conf"

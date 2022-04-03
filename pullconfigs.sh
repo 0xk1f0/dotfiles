@@ -99,6 +99,7 @@ combinedLIST=(
     "$homeCfgExt/zathura"
     "$homeCfgExt/libfm"
     "$homeCfgExt/paru"
+    "$homeCfgExt/easyeffects"
     "$homeExt/.bashrc"
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
