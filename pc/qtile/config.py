@@ -134,6 +134,8 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
     Match(wm_class='ssh-askpass'),
     Match(title='branchdialog'),
     Match(title='pinentry'),
+    Match(wm_class='pinentry-gtk-2'),
+    Match(wm_class='pinentry-gtk-3'),
     Match(wm_class='confirm'),
     Match(wm_class='dialog'),
     Match(wm_class='download'),

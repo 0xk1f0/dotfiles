@@ -38,6 +38,8 @@ combinedLIST=(
     "$combExt/libfm"
     "$combExt/paru"
     "$combExt/starship.toml"
+    "$combExt/electron-flags.conf"
+    "$combExt/electron16-flags.conf"
 )
 
 binLIST=(

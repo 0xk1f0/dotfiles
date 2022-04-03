@@ -13,7 +13,7 @@ chooseMenu() {
     scriptFeedback prompt "$prompt"
     while true
     do
-        index=0 
+        index=0
         for o in "${options[@]}"
         do
             if [ "$index" == "$cur" ]
@@ -101,6 +101,8 @@ combinedLIST=(
     "$homeCfgExt/paru"
     "$homeExt/.bashrc"
     "$homeCfgExt/starship.toml"
+    "$homeCfgExt/electron-flags.conf"
+    "$homeCfgExt/electron16-flags.conf"
 )
 
 normalLIST=(
