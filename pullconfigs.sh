@@ -122,6 +122,7 @@ binLIST=(
     "$binExt/sharePwnagotchy"
     "$binExt/barrierLayout"
     "$binExt/rsyncToShare"
+    "$binExt/kvmLayout"
 )
 
 selections=(

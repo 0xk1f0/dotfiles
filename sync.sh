@@ -48,6 +48,7 @@ binLIST=(
     "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
     "$binExt/barrierLayout"
+    "$binExt/kvmLayout"
     "$binExt/rsyncToShare"
 )
 
