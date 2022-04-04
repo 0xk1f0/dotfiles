@@ -3,13 +3,6 @@
 # "bash strict mode"
 set -uo pipefail
 
-# detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
-else
-    SU_SYS="doas"
-fi
-
 # settings
 SMB_MOUNT="/smb"
 SMB_SERVER="//10.0.0.40/gomorrah"
@@ -83,6 +76,28 @@ dirList() {
         fi
     done < "$BACKUP_CONF"
 }
+
+# detect su system
+if command -v sudo >> /dev/null; then
+    SU_SYS="sudo"
+else
+    SU_SYS="doas"
+fi
+
+# check if config files exist, else exit
+if [ -e $SMB_CREDS ]; then
+    scriptFeedback success "SMB config found!"
+else
+    scriptFeedback error "No SMB config found!"
+    exit 1
+fi
+
+if [ -e $BACKUP_CONF ]; then
+    scriptFeedback success "Backup config found!"
+else
+    scriptFeedback error "No Backup config found!"
+    exit 1
+fi
 
 # check if smb is mounted, handle accordingly
 if mountpoint "$SMB_MOUNT" >> /dev/null; then
