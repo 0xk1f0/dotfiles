@@ -5,3 +5,5 @@ xfce-polkit
 ttf-weather-icons
 ttf-twemoji
 firefox-nightly
+update-grub
+grub-hook

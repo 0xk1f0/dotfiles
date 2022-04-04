@@ -17,6 +17,7 @@ pipewire-pulse
 pipewire-jack
 pipewire-alsa
 pamixer
+easyeffects
 gzip
 pacman-mirrorlist
 numlockx
