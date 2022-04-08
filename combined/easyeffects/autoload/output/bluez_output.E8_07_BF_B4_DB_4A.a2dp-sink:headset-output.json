@@ -2,5 +2,5 @@
     "device": "bluez_output.E8_07_BF_B4_DB_4A.a2dp-sink",
     "device-description": "Soundcore Life P2",
     "device-profile": "headset-output",
-    "preset-name": "DefaultBT"
+    "preset-name": "SoundcoreLifeP2"
 }
