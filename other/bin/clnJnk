@@ -58,9 +58,9 @@ scriptFeedback() {
 
 # check how full the caches are
 getCacheSpace() {
-    scriptFeedback proc "Pacman cache is $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1)"
-    scriptFeedback proc "Paru cache is $(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1)"
-    scriptFeedback proc "Pip cache is $(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1)"
+    scriptFeedback proc "Pacman cache is $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1)"
+    scriptFeedback proc "Paru cache is $(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1 | tail -n 1)"
+    scriptFeedback proc "Pip cache is $(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1 | tail -n 1)"
 }
 
 # clean pacman cache
