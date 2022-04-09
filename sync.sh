@@ -41,6 +41,7 @@ combinedLIST=(
     "$combExt/starship.toml"
     "$combExt/electron-flags.conf"
     "$combExt/electron16-flags.conf"
+    "$combExt/electron17-flags.conf"
 )
 
 binLIST=(

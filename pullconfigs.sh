@@ -104,6 +104,7 @@ combinedLIST=(
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
     "$homeCfgExt/electron16-flags.conf"
+    "$homeCfgExt/electron17-flags.conf"
 )
 
 normalLIST=(
