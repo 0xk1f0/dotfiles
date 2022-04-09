@@ -60,17 +60,17 @@ scriptFeedback() {
 
 syncCombined() {
     scriptFeedback proc "Syncing combined configs"
-    rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
+    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
 }
 
 syncBin() {
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-    rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
+    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
 }
 
 syncNormal() {
     scriptFeedback proc "Syncing configs for $1"
-    rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
+    /bin/rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
 }
 
 handleYesNo() {
@@ -123,6 +123,7 @@ binLIST=(
     "$binExt/barrierLayout"
     "$binExt/rsyncToShare"
     "$binExt/kvmLayout"
+    "$binExt/clnJnk"
 )
 
 selections=(

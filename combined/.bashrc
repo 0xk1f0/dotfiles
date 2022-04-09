@@ -74,7 +74,6 @@ alias du="dust"
 # update aliases
 alias mirup="doas reflector -f 10 -l 10 -c ch,at -n 10 --verbose --save /etc/pacman.d/mirrorlist"
 alias cup='doas pacman -Rs $(pacman -Qtdq)'
-alias cch='doas pacman -Scc && rm -rf ~/.cache/paru/clone/*'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
 alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'

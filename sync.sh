@@ -50,15 +50,16 @@ binLIST=(
     "$binExt/barrierLayout"
     "$binExt/kvmLayout"
     "$binExt/rsyncToShare"
+    "$binExt/clnJnk"
 )
 
 scriptFeedback proc "Syncing combined configs"
-rsync -aq --delete $(echo "${combinedLIST[@]}") /home/$USER/.config/
-rsync -aq --delete ./combined/.bashrc /home/$USER/
+/bin/rsync -aq --delete $(echo "${combinedLIST[@]}") /home/$USER/.config/
+/bin/rsync -aq --delete ./combined/.bashrc /home/$USER/
 scriptFeedback success "Done"
 
 scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-rsync -aq --delete $(echo "${binLIST[@]}") /home/$USER/.local/bin/
+/bin/rsync -aq --delete $(echo "${binLIST[@]}") /home/$USER/.local/bin/
 scriptFeedback success "Done"
 
 exit 0

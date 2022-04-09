@@ -3,21 +3,6 @@
 # "bash strict mode"
 set -uo pipefail
 
-# detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
-else
-    SU_SYS="doas"
-fi
-
-# get supplied mountpoint
-if [ -v 1 ]; then
-    MOUNTPOINT=$1
-else
-    echo "Supply a mountpoint!"
-    exit 1
-fi
-
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
     local prompt="$1" outvar="$2"
@@ -167,10 +152,25 @@ handleMount() {
 
 isDrivePrompt=false
 # first get list of mountable drives
-FETCHDRIVES=$(lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
+FETCHDRIVES=$(/bin/lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
+
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
+# get supplied mountpoint
+if [ -v 1 ]; then
+    MOUNTPOINT=$1
+else
+    echo "Supply a mountpoint!"
+    exit 1
+fi
 
 # then check if mountpoint is occupied, if not continue
-if mountpoint "$MOUNTPOINT" >> /dev/null; then
+if /bin/mountpoint "$MOUNTPOINT" >> /dev/null; then
     handleUnmount
 else
     chooseDrive

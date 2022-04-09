@@ -21,11 +21,10 @@ chooseMenu() {
         index=0
         for o in "${options[@]}"
         do
-            local spc=""
             if [ "$index" == "$cur" ]; then
-                echo -e "> \e[1m\e[92m$o\e[0m\e[3m$spc\e[0m"
+                echo -e "> \e[1m\e[92m$o\e[0m\e[3m\e[0m"
             else
-                echo -e "  \e[90m$o\e[3m$spc\e[0m"
+                echo -e "  \e[90m$o\e[3m\e[0m"
             fi
             index=$(( $index + 1 ))
         done
@@ -99,10 +98,10 @@ handleMount() {
 }
 
 # detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
 else
-    SU_SYS="doas"
+    SU_SYS="/bin/doas"
 fi
 
 # check if smb config file exists, else exit
@@ -114,7 +113,7 @@ else
 fi
 
 # then check if mountpoint is occupied, if not continue
-if mountpoint "$SMB_MOUNT" >> /dev/null; then
+if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
     handleUnmount
 else
     handleMount

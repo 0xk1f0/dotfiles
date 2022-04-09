@@ -78,10 +78,10 @@ dirList() {
 }
 
 # detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
 else
-    SU_SYS="doas"
+    SU_SYS="/bin/doas"
 fi
 
 # check if config files exist, else exit
@@ -100,7 +100,7 @@ else
 fi
 
 # check if smb is mounted, handle accordingly
-if mountpoint "$SMB_MOUNT" >> /dev/null; then
+if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
     scriptFeedback success "SMB already mounted!"
 else
     scriptFeedback proc "Mounting SMB..."
@@ -112,12 +112,12 @@ readConfig
 
 # backup folder
 scriptFeedback proc "Backup to SMB"
-rsync -a --delete --info=name1 $(dirList) $TARGET/
+/bin/rsync -a --delete --info=name1 $(dirList) $TARGET/
 
 # pull wallpapers
 scriptFeedback proc "Pulling Wallpapers"
-rsync -a --info=name1 $WP_TARGET/ $WP_SOURCE
+/bin/rsync -a --info=name1 $WP_TARGET/ $WP_SOURCE
 
 # sync wallpapers
 scriptFeedback proc "Syncing Wallpapers"
-rsync -a --info=name1 $WP_SOURCE/ $WP_TARGET
+/bin/rsync -a --info=name1 $WP_SOURCE/ $WP_TARGET
