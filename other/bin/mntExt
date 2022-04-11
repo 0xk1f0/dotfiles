@@ -105,7 +105,7 @@ handleUnmount() {
     chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
-        "$SU_SYS" umount -l $MOUNTPOINT; 
+        "$SU_SYS" /bin/umount -l $MOUNTPOINT; 
         then
             clear
             scriptFeedback success "Successfully unmounted!"
@@ -133,7 +133,7 @@ handleMount() {
     chooseMenu "Correct?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if
-        "$SU_SYS" mount -t $FS $DRIVE $MOUNTPOINT;
+        "$SU_SYS" /bin/mount -t $FS $DRIVE $MOUNTPOINT;
         then
             clear
             scriptFeedback success "Successfully mounted!"

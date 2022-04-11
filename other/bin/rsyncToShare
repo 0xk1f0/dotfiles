@@ -27,7 +27,7 @@ scriptFeedback() {
 # mount SMB
 handleMount() {
     if
-    "$SU_SYS" mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
         clear
         scriptFeedback success "Successfully mounted!"
@@ -40,7 +40,7 @@ handleMount() {
 # unmount SMB
 handleUnmount() {
     if
-    "$SU_SYS" umount -l "$SMB_MOUNT"; 
+    "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
     then
         clear
         scriptFeedback success "Successfully unmounted!"

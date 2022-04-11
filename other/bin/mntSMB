@@ -67,7 +67,7 @@ handleUnmount() {
     chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
-        "$SU_SYS" umount -l "$SMB_MOUNT"; 
+        "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
         then
             clear
             scriptFeedback success "Successfully unmounted!"
@@ -86,7 +86,7 @@ handleUnmount() {
 # mount SMB
 handleMount() {
     if
-    "$SU_SYS" mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
         clear
         scriptFeedback success "Successfully mounted!"

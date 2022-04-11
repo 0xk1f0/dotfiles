@@ -53,6 +53,9 @@ scriptFeedback() {
         normExit)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
             ;;
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            ;;
     esac
 }
 
@@ -61,22 +64,58 @@ getCacheSpace() {
     scriptFeedback proc "Pacman cache is $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1)"
     scriptFeedback proc "Paru cache is $(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1 | tail -n 1)"
     scriptFeedback proc "Pip cache is $(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1 | tail -n 1)"
+    scriptFeedback proc "$(pacman -Qtdq | wc -l) orphan packages"
 }
 
 # clean pacman cache
 cleanPacman() {
-    $SU_SYS pacman -Scc --noconfirm >> /dev/null
-    $SU_SYS rm -rf /var/cache/pacman/pkg/*
+    if $SU_SYS pacman -Scc --noconfirm >> /dev/null && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
+    then
+        scriptFeedback success "Pacman cache cleared!"
+    else
+        scriptFeedback error "Some error occured!"
+        exit 1
+    fi
 }
 
 # clean paru cache
 cleanParu() {
-    rm -rf /home/$USER/.cache/paru/clone/*
+    if
+    rm -rf /home/$USER/.cache/paru/clone/*;
+    then
+        scriptFeedback success "Paru cache cleared!"
+    else
+        scriptFeedback error "Some error occured!"
+        exit 1
+    fi
 }
 
 # clean pip cache
 cleanPip() {
-    rm -rf /home/$USER/.cache/pip/*
+    if
+    rm -rf /home/$USER/.cache/pip/*;
+    then
+        scriptFeedback success "Pip cache cleared!"
+    else
+        scriptFeedback error "Some error occured!"
+        exit 1
+    fi
+}
+
+# clean orphnaed packages
+cleanOrph() {
+    if [ "$(pacman -Qtdq | wc -l)" == "0" ]; then
+        scriptFeedback normExit "No orphan packages to remove!"
+    else
+        if
+        $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
+        then
+            scriptFeedback success "Obsolete packages removed!"
+        else
+            scriptFeedback error "Some error occured!"
+            exit 1
+        fi
+    fi
 }
 
 # detect su system
@@ -93,6 +132,7 @@ getCacheSpace
 selections=(
     "all"
     "select"
+    "orphanPkgs"
     "none"
 )
 chooseMenu "What do you want to clean?" selected_choice ${selections[@]}
@@ -102,7 +142,10 @@ if [ "$selected_choice" == "all" ]; then
     cleanPacman
     cleanParu
     cleanPip
-    scriptFeedback success "All caches cleared!"
+    exit 0
+elif [ "$selected_choice" == "orphanPkgs" ]; then
+    scriptFeedback proc "Clearing obsolete packages..."
+    cleanOrph
     exit 0
 elif [ "$selected_choice" == "select" ]; then
     selections=(
@@ -115,19 +158,16 @@ elif [ "$selected_choice" == "select" ]; then
         "pacman")
             scriptFeedback proc "Clearing pacman cache..."
             cleanPacman
-            scriptFeedback success "Pacman cache cleared!"
             exit 0
             ;;
         "paru")
             scriptFeedback proc "Clearing paru cache..."
             cleanParu
-            scriptFeedback success "Paru cache cleared!"
             exit 0
             ;;
         "pip")
             scriptFeedback proc "Clearing pip cache..."
             cleanPip
-            scriptFeedback success "Pip cache cleared!"
             exit 0
             ;;
     esac
