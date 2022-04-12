@@ -72,7 +72,7 @@ alias find="fd -p"
 alias du="dust"
 
 # update aliases
-alias mirup="doas reflector -f 10 -l 10 -c ch,at -n 10 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirup="doas reflector -f 20 -l 20 -c ch,at -n 20 --verbose --save /etc/pacman.d/mirrorlist"
 alias cup='doas pacman -Rs $(pacman -Qtdq)'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
