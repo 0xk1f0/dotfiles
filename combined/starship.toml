@@ -16,14 +16,14 @@ $character"""
 
 [character]
 format = "$symbol "
-success_symbol = "[>](bold green)"
-error_symbol = "[>](bold red)"
+success_symbol = "[>](bold #ffffff)"
+error_symbol = "[>](bold #ff5555)"
 
 [directory]
-style = "italic bold white"
+style = "italic bold #9e9e9e"
 read_only = ""
 
 [cmd_duration]
 format = "\n[$duration]($style)\n"
-style = "italic bold green"
+style = "italic bold #66ff66"
 show_milliseconds = false
