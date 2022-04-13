@@ -4,10 +4,9 @@
 set -uo pipefail
 
 # settings
-SMB_MOUNT="/smb"
-SMB_SERVER="//10.0.0.40/gomorrah"
 SMB_CREDS="/home/$USER/.smbcreds"
-BACKUP_CONF="/home/$USER/.bkupconf"
+BKUP_CFG="/home/$USER/.bkupcfg"
+SMB_CFG="/home/$USER/.smbcfg"
 
 # give user feedback
 scriptFeedback() {
@@ -51,21 +50,21 @@ handleUnmount() {
     fi
 }
 
-# raed config
+# read config
 readConfig() {
     while read -r line; do
         case $line in
             "bkupTarget"*)
                 TARGET=$(echo "$line" | cut -d "=" -f 2)
                 ;;
-            "wpTarget"*)
-                WP_TARGET=$(echo "$line" | cut -d "=" -f 2)
+            "serverPath"*)
+                SMB_SERVER=$(echo "$line" | cut -d "=" -f 2)
                 ;;
-            "wpSource"*)
-                WP_SOURCE=$(echo "$line" | cut -d "=" -f 2)
+            "serverMount"*)
+                SMB_MOUNT=$(echo "$line" | cut -d "=" -f 2)
                 ;;
         esac
-    done < "$BACKUP_CONF"
+    done < "$1"
 }
 
 # list backup folders
@@ -74,7 +73,7 @@ dirList() {
         if [[ "$line" == "/"* ]]; then
             echo "$line"
         fi
-    done < "$BACKUP_CONF"
+    done < "$BKUP_CFG"
 }
 
 # detect su system
@@ -85,19 +84,23 @@ else
 fi
 
 # check if config files exist, else exit
-if [ -e $SMB_CREDS ]; then
-    scriptFeedback success "SMB config found!"
+if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
+    scriptFeedback success "SMB config files found!"
 else
-    scriptFeedback error "No SMB config found!"
+    scriptFeedback error "No SMB config files found!"
     exit 1
 fi
 
-if [ -e $BACKUP_CONF ]; then
-    scriptFeedback success "Backup config found!"
+if [ -e $BKUP_CFG ]; then
+    scriptFeedback success "Backup config file found!"
 else
-    scriptFeedback error "No Backup config found!"
+    scriptFeedback error "No Backup config file found!"
     exit 1
 fi
+
+# read config files
+readConfig "$BKUP_CFG"
+readConfig "$SMB_CFG"
 
 # check if smb is mounted, handle accordingly
 if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
@@ -107,17 +110,6 @@ else
     handleMount
 fi
 
-# read config file
-readConfig
-
 # backup folder
 scriptFeedback proc "Backup to SMB"
 /bin/rsync -a --delete --info=name1 $(dirList) $TARGET/
-
-# pull wallpapers
-scriptFeedback proc "Pulling Wallpapers"
-/bin/rsync -a --info=name1 $WP_TARGET/ $WP_SOURCE
-
-# sync wallpapers
-scriptFeedback proc "Syncing Wallpapers"
-/bin/rsync -a --info=name1 $WP_SOURCE/ $WP_TARGET

@@ -4,9 +4,8 @@
 set -uo pipefail
 
 # settings
-SMB_MOUNT="/smb"
-SMB_SERVER="//10.0.0.40/gomorrah"
 SMB_CREDS="/home/$USER/.smbcreds"
+SMB_CFG="/home/$USER/.smbcfg"
 
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
@@ -97,6 +96,20 @@ handleMount() {
     fi
 }
 
+# read config
+readConfig() {
+    while read -r line; do
+        case $line in
+            "serverPath"*)
+                SMB_SERVER=$(echo "$line" | cut -d "=" -f 2)
+                ;;
+            "serverMount"*)
+                SMB_MOUNT=$(echo "$line" | cut -d "=" -f 2)
+                ;;
+        esac
+    done < "$1"
+}
+
 # detect su system
 if command -v /bin/sudo >> /dev/null; then
     SU_SYS="/bin/sudo"
@@ -104,13 +117,16 @@ else
     SU_SYS="/bin/doas"
 fi
 
-# check if smb config file exists, else exit
-if [ -e $SMB_CREDS ]; then
-    scriptFeedback success "SMB config found!"
+# check if config files exist, else exit
+if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
+    scriptFeedback success "SMB config files found!"
 else
-    scriptFeedback error "No SMB config found!"
+    scriptFeedback error "No SMB config files found!"
     exit 1
 fi
+
+# read config files
+readConfig "$SMB_CFG"
 
 # then check if mountpoint is occupied, if not continue
 if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
