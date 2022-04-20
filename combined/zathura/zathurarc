@@ -5,5 +5,12 @@
 # /___/\__,_/\__/_/ /_/\__,_/_/   \__,_/     /_/|_/_/_/  \____/
 
 set default-bg                  rgba(0,0,0,0.8)
-set default-fg                  "#ffffff"
-set guioptions none
+set default-fg                  #ffffff
+set guioptions                  s,v
+set selection-clipboard         clipboard
+set font                        "Open Sans Regular 11"
+set adjust-open "best-fit"
+set window-title-basename true
+set window-title-page true
+set scroll-page-aware true
+set scroll-step 35
