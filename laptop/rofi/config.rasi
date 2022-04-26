@@ -6,16 +6,16 @@
 
 configuration {
 	modi:				"run,calc,window";
-	font:				"Source Code Pro Semibold 10";
+	font:				"Source Code Pro Medium 10";
 }
 
 @theme "/dev/null"
 prompt { enabled: false; }
 
 * {
-	bg:				#181818;
-	fg:				#805868;
-	nrm:				#805868;
+	bg:				#201828;
+	fg:				#904880;
+	nrm:				#503858;
 	background-color:		@bg;
 	text-color:			@fg;
 }

@@ -14,8 +14,8 @@
     # geometry
     width = 300
     #height = 100
-    origin = bottom-right
-    offset = 8x8
+    origin = bottom-center
+    offset = 0x8
     scale = 0
 
     # max number of notification
@@ -133,20 +133,20 @@
     mouse_right_click = close_all
 
     # frame
-    frame_color = "#d8c0e0"
+    frame_color = "#503858"
     frame_width = 2
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#181818"
-    foreground = "#805868"
+    background = "#201828"
+    foreground = "#904880"
     timeout = 3
 
 [urgency_normal]
-    background = "#101028"
-    foreground = "#d8d0d8"
+    background = "#201828"
+    foreground = "#904880"
     timeout = 3
 
 [urgency_critical]
