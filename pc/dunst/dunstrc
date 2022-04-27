@@ -9,13 +9,13 @@
     monitor = 0
 
     # notification follows mouse
-    follow = mouse
+    # follow = mouse
 
     # geometry
     width = 300
     #height = 180
-    origin = bottom-right
-    offset = 8x8
+    origin = top-center
+    offset = 0x32
     scale = 0
 
     # max number of notification
@@ -133,7 +133,7 @@
     mouse_right_click = close_all
 
     # frame
-    frame_color = "#e0f0f8"
+    frame_color = "#485068"
     frame_width = 2
 
 [experimental]
