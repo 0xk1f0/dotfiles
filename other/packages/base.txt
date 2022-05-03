@@ -6,8 +6,6 @@ rofi-calc
 kitty
 pcmanfm
 lxappearance
-qt5ct
-qt6ct
 papirus-icon-theme
 xcursor-neutral
 opendoas
