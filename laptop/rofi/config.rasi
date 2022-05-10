@@ -13,9 +13,9 @@ configuration {
 prompt { enabled: false; }
 
 * {
-	bg:				#201828;
-	fg:				#904880;
-	nrm:				#503858;
+	bg:				#181820;
+	fg:				#d8a8a0;
+	nrm:				#f8e8f0;
 	background-color:		@bg;
 	text-color:			@fg;
 }
@@ -24,7 +24,9 @@ window {
 	width:				500px;
 	padding:			5px;
 	location:			center;
-	border:				2;
+	x-offset:           0;
+	y-offset:           0;
+	border:				4;
 	border-color:			@nrm;
 }
 

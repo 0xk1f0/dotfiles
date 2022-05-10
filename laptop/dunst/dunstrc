@@ -9,13 +9,13 @@
     monitor = 0
 
     # notification follows mouse
-    follow = mouse
+    # follow = mouse
 
     # geometry
     width = 300
     #height = 100
-    origin = bottom-center
-    offset = 0x8
+    origin = top-center
+    offset = 0x50
     scale = 0
 
     # max number of notification
@@ -133,20 +133,20 @@
     mouse_right_click = close_all
 
     # frame
-    frame_color = "#503858"
-    frame_width = 2
+    frame_color = "#f8e8f0"
+    frame_width = 4
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#201828"
-    foreground = "#904880"
+    background = "#181820"
+    foreground = "#d8a8a0"
     timeout = 3
 
 [urgency_normal]
-    background = "#201828"
-    foreground = "#904880"
+    background = "#181820"
+    foreground = "#d8a8a0"
     timeout = 3
 
 [urgency_critical]
