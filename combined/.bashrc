@@ -94,6 +94,7 @@ alias gtcl="git clone"
 alias yt2audio="youtube-dl -f bestaudio"
 alias pingscan="nmap -sP"
 alias whatislove='echo "baby don\`t hurt me"'
+alias identme='echo -e "You are:\n$(curl -s ident.me)"'
 
 # prompt
 CURSIVE="\[\e[3m\]"
