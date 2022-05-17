@@ -112,4 +112,10 @@ fi
 
 # backup folder
 scriptFeedback proc "Backup to SMB"
-/bin/rsync -a --delete --info=name1 $(dirList) $TARGET/
+if /bin/rsync -a --delete --info=name1 $(dirList) $TARGET/; then
+    scriptFeedback success "Backup finished!"
+    exit 0
+else
+    scriptFeedback error "Some error occured!"
+    exit 1
+fi
