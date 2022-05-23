@@ -109,3 +109,9 @@ bkupTarget=
 net.core.default_qdisc = fq_pie
 vm.swappiness=60
 ```
+
+# Docker IP-Address Range /lib/systemd/system/docker.service
+
+```bash
+ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
+```
