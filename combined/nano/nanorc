@@ -76,20 +76,14 @@ set unix
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
 set titlecolor bold,white,lightblack
-set promptcolor bold,white,lightblack
-set statuscolor bold,white,lightblack
-# set errorcolor bold,white,red
-# set spotlightcolor black,lightyellow
-# set selectedcolor lightwhite,magenta
+set promptcolor italic,white,lightblack
+set statuscolor white,lightblack
+set errorcolor bold,italic,black,red
 set stripecolor white,lightblack
 set scrollercolor white,lightblack
-# set numbercolor cyan
-# set keycolor cyan
-# set functioncolor green
 
 ## === Syntax coloring ===
 ## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
 ## To include most of the existing syntax definitions, you can do:
 include "/usr/share/nano/*.nanorc"
-include "/usr/share/nano-syntax-highlighting/*.nanorc"
