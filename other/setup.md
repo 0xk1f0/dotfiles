@@ -3,7 +3,29 @@
 > This file cotains some info for inital setup of a new system
 > Also some things I usually forget which are quite handy
 
-# language and locales /etc/locale.conf
+# NTP enabling
+
+```bash
+timedatectl set-ntp true
+```
+
+# Hosts File /etc/hosts
+
+```bash
+# IPV4
+127.0.0.1       localhost
+127.0.1.1       hostname.localdomain    hostname
+
+# IPV6
+::1             localhost
+fe00::0         ipv6-localnet
+ff00::0         ipv6-mcastprefix
+ff02::1         ipv6-allnodes
+ff02::2         ipv6-allrouters
+ff02::3         ipv6-allhosts
+```
+
+# Language and Locales /etc/locale.conf
 
 ```bash
 LANG=C
@@ -23,6 +45,16 @@ LC_IDENTIFICATION="C"
 # see /etc/locale.gen
 ```
 
+# Keymap Configuration
+
+```bash
+# add in /etc/vconsole.conf
+KEYMAP=de
+# set with localectl
+localectl set-keymap de
+localectl set-x11-keymap de
+```
+
 # GRUB /etc/default/grub
 
 ```bash
@@ -30,7 +62,12 @@ GRUB_DEFAULT=0
 GRUB_TIMEOUT_STYLE=hidden
 GRUB_TIMEOUT=1
 GRUB_DISTRIBUTOR="Arch"
+
+# default
+GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
+# enable amd_pstate
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
+
 GRUB_CMDLINE_LINUX=""
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 GRUB_TERMINAL_INPUT=console
@@ -39,7 +76,22 @@ GRUB_GFXPAYLOAD_LINUX=keep
 GRUB_DISABLE_RECOVERY=true
 ```
 
-# environment variables /etc/environment
+# Swap File /swapfile
+
+```bash
+# generate
+dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress
+# set permssions
+chmod 0600 /swapfile
+# format to swap
+mkswap -U clear /swapfile
+# enable swap
+swapon /swapfile
+# add to /etc/fstab
+/swapfile   none    swap    defaults    0 0
+```
+
+# Environment Variables /etc/environment
 
 ```bash
 _JAVA_AWT_WM_NONREPARENTING=1
@@ -48,6 +100,18 @@ EDITOR=nano
 AMD_VULKAN_ICD=RADV
 MOZ_X11_EGL=1
 OBS_USE_EGL=1
+```
+
+# Paru First-Time Install
+
+```bash
+# make sure build tools are installed
+pacman -S base-devel
+# clone
+git clone https://aur.archlinux.org/paru-bin
+cd paru-bin/
+# build
+makepkg -si
 ```
 
 # Change to traditional Network Interface Naming
@@ -78,6 +142,15 @@ systemctl start pcscd.service
 # breaks sometimes, just because
 ```
 
+# YubiKey Registration /etc/u2f_mappings
+
+```bash
+# generate new key with
+pamu2fcfg -o pam://hostname -i pam://hostname
+# file format
+<username>:<KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>:<KeyHandle2>,<UserKey2>,<CoseType2>,<Options2>
+```
+
 # YubiKey PAM Module Code /etc/pam.d/hwkey
 
 ```bash
@@ -103,10 +176,12 @@ bkupTarget=
 /folder2/folder3/
 ```
 
-# sysctl stuff /etc/systctl.d/90-override.conf
+# sysctl Stuff /etc/systctl.d/90-override.conf
 
 ```bash
+# change network qdisc
 net.core.default_qdisc = fq_pie
+# change likelyness of swapping
 vm.swappiness=60
 ```
 
@@ -114,4 +189,13 @@ vm.swappiness=60
 
 ```bash
 ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
+```
+
+# Rust Dev Setup
+
+```bash
+# Make sure rustup is installed
+pacman -S rustup
+# Set default toolchain
+rustup default stable
 ```
