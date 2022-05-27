@@ -63,9 +63,9 @@ dcryptArch() {
 # base replacement aliases
 alias ps="procs"
 alias tree="exa -Tg@"
-alias ls="exa -1g@ --icons"
+alias ls="exa -1g@"
 alias ll="exa -g@lhUm"
-alias la="exa -1g@a --icons"
+alias la="exa -1g@a"
 alias lla="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
@@ -97,9 +97,4 @@ alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
 
 # prompt
-CURSIVE="\[\e[3m\]"
-BOLD="\[\e[1m\]"
-COLOR="\[\e[35m\]"
-END="\[\e[0m\]"
-#PS1="${BOLD}${CURSIVE}${COLOR}\W${END} > "
 eval "$(starship init bash)"
