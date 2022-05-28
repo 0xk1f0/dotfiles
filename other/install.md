@@ -1,7 +1,8 @@
 # k1f0's install file
 
 > This File cotains some Info for inital Install of a new Arch-based System
-> Most Things in here are accordingly done as stated in the ArchWiki
+> 
+> Most Things in here are done as stated in the [ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
 
 # Pre-Install for Boot Media
 
