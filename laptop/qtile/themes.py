@@ -6,10 +6,10 @@
 #   /_/
 
 grey = dict(
-	accentNormal="#283040",
+	accentNormal="#787878",
 	accentUrgent="ff0000",
-	accentActive="#f8e8f0",
-	accentForeground="#d8a8a0",
-	accentBackground="#181820",
-	accentModuleBackground="#181820"
+	accentActive="#784848",
+	accentForeground="#687070",
+	accentBackground="#202020",
+	accentModuleBackground="#202020"
 )

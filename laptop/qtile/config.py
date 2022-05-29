@@ -98,11 +98,12 @@ mouse = [
 
 # add groups
 groups = [
-    Group(name="1", label="I",),
-    Group(name="2", label="II"),
-    Group(name="3", label="III"),
-    Group(name="4", label="IV"),
-    Group(name="5", label="V"),
+    Group(name="1", label="1",),
+    Group(name="2", label="2"),
+    Group(name="3", label="3"),
+    Group(name="4", label="4"),
+    Group(name="5", label="5"),
+    Group(name="6", label="6")
 ]
 
 for i in groups:
@@ -188,7 +189,7 @@ screens = [
                     rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font="Source Code Pro Medium",
+                    font=font,
                     fontsize=fontsize
                 ),
                 widget.Spacer(
