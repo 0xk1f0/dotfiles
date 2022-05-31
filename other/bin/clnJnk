@@ -69,7 +69,8 @@ getCacheSpace() {
 
 # clean pacman cache
 cleanPacman() {
-    if $SU_SYS pacman -Scc --noconfirm >> /dev/null && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
+    if 
+    $SU_SYS pacman -Scc --noconfirm >> /dev/null && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
     then
         scriptFeedback success "Pacman cache cleared!"
     else
@@ -105,7 +106,7 @@ cleanPip() {
 # clean orphnaed packages
 cleanOrph() {
     if [ "$(pacman -Qtdq | wc -l)" == "0" ]; then
-        scriptFeedback normExit "No orphan packages to remove!"
+        return
     else
         if
         $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
@@ -132,46 +133,47 @@ getCacheSpace
 selections=(
     "all"
     "select"
-    "orphanPkgs"
     "none"
 )
 chooseMenu "What do you want to clean?" selected_choice ${selections[@]}
 
 if [ "$selected_choice" == "all" ]; then
-    scriptFeedback proc "Clearing pacman/paru/pip caches..."
+    scriptFeedback proc "Clearing all caches..."
     cleanPacman
     cleanParu
     cleanPip
-    exit 0
-elif [ "$selected_choice" == "orphanPkgs" ]; then
-    scriptFeedback proc "Clearing obsolete packages..."
     cleanOrph
+    scriptFeedback success "All Done!"
     exit 0
 elif [ "$selected_choice" == "select" ]; then
     selections=(
         "pacman"
         "paru"
         "pip"
+        "orphanPkgs"
     )
     chooseMenu "What cache specifically?" selected_choice ${selections[@]}
     case $selected_choice in
         "pacman")
             scriptFeedback proc "Clearing pacman cache..."
             cleanPacman
-            exit 0
             ;;
         "paru")
             scriptFeedback proc "Clearing paru cache..."
             cleanParu
-            exit 0
             ;;
         "pip")
             scriptFeedback proc "Clearing pip cache..."
             cleanPip
-            exit 0
+            ;;
+        "orphanPkgs")
+            scriptFeedback proc "Removing orphan packages..."
+            cleanOrph
             ;;
     esac
+    scriptFeedback success "All Done!"
+    exit 0
 else
-    scriptFeedback normExit "Exiting..."
+    scriptFeedback normExit "..."
     exit 0
 fi
