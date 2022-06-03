@@ -1,6 +1,6 @@
 add_newline = false
 
-format = """
+format = """$python\
 $cmd_duration\
 $directory\
 $git_branch\
@@ -23,3 +23,6 @@ show_milliseconds = false
 
 [git_branch]
 style = "italic bold #66ff66"
+
+[python]
+format = '(\($virtualenv\) )'
