@@ -14,7 +14,6 @@ yubioath-desktop
 python-fido2
 barrier
 youtube-dl
-github-cli
 wireshark-qt
 gparted
 gping
@@ -22,7 +21,7 @@ nmap
 mypaint
 ipcalc
 signal-desktop
-telegram-desktop
 gimp
 minicom
 glow
+gamemode

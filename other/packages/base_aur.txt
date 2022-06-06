@@ -6,6 +6,6 @@ epson-inkjet-printer-escpr2
 xfce-polkit
 ttf-weather-icons
 ttf-twemoji
-firefox-nightly
+librewolf-bin
 update-grub
 grub-hook
