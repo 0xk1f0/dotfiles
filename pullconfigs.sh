@@ -93,11 +93,9 @@ homeExt="/home/$USER"
 combinedLIST=(
     "$homeCfgExt/kitty"
     "$homeCfgExt/ncspot"
-    "$homeCfgExt/pacwall"
     "$homeCfgExt/nano"
     "$homeCfgExt/picom"
     "$homeCfgExt/zathura"
-    "$homeCfgExt/libfm"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
     "$homeExt/.bashrc"
@@ -105,6 +103,7 @@ combinedLIST=(
     "$homeCfgExt/electron-flags.conf"
     "$homeCfgExt/electron16-flags.conf"
     "$homeCfgExt/electron17-flags.conf"
+    "$homeCfgExt/Thunar"
 )
 
 normalLIST=(

@@ -15,7 +15,7 @@
     width = 300
     #height = 180
     origin = top-center
-    offset = 0x32
+    offset = 0x52
     scale = 0
 
     # max number of notification
@@ -133,8 +133,8 @@
     mouse_right_click = close_all
 
     # frame
-    frame_color = "#485068"
-    frame_width = 2
+    frame_color = "#e0f0f8"
+    frame_width = 4
 
 [experimental]
     per_monitor_dpi = false

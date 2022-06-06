@@ -17,7 +17,7 @@ import themes
 mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
-filemanager = "pcmanfm"
+filemanager = "thunar"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
 currentTheme = themes.grey
@@ -229,7 +229,7 @@ screens = [
                 widget.Spacer(),
                 widget.Net(
                     background=accentModBackground,
-                    interface="eth",
+                    interface="eth0",
                     format='{interface} {up} - {down}'
                 ),
                 widget.Spacer(

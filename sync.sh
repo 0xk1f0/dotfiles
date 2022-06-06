@@ -30,18 +30,16 @@ combExt="./combined"
 combinedLIST=(
     "$combExt/kitty"
     "$combExt/ncspot"
-    "$combExt/pacwall"
     "$combExt/nano"
     "$combExt/picom"
     "$combExt/zathura"
-    "$combExt/pcmanfm"
-    "$combExt/libfm"
     "$combExt/paru"
     "$combExt/easyeffects"
     "$combExt/starship.toml"
     "$combExt/electron-flags.conf"
     "$combExt/electron16-flags.conf"
     "$combExt/electron17-flags.conf"
+    "$combExt/Thunar"
 )
 
 binLIST=(
