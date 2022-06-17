@@ -12,13 +12,14 @@ SMB_CFG="/home/$USER/.smbcfg"
 scriptFeedback() {
     case $1 in
         error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
             ;;
         success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
             ;;
         proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
             ;;
     esac
 }
@@ -28,25 +29,9 @@ handleMount() {
     if
     "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
-        clear
         scriptFeedback success "Successfully mounted!"
     else
         scriptFeedback error "Some error occured!"
-        exit 1
-    fi
-}
-
-# unmount SMB
-handleUnmount() {
-    if
-    "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
-    then
-        clear
-        scriptFeedback success "Successfully unmounted!"
-        exit 0
-    else
-        scriptFeedback error "Some error occured!"
-        exit 1
     fi
 }
 
@@ -88,14 +73,12 @@ if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
     scriptFeedback success "SMB config files found!"
 else
     scriptFeedback error "No SMB config files found!"
-    exit 1
 fi
 
 if [ -e $BKUP_CFG ]; then
     scriptFeedback success "Backup config file found!"
 else
     scriptFeedback error "No Backup config file found!"
-    exit 1
 fi
 
 # read config files
@@ -117,5 +100,4 @@ if /bin/rsync -a --delete --info=name1 $(dirList) $TARGET/; then
     exit 0
 else
     scriptFeedback error "Some error occured!"
-    exit 1
 fi

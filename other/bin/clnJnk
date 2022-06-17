@@ -50,11 +50,9 @@ scriptFeedback() {
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
             ;;
-        normExit)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
-            ;;
         error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
             ;;
     esac
 }
@@ -75,7 +73,6 @@ cleanPacman() {
         scriptFeedback success "Pacman cache cleared!"
     else
         scriptFeedback error "Some error occured!"
-        exit 1
     fi
 }
 
@@ -87,7 +84,6 @@ cleanParu() {
         scriptFeedback success "Paru cache cleared!"
     else
         scriptFeedback error "Some error occured!"
-        exit 1
     fi
 }
 
@@ -99,7 +95,6 @@ cleanPip() {
         scriptFeedback success "Pip cache cleared!"
     else
         scriptFeedback error "Some error occured!"
-        exit 1
     fi
 }
 
@@ -114,7 +109,6 @@ cleanOrph() {
             scriptFeedback success "Obsolete packages removed!"
         else
             scriptFeedback error "Some error occured!"
-            exit 1
         fi
     fi
 }
@@ -132,48 +126,41 @@ getCacheSpace
 # start selection here
 selections=(
     "all"
-    "select"
+    "pacman"
+    "paru"
+    "pip"
+    "orphanPkgs"
     "none"
 )
-chooseMenu "What do you want to clean?" selected_choice ${selections[@]}
+chooseMenu "What to clean?" selected_choice ${selections[@]}
 
-if [ "$selected_choice" == "all" ]; then
-    scriptFeedback proc "Clearing all caches..."
-    cleanPacman
-    cleanParu
-    cleanPip
-    cleanOrph
-    scriptFeedback success "All Done!"
-    exit 0
-elif [ "$selected_choice" == "select" ]; then
-    selections=(
-        "pacman"
-        "paru"
-        "pip"
-        "orphanPkgs"
-    )
-    chooseMenu "What cache specifically?" selected_choice ${selections[@]}
-    case $selected_choice in
-        "pacman")
-            scriptFeedback proc "Clearing pacman cache..."
-            cleanPacman
-            ;;
-        "paru")
-            scriptFeedback proc "Clearing paru cache..."
-            cleanParu
-            ;;
-        "pip")
-            scriptFeedback proc "Clearing pip cache..."
-            cleanPip
-            ;;
-        "orphanPkgs")
-            scriptFeedback proc "Removing orphan packages..."
-            cleanOrph
-            ;;
-    esac
-    scriptFeedback success "All Done!"
-    exit 0
-else
-    scriptFeedback normExit "..."
-    exit 0
-fi
+case $selected_choice in
+    "all")
+        scriptFeedback proc "Clearing all caches..."
+        cleanPacman
+        cleanParu
+        cleanPip
+        cleanOrph
+        ;;
+    "pacman")
+        scriptFeedback proc "Clearing pacman cache..."
+        cleanPacman
+        ;;
+    "paru")
+        scriptFeedback proc "Clearing paru cache..."
+        cleanParu
+        ;;
+    "pip")
+        scriptFeedback proc "Clearing pip cache..."
+        cleanPip
+        ;;
+    "orphanPkgs")
+        scriptFeedback proc "Removing orphan packages..."
+        cleanOrph
+        ;;
+    "none")
+        exit 0
+        ;;
+esac
+scriptFeedback success "All Done!"
+exit 0

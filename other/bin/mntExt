@@ -46,19 +46,17 @@ chooseMenu() {
 scriptFeedback() {
     case $1 in
         prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
             ;;
         error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
             ;;
         success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
             ;;
         proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
-            ;;
-        normExit)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
             ;;
     esac
 }
@@ -73,7 +71,7 @@ chooseDrive() {
         fi
     done
     if [ -z "$adj_selections" ]; then
-        scriptFeedback normExit "No mountable drives found!"
+        scriptFeedback proc "No mountable drives found!"
         exit 0
     else
         isDrivePrompt=true
@@ -107,17 +105,13 @@ handleUnmount() {
         if 
         "$SU_SYS" /bin/umount -l $MOUNTPOINT; 
         then
-            clear
             scriptFeedback success "Successfully unmounted!"
             exit 0
         else
             scriptFeedback error "Some error occured!"
-            exit 1
         fi
     else
-        clear
-        scriptFeedback error "Selected mountpoint already occupied!"
-        exit 1
+        exit 0
     fi
 }
 
@@ -135,17 +129,13 @@ handleMount() {
         if
         "$SU_SYS" /bin/mount -t $FS $DRIVE $MOUNTPOINT;
         then
-            clear
             scriptFeedback success "Successfully mounted!"
             exit 0
         else
             scriptFeedback error "Some error occured!"
-            exit 1
         fi
         
     else
-        clear
-        scriptFeedback normExit "Exiting..."
         exit 0
     fi
 }
@@ -165,8 +155,7 @@ fi
 if [ -v 1 ]; then
     MOUNTPOINT=$1
 else
-    echo "Supply a mountpoint!"
-    exit 1
+    scriptFeedback error "Supply a mountpoint!"
 fi
 
 # then check if mountpoint is occupied, if not continue

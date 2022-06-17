@@ -43,29 +43,13 @@ scriptFeedback() {
         prompt)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
             ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
-            ;;
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
             ;;
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
             ;;
-        normExit)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
-            ;;
     esac
-}
-
-syncCombined() {
-    scriptFeedback proc "Syncing combined configs"
-    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
-}
-
-syncBin() {
-    scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
 }
 
 syncNormal() {
@@ -103,6 +87,8 @@ combinedLIST=(
     "$homeCfgExt/electron-flags.conf"
     "$homeCfgExt/electron16-flags.conf"
     "$homeCfgExt/electron17-flags.conf"
+    "$homeCfgExt/electron18-flags.conf"
+    "$homeCfgExt/electron19-flags.conf"
     "$homeCfgExt/Thunar"
 )
 
@@ -141,12 +127,14 @@ if handleYesNo "Include normal?"; then
 fi
 
 if handleYesNo "Include combined?"; then
-    syncCombined
+    scriptFeedback proc "Syncing combined configs"
+    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include ~/.local/bin/ scripts?"; then
-    syncBin
+    scriptFeedback proc "Syncing ~/.local/bin/ scripts"
+    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
     scriptFeedback success "Done"
 fi
 

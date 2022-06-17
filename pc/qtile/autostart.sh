@@ -1,7 +1,6 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # picom
-sleep 2
 killall -q picom
 picom --experimental-backends &
 

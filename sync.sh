@@ -6,20 +6,11 @@ set -uo pipefail
 # give user feedback
 scriptFeedback() {
     case $1 in
-        prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
-            ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
-            ;;
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
             ;;
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
-            ;;
-        normExit)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "/" " $2" 
             ;;
     esac
 }

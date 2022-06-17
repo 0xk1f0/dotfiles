@@ -49,7 +49,8 @@ scriptFeedback() {
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
             ;;
         error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2" 
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
             ;;
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
@@ -68,17 +69,13 @@ handleUnmount() {
         if 
         "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
         then
-            clear
             scriptFeedback success "Successfully unmounted!"
             exit 0
         else
             scriptFeedback error "Some error occured!"
-            exit 1
         fi
     else
-        clear
-        scriptFeedback error "Mountpoint already occupied!"
-        exit 1
+        exit 0
     fi
 }
 
@@ -87,12 +84,10 @@ handleMount() {
     if
     "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
-        clear
         scriptFeedback success "Successfully mounted!"
         exit 0
     else
         scriptFeedback error "Some error occured!"
-        exit 1
     fi
 }
 
@@ -122,7 +117,6 @@ if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
     scriptFeedback success "SMB config files found!"
 else
     scriptFeedback error "No SMB config files found!"
-    exit 1
 fi
 
 # read config files
