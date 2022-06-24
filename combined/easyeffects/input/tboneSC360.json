@@ -1,0 +1,22 @@
+{
+    "input": {
+        "blocklist": [
+            "cava"
+        ],
+        "echo_canceller": {
+            "filter-length": 100,
+            "frame-size": 10,
+            "input-gain": 0.0,
+            "output-gain": 0.0
+        },
+        "plugins_order": [
+            "rnnoise",
+            "echo_canceller"
+        ],
+        "rnnoise": {
+            "input-gain": 0.0,
+            "model-path": "",
+            "output-gain": 0.0
+        }
+    }
+}
