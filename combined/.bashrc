@@ -12,9 +12,9 @@ export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
 
 # archive extraction
-ex () {
+extr () {
   if [ -z "$1" ] ; then
-    echo "No input"
+    echo "no input"
   elif [ -f "$1" ] ; then
     case $1 in
       *.tar.bz2)   tar xjf "$1"    && echo "done" ;;
@@ -34,7 +34,7 @@ ex () {
       *)           echo "'$1': unsupported filetype" ;;
     esac
   else
-    echo "'$1': is invalid"
+    echo "'$1': invalid"
   fi
 }
 
@@ -72,15 +72,11 @@ alias find="fd -p"
 alias du="dust"
 
 # update aliases
-alias mirup="doas reflector -f 20 -l 20 -c ch,at -n 20 --verbose --save /etc/pacman.d/mirrorlist"
-alias cup='doas pacman -Rs $(pacman -Qtdq)'
+alias mirup="doas reflector -f 20 -l 20 -c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
+alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
 alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
-
-# typos
-alias pdw="pwd"
-alias chwon="chown"
 
 # git aliases
 alias gts="git status"
@@ -92,7 +88,6 @@ alias gtcl="git clone"
 
 # more aliases (req youtube-dl, nmap)
 alias yt2audio="youtube-dl -f bestaudio"
-alias pingscan="nmap -sP"
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
 
