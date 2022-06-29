@@ -95,7 +95,7 @@ fi
 
 # backup folder
 scriptFeedback proc "Backup to SMB"
-if /bin/rsync -a --delete --info=name1 $(dirList) $TARGET/; then
+if /bin/rsync -a -h --delete --stats --info=progress2 $(dirList) $TARGET/; then
     scriptFeedback success "Backup finished!"
     exit 0
 else

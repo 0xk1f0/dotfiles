@@ -200,3 +200,10 @@ pacman -S rustup
 # Set default toolchain
 rustup default stable
 ```
+
+# avrdude Arduino Flashing
+
+```
+# Arduino MEGA 2560
+avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
+```

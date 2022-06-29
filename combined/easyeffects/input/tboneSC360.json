@@ -1,17 +1,21 @@
 {
     "input": {
+        "bass_enhancer": {
+            "amount": 6.999999999999991,
+            "blend": 0.0,
+            "floor": 20.0,
+            "floor-active": false,
+            "harmonics": 8.5,
+            "input-gain": 0.0,
+            "output-gain": 0.0,
+            "scope": 80.0
+        },
         "blocklist": [
             "cava"
         ],
-        "echo_canceller": {
-            "filter-length": 100,
-            "frame-size": 10,
-            "input-gain": 0.0,
-            "output-gain": 0.0
-        },
         "plugins_order": [
-            "rnnoise",
-            "echo_canceller"
+            "bass_enhancer",
+            "rnnoise"
         ],
         "rnnoise": {
             "input-gain": 0.0,
