@@ -177,13 +177,13 @@ bkupTarget=
 /folder2/folder3/
 ```
 
-# sysctl Stuff /etc/systctl.d/90-override.conf
+# sysctl Stuff /etc/sysctl.d/90-override.conf
 
 ```bash
 # change network qdisc
 net.core.default_qdisc = fq_pie
 # change likelyness of swapping
-vm.swappiness=60
+vm.swappiness = 60
 ```
 
 # Docker IP-Address Range /lib/systemd/system/docker.service
