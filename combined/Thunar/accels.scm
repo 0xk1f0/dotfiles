@@ -2,8 +2,7 @@
 ; this file is an automated accelerator map dump
 ;
 ; (gtk_accel_path "<Actions>/ThunarLauncher/delete-3" "<Shift>KP_Delete")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/e982c205533cc7e0d15cd122a86fe27a" "")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/12af0f4d767c3cf565a06161c1e5340d" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/c4331b2a2734c4999d592e515eb7d6fd" "")
 ; (gtk_accel_path "<Actions>/ThunarLauncher/delete" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/invert-selection" "")
 ; (gtk_accel_path "<Actions>/ThunarLauncher/open-in-new-tab" "<Primary><Shift>p")
@@ -35,6 +34,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/reload-alt" "F5")
 ; (gtk_accel_path "<Actions>/ThunarWindow/zoom-out-alt" "<Primary>minus")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/select-by-pattern" "<Primary>s")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/03f0716f0d219f8b767d0e5ac6c3da37" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/configure-columns" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/create-document" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/close-tab" "<Primary>w")
@@ -79,7 +79,6 @@
 ; (gtk_accel_path "<Actions>/ThunarLauncher/copy" "<Primary>c")
 ; (gtk_accel_path "<Actions>/ThunarWindow/file-menu" "")
 ; (gtk_accel_path "<Actions>/ThunarStandardView/make-link" "")
-; (gtk_accel_path "<Actions>/ThunarBookmarks/c4331b2a2734c4999d592e515eb7d6fd" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/new-tab" "<Primary>t")
 ; (gtk_accel_path "<Actions>/ThunarWindow/go-menu" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/view-location-selector-pathbar" "")

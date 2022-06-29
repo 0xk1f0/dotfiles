@@ -5,11 +5,19 @@
 # \__, /\__/_/_/\___/     /_/|_/_/_/  \____/
 #   /_/
 
-grey = dict(
-	accentNormal="#787878",
-	accentUrgent="ff0000",
-	accentActive="#784848",
-	accentForeground="#687070",
-	accentBackground="#202020",
-	accentModuleBackground="#202020"
+currentTheme = dict(
+	accentNormal="#303838",
+	accentUrgent="#ff0000",
+	accentActive="#e8e8e8",
+	accentForeground="#a8b0a8",
+	accentBackground="#101818",
+	accentModuleBackground="#101818",
+    barHeight=24,
+    accentModSpace=5,
+    layoutmargin=8,
+    sideSpace=8,
+    font="Open Sans Semibold",
+    monoFont="Roboto Mono",
+    fontsize=12,
+    bordersize=2
 )

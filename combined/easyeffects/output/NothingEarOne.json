@@ -16,7 +16,7 @@
             "left": {
                 "band0": {
                     "frequency": 1249.0,
-                    "gain": 4.0,
+                    "gain": 2.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.36,
@@ -26,7 +26,7 @@
                 },
                 "band1": {
                     "frequency": 2203.0,
-                    "gain": 2.0,
+                    "gain": 1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.22,
@@ -36,7 +36,7 @@
                 },
                 "band2": {
                     "frequency": 5250.0,
-                    "gain": -7.0,
+                    "gain": -3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 6.25,
@@ -46,7 +46,7 @@
                 },
                 "band3": {
                     "frequency": 8504.0,
-                    "gain": 3.0,
+                    "gain": 1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.63,
@@ -56,7 +56,7 @@
                 },
                 "band4": {
                     "frequency": 11.0,
-                    "gain": -5.0,
+                    "gain": -2.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.18,
@@ -66,7 +66,7 @@
                 },
                 "band5": {
                     "frequency": 506.0,
-                    "gain": -3.0,
+                    "gain": -1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.95,
@@ -76,7 +76,7 @@
                 },
                 "band6": {
                     "frequency": 881.0,
-                    "gain": 2.0,
+                    "gain": 0.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.36,
@@ -86,7 +86,7 @@
                 },
                 "band7": {
                     "frequency": 11756.0,
-                    "gain": 2.0,
+                    "gain": 0.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.84,
@@ -96,7 +96,7 @@
                 },
                 "band8": {
                     "frequency": 20014.0,
-                    "gain": -9.0,
+                    "gain": -3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.33,
@@ -111,7 +111,7 @@
             "right": {
                 "band0": {
                     "frequency": 1249.0,
-                    "gain": 4.0,
+                    "gain": 2.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.36,
@@ -121,7 +121,7 @@
                 },
                 "band1": {
                     "frequency": 2203.0,
-                    "gain": 2.0,
+                    "gain": 1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.22,
@@ -131,7 +131,7 @@
                 },
                 "band2": {
                     "frequency": 5250.0,
-                    "gain": -7.0,
+                    "gain": -3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 6.25,
@@ -141,7 +141,7 @@
                 },
                 "band3": {
                     "frequency": 8504.0,
-                    "gain": 3.0,
+                    "gain": 1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.63,
@@ -151,7 +151,7 @@
                 },
                 "band4": {
                     "frequency": 11.0,
-                    "gain": -5.0,
+                    "gain": -2.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.18,
@@ -161,7 +161,7 @@
                 },
                 "band5": {
                     "frequency": 506.0,
-                    "gain": -3.0,
+                    "gain": -1.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.95,
@@ -171,7 +171,7 @@
                 },
                 "band6": {
                     "frequency": 881.0,
-                    "gain": 2.0,
+                    "gain": 0.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 2.36,
@@ -181,7 +181,7 @@
                 },
                 "band7": {
                     "frequency": 11756.0,
-                    "gain": 2.0,
+                    "gain": 0.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.84,
@@ -191,7 +191,7 @@
                 },
                 "band8": {
                     "frequency": 20014.0,
-                    "gain": -9.0,
+                    "gain": -3.0,
                     "mode": "APO (DR)",
                     "mute": false,
                     "q": 0.33,

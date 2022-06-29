@@ -7,37 +7,20 @@
 
 import os
 import subprocess
-from libqtile import layout, hook, widget, bar
-from libqtile.command.graph import _WidgetGraphNode
+from libqtile import layout, widget, bar
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
-import themes
+from themes import currentTheme
 
 # initial config
 mod = "mod4"
 terminal = "kitty"
 applauncher = "rofi"
-filemanager = "pcmanfm"
+filemanager = "thunar"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
-currentTheme = themes.grey
 rofiPower = f"rofi -show power-menu -modi 'power-menu:{scriptPath}rofi-power.sh --no-symbols --choices=shutdown/reboot/logout'"
 rofiScreenshot = f"rofi -show screenshot -modi 'screenshot:{scriptPath}rofiScreenshot.sh'"
-
-# theming
-accentNormal=currentTheme["accentNormal"]
-accentUrgent=currentTheme["accentUrgent"]
-accentActive=currentTheme["accentActive"]
-accentForeground=currentTheme["accentForeground"]
-accentBackground=currentTheme["accentBackground"]
-accentModBackground=currentTheme["accentModuleBackground"]
-barHeight=24
-accentModSpace=6
-layoutmargin=6
-sideSpace=layoutmargin
-font="Open Sans Semibold"
-fontsize=int(barHeight/2)
-bordersize=2
 
 # key binds
 keys = [
@@ -112,19 +95,18 @@ for i in groups:
         Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
     ])
 
+# layout
 layout_border = dict(
-    border_focus = accentActive,
-    border_normal = accentNormal,
-    border_width = bordersize,
-    border_on_single = True,
+    border_focus=currentTheme["accentActive"],
+    border_normal=currentTheme["accentNormal"],
+    border_width=currentTheme["bordersize"],
+    border_on_single=True,
 )
-
 layouts = [
     layout.Bsp(**layout_border,
-        margin = layoutmargin,
-        fair = True,
-        lower_right = False,
-        grow_amount = 5
+        margin=currentTheme["layoutmargin"],
+        fair=True,
+        grow_amount=5
     ),
     layout.Floating(**layout_border),
 ]
@@ -153,94 +135,82 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
 
 #widget settings
 widget_defaults = dict(
-    font=font,
-    fontsize=fontsize,
-    background=accentBackground,
-    foreground=accentForeground,
+    font=currentTheme["font"],
+    fontsize=currentTheme["fontsize"],
+    background=currentTheme["accentBackground"],
+    foreground=currentTheme["accentForeground"],
+    active=currentTheme["accentActive"],
+    inactive=currentTheme["accentForeground"],
     padding=6
 )
-
-extension_defaults = widget_defaults.copy()
 
 sep_default = dict(
     size_percent=100
 )
 
-#add screen
+extension_defaults = widget_defaults.copy()
+
+# screens
 screens = [
     Screen(
         top=bar.Bar(
             [
                 widget.Spacer(
-                    length=sideSpace
+                    length=currentTheme["layoutmargin"]
                 ),
                 widget.GroupBox(
-                    background=accentModBackground,
-                    other_screen_border=accentNormal,
-                    other_current_screen_border=accentNormal,
-                    this_screen_border=accentActive,
-                    this_current_screen_border=accentActive,
-                    active=accentActive,
-                    inactive=accentForeground,
-                    urgent_border=accentUrgent,
+                    other_screen_border=currentTheme["accentNormal"],
+                    other_current_screen_border=currentTheme["accentNormal"],
+                    this_screen_border=currentTheme["accentActive"],
+                    this_current_screen_border=currentTheme["accentActive"],
+                    urgent_border=currentTheme["accentUrgent"],
                     highlight_method="border",
-                    borderwidth=bordersize,
+                    borderwidth=currentTheme["bordersize"],
                     padding=2,
                     rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font=font,
-                    fontsize=fontsize
+                    font=currentTheme["monoFont"]
                 ),
-                widget.Spacer(
-                    length=accentModSpace
-                ),
-                widget.CurrentLayout(
-                    background=accentModBackground
-                ),
+                widget.CurrentLayout(),
                 widget.Spacer(),
                 widget.CPU(
-                    background=accentModBackground,
                     update_interval=3,
                     format='cpu {load_percent}%'
                 ),
                 widget.Spacer(
-                    length=accentModSpace
+                    length=currentTheme["accentModSpace"]
                 ),
                 widget.Clock(
-                    background=accentModBackground,
                     format='%a, %d.%m.%y - %H:%M:%S'
                 ),
                 widget.Spacer(
-                    length=accentModSpace
+                    length=currentTheme["accentModSpace"]
                 ),
                 widget.Memory(
-                    background=accentModBackground,
                     update_interval=3,
                     format='mem {MemPercent}%'
                 ),
                 widget.Spacer(),
                 widget.Wlan(
-                    background=accentModBackground,
                     interface="wlan0",
                     update_interval=5,
                     disconnected_message="dsc",
                     format="wifi {essid} lq {percent:2.0%}"
                 ),
                 widget.Spacer(
-                    length=accentModSpace
+                    length=currentTheme["accentModSpace"]
                 ),
                 widget.Battery(
-                    background=accentModBackground,
                     format='{char} {percent:2.0%}',
                     charge_char="chr",
-                    discharge_char="dsc"
+                    discharge_char="dcr"
                 ),
                 widget.Spacer(
-                    length=sideSpace
+                    length=currentTheme["layoutmargin"]
                 ),
             ],
-            barHeight,
+            currentTheme["barHeight"],
         ),
     ),
 ]

@@ -132,26 +132,22 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
-    # frame
-    frame_color = "#784848"
+    # appearance
+    background = "#101818"
+    foreground = "#a8b0a8"
+    frame_color = "#e8e8e8"
     frame_width = 3
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#202020"
-    foreground = "#687070"
-    timeout = 4
+    timeout = 3
 
 [urgency_normal]
-    background = "#202020"
-    foreground = "#687070"
     timeout = 3
 
 [urgency_critical]
-    background = "#000000"
-    foreground = "#ff0000"
     frame_color = "#ff0000"
     timeout = 10
 
