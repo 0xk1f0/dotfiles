@@ -9,10 +9,10 @@
 include ./theme.conf
 
 # fonts
-font_family      Source Code Pro Regular
+font_family      Source Code Pro Black Regular
 bold_font        Source Code Pro Bold
 italic_font      Source Code Pro Italic
-bold_italic_font Source Code Pro Bold Italic
+bold_italic_font Source Code Pro Black Italic
 font_size 14
 
 # cursor theme

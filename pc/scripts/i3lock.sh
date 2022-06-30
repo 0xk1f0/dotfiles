@@ -10,13 +10,14 @@ F='#444444ff'
 
 i3lock \
 --color=$G \
+--radius 80 \
 --ring-width 4.0 \
+--inside-color=$B \
+--ring-color=$B \
 --insidever-color=$B \
 --ringver-color=$B \
 --insidewrong-color=$B \
 --ringwrong-color=$B \
---inside-color=$B \
---ring-color=$B \
 --line-color=$B \
 --separator-color=$B \
 --verif-color=$W \
@@ -31,8 +32,10 @@ i3lock \
 --date-str="%d.%m.%Y" \
 --ignore-empty-password \
 --show-failed-attempts \
---noinput-text="</>" \
---wrong-text="<!>" \
---verif-text="<..>" \
---lock-text="<..>" \
---lockfailed-text="<!>" \
+--noinput-text="(o.O)" \
+--wrong-text="(TwT)" \
+--verif-text="(-.-)" \
+--wrong-font="Source Code Pro:style=Medium" \
+--verif-font="Source Code Pro:style=Medium" \
+--time-font="Open Sans:style=Bold" \
+--date-font="Open Sans Regular" \
