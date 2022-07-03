@@ -20,7 +20,6 @@ filemanager = "thunar"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
 rofiPower = f"rofi -show power-menu -modi 'power-menu:{scriptPath}rofi-power.sh --no-symbols --choices=shutdown/reboot/logout'"
-rofiScreenshot = f"rofi -show screenshot -modi 'screenshot:{scriptPath}rofiScreenshot.sh'"
 
 # key binds
 keys = [
@@ -59,7 +58,7 @@ keys = [
     Key([mod, "shift"], "w", lazy.spawn(f"{applauncher} -show window"), desc="Launch rofi window"),
     Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"), desc="Lock Screen"),
     Key([mod], "q", lazy.spawn(filemanager), desc="Lock Screen"),
-    Key([mod, "shift"], "s", lazy.spawn(rofiScreenshot), desc="Take Screen"),
+    Key([mod, "shift"], "s", lazy.spawn(f"{scriptPath}takeScreen.sh"), desc="Take Screen"),
 
     # fn keybinds
     Key([], "XF86AudioLowerVolume", lazy.spawn(f"{scriptPath}volumeDown.sh")),

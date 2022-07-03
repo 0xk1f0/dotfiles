@@ -70,6 +70,7 @@ alias lla="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
 alias du="dust"
+alias grep="rg"
 
 # update aliases
 alias mirup="doas reflector -f 20 -l 20 -c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"

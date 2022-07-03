@@ -142,14 +142,14 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    timeout = 3
+    timeout = 2
 
 [urgency_normal]
-    timeout = 3
+    timeout = 2
 
 [urgency_critical]
     frame_color = "#ff0000"
-    timeout = 10
+    timeout = 5
 
 [fullscreen_delay_everything]
     fullscreen = delay
@@ -157,4 +157,3 @@
 [fullscreen_show_critical]
     msg_urgency = critical
     fullscreen = show
-
