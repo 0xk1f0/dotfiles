@@ -31,6 +31,7 @@ exa
 bat
 fd
 dust
+ripgrep
 reflector
 lib32-fontconfig
 ttf-liberation
@@ -52,7 +53,7 @@ expac
 tpm2-tools
 tpm2-tss
 ueberzug
-maim
+scrot
 hdparm
 nomacs
 nm-connection-editor
