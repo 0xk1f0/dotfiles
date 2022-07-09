@@ -1,7 +1,7 @@
 # k1f0's setup file
 
-> This file cotains some info for inital setup of a new system
-> 
+> This file cotains some info for inital setup of a new system 
+
 > Also some things I usually forget which are quite handy
 
 # NTP enabling
