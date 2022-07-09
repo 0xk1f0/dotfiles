@@ -7,6 +7,13 @@ set -uo pipefail
 SMB_CREDS="/home/$USER/.smbcreds"
 SMB_CFG="/home/$USER/.smbcfg"
 
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
     local prompt="$1" outvar="$2"
@@ -28,10 +35,10 @@ chooseMenu() {
             index=$(( $index + 1 ))
         done
         read -s -n3 key
-        if [[ $key == $esc[A ]]
+        if [[ $key == "$esc[A" ]]
         then cur=$(( $cur - 1 ))
             [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == $esc[B ]]
+        elif [[ $key == "$esc[B" ]]
         then cur=$(( $cur + 1 ))
             [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
         elif [[ $key == "" ]]
@@ -58,7 +65,7 @@ scriptFeedback() {
     esac
 }
 
-# unmount SMB if user wants
+# handle unmount SMB
 handleUnmount() {
     selections=(
         "no"
@@ -79,10 +86,10 @@ handleUnmount() {
     fi
 }
 
-# mount SMB
+# handle mount SMB
 handleMount() {
     if
-    "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    $SU_SYS /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
         scriptFeedback success "Successfully mounted!"
         exit 0
@@ -91,39 +98,16 @@ handleMount() {
     fi
 }
 
-# read config
-readConfig() {
-    while read -r line; do
-        case $line in
-            "serverPath"*)
-                SMB_SERVER=$(echo "$line" | cut -d "=" -f 2)
-                ;;
-            "serverMount"*)
-                SMB_MOUNT=$(echo "$line" | cut -d "=" -f 2)
-                ;;
-        esac
-    done < "$1"
-}
-
-# detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
-else
-    SU_SYS="/bin/doas"
-fi
-
-# check if config files exist, else exit
+# check if config files exist read, else exit
 if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
     scriptFeedback success "SMB config files found!"
+    . $SMB_CFG
 else
     scriptFeedback error "No SMB config files found!"
 fi
 
-# read config files
-readConfig "$SMB_CFG"
-
-# then check if mountpoint is occupied, if not continue
-if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
+# check if mountpoint is occupied, if not, mount
+if /bin/mountpoint $SMB_MOUNT >> /dev/null; then
     handleUnmount
 else
     handleMount

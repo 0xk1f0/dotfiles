@@ -4,7 +4,6 @@
 set -uo pipefail
 
 # settings
-SMB_CREDS="/home/$USER/.smbcreds"
 BKUP_CFG="/home/$USER/.bkupcfg"
 SMB_CFG="/home/$USER/.smbcfg"
 
@@ -24,78 +23,34 @@ scriptFeedback() {
     esac
 }
 
-# mount SMB
-handleMount() {
-    if
-    "$SU_SYS" /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
-    then
-        scriptFeedback success "Successfully mounted!"
-    else
-        scriptFeedback error "Some error occured!"
-    fi
-}
-
-# read config
-readConfig() {
-    while read -r line; do
-        case $line in
-            "bkupTarget"*)
-                TARGET=$(echo "$line" | cut -d "=" -f 2)
-                ;;
-            "serverPath"*)
-                SMB_SERVER=$(echo "$line" | cut -d "=" -f 2)
-                ;;
-            "serverMount"*)
-                SMB_MOUNT=$(echo "$line" | cut -d "=" -f 2)
-                ;;
-        esac
-    done < "$1"
-}
-
 # list backup folders
 dirList() {
-    while read -r line; do
-        if [[ "$line" == "/"* ]]; then
-            echo "$line"
-        fi
-    done < "$BKUP_CFG"
+    for dir in ${DIRS[@]}
+    do
+        echo "$dir"
+    done
 }
 
-# detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
+# check if config files exist read, else exit
+if [ -e $SMB_CFG ] && [ -e $BKUP_CFG ]; then
+    scriptFeedback success "Config files found!"
+    . $SMB_CFG
+    . $BKUP_CFG
 else
-    SU_SYS="/bin/doas"
+    scriptFeedback error "Missing config files!"
 fi
-
-# check if config files exist, else exit
-if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
-    scriptFeedback success "SMB config files found!"
-else
-    scriptFeedback error "No SMB config files found!"
-fi
-
-if [ -e $BKUP_CFG ]; then
-    scriptFeedback success "Backup config file found!"
-else
-    scriptFeedback error "No Backup config file found!"
-fi
-
-# read config files
-readConfig "$BKUP_CFG"
-readConfig "$SMB_CFG"
 
 # check if smb is mounted, handle accordingly
 if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
-    scriptFeedback success "SMB already mounted!"
+    scriptFeedback success "SMB mounted!"
 else
-    scriptFeedback proc "Mounting SMB..."
-    handleMount
+    scriptFeedback error "SMB not mounted, can't perform backup!"
+    exit 1
 fi
 
-# backup folder
+# exec backup
 scriptFeedback proc "Backup to SMB"
-if /bin/rsync -a -h --delete --stats --info=progress2 $(dirList) $TARGET/; then
+if /bin/rsync -a -h --delete --stats --info=progress2 $(dirList) $BTARGET/; then
     scriptFeedback success "Backup finished!"
     exit 0
 else

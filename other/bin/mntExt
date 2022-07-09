@@ -3,6 +3,13 @@
 # "bash strict mode"
 set -uo pipefail
 
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
     local prompt="$1" outvar="$2"
@@ -28,10 +35,10 @@ chooseMenu() {
             index=$(( $index + 1 ))
         done
         read -s -n3 key
-        if [[ $key == $esc[A ]]
+        if [[ $key == "$esc[A" ]]
         then cur=$(( $cur - 1 ))
             [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == $esc[B ]]
+        elif [[ $key == "$esc[B" ]]
         then cur=$(( $cur + 1 ))
             [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
         elif [[ $key == "" ]]
@@ -103,7 +110,7 @@ handleUnmount() {
     chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
-        "$SU_SYS" /bin/umount -l $MOUNTPOINT; 
+        $SU_SYS /bin/umount -l $MOUNTPOINT; 
         then
             scriptFeedback success "Successfully unmounted!"
             exit 0
@@ -127,7 +134,7 @@ handleMount() {
     chooseMenu "Correct?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if
-        "$SU_SYS" /bin/mount -t $FS $DRIVE $MOUNTPOINT;
+        $SU_SYS /bin/mount -t $FS $DRIVE $MOUNTPOINT;
         then
             scriptFeedback success "Successfully mounted!"
             exit 0
@@ -143,13 +150,6 @@ handleMount() {
 isDrivePrompt=false
 # first get list of mountable drives
 FETCHDRIVES=$(/bin/lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
-
-# detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
-else
-    SU_SYS="/bin/doas"
-fi
 
 # get supplied mountpoint
 if [ -v 1 ]; then

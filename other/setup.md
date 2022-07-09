@@ -59,29 +59,28 @@ localectl set-x11-keymap de
 # GRUB /etc/default/grub
 
 ```bash
-GRUB_DEFAULT=0
-GRUB_TIMEOUT_STYLE=hidden
-GRUB_TIMEOUT=1
-GRUB_DISTRIBUTOR="Arch"
-
 # default
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
-# enable amd_pstate
+# force enable amd_pstate
 GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
-
+# other
 GRUB_CMDLINE_LINUX=""
+GRUB_DISTRIBUTOR="Arch"
+GRUB_DEFAULT=0
 GRUB_PRELOAD_MODULES="part_gpt part_msdos"
 GRUB_TERMINAL_INPUT=console
 GRUB_GFXMODE=auto
 GRUB_GFXPAYLOAD_LINUX=keep
 GRUB_DISABLE_RECOVERY=true
+GRUB_TIMEOUT_STYLE=hidden
+GRUB_TIMEOUT=1
 ```
 
 # Swap File /swapfile
 
 ```bash
-# generate
-dd if=/dev/zero of=/swapfile bs=1M count=512 status=progress
+# generate 2G file
+dd if=/dev/zero of=/swapfile bs=1M count=2048 status=progress
 # set permssions
 chmod 0600 /swapfile
 # format to swap
@@ -95,10 +94,15 @@ swapon /swapfile
 # Environment Variables /etc/environment
 
 ```bash
+#general
 _JAVA_AWT_WM_NONREPARENTING=1
 QT_QPA_PLATFORMTHEME=qt5gtk2
 EDITOR=nano
+VISUAL=nano
+# vulkan
+DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=0
 AMD_VULKAN_ICD=RADV
+# firefox and obs egl
 MOZ_X11_EGL=1
 OBS_USE_EGL=1
 ```
@@ -139,8 +143,6 @@ paperconfig -p a4
 ```bash
 systemctl enable pcscd.service
 systemctl start pcscd.service
-# Although this should do it, the yubikey desktop app still
-# breaks sometimes, just because
 ```
 
 # YubiKey Registration /etc/u2f_mappings
@@ -165,16 +167,18 @@ auth    include     hwkey
 # Custom SMB Mount Script Config ~/.smbcfg
 
 ```bash
-serverPath=
-serverMount=
+SMB_SERVER=//path/to/server
+serverMount=/path/to/mountpoint
 ```
 
 # Custom Backup Script Config ~/.bkupcfg
 
 ```bash
-bkupTarget=
-/folder1/
-/folder2/folder3/
+BTARGET=/path/to/target
+DIRS=(
+    "/folder1"
+    "/path/to/folder2"
+)
 ```
 
 # sysctl Stuff /etc/sysctl.d/90-override.conf
@@ -203,7 +207,7 @@ rustup default stable
 
 # avrdude Arduino Flashing
 
-```
+```bash
 # Arduino MEGA 2560
 avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
 ```
