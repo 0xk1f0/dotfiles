@@ -37,4 +37,5 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 exec /usr/lib/xfce-polkit/xfce-polkit &
+exec easyeffects --gapplication-service &
 exec qtile start

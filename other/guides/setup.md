@@ -10,47 +10,9 @@
 timedatectl set-ntp true
 ```
 
-# Hosts File /etc/hosts
-
-```bash
-# IPV4
-127.0.0.1       localhost
-127.0.1.1       hostname.localdomain    hostname
-
-# IPV6
-::1             localhost
-fe00::0         ipv6-localnet
-ff00::0         ipv6-mcastprefix
-ff02::1         ipv6-allnodes
-ff02::2         ipv6-allrouters
-ff02::3         ipv6-allhosts
-```
-
-# Language and Locales /etc/locale.conf
-
-```bash
-LANG=C
-LC_CTYPE=en_US.UTF-8
-LC_NUMERIC=de_AT.UTF-8
-LC_TIME=C
-LC_COLLATE=de_AT.UTF-8
-LC_MONETARY=de_AT.UTF-8
-LC_MESSAGES=en_US.UTF-8
-LC_PAPER=de_AT.UTF-8
-LC_NAME=de_AT.UTF-8
-LC_ADDRESS=de_AT.UTF-8
-LC_TELEPHONE="C"
-LC_MEASUREMENT="C"
-LC_IDENTIFICATION="C"
-# requires both "de_AT" and "en_US" locales to be generated
-# see /etc/locale.gen
-```
-
 # Keymap Configuration
 
 ```bash
-# add in /etc/vconsole.conf
-KEYMAP=de
 # set with localectl
 localectl set-keymap de
 localectl set-x11-keymap de
@@ -59,21 +21,15 @@ localectl set-x11-keymap de
 # GRUB /etc/default/grub
 
 ```bash
-# default
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet"
 # force enable amd_pstate
-GRUB_CMDLINE_LINUX_DEFAULT="loglevel=3 quiet initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
-# other
-GRUB_CMDLINE_LINUX=""
-GRUB_DISTRIBUTOR="Arch"
-GRUB_DEFAULT=0
-GRUB_PRELOAD_MODULES="part_gpt part_msdos"
-GRUB_TERMINAL_INPUT=console
-GRUB_GFXMODE=auto
-GRUB_GFXPAYLOAD_LINUX=keep
-GRUB_DISABLE_RECOVERY=true
-GRUB_TIMEOUT_STYLE=hidden
-GRUB_TIMEOUT=1
+GRUB_CMDLINE_LINUX="initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
+
+# fix backlight issues
+GRUB_CMDLINE_LINUX="acpi_backlight=vendor" 
+
+# with full disk encryption
+GRUB_CMDLINE_LINUX="cryptdevice=UUID=[UUID]:root root=/dev/mapper/root"
+GRUB_ENABLE_CRYPTODISK=y
 ```
 
 # Swap File /swapfile

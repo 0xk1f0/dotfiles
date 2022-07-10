@@ -1,7 +1,4 @@
-steam
-lutris
-qemu
-qemu-arch-extra
+qemu-desktop
 libvirt
 virt-manager
 edk2-ovmf
@@ -24,4 +21,3 @@ signal-desktop
 gimp
 minicom
 glow
-gamemode

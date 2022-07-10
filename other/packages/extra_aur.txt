@@ -2,8 +2,4 @@ ncspot-bin
 discord_arch_electron
 visual-studio-code-bin
 cheat-bin
-heroic-games-launcher-bin
-legendary
-obs-vkcapture-git
-v4l2loopback-dkms
-oversteer
+epson-inkjet-printer-escpr2

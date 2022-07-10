@@ -1,0 +1,4 @@
+gamemode
+steam
+lutris
+wine

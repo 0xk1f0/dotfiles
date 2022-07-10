@@ -1,7 +1,7 @@
 # k1f0's install file
 
 > This File cotains some Info for inital Install of a new Arch-based System
-> 
+>  
 > Most Things in here are done as stated in the [ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
 
 # Pre-Install for Boot Media
@@ -26,6 +26,8 @@ timedatectl status
 
 # Disk Setup
 
+## Preperation
+
 ```bash
 # list all disks
 fdisk -l
@@ -43,24 +45,55 @@ fdisk [/dev/sdX] || [/dev/nvme0nX]
 # Swap Partition is optional, Swap File is prefered 
 ```
 
-# Disk Formatting and Mounting
+## Formatting and Mounting
 
 ```bash
 # EXT4 for root
 mkfs.ext4 [/dev/root_part]
 # FAT32 for boot (UEFI)
 mkfs.fat -F32 [/dev/boot_part]
-# Depending on Drive Size/Speed this can take a bit
-# If successful we can proceed
+# Mount boot (UEFI)
+mkdir /boot/EFI
+mount [/dev/boot_part] /boot/EFI
 # Mount root
 mount [/dev/root_part] /mnt
+```
+
+## Formatting and Mounting with Full Disk Encryption
+
+```bash
+# The result will look like this
+#+-----------------------+------------------------+
+#| Boot partition        | LUKS2 encrypted system |
+#|                       | partition              |
+#|                       |                        |
+#| /boot                 | /                      |
+#|                       |                        |
+#|                       | /dev/mapper/root       |
+#|                       |------------------------|
+#| /dev/disk1            | /dev/disk2             |
+#+-----------------------+------------------------+
+# new LUKS for root
+# Make sure to use a strong password
+cryptsetup -y -v luksFormat [/dev/root_part]
+cryptsetup open [/dev/root_part] root
+# EXT4 for encrypted root
+mkfs.ext4 /dev/mapper/root
+# FAT32 for boot (UEFI)
+mkfs.fat -F32 [/dev/boot_part]
+# Mount boot (UEFI)
+# We mount directly to /boot because the unencrypted
+# boot partition will need to house our kernel
+mount [/dev/boot_part] /boot
+# Mount root
+mount /dev/mapper/root /mnt
 ```
 
 # Initial Setup of the New Filesystem
 
 ```bash
 # Run pacstrap to install Base Packages
-pacstrap /mnt base linux linux-headers linux-firmware opendoas nano git
+pacstrap /mnt base linux linux-headers linux-firmware nano git
 # Generate initial fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # chroot into your New System
@@ -70,6 +103,8 @@ arch-chroot /mnt
 # Configuring the New System
 
 ```bash
+# Set a Password
+passwd
 # Set Timezone
 ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
 # Enable NTP
@@ -84,12 +119,16 @@ nano /etc/locale.gen
 locale-gen
 # Set Keymap
 nano /etc/vconsole.conf
-> KEYMAP=de
+> KEYMAP=de-latin1-nodeadkeys
+> FONT=eurlatgr
 # Set Hostname
-nano /etc/hostname                                                                                         
+nano /etc/hostname            
 > yourHostname
-# Set a Password
-passwd
+# Edit hosts file
+nano /etc/hosts
+> 127.0.0.1     localhost
+> 127.0.1.1     hostname.localdomain    hostname
+> ::1           localhost
 # Network Setup
 pacman -S networkmanager
 systemctl enable NetworkManager
@@ -102,6 +141,7 @@ useradd -m [username]
 passwd [username]
 usermod -aG wheel,audio,video,network,uucp [username]
 ```
+
 # Making "wheel" Members Superusers
 
 ```bash
@@ -116,27 +156,41 @@ EDITOR=nano visudo
 
 # Installing the Bootloader
 
+## Normal
+
 ```bash
 # Get a few extra packages
 pacman -S grub efibootmgr dosfstools os-prober mtools
-# Mount boot (UEFI)
-mkdir /boot/EFI
-mount [/dev/boot_part] /boot/EFI
 # Install GRUB
 grub-install --target=x86_64-efi --bootloader-id=Archlinux --recheck
+# Generate grub config
+grub-mkconfig -o /boot/grub/grub.cfg
+```
+
+## With Full Disk Encryption
+
+```bash
+# Get a few extra packages
+pacman -S grub efibootmgr dosfstools os-prober mtools
+# Install GRUB
+grub-install --target=x86_64-efi --bootloader-id=Archlinux --recheck
+# Edit grub default
+nano /etc/default/grub
+> GRUB_CMDLINE_LINUX="cryptdevice=UUID=[UUID-of-root_part]:root root=/dev/mapper/root"
+> GRUB_ENABLE_CRYPTODISK=y
+# Generate grub config
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 # Finishing Up
 
 ```bash
-# Install proper Microcode for your system
-pacman -S amd-ucode #for AMD
-pacman -S intel-ucode #for Intel
 # Exit chroot
 exit
 # Properly unmount the New System
 umount -l /mnt
+# If running encryted setup
+cryptsetup close root
 # Reboot
 reboot
 ```

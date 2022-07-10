@@ -1,0 +1,5 @@
+heroic-games-launcher-bin
+legendary
+obs-vkcapture-git
+v4l2loopback-dkms
+oversteer
