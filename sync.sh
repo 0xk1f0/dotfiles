@@ -33,6 +33,7 @@ combinedLIST=(
     "$combExt/electron18-flags.conf"
     "$combExt/electron19-flags.conf"
     "$combExt/Thunar"
+    "$combExt/pipewire  "
 )
 
 binLIST=(

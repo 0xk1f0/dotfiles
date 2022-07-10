@@ -90,6 +90,7 @@ combinedLIST=(
     "$homeCfgExt/electron18-flags.conf"
     "$homeCfgExt/electron19-flags.conf"
     "$homeCfgExt/Thunar"
+    "$homeCfgExt/pipewire"
 )
 
 normalLIST=(
