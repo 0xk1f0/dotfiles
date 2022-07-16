@@ -62,7 +62,29 @@ scriptFeedback() {
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
             ;;
+        proc)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
+            ;;
     esac
+}
+
+# check if multiple Servers in config exist
+handleMultiple() {
+    shares=()
+    for shr in {1..10}; do
+        if [ -v "SMB_SERVER_$shr" ]; then
+            server=SMB_SERVER_${shr}
+            shares+=(${!server})
+        fi
+    done
+    shareCount=${#shares[@]}
+    if [ $shareCount -gt 1 ]; then
+        chooseMenu "What Drive to mount?" selected_choice ${shares[@]}
+        SMB_SERVER=$selected_choice
+    else
+        SMB_SERVER=$SMB_SERVER_1
+    fi
+    scriptFeedback proc "Share: $SMB_SERVER"
 }
 
 # handle unmount SMB
@@ -110,5 +132,6 @@ fi
 if /bin/mountpoint $SMB_MOUNT >> /dev/null; then
     handleUnmount
 else
+    handleMultiple
     handleMount
 fi
