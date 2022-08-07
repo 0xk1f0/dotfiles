@@ -17,21 +17,21 @@ extr () {
     echo "no input"
   elif [ -f "$1" ] ; then
     case $1 in
-      *.tar.bz2)   tar xjf "$1"    && echo "done" ;;
-      *.tar.gz)    tar xzf "$1"    && echo "done" ;;
-      *.bz2)       bunzip2 "$1"    && echo "done" ;;
-      *.rar)       unrar x "$1"    && echo "done" ;;
-      *.gz)        gunzip "$1"     && echo "done" ;;
-      *.tar)       tar xf "$1"     && echo "done" ;;
-      *.tbz2)      tar xjf "$1"    && echo "done" ;;
-      *.tgz)       tar xzf "$1"    && echo "done" ;;
-      *.zip)       unzip "$1"      && echo "done" ;;
-      *.Z)         uncompress "$1" && echo "done" ;;
-      *.7z)        7z x "$1"       && echo "done" ;;
-      *.deb)       ar x "$1"       && echo "done" ;;
-      *.tar.xz)    tar xf "$1"     && echo "done" ;;
-      *.tar.zst)   unzstd "$1"     && echo "done" ;;
-      *)           echo "'$1': unsupported filetype" ;;
+      *.tar.bz2)   tar xjf "$1" ;;
+      *.tar.gz)    tar xzf "$1" ;;
+      *.bz2)       bunzip2 "$1" ;;
+      *.rar)       unrar x "$1" ;;
+      *.gz)        gunzip "$1"  ;;
+      *.tar)       tar xf "$1"  ;;
+      *.tbz2)      tar xjf "$1" ;;
+      *.tgz)       tar xzf "$1" ;;
+      *.zip)       unzip "$1"   ;;
+      *.Z)         uncompress "$1" ;;
+      *.7z)        7z x "$1" ;;
+      *.deb)       ar x "$1" ;;
+      *.tar.xz)    tar xf "$1" ;;
+      *.tar.zst)   unzstd "$1" ;;
+      *)           echo "'$1': no alias" ;;
     esac
   else
     echo "'$1': invalid"
@@ -87,8 +87,7 @@ alias gtp="git push"
 alias gtu="git pull"
 alias gtcl="git clone"
 
-# more aliases (req youtube-dl, nmap)
-alias yt2audio="youtube-dl -f bestaudio"
+# more aliases
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
 

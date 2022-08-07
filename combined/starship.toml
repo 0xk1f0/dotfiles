@@ -1,7 +1,7 @@
 add_newline = false
 
-format = """$python\
-$cmd_duration\
+format = """$cmd_duration\
+$python\
 $directory\
 $git_branch\
 $character"""

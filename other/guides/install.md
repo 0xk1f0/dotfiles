@@ -4,7 +4,7 @@
 >  
 > Most Things in here are done as stated in the [ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
 
-# Pre-Install for Boot Media
+## Pre-Install for Boot Media
 
 ```bash
 # Load Key Layout
@@ -24,9 +24,9 @@ timedatectl set-ntp true
 timedatectl status
 ```
 
-# Disk Setup
+## Disk Setup
 
-## Preperation
+### Preperation
 
 ```bash
 # list all disks
@@ -63,16 +63,16 @@ mount [/dev/root_part] /mnt
 
 ```bash
 # The result will look like this
-#+-----------------------+------------------------+
-#| Boot partition        | LUKS2 encrypted system |
-#|                       | partition              |
-#|                       |                        |
-#| /boot                 | /                      |
-#|                       |                        |
-#|                       | /dev/mapper/root       |
-#|                       |------------------------|
-#| /dev/disk1            | /dev/disk2             |
-#+-----------------------+------------------------+
+# +-----------------------+------------------------+
+# | Boot partition        | LUKS2 encrypted system |
+# |                       | partition              |
+# |                       |                        |
+# | /boot                 | /                      |
+# |                       |                        |
+# |                       | /dev/mapper/root       |
+# |                       |------------------------|
+# | /dev/disk1            | /dev/disk2             |
+# +-----------------------+------------------------+
 # new LUKS for root
 # Make sure to use a strong password
 cryptsetup -y -v luksFormat [/dev/root_part]
@@ -89,7 +89,7 @@ mount [/dev/boot_part] /boot
 mount /dev/mapper/root /mnt
 ```
 
-# Initial Setup of the New Filesystem
+## Initial Setup of the New Filesystem
 
 ```bash
 # Run pacstrap to install Base Packages
@@ -100,7 +100,7 @@ genfstab -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt
 ```
 
-# Configuring the New System
+## Configuring the New System
 
 ```bash
 # Set a Password
@@ -134,7 +134,7 @@ pacman -S networkmanager
 systemctl enable NetworkManager
 ```
 
-# Adding a New User
+## Adding a New User
 
 ```bash
 useradd -m [username]
@@ -142,7 +142,7 @@ passwd [username]
 usermod -aG wheel,audio,video,network,uucp [username]
 ```
 
-# Making "wheel" Members Superusers
+## Making "wheel" Members Superusers
 
 ```bash
 # With doas
@@ -154,9 +154,9 @@ EDITOR=nano visudo
 > %wheel ALL=(ALL) ALL #uncomment this
 ```
 
-# Installing the Bootloader
+## Installing the Bootloader
 
-## Normal
+### Normal
 
 ```bash
 # Get a few extra packages
@@ -167,7 +167,7 @@ grub-install --target=x86_64-efi --bootloader-id=Archlinux --recheck
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-## With Full Disk Encryption
+### With Full Disk Encryption
 
 ```bash
 # Get a few extra packages
@@ -182,7 +182,7 @@ nano /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-# Finishing Up
+## Finishing Up
 
 ```bash
 # Exit chroot

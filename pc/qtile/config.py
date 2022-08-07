@@ -132,6 +132,7 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
     Match(wm_class="signal"),
     Match(wm_class="nomacs"),
     Match(wm_class="Zathura"),
+    Match(wm_class="Nextcloud"),
 ])
 
 # widget settings
