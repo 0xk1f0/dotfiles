@@ -79,12 +79,12 @@ mouse = [
 
 # groups
 groups = [
-    Group(name="1", label="I"),
-    Group(name="2", label="II"),
-    Group(name="3", label="III"),
-    Group(name="4", label="IV"),
-    Group(name="5", label="V"),
-    Group(name="6", label="VI")
+    Group(name="1", label=""),
+    Group(name="2", label=""),
+    Group(name="3", label=""),
+    Group(name="4", label=""),
+    Group(name="5", label=""),
+    Group(name="6", label="")
 ]
 
 for i in groups:
@@ -165,11 +165,15 @@ screens = [
                     other_current_screen_border=currentTheme["accentNormal"],
                     this_screen_border=currentTheme["accentActive"],
                     this_current_screen_border=currentTheme["accentActive"],
-                    urgent_border=currentTheme["accentUrgent"],
-                    highlight_method="border",
+                    highlight_method="text",
+                    block_highlight_text_color='#ffffff',
+                    active=currentTheme["accentNormal"],
+                    inactive=currentTheme["accentNormal"],
+                    urgent_alert_method='text',
+                    urgent_text='#ff0000',
+                    foreground='#ffffff',
                     borderwidth=currentTheme["bordersize"],
                     padding=2,
-                    rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
                     font=currentTheme["monoFont"]
@@ -216,11 +220,15 @@ screens = [
                     other_current_screen_border=currentTheme["accentNormal"],
                     this_screen_border=currentTheme["accentActive"],
                     this_current_screen_border=currentTheme["accentActive"],
-                    urgent_border=currentTheme["accentUrgent"],
-                    highlight_method="border",
+                    highlight_method="text",
+                    block_highlight_text_color='#ffffff',
+                    active=currentTheme["accentNormal"],
+                    inactive=currentTheme["accentNormal"],
+                    urgent_alert_method='text',
+                    urgent_text='#ff0000',
+                    foreground='#ffffff',
                     borderwidth=currentTheme["bordersize"],
                     padding=2,
-                    rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
                     font=currentTheme["monoFont"]

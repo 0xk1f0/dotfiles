@@ -4,6 +4,8 @@
 >  
 > Most Things in here are done as stated in the [ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
 
+---
+
 ## Pre-Install for Boot Media
 
 ```bash
@@ -19,21 +21,23 @@ iwctl
 > station device scan
 > station [dev] get-networks
 > station [dev] connect [ssid]
-# Enable NTP
-timedatectl set-ntp true
-timedatectl status
 ```
 
-## Disk Setup
+---
 
-### Preperation
+## Partition Setup
 
 ```bash
 # list all disks
 fdisk -l
-# edit a disk
-fdisk [/dev/sdX] || [/dev/nvme0nX]
-# fdisk commands
+# edit the target disk
+fdisk [/dev/disk]
+# We need a root and a boot Partition:
+# boot: Type 1 (EFI System), max 550M
+# root: Type 20 (Linux filesystem)
+# Swap Partition is optional, Swap File is prefered:
+# swap: Type 19 (Linux swap)
+# fdisk commands:
 > d #delete partition
 > t #change partition type
 > w #write changes to disk
@@ -41,25 +45,23 @@ fdisk [/dev/sdX] || [/dev/nvme0nX]
 > q #quit WITHOUT saving
 > m #print help
 > n #add new partition
-# We need a root and a boot (UEFI) Partition
-# Swap Partition is optional, Swap File is prefered 
 ```
 
-## Formatting and Mounting
+### Formatting and Mounting
 
 ```bash
 # EXT4 for root
 mkfs.ext4 [/dev/root_part]
 # FAT32 for boot (UEFI)
 mkfs.fat -F32 [/dev/boot_part]
-# Mount boot (UEFI)
-mkdir /boot/EFI
-mount [/dev/boot_part] /boot/EFI
 # Mount root
 mount [/dev/root_part] /mnt
+# Mount boot (UEFI)
+mkdir /mnt/boot/EFI
+mount [/dev/boot_part] /boot/EFI
 ```
 
-## Formatting and Mounting with Full Disk Encryption
+### Formatting and Mounting with Full Disk Encryption
 
 ```bash
 # The result will look like this
@@ -81,24 +83,29 @@ cryptsetup open [/dev/root_part] root
 mkfs.ext4 /dev/mapper/root
 # FAT32 for boot (UEFI)
 mkfs.fat -F32 [/dev/boot_part]
+# Mount root
+mount /dev/mapper/root /mnt
 # Mount boot (UEFI)
 # We mount directly to /boot because the unencrypted
 # boot partition will need to house our kernel
+mkdir /mnt/boot
 mount [/dev/boot_part] /boot
-# Mount root
-mount /dev/mapper/root /mnt
 ```
 
-## Initial Setup of the New Filesystem
+---
+
+## Initial Setup
 
 ```bash
 # Run pacstrap to install Base Packages
-pacstrap /mnt base linux linux-headers linux-firmware nano git
+pacstrap /mnt base linux linux-headers linux-firmware nano git base-devel
 # Generate initial fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # chroot into your New System
 arch-chroot /mnt
 ```
+
+---
 
 ## Configuring the New System
 
@@ -106,15 +113,13 @@ arch-chroot /mnt
 # Set a Password
 passwd
 # Set Timezone
-ln -sf /usr/share/zoneinfo/Region/City /etc/localtime
-# Enable NTP
-timedatectl set-ntp true
-timedatectl status
+ln -sf /usr/share/zoneinfo/[Region]/[City] /etc/localtime
 # Set Hardware Clock
 hwclock --systohc
-# Choose Locales
+# Choose Locales (in my case DE/EN)
 nano /etc/locale.gen
-> en_US.UTF-8 UTF-8 #uncomment this f.E.
+> en_US.UTF-8 UTF-8
+> de_AT.UTF-8 UTF-8
 # Generate Locales
 locale-gen
 # Set Keymap
@@ -134,13 +139,17 @@ pacman -S networkmanager
 systemctl enable NetworkManager
 ```
 
+---
+
 ## Adding a New User
 
 ```bash
 useradd -m [username]
 passwd [username]
-usermod -aG wheel,audio,video,network,uucp [username]
+usermod -aG wheel,audio,video,network,storage,uucp [username]
 ```
+
+---
 
 ## Making "wheel" Members Superusers
 
@@ -154,6 +163,8 @@ EDITOR=nano visudo
 > %wheel ALL=(ALL) ALL #uncomment this
 ```
 
+---
+
 ## Installing the Bootloader
 
 ### Normal
@@ -162,7 +173,7 @@ EDITOR=nano visudo
 # Get a few extra packages
 pacman -S grub efibootmgr dosfstools os-prober mtools
 # Install GRUB
-grub-install --target=x86_64-efi --bootloader-id=Archlinux --recheck
+grub-install --target=x86_64-efi --bootloader-id=ArchLinux --recheck
 # Generate grub config
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
@@ -173,14 +184,20 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Get a few extra packages
 pacman -S grub efibootmgr dosfstools os-prober mtools
 # Install GRUB
-grub-install --target=x86_64-efi --bootloader-id=Archlinux --recheck
+grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux --recheck
 # Edit grub default
 nano /etc/default/grub
-> GRUB_CMDLINE_LINUX="cryptdevice=UUID=[UUID-of-root_part]:root root=/dev/mapper/root"
+> GRUB_CMDLINE_LINUX="cryptdevice=UUID=[root_part_UUID]:root root=/dev/mapper/root"
 > GRUB_ENABLE_CRYPTODISK=y
+# edit mkinitcpio for encryption support
+nano /etc/mkinitcpio.conf
+> HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
+mkinitcpio -P
 # Generate grub config
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+---
 
 ## Finishing Up
 
