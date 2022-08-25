@@ -85,11 +85,6 @@ combinedLIST=(
     "$homeExt/.bashrc"
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
-    "$homeCfgExt/electron16-flags.conf"
-    "$homeCfgExt/electron17-flags.conf"
-    "$homeCfgExt/electron18-flags.conf"
-    "$homeCfgExt/electron19-flags.conf"
-    "$homeCfgExt/electron20-flags.conf"
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
 )
@@ -108,9 +103,7 @@ binLIST=(
     "$binExt/mntExt"
     "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
-    "$binExt/barrierLayout"
     "$binExt/rsyncToShare"
-    "$binExt/kvmLayout"
     "$binExt/clnJnk"
 )
 

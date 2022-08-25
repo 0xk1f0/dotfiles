@@ -54,3 +54,8 @@ dust
 ripgrep
 reflector
 starship
+pam-u2f
+python-fido2
+pcsc-tools
+clevis
+libpwquality

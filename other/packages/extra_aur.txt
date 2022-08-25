@@ -1,5 +1,6 @@
 ncspot-bin
-discord_arch_electron
+discord-canary-electron-bin
 visual-studio-code-bin
 cheat-bin
 epson-inkjet-printer-escpr2
+ttf-twemoji

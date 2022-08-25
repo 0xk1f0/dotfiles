@@ -1,4 +1,0 @@
-heroic-games-launcher-bin
-legendary
-obs-vkcapture-git
-oversteer

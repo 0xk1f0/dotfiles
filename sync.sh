@@ -28,11 +28,6 @@ combinedLIST=(
     "$combExt/easyeffects"
     "$combExt/starship.toml"
     "$combExt/electron-flags.conf"
-    "$combExt/electron16-flags.conf"
-    "$combExt/electron17-flags.conf"
-    "$combExt/electron18-flags.conf"
-    "$combExt/electron19-flags.conf"
-    "$combExt/electron20-flags.conf"
     "$combExt/Thunar"
     "$combExt/pipewire"
 )
@@ -41,8 +36,6 @@ binLIST=(
     "$binExt/mntExt"
     "$binExt/mntSMB"
     "$binExt/sharePwnagotchy"
-    "$binExt/barrierLayout"
-    "$binExt/kvmLayout"
     "$binExt/rsyncToShare"
     "$binExt/clnJnk"
 )

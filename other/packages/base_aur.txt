@@ -3,6 +3,6 @@ qt5gtk2
 qt6gtk2
 downgrade
 xfce-polkit
-ttf-twemoji
 update-grub
 grub-hook
+mkinitcpio-clevis-hook

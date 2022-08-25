@@ -4,6 +4,7 @@ dunst
 rofi
 rofi-calc
 kitty
+firefox
 thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
@@ -12,6 +13,7 @@ lxappearance
 papirus-icon-theme
 xcursor-neutral
 playerctl
+brightnessctl
 pamixer
 easyeffects
 numlockx

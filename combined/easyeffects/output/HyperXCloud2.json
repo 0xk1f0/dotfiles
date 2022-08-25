@@ -3,6 +3,7 @@
         "bass_enhancer": {
             "amount": 6.999999999999991,
             "blend": 0.0,
+            "bypass": false,
             "floor": 20.0,
             "floor-active": false,
             "harmonics": 8.5,
@@ -12,7 +13,8 @@
         },
         "blocklist": [],
         "equalizer": {
-            "input-gain": -2.6,
+            "bypass": false,
+            "input-gain": -5.5,
             "left": {
                 "band0": {
                     "frequency": 48.0,

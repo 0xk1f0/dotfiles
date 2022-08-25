@@ -3,14 +3,7 @@ libvirt
 virt-manager
 edk2-ovmf
 docker
-pam-u2f
-yubikey-manager
-yubikey-manager-qt
-yubikey-personalization
 yubioath-desktop
-python-fido2
-barrier
-youtube-dl
 wireshark-qt
 gparted
 gping

@@ -31,11 +31,7 @@ localectl set-x11-keymap de
 GRUB_CMDLINE_LINUX="initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
 
 # fix backlight issues
-GRUB_CMDLINE_LINUX="acpi_backlight=vendor" 
-
-# with full disk encryption
-GRUB_CMDLINE_LINUX="cryptdevice=UUID=[UUID]:root root=/dev/mapper/root"
-GRUB_ENABLE_CRYPTODISK=y
+GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
 ```
 
 ---
@@ -141,8 +137,6 @@ auth    include     hwkey
 ## sysctl Stuff /etc/sysctl.d/90-override.conf
 
 ```bash
-# change network qdisc
-net.core.default_qdisc=fq_pie
 # change likelyness of swapping
 vm.swappiness=60
 ```
@@ -173,4 +167,12 @@ rustup default stable
 ```bash
 # Arduino MEGA 2560
 avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
+```
+
+---
+
+## set correct keymap when using barrier
+
+```bash
+setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` de
 ```

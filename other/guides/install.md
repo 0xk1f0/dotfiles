@@ -47,21 +47,9 @@ fdisk [/dev/disk]
 > n #add new partition
 ```
 
-### Formatting and Mounting
+---
 
-```bash
-# EXT4 for root
-mkfs.ext4 [/dev/root_part]
-# FAT32 for boot (UEFI)
-mkfs.fat -F32 [/dev/boot_part]
-# Mount root
-mount [/dev/root_part] /mnt
-# Mount boot (UEFI)
-mkdir /mnt/boot/EFI
-mount [/dev/boot_part] /boot/EFI
-```
-
-### Formatting and Mounting with Full Disk Encryption
+## Formatting and Mounting with Full Disk Encryption
 
 ```bash
 # The result will look like this
@@ -166,19 +154,6 @@ EDITOR=nano visudo
 ---
 
 ## Installing the Bootloader
-
-### Normal
-
-```bash
-# Get a few extra packages
-pacman -S grub efibootmgr dosfstools os-prober mtools
-# Install GRUB
-grub-install --target=x86_64-efi --bootloader-id=ArchLinux --recheck
-# Generate grub config
-grub-mkconfig -o /boot/grub/grub.cfg
-```
-
-### With Full Disk Encryption
 
 ```bash
 # Get a few extra packages
