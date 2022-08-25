@@ -16,6 +16,3 @@ else
 	dunstify -h string:x-dunst-stack-tag:volume "Volume Muted"
 
 fi
-
-# play test sound
-aplay volume.wav

@@ -8,4 +8,4 @@ pamixer -d 5
 dunstify -h string:x-dunst-stack-tag:volume "Volume Decrease" "$(pamixer --get-volume)"
 
 # play test sound
-aplay volume.wav
+aplay $HOME/.config/scripts/volume.wav
