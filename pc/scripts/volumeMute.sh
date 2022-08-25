@@ -17,3 +17,5 @@ else
 
 fi
 
+# play test sound
+aplay volume.wav
