@@ -15,8 +15,8 @@ scriptFeedback() {
     esac
 }
 
-binExt="./other/bin"
-combExt="./combined"
+binExt="./configs/bin"
+combExt="./configs/combined"
 
 combinedLIST=(
     "$combExt/kitty"
@@ -42,7 +42,7 @@ binLIST=(
 
 scriptFeedback proc "Syncing combined configs"
 /bin/rsync -aq --delete $(echo "${combinedLIST[@]}") /home/$USER/.config/
-/bin/rsync -aq --delete ./combined/.bashrc /home/$USER/
+/bin/rsync -aq --delete ./configs/combined/.bashrc /home/$USER/
 scriptFeedback success "Done"
 
 scriptFeedback proc "Syncing ~/.local/bin/ scripts"

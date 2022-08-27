@@ -52,11 +52,6 @@ scriptFeedback() {
     esac
 }
 
-syncNormal() {
-    scriptFeedback proc "Syncing configs for $1"
-    /bin/rsync -aq --delete $(echo "${normalLIST[@]}") ./$1/
-}
-
 handleYesNo() {
     selections=(
         "no"
@@ -117,19 +112,20 @@ chooseMenu "What device are you on?" selected_choice "${selections[@]}"
 platform="$selected_choice"
 
 if handleYesNo "Include normal?"; then
-    syncNormal $platform
+    scriptFeedback proc "Syncing configs for $platform"
+    /bin/rsync -aq --delete $(echo "${normalLIST[@]}") ./configs/$platform/
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include combined?"; then
     scriptFeedback proc "Syncing combined configs"
-    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./combined/
+    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./configs/combined/
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include ~/.local/bin/ scripts?"; then
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./other/bin/
+    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./configs/bin/
     scriptFeedback success "Done"
 fi
 
