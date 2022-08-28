@@ -8,6 +8,10 @@ picom --experimental-backends &
 killall -q dunst
 dunst --startup_notification &
 
+# eww
+killall -q eww
+eww daemon &
+
 # nitrogen
 nitrogen --restore &
 

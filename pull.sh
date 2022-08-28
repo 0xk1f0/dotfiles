@@ -92,6 +92,7 @@ normalLIST=(
     "$homeCfgExt/qtile"
     "$homeCfgExt/polybar"
     "$homeCfgExt/rofi"
+    "$homeCfgExt/eww"
     "$homeCfgExt/leftwm"
     "$homeCfgExt/scripts"
 )
