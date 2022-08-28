@@ -75,6 +75,8 @@ combinedLIST=(
     "$homeCfgExt/nano"
     "$homeCfgExt/picom"
     "$homeCfgExt/zathura"
+    "$homeCfgExt/mpv"
+    "$homeCfgExt/btop"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
     "$homeExt/.bashrc"

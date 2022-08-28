@@ -24,6 +24,8 @@ combinedLIST=(
     "$combExt/nano"
     "$combExt/picom"
     "$combExt/zathura"
+    "$combExt/mpv"
+    "$combExt/btop"
     "$combExt/paru"
     "$combExt/easyeffects"
     "$combExt/starship.toml"

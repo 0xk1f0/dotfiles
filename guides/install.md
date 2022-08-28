@@ -2,6 +2,8 @@
 
 > This File cotains some Info for inital Install of a new Arch-based System
 >  
+> The setup includes Full Disk Encryption, which you can and SHOULD use because your data is important
+>  
 > Most Things in here are done as stated in the [ArchWiki](https://wiki.archlinux.org/title/Installation_guide)
 
 ---
@@ -10,7 +12,7 @@
 
 ```bash
 # Load Key Layout
-loadkeys de
+loadkeys [keymap]
 # Make sure we have Internet
 ip a
 ping 1.1.1.1
@@ -104,23 +106,22 @@ passwd
 ln -sf /usr/share/zoneinfo/[Region]/[City] /etc/localtime
 # Set Hardware Clock
 hwclock --systohc
-# Choose Locales (in my case DE/EN)
+# Choose Locales
 nano /etc/locale.gen
-> en_US.UTF-8 UTF-8
-> de_AT.UTF-8 UTF-8
-# Generate Locales
+> [locale].UTF-8 UTF-8
+# Generate
 locale-gen
 # Set Keymap
 nano /etc/vconsole.conf
-> KEYMAP=de-latin1-nodeadkeys
-> FONT=eurlatgr
+> KEYMAP=[keymap]
+> FONT=[font]
 # Set Hostname
 nano /etc/hostname            
 > yourHostname
 # Edit hosts file
 nano /etc/hosts
 > 127.0.0.1     localhost
-> 127.0.1.1     hostname.localdomain    hostname
+> 127.0.1.1     [hostname].localdomain    [hostname]
 > ::1           localhost
 # Network Setup
 pacman -S networkmanager

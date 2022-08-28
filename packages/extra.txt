@@ -9,6 +9,7 @@ gparted
 gping
 nmap
 mypaint
+mpv
 ipcalc
 signal-desktop
 gimp
