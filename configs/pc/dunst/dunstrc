@@ -12,10 +12,10 @@
     # follow = mouse
 
     # geometry
-    width = 300
+    #width = 300
     #height = 180
-    origin = top-center
-    offset = 0x52
+    origin = top-right
+    offset = 24x48
     scale = 0
 
     # max number of notification
@@ -117,9 +117,6 @@
     # window class spawned by dunst
     class = Dunst
 
-    # corner radius
-    corner_radius = 0
-
     # ignore the dbus closeNotification message.
     ignore_dbusclose = false
 
@@ -132,21 +129,24 @@
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
 
+    # corner radius
+    corner_radius = 4
+
     # frame
-    frame_color = "#e0f0f8"
-    frame_width = 4
+    frame_color = "#d04038"
+    frame_width = 2
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#101818"
-    foreground = "#7888a0"
+    background = "#081030"
+    foreground = "#c0b0b8"
     timeout = 3
 
 [urgency_normal]
-    background = "#101818"
-    foreground = "#7888a0"
+    background = "#081030"
+    foreground = "#c0b0b8"
     timeout = 5
 
 [urgency_critical]
@@ -161,4 +161,3 @@
 [fullscreen_show_critical]
     msg_urgency = critical
     fullscreen = show
-

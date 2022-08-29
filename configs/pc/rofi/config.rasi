@@ -13,9 +13,9 @@ configuration {
 prompt { enabled: false; }
 
 * {
-	bg:				#101818;
-	fg:				#7888a0;
-	nrm:				#485068;
+	bg:				#081030;
+	fg:				#c0b0b8;
+	nrm:				#606888;
 	background-color:		@bg;
 	text-color:			@fg;
 }
@@ -26,6 +26,7 @@ window {
 	location:			center;
 	border:				2;
 	border-color:			@nrm;
+    border-radius:      4;
 }
 
 entry {

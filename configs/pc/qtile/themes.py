@@ -6,12 +6,12 @@
 #   /_/
 
 currentTheme = dict(
-	accentNormal="#485068",
-	accentUrgent="ff0000",
-	accentActive="#e0f0f8",
-	accentForeground="#7888a0",
-	accentBackground="#101818",
-	accentModuleBackground="#101818",
+	accentNormal="#606888",
+	accentUrgent="#ff0000",
+	accentActive="#d04038",
+	accentForeground="#c0b0b8",
+	accentBackground="#081030",
+	accentModuleBackground="#081030",
 	barHeight=24,
 	accentModSpace=5,
 	layoutmargin=8,

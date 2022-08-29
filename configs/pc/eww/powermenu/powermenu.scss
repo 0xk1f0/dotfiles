@@ -3,13 +3,13 @@
   padding: 25px;
   font-family: Font Awesome;
   font-size: 60px;
-  border-radius: 8px;
+  border-radius: 4px;
   button {
-    border-radius: 8px;
+    border-radius: 4px;
     transition: all ease .2s;
     &:hover { background-color: $nrm; }
     .content {
-      border-radius: 8px;
+      border-radius: 4px;
     }
   }
   .shutdown { color: $fg; }
