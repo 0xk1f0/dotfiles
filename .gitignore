@@ -3,3 +3,4 @@ laptop/polybar/scripts
 __pycache__
 *.cbor
 *accels.scm
+paru-bin

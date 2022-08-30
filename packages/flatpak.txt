@@ -1,3 +1,0 @@
-com.microsoft.Teams
-org.telegram.desktop
-com.spotify.Client

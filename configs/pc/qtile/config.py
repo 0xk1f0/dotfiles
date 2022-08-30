@@ -212,7 +212,8 @@ screens = [
                     padding=2,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font=currentTheme["monoFont"]
+                    font=currentTheme["monoFont"],
+                    fontsize=currentTheme["monoFontsize"],
                 ),
                 widget.CurrentLayout(),
                 widget.Spacer(),
@@ -267,7 +268,8 @@ screens = [
                     padding=2,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font=currentTheme["monoFont"]
+                    font=currentTheme["monoFont"],
+                    fontsize=currentTheme["monoFontsize"],
                 ),
                 widget.CurrentLayout(),
                 widget.Spacer(),

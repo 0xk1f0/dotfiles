@@ -12,7 +12,7 @@
       (label :text "" :class "content")
     )
     (button :class "logout"
-            :onclick "loginctl terminate-session '${'XDG_SESSION_ID-'}'"
+            :onclick 'loginctl terminate-user $USER'
       (label :text "" :class "content")
     )
   )

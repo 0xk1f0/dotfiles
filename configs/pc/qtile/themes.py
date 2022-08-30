@@ -17,7 +17,8 @@ currentTheme = dict(
 	layoutmargin=8,
 	sideSpace=8,
 	font="Open Sans Semibold",
-	monoFont="Roboto Mono",
+	monoFont="Font Awesome",
 	fontsize=12,
+	monoFontsize=10,
 	bordersize=2
 )

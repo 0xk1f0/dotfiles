@@ -1,8 +1,0 @@
-picom-git
-qt5gtk2
-qt6gtk2
-downgrade
-xfce-polkit
-update-grub
-grub-hook
-mkinitcpio-clevis-hook
