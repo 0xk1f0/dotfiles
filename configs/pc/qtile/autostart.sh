@@ -12,8 +12,8 @@ dunst --startup_notification &
 killall -q eww
 eww daemon &
 
-# nitrogen
-nitrogen --restore &
+# feh
+feh --bg-fill --no-fehbg /home/$USER/.wallpaper
 
 # numlock
 numlockx &

@@ -9,7 +9,9 @@ G='#040404ff'
 F='#444444ff'
 
 i3lock \
---color=$G \
+--color=$B \
+--image=/home/$USER/.wallpaper \
+--fill \
 --radius 80 \
 --ring-width 4.0 \
 --inside-color=$B \
