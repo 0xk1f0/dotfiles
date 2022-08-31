@@ -103,6 +103,7 @@ binLIST=(
     "$binExt/sharePwnagotchy"
     "$binExt/rsyncToShare"
     "$binExt/clnJnk"
+    "$binExt/setWall"
 )
 
 selections=(

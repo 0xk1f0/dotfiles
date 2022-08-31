@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# "bash strict mode"
+set -uo pipefail
+
+if [ $# -eq 0 ]; then
+    echo "setWall: specify a wallpaper"
+    exit 1
+else
+    if [ -f "$1" ]; then
+        if file "$1" | grep "image" >> /dev/null; then
+            TO_SET=$(readlink -f "$1")
+            /bin/feh --bg-fill --no-fehbg "$TO_SET"
+            /bin/ln -sf "$TO_SET" /home/$USER/.wallpaper
+            exit 0
+        fi
+    fi
+fi
+
+echo "setWall: $1 is invalid"
+exit 1

@@ -40,6 +40,7 @@ binLIST=(
     "$binExt/sharePwnagotchy"
     "$binExt/rsyncToShare"
     "$binExt/clnJnk"
+    "$binExt/setWall"
 )
 
 scriptFeedback proc "Syncing combined configs"
