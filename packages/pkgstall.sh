@@ -65,7 +65,7 @@ scriptFeedback() {
 }
 
 # check for paru
-if command -v /bin/paru >> /dev/null; then
+if ! command -v /bin/paru >> /dev/null; then
     scriptFeedback proc "WARNING: paru not found, options limited!"
     INSTALL_SELECT=(
         "INITIAL"
@@ -93,23 +93,23 @@ chooseMenu "What to install?" selected_choice ${INSTALL_SELECT[@]}
 case $selected_choice in
     "INITAL")
         scriptFeedback proc "Installing Initial Packages (pacman)"
-        pacman -S ${FUNC_VIDEO[@]} ${FUNC_AUDIO[@]} ${FUNC_DRIVERS[@]} ${FUNC_MISC[@]}
+        pacman -S --needed ${FUNC_VIDEO[@]} ${FUNC_AUDIO[@]} ${FUNC_DRIVERS[@]} ${FUNC_MISC[@]}
         ;;
     "BASE")
         scriptFeedback proc "Installing Base Packages (pacman)"
-        $SU_SYS pacman -S ${BSC_DE[@]} ${BSC_FONTSTHEMES[@]} ${BSC_MISC[@]}
+        $SU_SYS pacman -S --needed ${BSC_DE[@]} ${BSC_FONTSTHEMES[@]} ${BSC_MISC[@]}
         scriptFeedback proc "Installing Base Packages (paru)"
-        paru -S ${BSC_DE_AUR[@]} ${BSC_FONTSTHEMES_AUR[@]} ${BSC_MISC_AUR[@]}
+        paru -S --needed ${BSC_DE_AUR[@]} ${BSC_FONTSTHEMES_AUR[@]} ${BSC_MISC_AUR[@]}
         ;;
     "EXTRA")
         scriptFeedback proc "Installing Extra Packages (pacman)"
-        $SU_SYS pacman -S ${EXT_DE[@]} ${EXT_MISC[@]}
+        $SU_SYS pacman -S --needed ${EXT_DE[@]} ${EXT_MISC[@]}
         scriptFeedback proc "Installing Extra Packages (paru)"
-        paru -S ${EXT_DE_AUR[@]} ${EXT_MISC_AUR[@]}
+        paru -S --needed ${EXT_DE_AUR[@]} ${EXT_MISC_AUR[@]}
         ;;
     "VIRT")
         scriptFeedback proc "Installing Virtualization Packages (pacman)"
-        $SU_SYS pacman -S ${EXT_VIRT[@]}
+        $SU_SYS pacman -S --needed ${EXT_VIRT[@]}
         ;;
     "PARU")
         git clone https://aur.archlinux.org/paru-bin
