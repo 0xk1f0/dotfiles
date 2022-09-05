@@ -14,8 +14,8 @@
     # geometry
     width = 300
     #height = 100
-    origin = top-center
-    offset = 0x50
+    origin = top-right
+    offset = 24x48
     scale = 0
 
     # max number of notification
@@ -118,7 +118,7 @@
     class = Dunst
 
     # corner radius
-    corner_radius = 0
+    corner_radius = 4
 
     # ignore the dbus closeNotification message.
     ignore_dbusclose = false
@@ -136,7 +136,7 @@
     background = "#101818"
     foreground = "#a8b0a8"
     frame_color = "#e8e8e8"
-    frame_width = 3
+    frame_width = 2
 
 [experimental]
     per_monitor_dpi = false

@@ -15,56 +15,89 @@ from themes import currentTheme
 # initial config
 mod = "mod4"
 terminal = "kitty"
-applauncher = "rofi"
 filemanager = "thunar"
 scriptPath = "/home/k1f0/.config/scripts/"
 home = os.path.expanduser('~')
-rofiPower = f"rofi -show power-menu -modi 'power-menu:{scriptPath}rofi-power.sh --no-symbols --choices=shutdown/reboot/logout'"
 
 # key binds
 keys = [
     # move windows
-    Key([mod], "Right", lazy.next_screen(), desc="Toggle between screens"),
-    Key([mod], "Left", lazy.prev_screen(), desc="Toggle between screens"),
-    Key([mod], "Down", lazy.group.next_window(), desc="Move focus down"),
-    Key([mod], "Up", lazy.group.prev_window(), desc="Move focus up"),
-    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(), desc="Move window down"),
-    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(), desc="Move window up"),
-    Key([mod, "mod1"], "Down", lazy.layout.flip_down(), desc="Flip Layout downwards"),
-    Key([mod, "mod1"], "Up", lazy.layout.flip_up(), desc="Flip Layout upwards"),
-    Key([mod, "mod1"], "Left", lazy.layout.flip_left(), desc="Flip Layout leftside"),
-    Key([mod, "mod1"], "Right", lazy.layout.flip_right(), desc="Flip Layout rightside"),
-    Key([mod, "control"], "Left", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([mod, "control"], "Right", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([mod, "control"], "Down", lazy.layout.grow_down(), desc="Grow window down"),
-    Key([mod, "control"], "Up", lazy.layout.grow_up(), desc="Grow window up"),
-    Key([mod, "shift"], "n", lazy.layout.normalize(), desc="Normalize Layout"),
+    Key([mod], "Right", lazy.next_screen(),
+    desc="Toggle between screens"),
+    Key([mod], "Left", lazy.prev_screen(),
+    desc="Toggle between screens"),
+    Key([mod], "Down", lazy.group.next_window(),
+    desc="Move focus down"),
+    Key([mod], "Up", lazy.group.prev_window(),
+    desc="Move focus up"),
+    Key([mod, "shift"], "Left", lazy.layout.shuffle_left(),
+    desc="Move window to the left"),
+    Key([mod, "shift"], "Right", lazy.layout.shuffle_right(),
+    desc="Move window to the right"),
+    Key([mod, "shift"], "Down", lazy.layout.shuffle_down(),
+    desc="Move window down"),
+    Key([mod, "shift"], "Up", lazy.layout.shuffle_up(),
+    desc="Move window up"),
+    Key([mod, "mod1"], "Down", lazy.layout.flip_down(),
+    desc="Flip Layout downwards"),
+    Key([mod, "mod1"], "Up", lazy.layout.flip_up(),
+    desc="Flip Layout upwards"),
+    Key([mod, "mod1"], "Left", lazy.layout.flip_left(),
+    desc="Flip Layout leftside"),
+    Key([mod, "mod1"], "Right", lazy.layout.flip_right(),
+    desc="Flip Layout rightside"),
+    Key([mod, "control"], "Left", lazy.layout.grow_left(),
+    desc="Grow window to the left"),
+    Key([mod, "control"], "Right", lazy.layout.grow_right(),
+    desc="Grow window to the right"),
+    Key([mod, "control"], "Down", lazy.layout.grow_down(),
+    desc="Grow window down"),
+    Key([mod, "control"], "Up", lazy.layout.grow_up(),
+    desc="Grow window up"),
+    Key([mod, "shift"], "n", lazy.layout.normalize(),
+    desc="Normalize Layout"),
 
     # modify windows / layout
-    Key([mod], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
-    Key([mod], "b", lazy.window.bring_to_front(), desc="Bring Window to front"),
-    Key([mod], "s", lazy.next_layout(), desc="Toggle between layouts"),
-    Key([mod], "Tab", lazy.next_screen(), desc="Toggle between screens"),
-    Key([mod, "shift"], "c", lazy.window.kill(), desc="Kill focused window"),
-    Key([mod, "shift"], "r", lazy.restart(), desc="Restart Qtile"),
-    Key([mod, "shift"], "q", lazy.spawn(rofiPower), desc="Power Menu"),
+    Key([mod], "f", lazy.window.toggle_fullscreen(),
+    desc="Toggle fullscreen"),
+    Key([mod], "b", lazy.window.bring_to_front(),
+    desc="Bring Window to front"),
+    Key([mod], "s", lazy.next_layout(),
+    desc="Toggle between layouts"),
+    Key([mod], "Tab", lazy.next_screen(),
+    desc="Toggle between screens"),
+    Key([mod, "shift"], "c", lazy.window.kill(),
+    desc="Kill focused window"),
+    Key([mod, "shift"], "r", lazy.restart(),
+    desc="Restart Qtile"),
 
     # custom keybinds
-    Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-    Key([mod], "a", lazy.spawn(f"{applauncher} -show run"), desc="Launch rofi run"),
-    Key([mod, "shift"], "a", lazy.spawn(f"{applauncher} -show calc"), desc="Launch rofi calc"),
-    Key([mod, "shift"], "w", lazy.spawn(f"{applauncher} -show window"), desc="Launch rofi window"),
-    Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"), desc="Lock Screen"),
-    Key([mod], "q", lazy.spawn(filemanager), desc="Lock Screen"),
-    Key([mod, "shift"], "s", lazy.spawn(f"{scriptPath}takeScreen.sh"), desc="Take Screen"),
+    Key([mod], "Return", lazy.spawn(terminal),
+    desc="Launch terminal"),
+    Key([mod], "a", lazy.spawn(f"rofi -show run"),
+    desc="Launch rofi run"),
+    Key([mod, "shift"], "a", lazy.spawn(f"rofi -show calc"),
+    desc="Launch rofi calc"),
+    Key([mod, "shift"], "w", lazy.spawn(f"rofi -show window"),
+    desc="Launch rofi window"),
+    Key([mod], "l", lazy.spawn(f"{scriptPath}i3lock.sh"),
+    desc="Lock Screen"),
+    Key([mod], "q", lazy.spawn(filemanager),
+    desc="Lock Screen"),
+    Key([mod, "shift"], "s", lazy.spawn(f"{scriptPath}takeScreen.sh"),
+    desc="Take Screen"),
+    Key([mod, "shift"], "q", lazy.spawn(f"{scriptPath}ewwPower.sh"),
+    desc="Power Menu"),
 
     # fn keybinds
-    Key([], "XF86AudioLowerVolume", lazy.spawn(f"{scriptPath}volumeDown.sh")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn(f"{scriptPath}volumeUp.sh")),
-    Key([], "XF86MonBrightnessDown", lazy.spawn(f"{scriptPath}brightDown.sh")),
-    Key([], "XF86MonBrightnessUp", lazy.spawn(f"{scriptPath}brightUp.sh")),
+    Key([], "XF86AudioLowerVolume",
+    lazy.spawn(f"{scriptPath}volumeDown.sh")),
+    Key([], "XF86AudioRaiseVolume",
+    lazy.spawn(f"{scriptPath}volumeUp.sh")),
+    Key([], "XF86MonBrightnessDown",
+    lazy.spawn(f"{scriptPath}brightDown.sh")),
+    Key([], "XF86MonBrightnessUp",
+    lazy.spawn(f"{scriptPath}brightUp.sh")),
     Key([], "XF86AudioMute", lazy.spawn(f"{scriptPath}volumeMute.sh")),
     Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
     Key([], "XF86AudioPrev", lazy.spawn("playerctl previous")),
@@ -73,25 +106,31 @@ keys = [
 
 # mouse binds
 mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+    start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+    start=lazy.window.get_size()),
     Click([mod], "Button2", lazy.window.bring_to_front())
 ]
 
 # add groups
 groups = [
-    Group(name="1", label="1",),
-    Group(name="2", label="2"),
-    Group(name="3", label="3"),
-    Group(name="4", label="4"),
-    Group(name="5", label="5"),
-    Group(name="6", label="6")
+    Group(name="1", label=""),
+    Group(name="2", label=""),
+    Group(name="3", label=""),
+    Group(name="4", label=""),
+    Group(name="5", label=""),
+    Group(name="6", label=""),
+    Group(name="7", label=""),
+    Group(name="8", label="")
 ]
 
 for i in groups:
     keys.extend([
-        Key([mod], i.name, lazy.group[i.name].toscreen(),),
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False)),
+        Key([mod], i.name,
+        lazy.group[i.name].toscreen(),),
+        Key([mod, "shift"], i.name,
+        lazy.window.togroup(i.name, switch_group=False)),
     ])
 
 # layout
@@ -162,14 +201,19 @@ screens = [
                     other_current_screen_border=currentTheme["accentNormal"],
                     this_screen_border=currentTheme["accentActive"],
                     this_current_screen_border=currentTheme["accentActive"],
-                    urgent_border=currentTheme["accentUrgent"],
-                    highlight_method="border",
+                    highlight_method="text",
+                    block_highlight_text_color='#ffffff',
+                    active=currentTheme["accentNormal"],
+                    inactive=currentTheme["accentNormal"],
+                    urgent_alert_method='text',
+                    urgent_text='#ff0000',
+                    foreground='#ffffff',
                     borderwidth=currentTheme["bordersize"],
                     padding=2,
-                    rounded=False,
                     disable_drag=True,
                     use_mouse_wheel=False,
-                    font=currentTheme["monoFont"]
+                    font=currentTheme["monoFont"],
+                    fontsize=currentTheme["monoFontsize"],
                 ),
                 widget.CurrentLayout(),
                 widget.Spacer(),
@@ -216,7 +260,7 @@ screens = [
 
 # bools
 follow_mouse_focus = True
-bring_front_click = False
+bring_front_click = True
 cursor_warp = False
 auto_fullscreen = True
 focus_on_window_activation = "urgent"

@@ -1,0 +1,22 @@
+.powermenu {
+  background-color: $bg;
+  padding: 25px;
+  font-family: Font Awesome;
+  font-size: 50px;
+  border-radius: 4px;
+  button {
+    border-radius: 4px;
+    transition: all ease .2s;
+    &:hover { background-color: $nrm; }
+    .content {
+      border-radius: 4px;
+    }
+  }
+  .shutdown { color: $fg; }
+  .reboot { color: $fg; }
+  .logout { color: $fg; }
+}
+
+.powermenu-clickhandler {
+  background-color: rgba(5, 5, 5, 0.9);
+}
