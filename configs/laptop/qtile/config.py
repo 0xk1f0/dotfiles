@@ -169,6 +169,8 @@ floating_layout = layout.Floating(**layout_border, float_rules=[
     Match(wm_class="signal"),
     Match(wm_class="nomacs"),
     Match(wm_class="Zathura"),
+    Match(wm_class="mpv"),
+    Match(wm_class="fstl"),
 ])
 
 #widget settings
