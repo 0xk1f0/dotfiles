@@ -1,0 +1,5 @@
+mode=drun,
+width=500px
+term=kitty
+hide_scroll=true
+location=center

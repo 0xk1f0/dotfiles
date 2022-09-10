@@ -1,0 +1,41 @@
+//     __  ___________                            __              
+//    / /_<  / __/ __ \     _      ______ ___  __/ /_  ____ ______
+//   / //_/ / /_/ / / /____| | /| / / __ `/ / / / __ \/ __ `/ ___/
+//  / ,< / / __/ /_/ /_____/ |/ |/ / /_/ / /_/ / /_/ / /_/ / /    
+// /_/|_/_/_/  \____/      |__/|__/\__,_/\__, /_.___/\__,_/_/     
+//                                      /____/                    
+                                     
+{
+    "layer": "top",
+    "position": "top",
+    "height": 24, 
+    // "width": 1280,
+    "spacing": 4,
+    "modules-left": [],
+    "modules-center": ["cpu","clock","memory"],
+    "modules-right": ["network"],
+
+    // Modules configuration
+
+    "clock": {
+        // "timezone": "America/New_York",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format-alt": "{:%Y-%m-%d}"
+    },
+    "cpu": {
+        "format": "{usage}% ",
+        "tooltip": false
+    },
+    "memory": {
+        "format": "{}% "
+    },
+    "network": {
+        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "format-wifi": "{essid} ({signalStrength}%) ",
+        "format-ethernet": "{ipaddr}/{cidr} ",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "Disconnected ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+}
