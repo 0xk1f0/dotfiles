@@ -96,6 +96,20 @@ case $selected_choice in
         pacman -S --needed ${FUNC_VIDEO[@]} ${FUNC_AUDIO[@]} ${FUNC_DRIVERS[@]} ${FUNC_MISC[@]}
         ;;
     "BASE")
+        FV_LIST=("X11" "WAYLAND")
+        chooseMenu "X11 or Wayland?" selected_choice ${FV_LIST[@]}
+        case $selected_choice in
+            "X11")
+                scriptFeedback proc "Installing DE ($selected_choice)"
+                $SU_SYS pacman -S --needed ${DE_X[@]}
+                paru -S --needed ${DE_X_AUR[@]}
+                ;;
+            "WAYLAND")
+                scriptFeedback proc "Installing DE ($selected_choice)"
+                $SU_SYS pacman -S --needed ${DE_WAY[@]}
+                paru -S --needed ${DE_WAY_AUR[@]}
+                ;;
+        esac
         scriptFeedback proc "Installing Base Packages (pacman)"
         $SU_SYS pacman -S --needed ${BSC_DE[@]} ${BSC_FONTSTHEMES[@]} ${BSC_MISC[@]}
         scriptFeedback proc "Installing Base Packages (paru)"
