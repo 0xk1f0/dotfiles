@@ -6,7 +6,7 @@
  
 [global]
     # monitor choice
-    monitor = 0
+    monitor = 1
 
     # notification follows mouse
     # follow = mouse
@@ -15,7 +15,7 @@
     #width = 300
     #height = 180
     origin = top-right
-    offset = 24x48
+    offset = 24x24
     scale = 0
 
     # max number of notification

@@ -73,7 +73,7 @@ alias du="dust"
 alias grep="rg"
 
 # update aliases
-alias mirup="doas reflector -f 20 -l 20 -c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirup="doas reflector -p https -f 20 -l 20 -c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
 alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'

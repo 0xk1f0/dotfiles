@@ -30,12 +30,10 @@
         "format": "{}% "
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
-        "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
-        "format-disconnected": "Disconnected ⚠",
+        "interface": "eth0",
+        "format-ethernet": "{ifname}",
+        "format-linked": "{ifname} no IP",
+        "format-disconnected": "dsc",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
 }

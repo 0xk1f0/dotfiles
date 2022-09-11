@@ -96,7 +96,6 @@ normalLIST=(
     "$homeCfgExt/leftwm"
     "$homeCfgExt/hypr"
     "$homeCfgExt/waybar"
-    "$homeCfgExt/wofi"
     "$homeCfgExt/scripts"
 )
 
