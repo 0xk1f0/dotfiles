@@ -82,18 +82,16 @@ combinedLIST=(
     "$homeExt/.bashrc"
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
+    "$homeCfgExt/code-flags.conf"
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
 )
 
 normalLIST=(
     "$homeCfgExt/dunst"
-    "$homeCfgExt/herbstluftwm"
     "$homeCfgExt/qtile"
-    "$homeCfgExt/polybar"
     "$homeCfgExt/rofi"
     "$homeCfgExt/eww"
-    "$homeCfgExt/leftwm"
     "$homeCfgExt/hypr"
     "$homeCfgExt/waybar"
     "$homeCfgExt/scripts"

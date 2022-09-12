@@ -3,6 +3,6 @@
 LOCKER="/home/$USER/.config/scripts/swaylock.sh"
 
 swayidle -w \
-timeout 120 'hyprctl dispatch dpms off' \
-timeout 150 $LOCKER \
+timeout 600 'hyprctl dispatch dpms off' \
+timeout 720 $LOCKER \
 resume 'hyprctl dispatch dpms on' \

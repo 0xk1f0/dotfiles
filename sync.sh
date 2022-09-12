@@ -30,6 +30,7 @@ combinedLIST=(
     "$combExt/easyeffects"
     "$combExt/starship.toml"
     "$combExt/electron-flags.conf"
+    "$combExt/code-flags.conf"
     "$combExt/Thunar"
     "$combExt/pipewire"
 )

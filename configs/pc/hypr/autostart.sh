@@ -11,7 +11,7 @@ dunst --startup_notification &
 # GTK
 gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'Simp1e-Dark'
+gsettings set org.gnome.desktop.interface cursor-theme 'Neutral'
 gsettings set org.gnome.desktop.interface font-name 'Open Sans 11'
 
 # waybar
