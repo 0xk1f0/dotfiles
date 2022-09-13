@@ -77,7 +77,6 @@ alias mirup="doas reflector -p https -f 20 -l 20 -c ch,at,de -n 20 --verbose --s
 alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
-alias gpgup='gpg --refresh-keys --keyserver hkps://keys.openpgp.org'
 
 # git aliases
 alias gts="git status"
