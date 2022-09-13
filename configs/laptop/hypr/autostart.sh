@@ -4,8 +4,8 @@ killall -q dunst -9
 dunst --startup_notification &
 
 # eww
-# killall -q eww
-# eww daemon &
+killall -q eww -9
+eww daemon &
 
 # GTK
 gsettings set org.gnome.desktop.interface gtk-theme 'AdG-Dark'

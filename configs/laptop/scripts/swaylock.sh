@@ -1,14 +1,9 @@
 #!/usr/bin/env bash
 
 B='#00000000'
-C='#ffffff11'
-D='#ffffffff'
-W='#ffffffff'
-E='#ff0000ff'
 G='#040404ff'
-F='#444444ff'
 
-swaylock \
+swaylock -f \
 --color=$G \
 --image /home/$USER/.wallpaper \
 --scaling fill \
