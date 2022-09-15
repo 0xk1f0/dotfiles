@@ -27,6 +27,7 @@
 
 (defwindow powermenu-exit
   :monitor 0
+  :stacking "fg"
   :geometry (geometry :x "0px"
                       :y "0px"
                       :width "100%"
@@ -36,6 +37,7 @@
 
 (defwindow powermenu
   :monitor 0
+  :stacking "fg"
   :geometry (geometry :x "0px"
                       :y "0px"
                       :width "500px"

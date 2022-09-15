@@ -9,8 +9,7 @@
     "layer": "top",
     "position": "top",
     "height": 24, 
-    // "width": 1280,
-    "spacing": 4,
+    "spacing": 8,
     "modules-left": [],
     "modules-center": ["cpu","clock","memory"],
     "modules-right": ["network"],
@@ -18,22 +17,26 @@
     // Modules configuration
 
     "clock": {
-        // "timezone": "America/New_York",
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "format": "{:%H:%M:%S}",
+        "format-alt": "{:%d-%m-%Y}",
+        "tooltip": false,
+        "interval": 1,
     },
     "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
+        "format": "cpu {usage}%",
+        "tooltip": false,
+        "interval": 5,
     },
     "memory": {
-        "format": "{}% "
+        "format": "mem {}%",
+        "tooltip": false,
+        "interval": 5,
     },
     "network": {
-        "interface": "eth0",
-        "format-ethernet": "{ifname}",
-        "format-linked": "{ifname} no IP",
+        "format-wifi": "{ifname} {essid} lq {signalStrength}%",
+        "format-ethernet": "{ifname} {bandwidthUpBytes} - {bandwidthDownBytes}",
         "format-disconnected": "dsc",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "interval": 2,
+        "tooltip": false,
     },
 }
