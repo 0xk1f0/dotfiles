@@ -54,6 +54,14 @@ mkinitcpio -P
 
 ---
 
+## TPM 2.0 clear DA Lockdown Mode
+
+```bash
+tpm2_dictionarylockout --clear-lockout
+```
+
+---
+
 ## Swap File /swapfile
 
 ```bash

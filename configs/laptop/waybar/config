@@ -29,9 +29,19 @@
     "cpu": {
         "format": "cpu {usage}%",
         "tooltip": false,
+        "interval": 5,
     },
     "memory": {
         "format": "mem {}%",
+        "tooltip": false,
+        "interval": 5,
+    },
+    "network": {
+        "format-wifi": "{ifname} {essid} lq {signalStrength}%",
+        "format-ethernet": "{ifname} {bandwidthUpBytes} - {bandwidthDownBytes}",
+        "format-disconnected": "dsc",
+        "interval": 2,
+        "tooltip": false,
     },
     "battery": {
         "format": "dsc {capacity}%",
@@ -39,13 +49,5 @@
         "format-full": "chrgd",
         "format-alt": "{capacity}%",
         "tooltip": false,
-    },
-    "network": {
-        "interface": "wlan0",
-        "format-wifi": "wifi {essid} lq {signalStrength}%",
-        "format-linked": "wifi {ifname} no IP",
-        "format-disconnected": "dsc",
-        "format-alt": "wifi {ifname} ?",
-        "interval": 5,
     },
 }

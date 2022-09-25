@@ -1,7 +1,31 @@
+* {
+    font-size: 13px;
+    font-family: Open Sans, sans-serif;
+    font-weight: 600;
+}
+
 window#waybar {
-    font-family: "Font Awesome", "Open Sans";
-    font-size: 14px;
-    background-color: #101818;
+    background-color: #181818;
     border-bottom: none;
-    color: #a8b0a8;
+    color: #d0d0b0;
+}
+
+#clock {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#network {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#cpu {
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#memory {
+    padding-left: 4px;
+    padding-right: 4px;
 }
