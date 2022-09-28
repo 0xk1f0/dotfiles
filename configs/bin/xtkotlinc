@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+
+# "bash strict mode"
+set -uo pipefail
+
+#compile and run functions
+compile() {
+    printf "\e[1m\e[92m%s\e[0m\n" "compiling.."
+    kotlinc $1 -include-runtime -d main.jar
+}
+run() {
+    java -jar $1
+}
+
+# starts here
+if [ $# -eq 0 ]; then
+    echo "xtkotlinc: specify operation [c/r/cr]"
+    exit 1
+else
+    case "$1" in
+        "c")
+            compile "./*.kt"
+            exit 0
+            ;;
+        "r")
+            run "./main.jar"
+            exit 0
+            ;;
+        "cr")
+            compile ./*.kt
+            if [ "$?" -eq 0 ]; then
+                run "./main.jar"
+                exit 0
+            else
+                echo "xtkotlinc: error during compile"
+                exit 1
+            fi
+            ;;
+        *)
+            echo "xtkotlinc: unsupported operation: '$1'"
+            exit 1
+            ;;
+    esac
+fi

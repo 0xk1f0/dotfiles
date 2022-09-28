@@ -6,6 +6,8 @@
 //                                      /____/                    
                                      
 {
+    // Base Config
+
     "layer": "top",
     "position": "top",
     "height": 24, 
@@ -20,23 +22,23 @@
         "format": "{:%H:%M:%S}",
         "format-alt": "{:%d-%m-%Y}",
         "tooltip": false,
-        "interval": 1,
+        "interval": 1
     },
     "cpu": {
         "format": "cpu {usage}%",
         "tooltip": false,
-        "interval": 5,
+        "interval": 5
     },
     "memory": {
         "format": "mem {}%",
         "tooltip": false,
-        "interval": 5,
+        "interval": 5
     },
     "network": {
         "format-wifi": "{ifname} {essid} lq {signalStrength}%",
         "format-ethernet": "{ifname} {bandwidthUpBytes} - {bandwidthDownBytes}",
         "format-disconnected": "dsc",
         "interval": 2,
-        "tooltip": false,
+        "tooltip": false
     },
 }

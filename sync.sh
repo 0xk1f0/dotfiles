@@ -42,6 +42,7 @@ binLIST=(
     "$binExt/rsyncToShare"
     "$binExt/clnJnk"
     "$binExt/setWall"
+    "$binExt/xtkotlinc"
 )
 
 scriptFeedback proc "Syncing combined configs"
