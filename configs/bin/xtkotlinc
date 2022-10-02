@@ -6,7 +6,7 @@ set -uo pipefail
 #compile and run functions
 compile() {
     printf "\e[1m\e[92m%s\e[0m\n" "compiling.."
-    kotlinc $1 -include-runtime -d main.jar
+    kotlinc -include-runtime -d main.jar $1
 }
 run() {
     java -jar $1
@@ -19,7 +19,7 @@ if [ $# -eq 0 ]; then
 else
     case "$1" in
         "c")
-            compile "./*.kt"
+            compile "*.kt"
             exit 0
             ;;
         "r")
@@ -27,7 +27,7 @@ else
             exit 0
             ;;
         "cr")
-            compile ./*.kt
+            compile "*.kt"
             if [ "$?" -eq 0 ]; then
                 run "./main.jar"
                 exit 0
