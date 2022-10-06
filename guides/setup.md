@@ -188,3 +188,12 @@ avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
 # barrier creates a new keyboard input, which defaults to english layout
 setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` [keymap]
 ```
+
+---
+
+## Lockup caused by gnome-keyring for /usr/bin/mysql-workbench
+
+```bash
+# comment this out
+export GDK_BACKEND=x11
+```
