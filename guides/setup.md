@@ -196,4 +196,6 @@ setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/
 ```bash
 # comment this out
 export GDK_BACKEND=x11
+# THIS BREAKS THE ERR-EDITOR AND SOME OTHER TINGS
+# Only fix for this broken mess would be to make a seperate executable
 ```

@@ -65,8 +65,7 @@ alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@"
 alias ll="exa -g@lhUm"
-alias la="exa -1g@a"
-alias lla="exa -g@lahUm"
+alias la="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias find="fd -p"
 alias du="dust"
@@ -89,6 +88,7 @@ alias gtcl="git clone"
 # more aliases
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
+alias fdpkg="pacman -Ss | paste -d '' - - | fzf --multi --preview 'pacman -Si {1}'"
 
 # prompt
 eval "$(starship init bash)"
