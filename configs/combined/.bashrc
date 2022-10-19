@@ -72,7 +72,8 @@ alias du="dust"
 alias grep="rg"
 
 # update aliases
-alias mirup="doas reflector -p https -f 20 -l 20 -c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirup="doas reflector -p https -f 20 -l 20 \
+-c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
 alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
@@ -88,7 +89,13 @@ alias gtcl="git clone"
 # more aliases
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
-alias fdpkg="pacman -Ss | paste -d '' - - | fzf --multi --preview 'pacman -Si {1}'"
+alias fdpkg="pacman -Ss | paste -d '' - - | \
+fzf -e --multi --preview 'pacman -Si {1}' | \
+cut -d ' ' -f 1 | xargs -ro doas pacman -S"
+alias ybi2fa=\
+"ykman oath accounts list | fzf -e | \
+xargs -ro ykman oath accounts code | \
+cut -d ' ' -f 3"
 
 # prompt
 eval "$(starship init bash)"
