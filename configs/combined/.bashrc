@@ -95,7 +95,7 @@ cut -d ' ' -f 1 | xargs -ro doas pacman -S"
 alias ybi2fa=\
 "ykman oath accounts list | fzf -e | \
 xargs -ro ykman oath accounts code | \
-cut -d ' ' -f 3"
+cut -d ' ' -f 3 | wl-copy -n && echo 'Copied!'"
 
 # prompt
 eval "$(starship init bash)"

@@ -11,6 +11,11 @@
             :onclick "systemctl reboot"
       (label :text "" :class "content")
     )
+    (button :class "lock"
+            :onclick 'eww close powermenu powermenu-exit && \
+            /home/$USER/.config/scripts/swaylock.sh'
+      (label :text "" :class "content")
+    )
     (button :class "logout"
             :onclick 'loginctl terminate-user $USER'
       (label :text "" :class "content")
@@ -26,6 +31,7 @@
 )
 
 (defwindow powermenu-exit
+  :focusable true
   :monitor 0
   :stacking "fg"
   :geometry (geometry :x "0px"
