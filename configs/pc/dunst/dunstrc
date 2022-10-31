@@ -15,7 +15,7 @@
     #width = 300
     #height = 180
     origin = top-right
-    offset = 24x24
+    offset = 30x30
     scale = 0
 
     # max number of notification
@@ -90,20 +90,17 @@
     icon_position = left
     
     # icon size
-    min_icon_size = 0
+    min_icon_size = 16
     max_icon_size = 32
 
     # default icon path.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/24x24/actions/
 
     # notification from history be sticky or timeout like normal
-    sticky_history = yes
+    sticky_history = no
 
     # max notifications kept in history
     history_length = 10
-
-    # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
 
     # browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -150,7 +147,7 @@
 [urgency_critical]
     foreground = "#ff0000"
     frame_color = "#ff0000"
-    timeout = 10
+    timeout = 8
 
 [fullscreen_delay_everything]
     fullscreen = delay

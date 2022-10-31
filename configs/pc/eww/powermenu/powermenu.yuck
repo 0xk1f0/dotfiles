@@ -1,4 +1,3 @@
-# main button widget
 (defwidget powermenu []
   (box :class "powermenu"
        :orientation "h"
@@ -24,7 +23,6 @@
   )
 )
 
-# blur onclick area for cancel
 (defwidget powermenu-clickhandler []
   (button :class "powermenu-clickhandler"
           :onclick "eww close powermenu powermenu-blur0 powermenu-blur1"
@@ -32,7 +30,6 @@
   )
 )
 
-# def powermenu buttons
 (defwindow powermenu
   :monitor 0
   :stacking "fg"
@@ -43,7 +40,6 @@
                       :anchor "center")
 (powermenu))
 
-# mon 0
 (defwindow powermenu-blur0
   :focusable true
   :monitor 0
@@ -55,7 +51,6 @@
                       :anchor "center")
 (powermenu-clickhandler))
 
-# mon 1
 (defwindow powermenu-blur1
   :focusable true
   :monitor 1

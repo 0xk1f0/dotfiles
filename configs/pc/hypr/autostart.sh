@@ -27,7 +27,7 @@ waybar &
 
 # swayidle
 killall -q swayidle -9
-LOCKER="/home/$USER/.config/scripts/swaylock.sh"
+LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
 swayidle -w \
 timeout 900 $LOCKER \
 timeout 960 'hyprctl dispatch dpms off' \
