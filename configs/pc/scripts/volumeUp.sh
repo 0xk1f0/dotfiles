@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 #Up Volume
-pamixer -i 5
+wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
 
 #alert user
-#notify-send "Volume Increase" "$(pamixer --get-volume)" -h string:x-canonical-private-synchronous:volume
-dunstify -h string:x-dunst-stack-tag:volume "Volume Increase" "$(pamixer --get-volume)"
+dunstify -h string:x-dunst-stack-tag:volume "Volume Increase" \
+"$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d '.' -f 2)"

@@ -1,6 +1,6 @@
 {
     "output": {
-        "bass_enhancer": {
+        "bass_enhancer#0": {
             "amount": 6.999999999999991,
             "blend": 0.0,
             "bypass": false,
@@ -12,9 +12,10 @@
             "scope": 60.0
         },
         "blocklist": [],
-        "equalizer": {
+        "equalizer#0": {
+            "balance": 0.0,
             "bypass": false,
-            "input-gain": -5.5,
+            "input-gain": -5.0,
             "left": {
                 "band0": {
                     "frequency": 48.0,
@@ -120,6 +121,8 @@
             "mode": "IIR",
             "num-bands": 10,
             "output-gain": 0.0,
+            "pitch-left": 0.0,
+            "pitch-right": 0.0,
             "right": {
                 "band0": {
                     "frequency": 48.0,
@@ -225,8 +228,8 @@
             "split-channels": false
         },
         "plugins_order": [
-            "equalizer",
-            "bass_enhancer"
+            "equalizer#0",
+            "bass_enhancer#0"
         ]
     }
 }

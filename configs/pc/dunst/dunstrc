@@ -133,24 +133,21 @@
     corner_radius = 4
 
     # frame
-    frame_color = "#d04038"
     frame_width = 2
+    frame_color = "#e0e0e8"
+    background = "#101840"
+    foreground = "#d890a8"
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#081030"
-    foreground = "#c0b0b8"
     timeout = 3
 
 [urgency_normal]
-    background = "#081030"
-    foreground = "#c0b0b8"
     timeout = 5
 
 [urgency_critical]
-    background = "#000000"
     foreground = "#ff0000"
     frame_color = "#ff0000"
     timeout = 10

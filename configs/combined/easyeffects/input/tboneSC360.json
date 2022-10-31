@@ -1,8 +1,9 @@
 {
     "input": {
-        "bass_enhancer": {
+        "bass_enhancer#0": {
             "amount": 6.999999999999991,
             "blend": 0.0,
+            "bypass": false,
             "floor": 20.0,
             "floor-active": false,
             "harmonics": 8.5,
@@ -14,13 +15,29 @@
             "cava"
         ],
         "plugins_order": [
-            "bass_enhancer",
-            "rnnoise"
+            "bass_enhancer#0",
+            "rnnoise#0",
+            "speex#0"
         ],
-        "rnnoise": {
+        "rnnoise#0": {
+            "bypass": false,
             "input-gain": 0.0,
             "model-path": "",
             "output-gain": 0.0
+        },
+        "speex#0": {
+            "bypass": false,
+            "enable-agc": true,
+            "enable-denoise": false,
+            "enable-dereverb": false,
+            "input-gain": 0.0,
+            "noise-suppression": -40,
+            "output-gain": 0.0,
+            "vad": {
+                "enable": true,
+                "probability-continue": 90,
+                "probability-start": 95
+            }
         }
     }
 }
