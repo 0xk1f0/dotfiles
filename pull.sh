@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# "bash strict mode"
+# bash strict
 set -uo pipefail
 
 # modified version of https://askubuntu.com/a/1386907
@@ -130,7 +130,7 @@ fi
 
 if handleYesNo "Include ~/.local/bin/ scripts?"; then
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./configs/bin/
+    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./scripts/
     scriptFeedback success "Done"
 fi
 

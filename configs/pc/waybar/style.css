@@ -1,45 +1,54 @@
+@define-color fg #d890a8;
+@define-color bg #101840;
+@define-color nrm #784858;
+@define-color act #e0e0e8;
+@define-color urg #ff0000;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
 window#waybar {
-    background-color: #101840;
-    border-bottom: none;
-    color: #e0e0e8;
+    background-color: @bg;
+    color: @fg;
+    border: none;
+    border-radius: 0px;
+    font-size: 13px;
 }
 
 #clock {
-    padding-left: 8px;
-    padding-right: 8px;
     font-family: Open Sans SemiBold;
-    font-size: 13px;
+    padding: 1px 4px;
 }
 
 #network {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 1px 8px;
     font-family: Open Sans SemiBold;
-    font-size: 13px;
 }
 
 #cpu {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 1px 4px;
     font-family: Open Sans SemiBold;
-    font-size: 13px;
 }
 
 #memory {
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 1px 4px;
     font-family: Open Sans SemiBold;
-    font-size: 13px;
 }
 
 #workspaces {
     font-family: Font Awesome;
-    font-size: 10px;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 1px 8px;
 }
 
 #workspaces button {
-    padding-left: 4px;
-    padding-right: 4px;
+    color: @fg;
+    padding: 1px 4px;
+    border: none;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.0);
+    color: @act;
 }

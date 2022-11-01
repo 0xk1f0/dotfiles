@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# "bash strict mode"
+# bash strict
 set -uo pipefail
 
 # give user feedback
@@ -15,7 +15,7 @@ scriptFeedback() {
     esac
 }
 
-binExt="./configs/bin"
+binExt="./scripts"
 combExt="./configs/combined"
 
 combinedLIST=(

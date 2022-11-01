@@ -15,7 +15,7 @@
     #width = 300
     #height = 180
     origin = top-right
-    offset = 30x30
+    offset = 8x8
     scale = 0
 
     # max number of notification
@@ -131,9 +131,11 @@
 
     # frame
     frame_width = 2
+
+    # colors
     frame_color = "#e0e0e8"
-    background = "#101840"
     foreground = "#d890a8"
+    background = "#101840"
 
 [experimental]
     per_monitor_dpi = false
