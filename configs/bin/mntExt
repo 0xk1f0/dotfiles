@@ -25,7 +25,8 @@ chooseMenu() {
         do
             local spc=""
             if [ $isDrivePrompt = true ]; then
-                spc=" ($(lsblk -l | grep "$o" | tr -s ' ' ' ' | cut -d ' ' -f 4))"
+                spc=" ($(lsblk -l | grep "$o" | tr -s ' ' ' ' \
+                | cut -d ' ' -f 4))"
             fi
             if [ "$index" == "$cur" ]; then
                 echo -e "> \e[1m\e[92m$o\e[0m\e[3m$spc\e[0m"
@@ -72,7 +73,8 @@ scriptFeedback() {
 chooseDrive() {
     adj_selections=""
     for d in $FETCHDRIVES; do
-        mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' | cut -d ' ' -f 7)
+        mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' \
+        | cut -d ' ' -f 7)
         if [ -z $mountStat ]; then
             adj_selections="$adj_selections""$d "
         fi
@@ -82,7 +84,8 @@ chooseDrive() {
         exit 0
     else
         isDrivePrompt=true
-        chooseMenu "What Drive to mount?" selected_choice ${adj_selections[@]}
+        chooseMenu "What Drive to mount?" \
+        selected_choice ${adj_selections[@]}
         DRIVE=$selected_choice
         isDrivePrompt=false
     fi
@@ -91,13 +94,14 @@ chooseDrive() {
 # fs chooser
 chooseFS() {
     selections=(
+        "auto"
         "ntfs3"
         "ext4"
         "xfs"
         "vfat"
-        "auto"
     )
-    chooseMenu "What filesystem to mount with?" selected_choice ${selections[@]}
+    chooseMenu "What filesystem to mount with?" \
+    selected_choice ${selections[@]}
     FS=$selected_choice
 }
 
@@ -107,7 +111,8 @@ handleUnmount() {
         "no"
         "yes"
     )
-    chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
+    chooseMenu "Mountpoint already occupied, unmount?" \
+    selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
         $SU_SYS /bin/umount -l $MOUNTPOINT; 
@@ -124,9 +129,11 @@ handleUnmount() {
 
 # mount drive after selections
 handleMount() {
-    DRIVESPACE=$(lsblk -l | grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
+    DRIVESPACE=$(lsblk -l | grep "$DRIVE" | tr -s ' ' ' ' \
+    | cut -d ' ' -f 4)
     DRIVE="/dev/""$DRIVE"
-    scriptFeedback proc "Mounting \"$DRIVE\" ($DRIVESPACE) with \"$FS\" to \"$MOUNTPOINT\""
+    scriptFeedback proc "Mounting '$DRIVE' ($DRIVESPACE) \
+with '$FS' to '$MOUNTPOINT\'"
     selections=(
         "no"
         "yes"
@@ -149,7 +156,9 @@ handleMount() {
 
 isDrivePrompt=false
 # first get list of mountable drives
-FETCHDRIVES=$(/bin/lsblk -l | grep -E 'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' | tr -s ' ' ' ' | cut -d ' ' -f 1)
+FETCHDRIVES=$(/bin/lsblk -l | grep -E \
+'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' \
+| tr -s ' ' ' ' | cut -d ' ' -f 1)
 
 # get supplied mountpoint
 if [ -v 1 ]; then

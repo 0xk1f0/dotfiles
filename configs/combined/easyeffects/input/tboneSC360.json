@@ -9,7 +9,7 @@
             "harmonics": 8.5,
             "input-gain": 0.0,
             "output-gain": 0.0,
-            "scope": 80.0
+            "scope": 60.0
         },
         "blocklist": [
             "cava"

@@ -50,7 +50,10 @@ fi
 
 # exec backup
 scriptFeedback proc "Backup to SMB"
-if /bin/rsync -a -h --delete --stats --info=progress2 $(dirList) $BTARGET/; then
+if 
+/bin/rsync -ah --delete --stats \
+--info=progress2 $(dirList) $BTARGET/;
+then
     scriptFeedback success "Backup finished!"
     exit 0
 else

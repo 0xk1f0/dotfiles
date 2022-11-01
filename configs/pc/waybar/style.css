@@ -1,9 +1,3 @@
-* {
-    font-size: 13px;
-    font-family: Open Sans, sans-serif;
-    font-weight: 600;
-}
-
 window#waybar {
     background-color: #101840;
     border-bottom: none;
@@ -11,21 +5,41 @@ window#waybar {
 }
 
 #clock {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Open Sans SemiBold;
+    font-size: 13px;
 }
 
 #network {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Open Sans SemiBold;
+    font-size: 13px;
 }
 
 #cpu {
-    padding-left: 4px;
-    padding-right: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Open Sans SemiBold;
+    font-size: 13px;
 }
 
 #memory {
+    padding-left: 8px;
+    padding-right: 8px;
+    font-family: Open Sans SemiBold;
+    font-size: 13px;
+}
+
+#workspaces {
+    font-family: Font Awesome;
+    font-size: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#workspaces button {
     padding-left: 4px;
     padding-right: 4px;
 }

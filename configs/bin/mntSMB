@@ -79,7 +79,8 @@ handleMultiple() {
     done
     shareCount=${#shares[@]}
     if [ $shareCount -gt 1 ]; then
-        chooseMenu "What Drive to mount?" selected_choice ${shares[@]}
+        chooseMenu "What Drive to mount?" \
+        selected_choice ${shares[@]}
         SMB_SERVER=$selected_choice
     else
         SMB_SERVER=$SMB_SERVER_1
@@ -93,7 +94,8 @@ handleUnmount() {
         "no"
         "yes"
     )
-    chooseMenu "Mountpoint already occupied, unmount?" selected_choice ${selections[@]}
+    chooseMenu "Mountpoint already occupied, unmount?" \
+    selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
         "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
@@ -111,7 +113,8 @@ handleUnmount() {
 # handle mount SMB
 handleMount() {
     if
-    $SU_SYS /bin/mount $SMB_SERVER -t cifs -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    $SU_SYS /bin/mount $SMB_SERVER -t cifs \
+    -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
     then
         scriptFeedback success "Successfully mounted!"
         exit 0

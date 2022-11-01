@@ -59,16 +59,24 @@ scriptFeedback() {
 
 # check how full the caches are
 getCacheSpace() {
-    scriptFeedback proc "Pacman cache is $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1)"
-    scriptFeedback proc "Paru cache is $(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1 | tail -n 1)"
-    scriptFeedback proc "Pip cache is $(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1 | tail -n 1)"
-    scriptFeedback proc "$(pacman -Qtdq | wc -l) orphan packages"
+    scriptFeedback proc "Pacman cache is \
+$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 \
+| tail -n 1 2>/dev/null)"
+    scriptFeedback proc "Paru cache is \
+$(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1 \
+| tail -n 1 2>/dev/null)"
+    scriptFeedback proc "Pip cache is \
+$(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1 \
+| tail -n 1 2>/dev/null)"
+    scriptFeedback proc "Currently \
+$(pacman -Qtdq | wc -l 2>/dev/null) orphan packages"
 }
 
 # clean pacman cache
 cleanPacman() {
     if 
-    $SU_SYS pacman -Scc --noconfirm >> /dev/null && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
+    $SU_SYS pacman -Scc --noconfirm >> /dev/null \
+    && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
     then
         scriptFeedback success "Pacman cache cleared!"
     else
