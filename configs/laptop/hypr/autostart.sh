@@ -27,3 +27,8 @@ swayidle -w timeout 900 $LOCKER &
 # swaybg
 killall -q swaybg -9
 swaybg -m fill -i /home/$USER/.wallpaper &
+
+# easyeffects
+if ! [ $(pidof easyeffects) ]; then
+    easyeffects --gapplication-service &
+fi

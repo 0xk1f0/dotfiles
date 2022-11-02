@@ -15,7 +15,7 @@
     width = 300
     #height = 100
     origin = top-right
-    offset = 16x16
+    offset = 8x8
     scale = 0
 
     # max number of notification
@@ -90,20 +90,17 @@
     icon_position = left
     
     # icon size
-    min_icon_size = 0
+    min_icon_size = 16
     max_icon_size = 32
 
     # default icon path.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+    icon_path = /usr/share/icons/Papirus-Dark/24x24/actions/
 
     # notification from history be sticky or timeout like normal
-    sticky_history = yes
+    sticky_history = no
 
     # max notifications kept in history
     history_length = 10
-
-    # dmenu path.
-    dmenu = /usr/bin/dmenu -p dunst:
 
     # browser for opening urls in context menu.
     browser = /usr/bin/xdg-open
@@ -116,9 +113,6 @@
 
     # window class spawned by dunst
     class = Dunst
-
-    # corner radius
-    corner_radius = 4
 
     # ignore the dbus closeNotification message.
     ignore_dbusclose = false
@@ -133,23 +127,25 @@
     mouse_right_click = close_all
 
     # appearance
-    background = "#101818"
     foreground = "#a8b0a8"
+    background = "#101818"
     frame_color = "#e8e8e8"
     frame_width = 2
+    corner_radius = 4
 
 [experimental]
     per_monitor_dpi = false
 
 [urgency_low]
-    timeout = 2
+    timeout = 3
 
 [urgency_normal]
-    timeout = 2
+    timeout = 5
 
 [urgency_critical]
+    foreground = "#ff0000"
     frame_color = "#ff0000"
-    timeout = 5
+    timeout = 8
 
 [fullscreen_delay_everything]
     fullscreen = delay
