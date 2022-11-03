@@ -5,16 +5,20 @@
 @define-color urg #ff0000;
 
 * {
+    all: unset;
     margin: 0;
     padding: 0;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
 }
 
 window#waybar {
     background-color: @bg;
-    color: @fg;
     border: none;
     border-radius: 0px;
     font-size: 13px;
+    color: @fg;
 }
 
 #clock {
@@ -30,6 +34,15 @@ window#waybar {
 #cpu {
     padding: 1px 4px;
     font-family: Open Sans SemiBold;
+    color: @fg;
+}
+
+#cpu.warning {
+    color: orange;
+}
+
+#cpu.critical {
+    color: red;
 }
 
 #memory {
@@ -39,13 +52,13 @@ window#waybar {
 
 #workspaces {
     font-family: Font Awesome;
-    padding: 1px 8px;
+    padding: 1px 4px;
 }
 
 #workspaces button {
     color: @fg;
-    padding: 1px 4px;
     border: none;
+    padding: 1px 8px;
 }
 
 #workspaces button:hover {

@@ -18,17 +18,8 @@ case $1 in
         ;;
     pp)
         # playPause media
-        playerctl play-pause
-        STATUS=$(playerctl status)
-        if [ $STATUS != "Playing" ]; then
-            STATUS="Play"
-            ICON="media-play"
-        else
-            STATUS="Pause"
-            ICON="media-pause"
-        fi
-
-        # alert user
-        dunstify -a "chgMed" -r 33166 -u low -i "$ICON" "Media:" "$STATUS"
+        playerctl play-pause && STATUS=
+        STATUS="$(playerctl status)"
+        ICON="media-play"
         ;;
 esac

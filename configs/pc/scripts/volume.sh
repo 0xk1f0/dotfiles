@@ -7,13 +7,13 @@ case $1 in
     up)
         # up Volume
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d '.' -f 2)%"
+        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
         ICON="audio-volume-high"
         ;;
     down)
         # down Volume
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d '.' -f 2)%"
+        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
         ICON="audio-volume-low"
         ;;
     mute)

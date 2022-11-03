@@ -7,7 +7,7 @@
 #                              /____/_/
 
 # GTK
-gsettings set org.gnome.desktop.interface gtk-theme 'Adwaita-dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Nordic-v40'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 gsettings set org.gnome.desktop.interface cursor-theme 'Neutral'
 gsettings set org.gnome.desktop.interface font-name 'Open Sans 11'
