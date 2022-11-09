@@ -60,16 +60,14 @@ dcryptArch() {
   fi
 }
 
-# base replacement aliases
+# base rust replacement aliases
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@"
 alias ll="exa -g@lhUm"
 alias la="exa -g@lahUm"
 alias cat="bat --plain --style grid"
-alias find="fd -p"
 alias du="dust"
-alias grep="rg"
 
 # update aliases
 alias mirup="doas reflector -p https -f 20 -l 20 \
@@ -79,7 +77,6 @@ alias aurup='paru -aSyu'
 alias flatup='flatpak update'
 
 # git aliases
-alias gts="git status"
 alias gta="git add"
 alias gtc="git commit"
 alias gtp="git push"

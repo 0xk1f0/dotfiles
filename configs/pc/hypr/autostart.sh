@@ -7,9 +7,9 @@
 #                              /____/_/
 
 # GTK
-gsettings set org.gnome.desktop.interface gtk-theme 'Nordic-v40'
+gsettings set org.gnome.desktop.interface gtk-theme 'Orchis-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'Neutral'
+gsettings set org.gnome.desktop.interface cursor-theme 'XCursor-Pro-Dark'
 gsettings set org.gnome.desktop.interface font-name 'Open Sans 11'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
@@ -30,8 +30,8 @@ killall -q swayidle -9
 LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
 swayidle -w \
 timeout 900 $LOCKER \
-timeout 960 'hyprctl dispatch dpms off' \
-resume 'hyprctl dispatch dpms on' &
+#timeout 960 'hyprctl dispatch dpms off' \
+#resume 'hyprctl dispatch dpms on' &
 
 # swaybg
 killall -q swaybg -9

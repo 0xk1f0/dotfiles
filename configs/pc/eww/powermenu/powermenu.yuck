@@ -12,12 +12,13 @@
       (label :text "" :class "content")
     )
     (button :class "lock"
-            :onclick 'eww close powermenu powermenu-exit && \
-            /home/$USER/.config/scripts/swaylock.sh'
+            :onclick "eww close powermenu \
+            powermenu-blur0 powermenu-blur1 \
+            && /home/$USER/.config/scripts/wayland/swaylock.sh"
       (label :text "" :class "content")
     )
     (button :class "logout"
-            :onclick 'loginctl terminate-user $USER'
+            :onclick "loginctl terminate-user $USER"
       (label :text "" :class "content")
     )
   )
@@ -25,7 +26,8 @@
 
 (defwidget powermenu-clickhandler []
   (button :class "powermenu-clickhandler"
-          :onclick "eww close powermenu powermenu-blur0 powermenu-blur1"
+          :onclick "eww close powermenu \
+          powermenu-blur0 powermenu-blur1"
     ""
   )
 )
