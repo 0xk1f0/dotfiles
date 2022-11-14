@@ -1,10 +1,4 @@
-#!/usr/bin/bash
-#     __  ___________        __                     __                __
-#    / /_<  / __/ __ \      / /_  __  ______  _____/ /___ _____  ____/ /
-#   / //_/ / /_/ / / /_____/ __ \/ / / / __ \/ ___/ / __ `/ __ \/ __  /
-#  / ,< / / __/ /_/ /_____/ / / / /_/ / /_/ / /  / / /_/ / / / / /_/ /
-# /_/|_/_/_/  \____/     /_/ /_/\__, / .___/_/  /_/\__,_/_/ /_/\__,_/
-#                              /____/_/
+#!/bin/bash
 
 # GTK
 gsettings set org.gnome.desktop.interface gtk-theme 'Orchis-Dark'
@@ -30,8 +24,8 @@ killall -q swayidle -9
 LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
 swayidle -w \
 timeout 900 $LOCKER \
-#timeout 960 'hyprctl dispatch dpms off' \
-#resume 'hyprctl dispatch dpms on' &
+timeout 960 'hyprctl dispatch dpms off' \
+resume 'hyprctl dispatch dpms on' &
 
 # swaybg
 killall -q swaybg -9
