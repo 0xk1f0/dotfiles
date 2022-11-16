@@ -15,25 +15,26 @@ set constantshow
 ## Do not use the line below the title bar, leaving it entirely blank.
 set emptyline
 
+## Set the target width for automatic hard-wrapping
+set fill -8
+
+## Automatically hard-wrap the current line when it becomes overlong.
+set breaklonglines
+
 ## Display a "scrollbar" on the righthand side of the edit window.
 set indicator
 
 ## Scroll the buffer contents per half-screen instead of per line.
 unset jumpyscrolling
 
-## Display line numbers to the left (and any anchors in the margin).
-# set linenumbers
-
 ## Enable vim-style lock-files.  This is just to let a vim user know you
 ## are editing a file [s]he is trying to edit and vice versa.  There are
 ## no plans to implement vim-style undo state in these files.
 set locking
 
-## Enable mouse support, if available for your system.  When enabled,
-## mouse clicks can be used to place the cursor, set the mark (with a
-## double click), and execute shortcuts.  The mouse will work in the
-## X Window System, and on the console when gpm is running.
-set mouse
+## Switch on multiple file buffers (inserting a file will put it into
+## a separate buffer).
+set multibuffer
 
 ## Don't display the helpful shortcut lists at the bottom of the screen.
 set nohelp
@@ -46,13 +47,6 @@ set quickblank
 
 ## Try to work around a mismatching terminfo terminal description.
 set rawsequences
-
-## Make the Home key smarter: when Home is pressed anywhere but at the
-## very beginning of non-whitespace characters on a line, the cursor
-## will jump to that beginning (either forwards or backwards).  If the
-## cursor is already at that position, it will jump to the true start
-## of the line (the left edge).
-set smarthome
 
 ## Spread overlong lines over multiple screen lines.
 set softwrap
@@ -73,6 +67,9 @@ set trimblanks
 ## Save files by default in Unix format (also when they were DOS or Mac).
 set unix
 
+## Hide the bars plus help lines and use the whole terminal as edit area.
+#set zero
+
 ## Paint the interface elements of nano.  These are examples; there are
 ## no colors by default, except for errorcolor and spotlightcolor.
 set titlecolor bold,white,lightblack
@@ -87,3 +84,12 @@ set scrollercolor white,lightblack
 
 ## To include most of the existing syntax definitions, you can do:
 include "/usr/share/nano/*.nanorc"
+include "/usr/share/nano/extra/*.nanorc"
+
+## === Key bindings ===
+## For all details, see 'man nanorc', section REBINDING KEYS.
+
+unbind M-E main
+unbind M-R main
+bind M-E replace main
+bind M-R redo main
