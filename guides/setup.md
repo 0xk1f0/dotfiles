@@ -36,19 +36,44 @@ GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
 
 ---
 
-## clevis TPM 2.0 LUKS2 partition Auto-Decryption /etc/mkinitcpio.conf
+## systemd TPM 2.0 LUKS2 Auto-Decryption
+
+```bash
+# all systemd things should already be installed
+# bind against platform conf and secure boot
+systemd-cryptenroll --tpm2-device=/path/to/tpm2_device --tpm2-pcrs=1+7 /dev/sdX
+# check if it worked
+cryptsetup luksDump /dev/[disk]
+# edit /etc/crypttab and add
+nano /etc/crypttab
+> # <name>    <device>          <password>      <options>
+> root        /dev/nvme0n1p2    -               tpm2-device=auto
+# edit /etc/default/grub and add
+nano /etc/default/grub
+> GRUB_CMDLINE_LINUX="rd.luks.options=[root_part_UUID]=tpm2-device=auto rd.luks.name=[root_part_UUID]=root"
+# edit /etc/mkinitcpio.conf and set hooks to
+nano /etc/mkinitcpio.conf
+> HOOKS=(base systemd autodetect keyboard keymap sd-vconsole modconf block sd-encrypt filesystems fsck)
+# regenerate
+mkinitcpio -P
+```
+
+---
+
+## clevis TPM 2.0 LUKS2 Auto-Decryption
 
 ```bash
 # get necessary things
 pacman -S clevis libpwquality
 paru -S mkinitcpio-clevis-hook
-# bind clevis to disk and seal against UEFI and Secure Boot
+# bind against platform conf and secure boot
 clevis luks bind -d /dev/[disk] tpm2 '{"pcr_ids":"1,7"}'
 # check if it worked
 cryptsetup luksDump /dev/[disk]
-# edit mkinitcpio.conf and regenerate
+# edit /etc/mkinitcpio.conf and set hooks to
 nano /etc/mkinitcpio.conf
 > HOOKS=(base udev autodetect keyboard keymap consolefont modconf block clevis encrypt lvm2 filesystems fsck)
+# regenerate
 mkinitcpio -P
 ```
 
@@ -190,12 +215,3 @@ setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/
 ```
 
 ---
-
-## Lockup caused by gnome-keyring for /usr/bin/mysql-workbench
-
-```bash
-# comment this out
-export GDK_BACKEND=x11
-# THIS BREAKS THE ERR-EDITOR AND SOME OTHER TINGS
-# Only fix for this broken mess would be to make a seperate executable
-```
