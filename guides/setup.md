@@ -41,7 +41,7 @@ GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
 ```bash
 # all systemd things should already be installed
 # bind against platform conf and secure boot
-systemd-cryptenroll --tpm2-device=/path/to/tpm2_device --tpm2-pcrs=1+7 /dev/sdX
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+7 /dev/[disk]
 # check if it worked
 cryptsetup luksDump /dev/[disk]
 # edit /etc/crypttab and add
