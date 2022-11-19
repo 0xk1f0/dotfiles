@@ -133,9 +133,9 @@
     frame_width = 2
 
     # colors
-    frame_color = "#e0e0e8"
-    foreground = "#d890a8"
-    background = "#101840"
+	frame_color = "#718287"
+	foreground = "#a2bbc2"
+	background = "#0f0d10"
 
 [experimental]
     per_monitor_dpi = false
@@ -147,8 +147,6 @@
     timeout = 5
 
 [urgency_critical]
-    foreground = "#ff0000"
-    frame_color = "#ff0000"
     timeout = 8
 
 [fullscreen_delay_everything]

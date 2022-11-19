@@ -1,0 +1,79 @@
+#!/usr/bin/env bash
+
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        success)
+            ;;
+    esac
+}
+
+# get colors
+WAL_FG=$(cat .cache/wal/colors.json \
+| jq '.special.foreground' \
+| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+WAL_BG=$(cat .cache/wal/colors.json \
+| jq '.special.background' \
+| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+WAL_ACT=$(cat .cache/wal/colors.json \
+| jq '.colors.color8' \
+| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+WAL_NRM=$(cat .cache/wal/colors.json \
+| jq '.colors.color1' \
+| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+
+# rofi
+CNF_FILE="/home/$USER/.config/rofi/config.rasi"
+sed -i -r \
+'s/^\tfg:.*;/\tfg:\t\t\t\t\t\t#'"$WAL_FG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\tbg:.*;/\tbg:\t\t\t\t\t\t#'"$WAL_BG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\tnrm:.*;/\tnrm:\t\t\t\t\t#'"$WAL_NRM"';/' \
+"$CNF_FILE"
+
+# waybar
+CNF_FILE="/home/$USER/.config/waybar/style.css"
+sed -i -r \
+'s/^@define-color.*fg.*;/@define-color fg #'"$WAL_FG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^@define-color.*bg.*;/@define-color bg #'"$WAL_BG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^@define-color.*nrm.*;/@define-color nrm #'"$WAL_NRM"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^@define-color.*act.*;/@define-color act #'"$WAL_ACT"';/' \
+"$CNF_FILE"
+
+# hyprland
+CNF_FILE="/home/$USER/.config/hypr/theme.conf"
+sed -i -r \
+'s/^\$FGD.*/$FGD=0xff'"$WAL_FG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$BGD.*/$BGD=0xff'"$WAL_BG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$NRM.*/$NRM=0xff'"$WAL_NRM"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$ACT.*/$ACT=0xff'"$WAL_ACT"'/' \
+"$CNF_FILE"
+
+# dunst
+CNF_FILE="/home/$USER/.config/dunst/dunstrc"
+sed -i -r \
+'s/^\tforeground.*=.*/\tforeground = "#'"$WAL_FG"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\tbackground.*=.*/\tbackground = "#'"$WAL_BG"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\tframe_color.*=.*/\tframe_color = "#'"$WAL_ACT"'"/' \
+"$CNF_FILE"
+
+printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " 'themed!"

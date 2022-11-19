@@ -30,3 +30,7 @@ resume 'hyprctl dispatch dpms on' &
 # swaybg
 killall -q swaybg -9
 swaybg -m fill -i /home/$USER/.wallpaper &
+
+# refresh pywal
+rm -rf /home/$USER/.cache/wal/schemes/
+wal -nest -i /home/$USER/.wallpaper
