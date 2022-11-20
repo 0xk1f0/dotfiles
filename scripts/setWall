@@ -7,11 +7,12 @@ if [ $# -eq 0 ]; then
     echo "setWall: specify a wallpaper"
     exit 1
 else
-    if file "$1" | /bin/grep "image" 2> /dev/null; then
+    if file "$1" | /bin/grep "image" > /dev/null; then
         TO_SET=$(readlink -f "$1")
         ln -sf "$TO_SET" /home/$USER/.wallpaper
-        killall -9 -q swaybg 
+        killall -9 -q swaybg
         swaybg -m fill -i /home/$USER/.wallpaper &
+        printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " 'walled!"
         exit 0
     fi
 fi

@@ -127,9 +127,10 @@
     mouse_right_click = close_all
 
     # appearance
-    foreground = "#a8b0a8"
-    background = "#101818"
-    frame_color = "#e8e8e8"
+	foreground = "#e5e8e9"
+	background = "#1e0f16"
+	frame_color = "#a0a2a3"
+	highlight = "#9f4e5d"
     frame_width = 2
     corner_radius = 4
 
@@ -143,8 +144,6 @@
     timeout = 5
 
 [urgency_critical]
-    foreground = "#ff0000"
-    frame_color = "#ff0000"
     timeout = 8
 
 [fullscreen_delay_everything]

@@ -6,85 +6,90 @@
 
 configuration {
 	modi:				"run,calc";
-	font:				"Source Code Pro Medium 10";
+	font:				"Source Code Pro SemiBold 10";
 }
 
 @theme "/dev/null"
 prompt { enabled: false; }
 
 * {
-	fg:				#d0d0b0;
-	bg:				#181818;
-    nrm:			#404838;
-	background-color:	@bg;
-	text-color:			@fg;
+	fg:						#e5e8e9;
+	bg:						#1e0f16;
+    nrm:			        #404838;
+	background-color:	    @bg;
+	text-color:			    @fg;
 }
 
 window {
-	width:				500px;
-	padding:			5px;
-	location:			center;
-	x-offset:           0;
-	y-offset:           0;
-	border:				4;
-	border-color:			@nrm;
+	width:				    500px;
+	padding:			    5px;
+	location:			    center;
+	x-offset:               0;
+    y-offset:               0;
+	border:				    4px;
+    border-color:		    @nrm;
+    border-radius:          8px;
 }
 
 entry {
-	placeholder:			"...";
-	expand:                         true;
-	padding:                        0.2% 0.2% 0.2% 0.2%;
-	background-color:               @bg;
-        placeholder-color:              @fg;
+	placeholder:			    "";
+	expand:                     true;
+	padding:                    0.2% 0.2% 0.2% 0.2%;
+	background-color:           @bg;
+    placeholder-color:          @fg;
 }
 
 inputbar {
-	children:			[ prompt, entry ];
-	background-color:               @bg;
-	text-color:                     @fg;
-	expand:                         false;
-	padding:                        0.2%;
-	border:				2;
+	children:			    [ prompt, entry ];
+	background-color:       @bg;
+	text-color:             @fg;
+	expand:                 false;
+	padding:                0.4%;
+	border:				    2px;
 	border-color:			@nrm;
+    border-radius:          4px;
 }
 
 listview {
-	columns:                        2;
-	lines:	                        6;
-	cycle:                          false;
-	dynamic:                        true;
-	layout:                         vertical;
+	columns:                2;
+	lines:	                6;
+	cycle:                  false;
+	dynamic:                true;
+	layout:                 vertical;
 }
 
 message {
-	background-color:               @bg;
+	background-color:       @bg;
 }
 
 textbox {
-	background-color:               @bg;
-	text-color:                     @fg;	
+	background-color:       @bg;
+	text-color:             @fg;	
 }
 
 mainbox {
-	children:                       [ inputbar, message, listview ];
-	spacing:			1%;
-	padding:                        1% 1% 1% 1%;
+	children:               [ inputbar, message, listview ];
+	spacing:			    1%;
+	padding:                1% 1% 1% 1%;
 }
 
 element {
-	orientation:                    vertical;
-	padding:                        0.3% 0% 0.3% 0%;
+	orientation:            vertical;
+	padding:                0.3% 0% 0.3% 0%;
 }
 
 element-text {
-	expand:                         true;
-	vertical-align:                 0.5;
-	margin:                         0.2% 0.2% 0.2% 0.2%;
-	background-color:               inherit;
-        text-color:                     inherit;
+	expand:                 true;
+	vertical-align:         0.5;
+	margin:                 0.2% 0.2% 0.2% 0.2%;
+	background-color:       inherit;
+    text-color:             inherit;
 }
 
 element selected {
-	background-color:               @fg;
-	text-color:                     @bg;
+	background-color:       @fg;
+	text-color:             @bg;
+	border:				    4px;
+	border-color:			@fg;
+    border-radius:          4px;
 }

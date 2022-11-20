@@ -19,4 +19,9 @@ case $1 in
 esac
 
 # alert user
-dunstify -a "chgBrt" -r 55177 -u low -i "$ICON" "Brightness:" "$STATUS"
+dunstify \
+-a "chgBrt" \
+-r 55177 \
+-u low \
+-i "$ICON" "Brightness:" "$STATUS" \
+-h int:value:$((100*$STATUS/255))

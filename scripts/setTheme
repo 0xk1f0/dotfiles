@@ -1,13 +1,5 @@
 #!/usr/bin/env bash
 
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        success)
-            ;;
-    esac
-}
-
 # get colors
 WAL_FG=$(cat .cache/wal/colors.json \
 | jq '.special.foreground' \
@@ -74,6 +66,9 @@ sed -i -r \
 "$CNF_FILE"
 sed -i -r \
 's/^\tframe_color.*=.*/\tframe_color = "#'"$WAL_ACT"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\thighlight.*=.*/\thighlight = "#'"$WAL_NRM"'"/' \
 "$CNF_FILE"
 
 # eww

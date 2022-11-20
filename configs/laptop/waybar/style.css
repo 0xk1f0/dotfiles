@@ -1,12 +1,16 @@
-@define-color fg #d0d0b0;
-@define-color bg #181818;
-@define-color nrm #404838;
-@define-color act #e8d8b8;
+@define-color fg #e5e8e9;
+@define-color bg #1e0f16;
+@define-color nrm #9f4e5d;
+@define-color act #a0a2a3;
 @define-color urg #ff0000;
 
 * {
+    all: unset;
     margin: 0;
     padding: 0;
+    border: none;
+    border-radius: 0;
+    min-height: 0;
 }
 
 window#waybar {
@@ -15,31 +19,27 @@ window#waybar {
     border: none;
     border-radius: 0px;
     font-size: 13px;
+    font-family: "Open Sans SemiBold";
 }
 
 #clock {
-    font-family: Open Sans SemiBold;
     padding: 1px 4px;
 }
 
 #network {
     padding: 1px 4px;
-    font-family: Open Sans SemiBold;
 }
 
 #cpu {
     padding: 1px 4px;
-    font-family: Open Sans SemiBold;
 }
 
 #memory {
     padding: 1px 4px;
-    font-family: Open Sans SemiBold;
 }
 
 #battery {
     padding: 1px 8px;
-    font-family: Open Sans SemiBold;
 }
 
 #workspaces {

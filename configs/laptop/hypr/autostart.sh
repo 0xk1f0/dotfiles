@@ -1,9 +1,9 @@
 #!/usr/bin/bash
 
 # GTK
-gsettings set org.gnome.desktop.interface gtk-theme 'AdG-Dark'
+gsettings set org.gnome.desktop.interface gtk-theme 'Orchis-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'Neutral'
+gsettings set org.gnome.desktop.interface cursor-theme 'XCursor-Pro-Dark'
 gsettings set org.gnome.desktop.interface font-name 'Open Sans 11'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
@@ -21,14 +21,13 @@ waybar &
 
 # swayidle
 killall -q swayidle -9
-LOCKER="/home/$USER/.config/scripts/swaylock.sh"
+LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
 swayidle -w timeout 900 $LOCKER &
 
 # swaybg
 killall -q swaybg -9
 swaybg -m fill -i /home/$USER/.wallpaper &
 
-# easyeffects
-if ! [ $(pidof easyeffects) ]; then
-    easyeffects --gapplication-service &
-fi
+# refresh pywal
+rm -rf /home/$USER/.cache/wal/schemes/
+wal -nest -i /home/$USER/.wallpaper
