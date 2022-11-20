@@ -1,5 +1,5 @@
 .powermenu {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba($bg, 0.0);
     padding: 30px;
     font-family: Font Awesome;
     font-size: 60px;
@@ -38,5 +38,5 @@
 }
 
 .powermenu-clickhandler {
-    background-color: rgba(5, 5, 5, 0.9);
+    background-color: rgba($bg, 0.95);
 }

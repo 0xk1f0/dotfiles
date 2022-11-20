@@ -76,4 +76,19 @@ sed -i -r \
 's/^\tframe_color.*=.*/\tframe_color = "#'"$WAL_ACT"'"/' \
 "$CNF_FILE"
 
+# eww
+CNF_FILE="/home/$USER/.config/eww/colors.scss"
+sed -i -r \
+'s/^\$fg:.*;/$fg: #'"$WAL_FG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$bg:.*;/$bg: #'"$WAL_BG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$nrm:.*;/$nrm: #'"$WAL_NRM"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$act:.*;/$act: #'"$WAL_ACT"';/' \
+"$CNF_FILE"
+
 printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " 'themed!"
