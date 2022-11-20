@@ -26,6 +26,7 @@ combinedLIST=(
     "$combExt/zathura"
     "$combExt/mpv"
     "$combExt/btop"
+    "$combExt/cheat"
     "$combExt/paru"
     "$combExt/easyeffects"
     "$combExt/starship.toml"
@@ -33,6 +34,7 @@ combinedLIST=(
     "$combExt/code-flags.conf"
     "$combExt/Thunar"
     "$combExt/pipewire"
+    "$combExt/wireplumber"
 )
 
 binLIST=(

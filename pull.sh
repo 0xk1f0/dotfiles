@@ -77,6 +77,7 @@ combinedLIST=(
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
     "$homeCfgExt/btop"
+    "$homeCfgExt/cheat"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
     "$homeExt/.bashrc"
@@ -85,6 +86,7 @@ combinedLIST=(
     "$homeCfgExt/code-flags.conf"
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
+    "$homeCfgExt/wireplumber"
 )
 
 normalLIST=(
@@ -119,19 +121,27 @@ platform="$selected_choice"
 
 if handleYesNo "Include normal?"; then
     scriptFeedback proc "Syncing configs for $platform"
-    /bin/rsync -aq --delete $(echo "${normalLIST[@]}") ./configs/$platform/
+    /bin/rsync -aq \
+    --delete \
+    $(echo "${normalLIST[@]}") ./configs/$platform/
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include combined?"; then
     scriptFeedback proc "Syncing combined configs"
-    /bin/rsync -aq --delete --exclude '*.cbor' $(echo "${combinedLIST[@]}") ./configs/combined/
+    /bin/rsync -aq \
+    --delete \
+    --exclude '*.cbor' \
+    --exclude 'cheatsheets' \
+    $(echo "${combinedLIST[@]}") ./configs/combined/
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include ~/.local/bin/ scripts?"; then
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-    /bin/rsync -aq --delete $(echo "${binLIST[@]}") ./scripts/
+    /bin/rsync -aq \
+    --delete \
+    $(echo "${binLIST[@]}") ./scripts/
     scriptFeedback success "Done"
 fi
 
