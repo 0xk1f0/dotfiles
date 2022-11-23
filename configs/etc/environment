@@ -1,13 +1,18 @@
 # general
 _JAVA_AWT_WM_NONREPARENTING=1
 QT_QPA_PLATFORMTHEME=qt5gtk2
+QT_AUTO_SCREEN_SCALE_FACTOR=1
 EDITOR=nano
 VISUAL=nano
+
+# wayland
+MOZ_ENABLE_WAYLAND=1
+SDL_VIDEODRIVER=wayland
+QT_QPA_PLATFORM=wayland;xcb
+QT_WAYLAND_DISABLE_WINDOWDECORATION=1
+CLUTTER_BACKEND=wayland
+GDK_BACKEND="wayland,x11"
 
 # vulkan
 DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
-
-# firefox and obs egl
-MOZ_X11_EGL=1
-OBS_USE_EGL=1

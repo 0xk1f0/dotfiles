@@ -35,6 +35,7 @@ combinedLIST=(
     "$combExt/Thunar"
     "$combExt/pipewire"
     "$combExt/wireplumber"
+    "$combExt/Code/User/settings.json"
 )
 
 binLIST=(
@@ -49,12 +50,18 @@ binLIST=(
 )
 
 scriptFeedback proc "Syncing combined configs"
-/bin/rsync -aq --delete $(echo "${combinedLIST[@]}") /home/$USER/.config/
-/bin/rsync -aq --delete ./configs/combined/.bashrc /home/$USER/
+/bin/rsync -aq \
+--delete \
+$(echo "${combinedLIST[@]}") /home/$USER/.config/
+/bin/rsync -aq \
+--delete \
+./configs/combined/.bashrc /home/$USER/
 scriptFeedback success "Done"
 
 scriptFeedback proc "Syncing ~/.local/bin/ scripts"
-/bin/rsync -aq --delete $(echo "${binLIST[@]}") /home/$USER/.local/bin/
+/bin/rsync -aq \
+--delete \
+$(echo "${binLIST[@]}") /home/$USER/.local/bin/
 scriptFeedback success "Done"
 
 exit 0

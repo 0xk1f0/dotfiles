@@ -3,17 +3,30 @@
 # bash strict
 set -uo pipefail
 
+# what the fuck
+getVol() {
+    STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
+    if echo $STATUS | grep -E '^0\.[0-9][0-9]$'; then
+        STATUS="$(echo $STATUS \
+        | cut -d '.' -f 2 \
+        | sed 's/^0[0-9]/'"$(echo $STATUS | cut -c 4-)"'/')"
+    else
+        STATUS="$(echo $STATUS | tr -d '.')"
+    fi
+}
+
+# match keys
 case $1 in
     up)
         # up Volume
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
+        getVol
         ICON="audio-volume-high"
         ;;
     down)
         # down Volume
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
+        getVol
         ICON="audio-volume-low"
         ;;
     mute)
@@ -31,4 +44,10 @@ case $1 in
 esac
 
 # alert user
-dunstify -a "chgVol" -r 66199 -u low -i "$ICON" "Volume:" "$STATUS"
+dunstify \
+-a "chgVol" \
+-r 66199 \
+-u low \
+-i "$ICON" \
+-h int:value:$STATUS \
+"Volume:" "$STATUS\%"

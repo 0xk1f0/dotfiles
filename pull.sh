@@ -80,13 +80,14 @@ combinedLIST=(
     "$homeCfgExt/cheat"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
-    "$homeExt/.bashrc"
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
     "$homeCfgExt/code-flags.conf"
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
     "$homeCfgExt/wireplumber"
+    "$homeCfgExt/Code/User/settings.json"
+    "$homeExt/.bashrc"
 )
 
 normalLIST=(
@@ -134,6 +135,9 @@ if handleYesNo "Include combined?"; then
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
     $(echo "${combinedLIST[@]}") ./configs/combined/
+    # exception
+    mkdir -p ./configs/combined/Code/User/
+    mv ./configs/combined/settings.json ./configs/combined/Code/User/
     scriptFeedback success "Done"
 fi
 
