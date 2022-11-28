@@ -1,14 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # "bash strict mode"
 set -uo pipefail
-
-# detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
-else
-    SU_SYS="/bin/doas"
-fi
 
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
@@ -154,6 +147,21 @@ with '$FS' to '$MOUNTPOINT\'"
     fi
 }
 
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
+# check for root run
+if [ "$EUID" -eq 0 ]; then
+    # dont use sudo or doas
+    scriptFeedback success "Root Detected"
+    SU_SYS=""
+fi
+
+# no drive prompt
 isDrivePrompt=false
 # first get list of mountable drives
 FETCHDRIVES=$(/bin/lsblk -l | grep -E \

@@ -3,7 +3,7 @@
 # GTK
 gsettings set org.gnome.desktop.interface gtk-theme 'Orchis-Dark'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
-gsettings set org.gnome.desktop.interface cursor-theme 'XCursor-Pro-Dark'
+gsettings set org.gnome.desktop.interface cursor-theme 'Neutral'
 gsettings set org.gnome.desktop.interface font-name 'Open Sans 11'
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 
@@ -32,5 +32,5 @@ killall -q swaybg -9
 swaybg -m fill -i /home/$USER/.wallpaper &
 
 # refresh pywal
-rm -rf /home/$USER/.cache/wal/schemes/
-wal -nest -i /home/$USER/.wallpaper
+#rm -rf /home/$USER/.cache/wal/schemes/
+#wal -nest -i /home/$USER/.wallpaper

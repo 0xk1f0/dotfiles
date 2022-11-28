@@ -134,8 +134,8 @@
 
     # colors
 	frame_color = "#718287"
-	foreground = "#a2bbc2"
-	background = "#0f0d10"
+	foreground = "#A2BBC2"
+	background = "#0F0D10"
 	highlight = "#485974"
 
 [experimental]

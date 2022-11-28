@@ -3,10 +3,31 @@
 # "bash strict mode"
 set -uo pipefail
 
-# check if run as root
-if [ "$EUID" -ne 0 ]; then
-  echo "Please run as root!"
-  exit 1
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+            ;;
+    esac
+}
+
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
+# check for root run
+if [ "$EUID" -eq 0 ]; then
+    # dont use sudo or doas
+    scriptFeedback success "Root Detected"
+    SU_SYS=""
 fi
 
 # get interfaces
@@ -14,15 +35,15 @@ if [ -v 1 ] && [ -v 2 ]; then
     UPSTREAM_IFACE=$2
     USB_IFACE=$1  
 else
-    echo "Please supply interface names! (USB + Upstream)"
-    exit 1
+    scriptFeedback error "Please supply interface names! (USB + Upstream)"
 fi
 
 # do the forwarding stuff
-ip addr add 10.0.0.1/24 dev "$USB_IFACE"
-ip link set "$USB_IFACE" up
-iptables -A FORWARD -o "$UPSTREAM_IFACE" -i "$USB_IFACE" -s 10.0.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
-iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-iptables -t nat -F POSTROUTING
-iptables -t nat -A POSTROUTING -o "$UPSTREAM_IFACE" -j MASQUERADE
-echo 1 > /proc/sys/net/ipv4/ip_forward
+$SU_SYS ip addr add 10.0.0.1/24 dev "$USB_IFACE"
+$SU_SYS ip link set "$USB_IFACE" up
+$SU_SYS iptables -A FORWARD -o "$UPSTREAM_IFACE" -i "$USB_IFACE" -s 10.0.0.0/24 -m conntrack --ctstate NEW -j ACCEPT
+$SU_SYS iptables -A FORWARD -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+$SU_SYS iptables -t nat -F POSTROUTING
+$SU_SYS iptables -t nat -A POSTROUTING -o "$UPSTREAM_IFACE" -j MASQUERADE
+$SU_SYS echo 1 > /proc/sys/net/ipv4/ip_forward
+scriptFeedback success "Forwarding enabled!"

@@ -1,21 +1,37 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # "bash strict mode"
 set -uo pipefail
 
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+            ;;
+    esac
+}
+
+# dont run as root
+if [ "$EUID" -eq 0 ]; then
+    scriptFeedback error "run as user!"
+fi
+
 if [ $# -eq 0 ]; then
-    echo "setWall: specify a wallpaper"
-    exit 1
+    scriptFeedback error "specify a wallpaper"
 else
     if file "$1" | /bin/grep "image" > /dev/null; then
         TO_SET=$(readlink -f "$1")
         ln -sf "$TO_SET" /home/$USER/.wallpaper
         killall -9 -q swaybg
         swaybg -m fill -i /home/$USER/.wallpaper &
-        printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " 'walled!"
+        scriptFeedback success "'walled!"
         exit 0
     fi
 fi
 
-echo "setWall: $1 is invalid"
-exit 1
+scriptFeedback error "$1 is invalid"

@@ -1,18 +1,39 @@
 #!/usr/bin/env bash
 
+# "bash strict mode"
+set -uo pipefail
+
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
+            ;;
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+            ;;
+    esac
+}
+
+# dont run as root
+if [ "$EUID" -eq 0 ]; then
+    scriptFeedback error "run as user!"
+fi
+
 # get colors
 WAL_FG=$(cat .cache/wal/colors.json \
 | jq '.special.foreground' \
-| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+| tr -d '"#' | tr '[:lower:]' '[:upper:]')
 WAL_BG=$(cat .cache/wal/colors.json \
 | jq '.special.background' \
-| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+| tr -d '"#' | tr '[:lower:]' '[:upper:]')
 WAL_ACT=$(cat .cache/wal/colors.json \
 | jq '.colors.color8' \
-| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+| tr -d '"#' | tr '[:lower:]' '[:upper:]')
 WAL_NRM=$(cat .cache/wal/colors.json \
 | jq '.colors.color1' \
-| tr -d '"#' | tr '[:upper:]' '[:lower:]')
+| tr -d '"#' | tr '[:lower:]' '[:upper:]')
 
 # rofi
 CNF_FILE="/home/$USER/.config/rofi/config.rasi"
@@ -44,16 +65,16 @@ sed -i -r \
 # hyprland
 CNF_FILE="/home/$USER/.config/hypr/theme.conf"
 sed -i -r \
-'s/^\$FGD.*/$FGD=0xff'"$WAL_FG"'/' \
+'s/^\$FGD.*/$FGD=0xFF'"$WAL_FG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$BGD.*/$BGD=0xff'"$WAL_BG"'/' \
+'s/^\$BGD.*/$BGD=0xFF'"$WAL_BG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$NRM.*/$NRM=0xff'"$WAL_NRM"'/' \
+'s/^\$NRM.*/$NRM=0xFF'"$WAL_NRM"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$ACT.*/$ACT=0xff'"$WAL_ACT"'/' \
+'s/^\$ACT.*/$ACT=0xFF'"$WAL_ACT"'/' \
 "$CNF_FILE"
 
 # dunst
@@ -86,4 +107,4 @@ sed -i -r \
 's/^\$act:.*;/$act: #'"$WAL_ACT"';/' \
 "$CNF_FILE"
 
-printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " 'themed!"
+scriptFeedback success "'themed!"

@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # "bash strict mode"
 set -uo pipefail
+
+# get script name
+_NAME=$(echo $0 | rev | cut -d '/' -f 1 | rev)
 
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
@@ -63,10 +66,10 @@ getCacheSpace() {
 $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 \
 | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Paru cache is \
-$(/bin/du -h /home/$USER/.cache/paru/clone/ | cut -d '/' -f 1 \
+$(/bin/du -h /home/$_USER/.cache/paru/clone/ | cut -d '/' -f 1 \
 | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Pip cache is \
-$(/bin/du -h /home/$USER/.cache/pip/ | cut -d '/' -f 1 \
+$(/bin/du -h /home/$_USER/.cache/pip/ | cut -d '/' -f 1 \
 | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Currently \
 $(pacman -Qtdq | wc -l 2>/dev/null) orphan packages"
@@ -87,7 +90,7 @@ cleanPacman() {
 # clean paru cache
 cleanParu() {
     if
-    rm -rf /home/$USER/.cache/paru/clone/*;
+    rm -rf /home/$_USER/.cache/paru/clone/*;
     then
         scriptFeedback success "Paru cache cleared!"
     else
@@ -98,7 +101,7 @@ cleanParu() {
 # clean pip cache
 cleanPip() {
     if
-    rm -rf /home/$USER/.cache/pip/*;
+    rm -rf /home/$_USER/.cache/pip/*;
     then
         scriptFeedback success "Pip cache cleared!"
     else
@@ -126,6 +129,24 @@ if command -v /bin/sudo >> /dev/null; then
     SU_SYS="/bin/sudo"
 else
     SU_SYS="/bin/doas"
+fi
+
+# check for root run
+if [ "$EUID" -eq 0 ]; then
+    # dont use sudo or doas
+    scriptFeedback success "Root Detected"
+    SU_SYS=""
+    if [ -z ${1+x} ]; then
+        scriptFeedback error "No user in root session: $_NAME <user>"
+    else
+        if [ -d "/home/$1/" ]; then
+            _USER=$1
+        else
+            scriptFeedback error "No home directory found for user '$1'!"
+        fi
+    fi
+else
+    _USER=$USER
 fi
 
 # get space occupation

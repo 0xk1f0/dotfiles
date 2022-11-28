@@ -1,11 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # "bash strict mode"
 set -uo pipefail
-
-# settings
-BKUP_CFG="/home/$USER/.bkupcfg"
-SMB_CFG="/home/$USER/.smbcfg"
 
 # give user feedback
 scriptFeedback() {
@@ -30,6 +26,15 @@ dirList() {
         echo "$dir"
     done
 }
+
+# dont run as root
+if [ "$EUID" -eq 0 ]; then
+    scriptFeedback error "run as user!"
+fi
+
+# settings
+BKUP_CFG="/home/$USER/.bkupcfg"
+SMB_CFG="/home/$USER/.smbcfg"
 
 # check if config files exist read, else exit
 if [ -e $SMB_CFG ] && [ -e $BKUP_CFG ]; then

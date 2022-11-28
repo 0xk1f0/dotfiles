@@ -1,18 +1,10 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # "bash strict mode"
 set -uo pipefail
 
-# settings
-SMB_CREDS="/home/$USER/.smbcreds"
-SMB_CFG="/home/$USER/.smbcfg"
-
-# detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
-else
-    SU_SYS="/bin/doas"
-fi
+# get script name
+_NAME=$(echo $0 | rev | cut -d '/' -f 1 | rev)
 
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
@@ -123,12 +115,37 @@ handleMount() {
     fi
 }
 
+# detect su system
+if command -v /bin/sudo >> /dev/null; then
+    SU_SYS="/bin/sudo"
+else
+    SU_SYS="/bin/doas"
+fi
+
+# check for root run
+if [ "$EUID" -eq 0 ]; then
+    # dont use sudo or doas
+    scriptFeedback success "Root Detected"
+    SU_SYS=""
+    if [ -z ${1+x} ] ; then
+        scriptFeedback error "No user in root session: $_NAME <user>"
+    else
+        _USER=$1
+    fi
+else
+    _USER=$USER
+fi
+
+# settings
+SMB_CREDS="/home/$_USER/.smbcreds"
+SMB_CFG="/home/$_USER/.smbcfg"
+
 # check if config files exist read, else exit
 if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
     scriptFeedback success "SMB config files found!"
     . $SMB_CFG
 else
-    scriptFeedback error "No SMB config files found!"
+    scriptFeedback error "No SMB config files found for user '$1'!"
 fi
 
 # check if mountpoint is occupied, if not, mount
