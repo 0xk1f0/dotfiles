@@ -8,7 +8,7 @@ B='#000000ff'
 
 swaylockd -f \
 --color=$G \
---image /home/$USER/.wallpaper \
+--image /home/$USER/.lockpaper \
 --scaling fill \
 --indicator-radius 80 \
 --indicator-thickness 8 \

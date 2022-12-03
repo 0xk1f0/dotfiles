@@ -127,10 +127,10 @@
     mouse_right_click = close_all
 
     # appearance
-	foreground = "#e5e8e9"
-	background = "#1e0f16"
-	frame_color = "#a0a2a3"
-	highlight = "#9f4e5d"
+	foreground = "#ebdfdf"
+	background = "#000000"
+	frame_color = "#a49c9c"
+	highlight = "#939393"
     frame_width = 2
     corner_radius = 4
 

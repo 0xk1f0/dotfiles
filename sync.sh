@@ -35,7 +35,7 @@ combinedLIST=(
     "$combExt/Thunar"
     "$combExt/pipewire"
     "$combExt/wireplumber"
-    "$combExt/Code/User/settings.json"
+    "$combExt/Code"
 )
 
 binLIST=(

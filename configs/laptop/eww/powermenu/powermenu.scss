@@ -1,9 +1,11 @@
 .powermenu {
-    background-color: rgba(0, 0, 0, 0.0);
+    background-color: rgba(0,0,0,0.0);
+    opacity: 1.0;
     padding: 30px;
     font-family: Font Awesome;
     font-size: 60px;
     button {
+        opacity: 1.0;
         border-radius: 15px;
         transition: all ease .2s;
         .content {
@@ -38,5 +40,6 @@
 }
 
 .powermenu-clickhandler {
-    background-color: rgba(5, 5, 5, 0.9);
+    background-color: $bg;
+    opacity: 0.95;
 }
