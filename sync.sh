@@ -26,7 +26,6 @@ combinedLIST=(
     "$combExt/zathura"
     "$combExt/mpv"
     "$combExt/btop"
-    "$combExt/cheat"
     "$combExt/paru"
     "$combExt/easyeffects"
     "$combExt/starship.toml"
