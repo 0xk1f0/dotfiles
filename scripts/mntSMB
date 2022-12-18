@@ -90,7 +90,7 @@ handleUnmount() {
     selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
-        "$SU_SYS" /bin/umount -l "$SMB_MOUNT"; 
+        $SU_SYS /bin/umount -l $SMB_MOUNT; 
         then
             scriptFeedback success "Successfully unmounted!"
             exit 0
