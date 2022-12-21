@@ -42,6 +42,7 @@
         "tooltip": false,
     },
     "battery": {
+        "bat": "BAT0",
         "format": "dsc {capacity}%",
         "format-charging": "chr {capacity}%",
         "format-full": "chrgd",
