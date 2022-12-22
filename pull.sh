@@ -23,10 +23,10 @@ chooseMenu() {
             index=$(( $index + 1 ))
         done
         read -s -n3 key
-        if [[ $key == $esc[A ]]
+        if [[ $key == "$esc[A" ]]
         then cur=$(( $cur - 1 ))
             [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == $esc[B ]]
+        elif [[ $key == "$esc[B" ]]
         then cur=$(( $cur + 1 ))
             [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
         elif [[ $key == "" ]]
@@ -88,6 +88,8 @@ combinedLIST=(
     "$homeCfgExt/wireplumber"
     "$homeCfgExt/Code/User/settings.json"
     "$homeExt/.bashrc"
+    "$homeExt/.inputrc"
+    "$homeExt/.wayinitrc"
 )
 
 normalLIST=(

@@ -10,6 +10,14 @@
 # exports
 export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
+export HISTCONTROL="erasedups:ignorespace"
+export EDITOR="nano"
+export VISUAL="nano"
+export LESS='-R --use-color -Dd+r$Du+b'
+export MANPAGER="less"
+
+# auto cd
+shopt -s autocd
 
 # archive extraction
 extr () {
@@ -60,7 +68,7 @@ dcryptArch() {
   fi
 }
 
-# base rust replacement aliases
+# base replacement aliases
 alias ps="procs"
 alias tree="exa -Tg@"
 alias ls="exa -1g@"
@@ -68,6 +76,8 @@ alias ll="exa -g@lhUm"
 alias la="exa -g@lahUm"
 alias cat="bat --plain --style grid"
 alias du="dust"
+alias ip='ip -color=auto'
+alias grep='grep --color=auto'
 
 # update aliases
 alias mirup="doas reflector -p https -f 20 -l 20 \

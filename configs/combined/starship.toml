@@ -12,17 +12,17 @@ success_symbol = "[❯](bold #ffffff)"
 error_symbol = "[❯](bold #ffffff)"
 
 [directory]
-style = "italic bold #ffffff"
+style = "italic bold"
 home_symbol = "~"
 read_only = ""
 
 [cmd_duration]
 format = "\n[$duration]($style)\n"
-style = "italic bold #66ff66"
+style = "italic bold"
 show_milliseconds = false
 
 [git_branch]
-style = "italic bold #66ff66"
+style = "italic bold"
 
 [python]
 format = '(\($virtualenv\) )'

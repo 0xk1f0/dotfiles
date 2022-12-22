@@ -54,7 +54,8 @@ scriptFeedback proc "Syncing combined configs"
 $(echo "${combinedLIST[@]}") /home/$USER/.config/
 /bin/rsync -aq \
 --delete \
-./configs/combined/.bashrc /home/$USER/
+./configs/combined/.bashrc ./configs/combined/.inputrc ./configs/combined/.wayinitrc \
+/home/$USER/
 scriptFeedback success "Done"
 
 scriptFeedback proc "Syncing ~/.local/bin/ scripts"

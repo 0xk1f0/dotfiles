@@ -1,0 +1,12 @@
+# color
+set colored-stats On
+set visible-stats On
+set mark-symlinked-directories On
+set colored-completion-prefix On
+set menu-complete-display-prefix On
+
+# faster completion
+set show-all-if-unmodified on
+
+# dont echo control
+set echo-control-characters off
