@@ -48,10 +48,9 @@
       "format": "{icon}",
       "on-click": "activate",
       "format-icons": {
-        "urgent": "",
-        "active": "",
+        "urgent": "",
+        "active": "",
         "default": ""
       },
-      "sort-by-number": true
     }
 }

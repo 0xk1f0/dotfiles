@@ -1,7 +1,7 @@
-@define-color fg #A2BBC2;
-@define-color bg #0F0D10;
-@define-color nrm #485974;
-@define-color act #718287;
+@define-color fg #D3CCC5;
+@define-color bg #0A100F;
+@define-color nrm #694738;
+@define-color act #938E89;
 @define-color urg #ff0000;
 
 * {
@@ -51,7 +51,7 @@ window#waybar {
 }
 
 #workspaces {
-    font-family: Font Awesome;
+	font-family: Twemoji;
     padding: 1px 4px;
 }
 

@@ -58,9 +58,6 @@ set stateflags
 ## Use this tab size instead of the default; it must be greater than 0.
 set tabsize 4
 
-## Convert each typed tab to the fitting number of spaces.
-set tabstospaces
-
 ## Snip whitespace at the end of lines when justifying or hard-wrapping.
 set trimblanks
 

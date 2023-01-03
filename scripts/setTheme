@@ -36,15 +36,18 @@ WAL_NRM=$(cat .cache/wal/colors.json \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
 
 # rofi
-CNF_FILE="/home/$USER/.config/rofi/config.rasi"
+CNF_FILE="/home/$USER/.config/rofi/colors.rasi"
 sed -i -r \
-'s/^\tfg:.*;/\tfg:\t\t\t\t\t\t#'"$WAL_FG"';/' \
+'s/^\tact:.*;/\tnrm:\t\t\t\t#'"$WAL_NRM"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tbg:.*;/\tbg:\t\t\t\t\t\t#'"$WAL_BG"';/' \
+'s/^\tfg:.*;/\tfg:\t\t\t\t#'"$WAL_FG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tnrm:.*;/\tnrm:\t\t\t\t\t#'"$WAL_NRM"';/' \
+'s/^\tbg:.*;/\tbg:\t\t\t\t#'"$WAL_BG"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\topq-bg:.*;/\topq-bg:\t\t\t#'"$WAL_BG"'EE;/' \
 "$CNF_FILE"
 
 # waybar

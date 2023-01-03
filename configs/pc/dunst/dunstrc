@@ -133,10 +133,10 @@
     frame_width = 2
 
     # colors
-	frame_color = "#718287"
-	foreground = "#A2BBC2"
-	background = "#0F0D10"
-	highlight = "#485974"
+	frame_color = "#938E89"
+	foreground = "#D3CCC5"
+	background = "#0A100F"
+	highlight = "#694738"
 
 [experimental]
     per_monitor_dpi = false
