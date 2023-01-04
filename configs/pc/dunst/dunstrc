@@ -15,7 +15,7 @@
     #width = 300
     #height = 180
     origin = top-right
-    offset = 8x8
+    offset = 0x0
     scale = 0
 
     # max number of notification
@@ -127,10 +127,10 @@
     mouse_right_click = close_all
 
     # corner radius
-    corner_radius = 4
+    corner_radius = 0
 
     # frame
-    frame_width = 2
+    frame_width = 0
 
     # colors
 	frame_color = "#938E89"

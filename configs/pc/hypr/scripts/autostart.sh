@@ -24,7 +24,7 @@ killall -q swayidle -9
 LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
 swayidle -w \
 timeout 600 $LOCKER \
-timeout 30 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' \
+timeout 60 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' \
 timeout 660 'hyprctl dispatch dpms off' \
 resume 'hyprctl dispatch dpms on' &
 

@@ -17,48 +17,40 @@ window#waybar {
     background-color: @bg;
     border: none;
     border-radius: 0px;
-    font-size: 13px;
+    font-size: 14px;
     color: @fg;
 }
 
 #clock {
     font-family: Open Sans SemiBold;
-    padding: 1px 4px;
+    padding: 2px 10px;
 }
 
 #network {
-    padding: 1px 8px;
+    padding: 2px 10px;
     font-family: Open Sans SemiBold;
 }
 
 #cpu {
-    padding: 1px 4px;
+    padding: 2px 8px;
     font-family: Open Sans SemiBold;
     color: @fg;
 }
 
-#cpu.warning {
-    color: orange;
-}
-
-#cpu.critical {
-    color: red;
-}
-
 #memory {
-    padding: 1px 4px;
+    padding: 2px 0px;
     font-family: Open Sans SemiBold;
 }
 
 #workspaces {
-	font-family: Twemoji;
-    padding: 1px 4px;
+	font-family: Font Awesome;
+    padding: 2px 4px;
 }
 
 #workspaces button {
     color: @fg;
     border: none;
-    padding: 1px 8px;
+    padding: 2px 8px;
 }
 
 #workspaces button:hover {

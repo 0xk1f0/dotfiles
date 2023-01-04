@@ -1,6 +1,5 @@
 {
     "security.workspace.trust.enabled": false,
-    "files.autoSave": "afterDelay",
     "explorer.confirmDelete": false,
     "workbench.iconTheme": "material-icon-theme",
     "workbench.colorTheme": "Palenight Operator",
@@ -28,5 +27,7 @@
     "rust-analyzer.inlayHints.typeHints.enable": false,
     "window.zoomLevel": 1,
     "window.menuBarVisibility": "toggle",
-    "cmake.configureOnOpen": false
+    "cmake.configureOnOpen": false,
+    "editor.detectIndentation": false,
+    "files.autoSave": "afterDelay"
 }

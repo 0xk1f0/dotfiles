@@ -16,14 +16,14 @@
     "spacing": 0,
     "margin": "0px 0px 0px 0px",
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["cpu","clock","memory"],
-    "modules-right": ["network"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "network"],
 
     // Modules configuration
 
     "clock": {
-        "format": "{:%H:%M:%S}",
-        "format-alt": "{:%d-%m-%Y}",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%H:%M}",
         "tooltip": false,
         "interval": 1
     },

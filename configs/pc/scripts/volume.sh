@@ -6,13 +6,25 @@ set -uo pipefail
 # what the fuck
 getVol() {
     STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
-    if echo $STATUS | grep -E '^0\.[0-9][0-9]$'; then
+    if echo $STATUS | grep -E '^0\.[0-9][0-9]$' >> /dev/null; then
         STATUS="$(echo $STATUS \
         | cut -d '.' -f 2 \
         | sed 's/^0[0-9]/'"$(echo $STATUS | cut -c 4-)"'/')"
     else
         STATUS="$(echo $STATUS | tr -d '.')"
     fi
+	echo "$STATUS"
+}
+
+alert() {
+	# alert user
+	dunstify \
+	-a "chgVol" \
+	-r 66199 \
+	-u low \
+	-i "$ICON" \
+	-h int:value:$STATUS \
+	"Volume:" "$STATUS\%"
 }
 
 # match keys
@@ -22,12 +34,14 @@ case $1 in
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
         getVol
         ICON="audio-volume-high"
+        alert
         ;;
     down)
         # down Volume
         wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
         getVol
         ICON="audio-volume-low"
+        alert
         ;;
     mute)
         # mute
@@ -40,14 +54,9 @@ case $1 in
             STATUS="Unmuted"
             ICON="audio-volume-high"
         fi
+        alert
+        ;;
+	getVolume)
+    	getVol
         ;;
 esac
-
-# alert user
-dunstify \
--a "chgVol" \
--r 66199 \
--u low \
--i "$ICON" \
--h int:value:$STATUS \
-"Volume:" "$STATUS\%"
