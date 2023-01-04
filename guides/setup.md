@@ -187,6 +187,21 @@ ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
 
 ---
 
+## Windows font rendering /etc/fonts/conf.d/99-calibir-fix.conf
+
+```xml
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<fontconfig>
+    <!-- disable embedded bitmaps in fonts to fix Calibri, Cambria, etc. -->
+    <match target="font">
+       <edit mode="assign" name="embeddedbitmap"><bool>false</bool></edit>
+    </match>
+</fontconfig>
+```
+
+---
+
 ## Rust Dev Setup
 
 ```bash
