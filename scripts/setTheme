@@ -38,7 +38,10 @@ WAL_NRM=$(cat .cache/wal/colors.json \
 # rofi
 CNF_FILE="/home/$USER/.config/rofi/colors.rasi"
 sed -i -r \
-'s/^\tact:.*;/\tnrm:\t\t\t\t#'"$WAL_ACT"';/' \
+'s/^\tact:.*;/\tact:\t\t\t#'"$WAL_ACT"';/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\tnrm:.*;/\tnrm:\t\t\t#'"$WAL_NRM"';/' \
 "$CNF_FILE"
 sed -i -r \
 's/^\tfg:.*;/\tfg:\t\t\t\t#'"$WAL_FG"';/' \

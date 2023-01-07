@@ -8,13 +8,12 @@
 {
     // Base Config
 
-    "layer": "top",
+    "layer": "bottom",
+	"output": ["DP-1", "DP-2"],
     "mode": "dock",
     "fixed-center": true,
     "position": "top",
-    "height": "",
     "spacing": 0,
-    "margin": "0px 0px 0px 0px",
     "modules-left": ["wlr/workspaces"],
     "modules-center": ["clock"],
     "modules-right": ["cpu", "memory", "network"],

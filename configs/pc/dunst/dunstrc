@@ -15,7 +15,7 @@
     #width = 300
     #height = 180
     origin = top-right
-    offset = 0x0
+    offset = 8x8
     scale = 0
 
     # max number of notification
@@ -127,7 +127,7 @@
     mouse_right_click = close_all
 
     # corner radius
-    corner_radius = 0
+    corner_radius = 8
 
     # frame
     frame_width = 0

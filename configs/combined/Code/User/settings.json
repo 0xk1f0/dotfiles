@@ -25,9 +25,10 @@
     "rust-analyzer.inlayHints.parameterHints.enable": false,
     "rust-analyzer.inlayHints.renderColons": false,
     "rust-analyzer.inlayHints.typeHints.enable": false,
-    "window.zoomLevel": 1,
     "window.menuBarVisibility": "toggle",
     "cmake.configureOnOpen": false,
     "editor.detectIndentation": false,
-    "files.autoSave": "afterDelay"
+    "files.autoSave": "afterDelay",
+    "window.zoomLevel": 1,
+    "editor.insertSpaces": false
 }

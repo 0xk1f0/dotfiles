@@ -15,11 +15,11 @@
 
 ; VOLUME ;
 
-(defpoll SINK :interval "1s"
-    "/home/$USER/.config/eww/scripts/vol.sh sink"
+(defpoll SINK :interval "300ms"
+    "/home/$USER/.config/scripts/volume.sh sink"
 )
-(defpoll SOURCE :interval "1s"
-    "/home/$USER/.config/eww/scripts/vol.sh source"
+(defpoll SOURCE :interval "300ms"
+    "/home/$USER/.config/scripts/volume.sh source"
 )
 
 ; SYSTEM ;
@@ -67,7 +67,7 @@
                 :max 101
                 :value SINK
                 :active "true"
-                :onchange "/home/$USER/.config/eww/scripts/vol.sh sink-set {}"
+                :onchange "/home/$USER/.config/scripts/volume.sh sink-set {}"
             )
             (label
                 :wrap "true"
@@ -90,7 +90,7 @@
                 :max 101
                 :value SOURCE
                 :active "true"
-                :onchange "/home/$USER/.config/eww/scripts/vol.sh source-set {}"
+                :onchange "/home/$USER/.config/scripts/volume.sh source-set {}"
             )
             (label
                 :wrap "true"
@@ -126,13 +126,13 @@
                     (label
                         :xalign 0.5
                         :class "song"
-                        :limit-width 25
+                        :limit-width 15
                         :text TITLE
                     )
                     (label 
                         :xalign 0.5
                         :class "artist"
-                        :limit-width 25
+                        :limit-width 15
                         :text ARTIST
                     )
                 )
@@ -214,7 +214,7 @@
 )
 
 (defwindow dashboard 
-    :focusable false
+    :focusable true
     :monitor 0
     :stacking "fg"
     :geometry ( geometry 

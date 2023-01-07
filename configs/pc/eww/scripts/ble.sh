@@ -6,7 +6,7 @@ set -uo pipefail
 # match options
 case $1 in
     toggle)
-        STATUS=$(bluetoothctl show | grep "Power" | awk '{print $2}')
+        STATUS=$(bluetoothctl show | grep "Powered" | awk '{print $2}')
         if [[ $STATUS == "no" ]]; then
             bluetoothctl power on > /dev/null
         else
@@ -14,6 +14,6 @@ case $1 in
         fi
         ;;
     status)
-        echo $(bluetoothctl show | grep "Power" | awk '{print $2}')
+        echo $(bluetoothctl show | grep "Powered" | awk '{print $2}')
         ;;
 esac

@@ -1,12 +1,12 @@
 .dashboard {
     background-color: $bg;
     padding: 10px;
-    border-radius: 0px 0px 14px 0px;
+    border-radius: 0px 0px 8px 0px;
 }
 
 .calendar-wrapper {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
 }
 
@@ -18,7 +18,7 @@
     }
     calendar.header {
         color: $fg;
-        font-weight: bold;
+		font-weight: bold;
     }
     calendar.button {
         color: $fg;
@@ -37,7 +37,7 @@
 
 .music {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
     .song {
         color: $fg;
@@ -63,27 +63,28 @@
 
 .volume {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
     .sliderbar {
-        border-radius: 4px;
+        border-radius: 8px;
         margin-right: 5px;
         trough {
             all: unset;
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: $bg;
             min-height: 12px;
             min-width: 240px;
         }
         highlight {
             all: unset;
-            border-radius: 4px;
+            border-radius: 8px;
             background-color: $act;
         }
     }
     .slidervalue {
         color: $fg;
         font-size : 14px;
+        font-weight : bold;
         min-width: 40px;
     }
     .volicon {
@@ -100,7 +101,7 @@
 
 .clock {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
     .clock-time {
         color: $fg;
@@ -115,7 +116,7 @@
 
 .bluetooth {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
     font-size : 32px;
     font-family: Font Awesome;
@@ -127,7 +128,7 @@
 
 .network {
     background-color: rgba($fg, 0.1);
-    border-radius: 14px;
+    border-radius: 8px;
     padding: 14px;
     font-size : 42px;
     font-family: Font Awesome;

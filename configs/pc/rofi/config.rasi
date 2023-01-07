@@ -12,16 +12,13 @@ configuration {
 }
 
 * {
-    border:                 var(nrm);
-    alt-bg:                 var(nrm);
-	alt-fg:                 var(bg);
     font:                   "Source Code Pro Semibold 14";
 }
 
 window {
     enabled:                true;
     transparency:           "real";
-    background-color:       @opq-bg;
+    background-color:       @OPQ-BG;
     location:               center;
     anchor:                 center;
     fullscreen:             true;
@@ -33,7 +30,7 @@ mainbox {
     enabled:                true;
     spacing:                10px;
     margin:                 30%;
-    border-color:           @border;
+    border-color:           @NRM;
     background-color:       transparent;
 }
 
@@ -41,9 +38,9 @@ inputbar {
     enabled:                true;
     spacing:                10px;
     padding:                8px;
-    border-color:           @border;
+    border-color:           @NRM;
     background-color:       transparent;
-    text-color:             @fg;
+    text-color:             @FG;
     children:               [ "prompt", "entry" ];
 }
 
@@ -64,9 +61,17 @@ listview {
     layout:                 vertical;
     reverse:                false;
     spacing:                10px;
-    border-color:           @border;
+    border-color:           @NRM;
     background-color:       transparent;
-    text-color:             @fg;
+    text-color:             @FG;
+}
+
+error-message {
+    enabled:                true;
+    spacing:                10px;
+    margin:                 30%;
+    border-color:           @NRM;
+    background-color:       transparent;
 }
 
 message {
@@ -81,7 +86,7 @@ message {
 textbox {
     enabled:                true;
     background-color:       transparent;
-    text-color:             @fg;
+    text-color:             @FG;
 }
 
 element {
@@ -91,14 +96,14 @@ element {
     padding:                8px;
     border:                 0px solid;
     border-radius:          8px;
-    border-color:           @border;
+    border-color:           @NRM;
     background-color:       transparent;
-    text-color:             @fg;
+    text-color:             @FG;
 }
 
 element selected.normal {
-    background-color:       @alt-bg;
-    text-color:             @fg;
+    background-color:       @NRM;
+    text-color:             @FG;
 }
 
 element-text {
