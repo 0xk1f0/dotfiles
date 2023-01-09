@@ -16,25 +16,32 @@ scriptFeedback() {
 }
 
 binExt="./scripts"
-combExt="./configs/combined"
+dotExt="./configs/dotconfig"
 
-combinedLIST=(
-    "$combExt/kitty"
-    "$combExt/ncspot"
-    "$combExt/nano"
-    "$combExt/picom"
-    "$combExt/zathura"
-    "$combExt/mpv"
-    "$combExt/btop"
-    "$combExt/paru"
-    "$combExt/easyeffects"
-    "$combExt/starship.toml"
-    "$combExt/electron-flags.conf"
-    "$combExt/code-flags.conf"
-    "$combExt/Thunar"
-    "$combExt/pipewire"
-    "$combExt/wireplumber"
-    "$combExt/Code"
+dotLIST=(
+    "$dotExt/dunst"
+    "$dotExt/qtile"
+    "$dotExt/rofi"
+    "$dotExt/eww"
+    "$dotExt/hypr"
+    "$dotExt/waybar"
+    "$dotExt/scripts"
+    "$dotExt/kitty"
+    "$dotExt/ncspot"
+    "$dotExt/nano"
+    "$dotExt/picom"
+    "$dotExt/zathura"
+    "$dotExt/mpv"
+    "$dotExt/btop"
+    "$dotExt/paru"
+    "$dotExt/easyeffects"
+    "$dotExt/starship.toml"
+    "$dotExt/electron-flags.conf"
+    "$dotExt/code-flags.conf"
+    "$dotExt/Thunar"
+    "$dotExt/pipewire"
+    "$dotExt/wireplumber"
+    "$dotExt/Code"
 )
 
 binLIST=(
@@ -49,19 +56,24 @@ binLIST=(
 )
 
 scriptFeedback proc "Syncing combined configs"
+
 /bin/rsync -aq \
 --delete \
-$(echo "${combinedLIST[@]}") /home/$USER/.config/
+$(echo "${dotLIST[@]}") /home/$USER/.config/
+
 /bin/rsync -aq \
 --delete \
-./configs/combined/.bashrc ./configs/combined/.inputrc ./configs/combined/.wayinitrc \
+"$dotExt"/.bashrc "$dotExt"/.inputrc "$dotExt"/.wayinitrc \
 /home/$USER/
+
 scriptFeedback success "Done"
 
 scriptFeedback proc "Syncing ~/.local/bin/ scripts"
+
 /bin/rsync -aq \
 --delete \
 $(echo "${binLIST[@]}") /home/$USER/.local/bin/
+
 scriptFeedback success "Done"
 
 exit 0

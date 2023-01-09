@@ -68,11 +68,19 @@ handleYesNo() {
 binExt="/home/$USER/.local/bin"
 homeCfgExt="/home/$USER/.config"
 homeExt="/home/$USER"
+dotExt="./configs/dotconfig"
 
-combinedLIST=(
+dotLIST=(
+    "$homeCfgExt/dunst"
+    "$homeCfgExt/rofi"
+    "$homeCfgExt/eww"
+    "$homeCfgExt/hypr"
+    "$homeCfgExt/waybar"
+    "$homeCfgExt/scripts"
     "$homeCfgExt/kitty"
     "$homeCfgExt/ncspot"
     "$homeCfgExt/nano"
+    "$homeCfgExt/helix"
     "$homeCfgExt/picom"
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
@@ -92,16 +100,6 @@ combinedLIST=(
     "$homeExt/.wayinitrc"
 )
 
-normalLIST=(
-    "$homeCfgExt/dunst"
-    "$homeCfgExt/qtile"
-    "$homeCfgExt/rofi"
-    "$homeCfgExt/eww"
-    "$homeCfgExt/hypr"
-    "$homeCfgExt/waybar"
-    "$homeCfgExt/scripts"
-)
-
 binLIST=(
     "$binExt/mntExt"
     "$binExt/mntSMB"
@@ -113,41 +111,31 @@ binLIST=(
     "$binExt/xtkotlinc"
 )
 
-selections=(
-    "pc"
-    "laptop"
-)
-
 clear
-chooseMenu "What device are you on?" selected_choice "${selections[@]}"
-platform="$selected_choice"
 
-if handleYesNo "Include normal?"; then
-    scriptFeedback proc "Syncing configs for $platform"
-    /bin/rsync -aq \
-    --delete \
-    $(echo "${normalLIST[@]}") ./configs/$platform/
-    scriptFeedback success "Done"
-fi
+if handleYesNo "Include dotconfigs?"; then
+    scriptFeedback proc "Syncing configs"
 
-if handleYesNo "Include combined?"; then
-    scriptFeedback proc "Syncing combined configs"
     /bin/rsync -aq \
     --delete \
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
-    $(echo "${combinedLIST[@]}") ./configs/combined/
+    $(echo "${dotLIST[@]}") "$dotExt"/
+
     # exception
-    mkdir -p ./configs/combined/Code/User/
-    mv ./configs/combined/settings.json ./configs/combined/Code/User/
+    mkdir -p "$dotExt"/Code/User/
+    mv "$dotExt"/settings.json "$dotExt"/Code/User/
+
     scriptFeedback success "Done"
 fi
 
-if handleYesNo "Include ~/.local/bin/ scripts?"; then
+if handleYesNo "Include scripts?"; then
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
+
     /bin/rsync -aq \
     --delete \
     $(echo "${binLIST[@]}") ./scripts/
+
     scriptFeedback success "Done"
 fi
 

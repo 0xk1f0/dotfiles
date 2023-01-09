@@ -1,0 +1,31 @@
+# The editor to use with 'cheat -e <sheet>'. Defaults to $EDITOR or $VISUAL.
+editor: nano
+
+# Should 'cheat' always colorize output?
+colorize: true
+
+# Which 'chroma' colorscheme should be applied to the output?
+# Options are available here:
+#   https://github.com/alecthomas/chroma/tree/master/styles
+style: average
+
+# Which 'chroma' "formatter" should be applied?
+# One of: "terminal", "terminal256", "terminal16m"
+formatter: terminal256
+
+# Through which pager should output be piped?
+# 'less -FRX' is recommended on Unix systems
+# 'more' is recommended on Windows
+pager: less -F
+
+# Cheatpaths are paths at which cheatsheets are available on your local
+# filesystem.
+cheatpaths:
+  - name: community
+    path: /home/k1f0/.config/cheat/cheatsheets/community
+    tags: [ community ]
+    readonly: true
+  - name: personal
+    path: /home/k1f0/.config/cheat/cheatsheets/personal
+    tags: [ personal ]
+    readonly: true
