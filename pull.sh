@@ -72,7 +72,6 @@ dotExt="./configs/dotconfig"
 
 dotLIST=(
     "$homeCfgExt/dunst"
-    "$homeCfgExt/qtile"
     "$homeCfgExt/rofi"
     "$homeCfgExt/eww"
     "$homeCfgExt/hypr"
@@ -81,6 +80,7 @@ dotLIST=(
     "$homeCfgExt/kitty"
     "$homeCfgExt/ncspot"
     "$homeCfgExt/nano"
+    "$homeCfgExt/helix"
     "$homeCfgExt/picom"
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
@@ -123,8 +123,8 @@ if handleYesNo "Include dotconfigs?"; then
     $(echo "${dotLIST[@]}") "$dotExt"/
 
     # exception
-    mkdir -p ./configs/combined/Code/User/
-    mv ./configs/combined/settings.json ./configs/combined/Code/User/
+    mkdir -p "$dotExt"/Code/User/
+    mv "$dotExt"/settings.json "$dotExt"/Code/User/
 
     scriptFeedback success "Done"
 fi

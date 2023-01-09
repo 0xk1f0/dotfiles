@@ -69,7 +69,7 @@ sed -i -r \
 "$CNF_FILE"
 
 # hyprland
-CNF_FILE="/home/$USER/.config/hypr/theme.conf"
+CNF_FILE="/home/$USER/.config/hypr/colors.conf"
 sed -i -r \
 's/^\$FGD.*/$FGD=0xFF'"$WAL_FG"'/' \
 "$CNF_FILE"

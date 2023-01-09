@@ -29,6 +29,5 @@
     "cmake.configureOnOpen": false,
     "editor.detectIndentation": false,
     "files.autoSave": "afterDelay",
-    "window.zoomLevel": 1,
-    "editor.insertSpaces": false
+	"window.zoomLevel": 1
 }

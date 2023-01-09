@@ -1,7 +1,7 @@
-@define-color fg #99ECDD;
-@define-color bg #060A0E;
-@define-color nrm #41D8BE;
-@define-color act #6BA59A;
+@define-color fg #D3CCC5;
+@define-color bg #0A100F;
+@define-color nrm #694738;
+@define-color act #938E89;
 @define-color urg #ff0000;
 
 * {

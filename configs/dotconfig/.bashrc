@@ -4,9 +4,6 @@
 #  _ / /_/ / /_/ (__  ) / / / /  / /__/_____/ ,< / / __/ /_/ /
 # (_)_.___/\__,_/____/_/ /_/_/   \___/     /_/|_/_/_/  \____/
 
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
 # exports
 export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
@@ -16,8 +13,14 @@ export VISUAL="nano"
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
 
-# auto cd
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# shopt
 shopt -s autocd
+shopt -s cdspell
+shopt -s checkwinsize
+shopt -s histappend
 
 # archive extraction
 extr () {
@@ -69,41 +72,43 @@ dcryptArch() {
 }
 
 # base replacement aliases
-alias ps="procs"
-alias tree="exa -Tg@"
-alias ls="exa -1g@"
-alias ll="exa -g@lhUm"
-alias la="exa -g@lahUm"
-alias cat="bat --plain --style grid"
-alias du="dust"
+alias ps='procs'
+alias tree='exa -Tg@'
+alias ls='exa -1g@'
+alias ll='exa -g@lhUm'
+alias la='exa -g@lahUm'
+alias cat='bat --plain --style grid'
+alias du='dust'
 alias ip='ip -color=auto'
 alias grep='grep --color=auto'
+alias hx='helix'
+alias df='df -h'
 
 # update aliases
-alias mirup="doas reflector -p https -f 20 -l 20 \
--c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist"
+alias mirup='doas reflector -p https -f 20 -l 20 \
+-c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist'
 alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
 
 # git aliases
-alias gta="git add"
-alias gtc="git commit"
-alias gtp="git push"
-alias gtu="git pull"
-alias gtcl="git clone"
+alias gta='git add'
+alias gtc='git commit'
+alias gtp='git push'
+alias gtu='git pull'
+alias gtcl='git clone'
 
 # more aliases
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
-alias fdpkg="pacman -Ss | paste -d '' - - | \
-fzf -e --multi --preview 'pacman -Si {1}' | \
-cut -d ' ' -f 1 | xargs -ro doas pacman -S"
+alias fdpkg='pacman -Ss | paste -d "" - - | \
+fzf -e --multi --preview "pacman -Si {1}" | \
+cut -d " " -f 1 | xargs -ro doas pacman -S'
 alias ybi2fa=\
-"ykman oath accounts list | fzf -e | \
+'ykman oath accounts list | fzf -e | \
 xargs -ro ykman oath accounts code | \
-cut -d ' ' -f 3 | wl-copy -n && echo 'Copied!'"
-alias uphist="expac --timefmt='%F %T' '%l %n' | sort -n"
+cut -d " " -f 3 | wl-copy -n && echo "Copied!"'
+alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
 
 # prompt
 eval "$(starship init bash)"
