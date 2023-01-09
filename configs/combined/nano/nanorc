@@ -55,6 +55,9 @@ set softwrap
 ## M = mark, L = hard-wrapping long lines, R = recording, S = soft-wrapping.
 set stateflags
 
+## Convert each typed tab to the fitting number of spaces.
+set tabstospaces
+
 ## Use this tab size instead of the default; it must be greater than 0.
 set tabsize 4
 
@@ -77,14 +80,12 @@ set stripecolor white,lightblack
 set scrollercolor white,lightblack
 
 ## === Syntax coloring ===
-## For all details, see 'man nanorc', section SYNTAX HIGHLIGHTING.
 
 ## To include most of the existing syntax definitions, you can do:
 include "/usr/share/nano/*.nanorc"
 include "/usr/share/nano/extra/*.nanorc"
 
 ## === Key bindings ===
-## For all details, see 'man nanorc', section REBINDING KEYS.
 
 unbind M-E main
 unbind M-R main

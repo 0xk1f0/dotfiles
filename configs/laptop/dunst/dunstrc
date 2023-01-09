@@ -127,12 +127,12 @@
     mouse_right_click = close_all
 
     # appearance
-	foreground = "#7DC9DF"
-	background = "#000C1D"
-	frame_color = "#578C9C"
-	highlight = "#016599"
-    frame_width = 2
-    corner_radius = 4
+	foreground = "#99ECDD"
+	background = "#060A0E"
+	frame_color = "#6BA59A"
+	highlight = "#41D8BE"
+    frame_width = 0
+    corner_radius = 8
 
 [experimental]
     per_monitor_dpi = false

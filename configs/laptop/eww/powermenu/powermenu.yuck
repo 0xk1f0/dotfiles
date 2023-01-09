@@ -1,52 +1,82 @@
 (defwidget powermenu []
-  (box :class "powermenu"
-       :orientation "h"
-       :space-evenly true
-       :spacing 20
-    (button :class "shutdown"
+    (box 
+        :class "powermenu"
+        :orientation "h"
+        :space-evenly true
+        :spacing 20
+        (button 
+            :class "shutdown"
             :onclick "systemctl poweroff"
-      (label :text "" :class "content")
-    )
-    (button :class "reboot"
+            ""
+        )
+        (button 
+            :class "reboot"
             :onclick "systemctl reboot"
-      (label :text "" :class "content")
+            ""
+        )
+        (button 
+            :class "lock"
+            :onclick "eww close powermenu \
+            powermenu-blur0 powermenu-blur1 \
+            && /home/$USER/.config/scripts/wayland/swaylock.sh"
+            ""
+        )
+        (button 
+            :class "logout"
+            :onclick "loginctl terminate-user $USER"
+            ""
+        )
     )
-    (button :class "lock"
-            :onclick "eww close powermenu powermenu-blur && \
-            /home/$USER/.config/scripts/wayland/swaylock.sh"
-      (label :text "" :class "content")
-    )
-    (button :class "logout"
-            :onclick 'loginctl terminate-user $USER'
-      (label :text "" :class "content")
-    )
-  )
 )
 
 (defwidget powermenu-clickhandler []
-  (button :class "powermenu-clickhandler"
-          :onclick "eww close powermenu powermenu-blur"
-    ""
-  )
+    (button 
+        :class "powermenu-clickhandler"
+        :onclick "eww close powermenu \
+        powermenu-blur0 powermenu-blur1"
+        ""
+    )
 )
 
-(defwindow powermenu-blur
-  :focusable true
-  :monitor 0
-  :stacking "fg"
-  :geometry (geometry :x "0px"
-                      :y "0px"
-                      :width "100%"
-                      :height "103%"
-                      :anchor "center")
-(powermenu-clickhandler))
+(defwindow powermenu-blur0
+    :focusable false
+    :monitor 0
+    :stacking "fg"
+    :geometry (geometry
+        :x "0px"
+        :y "0px"
+        :width "100%"
+        :height "103%"
+        :anchor "center"
+    )
+    (powermenu-clickhandler)
+)
+
+(defwindow powermenu-blur1
+    :focusable false
+    :monitor 1
+    :stacking "fg"
+    :geometry (geometry
+        :x "0px"
+        :y "0px"
+        :width "100%"
+        :height "103%"
+        :anchor "center"
+    )
+    (powermenu-clickhandler)
+)
+
 
 (defwindow powermenu
-  :monitor 0
-  :stacking "fg"
-  :geometry (geometry :x "0px"
-                      :y "0px"
-                      :width "500px"
-                      :height "150px"
-                      :anchor "center")
-(powermenu))
+    :focusable false
+    :monitor 0
+    :stacking "overlay"
+    :geometry (geometry 
+        :x "0px"
+        :y "0px"
+        :width "25%"
+        :height "15%"
+        :anchor "center"
+    )
+    (powermenu)
+)

@@ -4,92 +4,118 @@
 //  / /  / /_/ / __/ /_____/ ,< / / __/ /_/ / 
 // /_/   \____/_/ /_/     /_/|_/_/_/  \____/
 
+@theme "/dev/null"
+@import "colors.rasi"
+
 configuration {
-	modi:				"run,calc";
-	font:				"Source Code Pro SemiBold 10";
+    modi:                   "run,calc";
 }
 
-@theme "/dev/null"
-prompt { enabled: false; }
-
 * {
-	fg:						#7DC9DF;
-	bg:						#000C1D;
-    nrm:			        #404838;
-	background-color:	    @bg;
-	text-color:			    @fg;
+    font:                   "Source Code Pro Semibold 14";
 }
 
 window {
-	width:				    500px;
-	padding:			    5px;
-	location:			    center;
-	x-offset:               0;
-    y-offset:               0;
-	border:				    4px;
-    border-color:		    @nrm;
-    border-radius:          8px;
-}
-
-entry {
-	placeholder:			    "";
-	expand:                     true;
-	padding:                    0.2% 0.2% 0.2% 0.2%;
-	background-color:           @bg;
-    placeholder-color:          @fg;
-}
-
-inputbar {
-	children:			    [ prompt, entry ];
-	background-color:       @bg;
-	text-color:             @fg;
-	expand:                 false;
-	padding:                0.4%;
-	border:				    2px;
-	border-color:			@nrm;
-    border-radius:          4px;
-}
-
-listview {
-	columns:                2;
-	lines:	                6;
-	cycle:                  false;
-	dynamic:                true;
-	layout:                 vertical;
-}
-
-message {
-	background-color:       @bg;
-}
-
-textbox {
-	background-color:       @bg;
-	text-color:             @fg;	
+    enabled:                true;
+    transparency:           "real";
+    background-color:       @OPQ-BG;
+    location:               center;
+    anchor:                 center;
+    fullscreen:             true;
+    width:                  100%;
+    height:                 100%;
 }
 
 mainbox {
-	children:               [ inputbar, message, listview ];
-	spacing:			    1%;
-	padding:                1% 1% 1% 1%;
+    enabled:                true;
+    spacing:                10px;
+    margin:                 30%;
+    border-color:           @NRM;
+    background-color:       transparent;
+}
+
+inputbar {
+    enabled:                true;
+    spacing:                10px;
+    padding:                8px;
+    border-color:           @NRM;
+    background-color:       transparent;
+    text-color:             @FG;
+    children:               [ "prompt", "entry" ];
+}
+
+entry {
+    enabled:                true;
+    placeholder:            "";
+    background-color:       inherit;
+    text-color:             inherit;
+    placeholder-color:      inherit;
+}
+
+listview {
+    enabled:                true;
+    columns:                1;
+    cycle:                  false;
+    dynamic:                true;
+    scrollbar:              false;
+    layout:                 vertical;
+    reverse:                false;
+    spacing:                10px;
+    border-color:           @NRM;
+    background-color:       transparent;
+    text-color:             @FG;
+}
+
+error-message {
+    enabled:                true;
+    spacing:                10px;
+    margin:                 30%;
+    border-color:           @NRM;
+    background-color:       transparent;
+}
+
+message {
+    enabled:                true;
+    spacing:                10px;
+    margin:                 0px;
+    padding:                8px;
+    background-color:       transparent;
+    foreground-color:       transparent;
+}
+
+textbox {
+    enabled:                true;
+    background-color:       transparent;
+    text-color:             @FG;
 }
 
 element {
-	orientation:            vertical;
-	padding:                0.3% 0% 0.3% 0%;
+    enabled:                true;
+    spacing:                10px;
+    margin:                 0px;
+    padding:                8px;
+    border:                 0px solid;
+    border-radius:          8px;
+    border-color:           @NRM;
+    background-color:       transparent;
+    text-color:             @FG;
+}
+
+element selected.normal {
+    background-color:       @NRM;
+    text-color:             @FG;
 }
 
 element-text {
-	expand:                 true;
-	vertical-align:         0.5;
-	margin:                 0.2% 0.2% 0.2% 0.2%;
-	background-color:       inherit;
+    background-color:       transparent;
     text-color:             inherit;
+    highlight:              inherit;
 }
 
-element selected {
-	background-color:       @fg;
-	text-color:             @bg;
-	border:				    4px;
-	border-color:			@fg;
-    border-radius:          4px;
+prompt {
+    enabled:                false;
+}
+
+scrollbar {
+    enabled:                false;
 }

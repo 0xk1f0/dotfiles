@@ -3,51 +3,76 @@
 # bash strict
 set -uo pipefail
 
-# what the fuck
-getVol() {
-    STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d ' ' -f 2)"
-    if echo $STATUS | grep -E '^0\.[0-9][0-9]$'; then
-        STATUS="$(echo $STATUS \
-        | cut -d '.' -f 2 \
-        | sed 's/^0[0-9]/'"$(echo $STATUS | cut -c 4-)"'/')"
-    else
-        STATUS="$(echo $STATUS | tr -d '.')"
-    fi
+# convert the wpctl output
+doConvert() {
+    STATUS=$(awk "BEGIN {print $STATUS * 100}")
+    printf "%s\n" "$STATUS"
+}
+
+# alert user
+alert() {
+	dunstify \
+	-a "chgVol" \
+	-r 66199 \
+	-u low \
+	-i "$ICON" \
+	-h int:value:$STATUS \
+	"Volume:" "$STATUS"
 }
 
 # match keys
 case $1 in
-    up)
-        # up Volume
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
-        getVol
+    sink)
+		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+		doConvert
+		;;
+	source)
+		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2}')"
+		doConvert
+        ;;
+    sink-set)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ "$2%"
+		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+        doConvert
         ICON="audio-volume-high"
+        alert
         ;;
-    down)
-        # down Volume
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
-        getVol
-        ICON="audio-volume-low"
+    source-set)
+        wpctl set-volume @DEFAULT_AUDIO_SOURCE@ "$2%"
+		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2}')"
+        doConvert
+        ICON="audio-volume-high"
+        alert
         ;;
-    mute)
-        # mute
+	sink-incr)
+        wpctl set-volume @DEFAULT_AUDIO_SINK@ "$3%$2"
+		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+        doConvert
+        ICON="audio-volume-high"
+        alert
+        ;;
+	sink-mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep "MUTE" >> /dev/null
-        if [ $? -eq 0 ]; then 
+        if [ $? -eq 0 ]; then
             STATUS="Muted"
             ICON="audio-volume-muted"
-        else 
+      	else
             STATUS="Unmuted"
             ICON="audio-volume-high"
         fi
+        alert
+        ;;
+	source-mute)
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+        wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep "MUTE" >> /dev/null
+        if [ $? -eq 0 ]; then
+            STATUS="Muted"
+            ICON="audio-volume-muted"
+      	else
+            STATUS="Unmuted"
+            ICON="audio-volume-high"
+        fi
+        alert
         ;;
 esac
-
-# alert user
-dunstify \
--a "chgVol" \
--r 66199 \
--u low \
--i "$ICON" \
--h int:value:$STATUS \
-"Volume:" "$STATUS\%"

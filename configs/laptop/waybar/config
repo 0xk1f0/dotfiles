@@ -4,44 +4,47 @@
 //  / ,< / / __/ /_/ /_____/ |/ |/ / /_/ / /_/ / /_/ / /_/ / /    
 // /_/|_/_/_/  \____/      |__/|__/\__,_/\__, /_.___/\__,_/_/     
 //                                      /____/                    
-
+                                     
 {
+    // Base Config
+
     "layer": "top",
     "mode": "dock",
     "fixed-center": true,
     "position": "top",
     "height": "",
     "spacing": 0,
+    "margin": "0px 0px 0px 0px",
     "modules-left": ["wlr/workspaces"],
-    "modules-center": ["cpu","clock","memory"],
-    "modules-right": ["network","battery"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "network", "battery"],
 
     // Modules configuration
 
     "clock": {
-        "format": "{:%H:%M:%S}",
-        "format-alt": "{:%d-%m-%Y}",
+        "format": "{:%H:%M}",
+        "format-alt": "{:%H:%M}",
         "tooltip": false,
-        "interval": 1,
+        "interval": 1
     },
     "cpu": {
         "format": "cpu {usage}%",
         "tooltip": false,
-        "interval": 5,
+        "interval": 5
     },
     "memory": {
         "format": "mem {}%",
         "tooltip": false,
-        "interval": 5,
+        "interval": 5
     },
     "network": {
         "format-wifi": "{ifname} {essid} lq {signalStrength}%",
         "format-ethernet": "{ifname} {bandwidthUpBytes} - {bandwidthDownBytes}",
         "format-disconnected": "dsc",
         "interval": 2,
-        "tooltip": false,
+        "tooltip": false
     },
-    "battery": {
+	"battery": {
         "bat": "BAT0",
         "format": "dsc {capacity}%",
         "format-charging": "chr {capacity}%",
@@ -53,10 +56,9 @@
       "format": "{icon}",
       "on-click": "activate",
       "format-icons": {
-        "urgent": "",
-        "active": "",
+        "urgent": "",
+        "active": "",
         "default": ""
       },
-      "sort-by-number": true
     }
 }
