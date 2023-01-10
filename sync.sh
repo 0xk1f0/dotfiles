@@ -20,7 +20,6 @@ dotExt="./configs/dotconfig"
 
 dotLIST=(
     "$dotExt/dunst"
-    "$dotExt/qtile"
     "$dotExt/rofi"
     "$dotExt/eww"
     "$dotExt/hypr"
@@ -29,7 +28,6 @@ dotLIST=(
     "$dotExt/kitty"
     "$dotExt/ncspot"
     "$dotExt/nano"
-    "$dotExt/picom"
     "$dotExt/zathura"
     "$dotExt/mpv"
     "$dotExt/btop"

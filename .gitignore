@@ -1,6 +1,12 @@
-pc/polybar/scripts
-laptop/polybar/scripts
-__pycache__
+# Python
+__pycache__/
+
+# ncspot
 *.cbor
+
+# thunar
 *accels.scm
-paru-bin
+
+# theming files
+*/colors.*
+*/style.*
