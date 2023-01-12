@@ -1,0 +1,55 @@
+; DATE-TIME ;
+
+(defpoll DAY :interval "1h"
+    "date '+%d'"
+)
+(defpoll WEEKDAY :interval "1h"
+    "date '+%A'"
+)
+(defpoll YEAR :interval "1h"
+    "date '+%Y'"
+)
+(defpoll TIME :interval "1s"
+    "date +%H:%M"
+)
+(defpoll DATE :interval "1s"
+    "date +%d.%m.%Y"
+)
+
+; VOLUME ;
+
+(defpoll SINK :interval "300ms"
+    "/home/$USER/.config/scripts/volume.sh sink"
+)
+(defpoll SOURCE :interval "300ms"
+    "/home/$USER/.config/scripts/volume.sh source"
+)
+
+; SYSTEM ;
+
+(defpoll STATE_NRM :interval "999h"
+    "grep 'nrm' /home/$USER/.config/eww/colors.scss | awk '{print $2}' | tr -d ';'"
+)
+(defpoll BLE_STATE :interval "3s"
+    "/home/$USER/.config/eww/scripts/ble.sh status"
+)
+(defpoll NET_TYPE :interval "3s"
+    "/home/$USER/.config/eww/scripts/net.sh type"
+)
+(defpoll NET_STATE :interval "3s"
+    "/home/$USER/.config/eww/scripts/net.sh status"
+)
+
+; MUSIC ;
+
+(deflisten TITLE :initial "Offline"
+    "playerctl -F metadata title"
+)
+(deflisten ARTIST :initial ""
+    "playerctl -F metadata artist"
+)
+
+; HYPR ;
+
+; (deflisten workspaces :initial "[]" "/home/$USER/.config/eww/scripts/hypr-workspaces.sh")
+; (deflisten current_workspace :initial "1" "/home/$USER/.config/eww/scripts/hypr-active.sh")

@@ -81,7 +81,6 @@ alias cat='bat --plain --style grid'
 alias du='dust'
 alias ip='ip -color=auto'
 alias grep='grep --color=auto'
-alias hx='helix'
 alias df='df -h'
 
 # update aliases

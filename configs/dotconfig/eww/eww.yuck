@@ -1,2 +1,4 @@
+(include "vars/vars.yuck")
 (include "powermenu/powermenu.yuck")
 (include "dashboard/dashboard.yuck")
+(include "bar/bar.yuck")

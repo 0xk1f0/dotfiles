@@ -1,0 +1,18 @@
+(defwidget clock []
+    (box 
+        :class "clock"
+        :space-evenly "false"
+        :halign "fill"
+        :orientation "v"
+        (label 
+            :xalign 0
+            :class "clock-time"
+            :text TIME
+        )
+        (label 
+            :xalign 0
+            :class "clock-date"
+            :text DATE
+        )
+    )
+)

@@ -1,4 +1,30 @@
-(defwidget powermenu []
+(include "powermenu/widgets/clickhandler.yuck")
+
+(defwindow powermenu-blur
+    :focusable false
+    :monitor 0
+    :stacking "fg"
+    :geometry (geometry
+        :x "0px"
+        :y "0px"
+        :width "100%"
+        :height "103%"
+        :anchor "center"
+    )
+    (powermenu-clickhandler)
+)
+
+(defwindow powermenu
+    :focusable false
+    :monitor 0
+    :stacking "overlay"
+    :geometry (geometry 
+        :x "0px"
+        :y "0px"
+        :width "25%"
+        :height "15%"
+        :anchor "center"
+    )
     (box 
         :class "powermenu"
         :orientation "h"
@@ -16,8 +42,7 @@
         )
         (button 
             :class "lock"
-            :onclick "eww close powermenu \
-            powermenu-blur0 powermenu-blur1 \
+            :onclick "eww close powermenu powermenu-blur \
             && /home/$USER/.config/scripts/wayland/swaylock.sh"
             ""
         )
@@ -27,56 +52,4 @@
             ""
         )
     )
-)
-
-(defwidget powermenu-clickhandler []
-    (button 
-        :class "powermenu-clickhandler"
-        :onclick "eww close powermenu \
-        powermenu-blur0 powermenu-blur1"
-        ""
-    )
-)
-
-(defwindow powermenu-blur0
-    :focusable false
-    :monitor 0
-    :stacking "fg"
-    :geometry (geometry
-        :x "0px"
-        :y "0px"
-        :width "100%"
-        :height "103%"
-        :anchor "center"
-    )
-    (powermenu-clickhandler)
-)
-
-(defwindow powermenu-blur1
-    :focusable false
-    :monitor 1
-    :stacking "fg"
-    :geometry (geometry
-        :x "0px"
-        :y "0px"
-        :width "100%"
-        :height "103%"
-        :anchor "center"
-    )
-    (powermenu-clickhandler)
-)
-
-
-(defwindow powermenu
-    :focusable false
-    :monitor 0
-    :stacking "overlay"
-    :geometry (geometry 
-        :x "0px"
-        :y "0px"
-        :width "25%"
-        :height "15%"
-        :anchor "center"
-    )
-    (powermenu)
 )

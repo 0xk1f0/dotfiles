@@ -28,6 +28,6 @@
     "window.menuBarVisibility": "toggle",
     "cmake.configureOnOpen": false,
     "editor.detectIndentation": false,
-    "files.autoSave": "afterDelay",
-	"window.zoomLevel": 1
+    "window.zoomLevel": 1,
+    "files.autoSave": "afterDelay"
 }

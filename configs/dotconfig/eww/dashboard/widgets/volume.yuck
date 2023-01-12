@@ -1,0 +1,54 @@
+(defwidget volume []
+    (box 
+        :class "volume"
+        :orientation "v"
+        :halign "center"
+        :space-evenly "false"
+        (box
+            :class "sliderbar"
+            :orientation "h"
+            :spacing 7
+            :space-evenly "false"
+            (label
+                :wrap "true"
+                :class "volicon"
+                :text ""
+            )
+            (scale 
+                :min 0
+                :max 101
+                :value SINK
+                :active "true"
+                :onchange "/home/$USER/.config/scripts/volume.sh sink-set {}"
+            )
+            (label
+                :wrap "true"
+                :class "slidervalue"
+                :text "${SINK}%"
+            )
+        )
+        (box 
+            :class "sliderbar"
+            :orientation "h"
+            :spacing 7
+            :space-evenly "false"
+            (label
+                :wrap "true"
+                :class "micicon"
+                :text ""
+            )
+            (scale
+                :min 0
+                :max 101
+                :value SOURCE
+                :active "true"
+                :onchange "/home/$USER/.config/scripts/volume.sh source-set {}"
+            )
+            (label
+                :wrap "true"
+                :class "slidervalue"
+                :text "${SOURCE}%"
+            )
+        )
+    )
+)

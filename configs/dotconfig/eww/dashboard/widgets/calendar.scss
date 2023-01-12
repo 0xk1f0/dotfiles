@@ -1,0 +1,29 @@
+.calendar-wrapper {
+    background-color: rgba($fg, 0.1);
+    border-radius: 8px;
+    padding: 14px;
+    .calendar {
+        font-family: "Source Code Pro";
+        font-size: 18px;
+        calendar:selected {
+            color: $nrm;
+        }
+        calendar.header {
+            color: $fg;
+            font-weight: bold;
+        }
+        calendar.button {
+            color: $fg;
+            &:hover {
+                color: $act;
+            }
+        }
+        calendar.highlight {
+            color: $fg;
+            font-weight: bold;
+        }
+        calendar:indeterminate {
+            color: $bg;
+        }
+    }
+}

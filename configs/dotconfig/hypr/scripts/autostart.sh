@@ -8,9 +8,8 @@ dunst --startup_notification &
 killall -q eww -9
 eww daemon &
 
-# waybar
-killall -q waybar -9
-waybar &
+# eww bar
+eww open topbar &
 
 # swayidle
 killall -q swayidle -9

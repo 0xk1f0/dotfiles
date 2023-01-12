@@ -1,0 +1,7 @@
+(defwidget powermenu-clickhandler []
+    (button 
+        :class "powermenu-clickhandler"
+        :onclick "eww close powermenu powermenu-blur"
+        ""
+    )
+)

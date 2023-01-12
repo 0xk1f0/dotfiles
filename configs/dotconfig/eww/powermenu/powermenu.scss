@@ -1,3 +1,5 @@
+@import "./widgets/clickhandler.scss";
+
 .powermenu {
     background-color: rgba($bg, 0.0);
     padding: 30px;
@@ -11,8 +13,4 @@
             color: $act;
         }
     }
-}
-
-.powermenu-clickhandler {
-    background-color: rgba($bg, 0.95);
 }

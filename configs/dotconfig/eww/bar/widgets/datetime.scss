@@ -1,0 +1,19 @@
+.clock-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    .clock-time {
+        color: $fg;
+        margin: 0 4px;
+    }
+}
+
+.date-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    .date-time {
+        color: $fg;
+        margin: 0 4px;
+    }
+}

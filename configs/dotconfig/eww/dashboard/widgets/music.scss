@@ -1,0 +1,26 @@
+.music {
+    background-color: rgba($fg, 0.1);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: "Open Sans";
+    .song {
+        color: $fg;
+        font-size : 18px;
+        font-weight : bold;
+    }
+    .artist {
+        color: $fg;
+        font-size : 14px;
+        font-weight : normal;
+    }
+    .music-player {
+        button {
+            color: $fg;
+            font-size : 24px;
+            font-family: "Font Awesome";
+            &:hover {
+                color: $act;
+            }
+        }
+    }
+}

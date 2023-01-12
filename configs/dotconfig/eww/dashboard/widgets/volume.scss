@@ -1,0 +1,39 @@
+.volume {
+    background-color: rgba($fg, 0.1);
+    border-radius: 8px;
+    padding: 14px;
+    .sliderbar {
+        border-radius: 8px;
+        margin-right: 5px;
+        trough {
+            all: unset;
+            border-radius: 8px;
+            background-color: $bg;
+            min-height: 12px;
+            min-width: 240px;
+        }
+        highlight {
+            all: unset;
+            border-radius: 8px;
+            background-color: $act;
+        }
+    }
+    .slidervalue {
+        color: $fg;
+        font-size : 14px;
+        font-weight : bold;
+        min-width: 40px;
+    }
+    .volicon {
+        color: $fg;
+        font-size : 34px;
+        font-family: "Twemoji";
+        min-width: 40px;
+    }
+    .micicon {
+        color: $fg;
+        font-size : 28px;
+        font-family: "Twemoji";
+        min-width: 40px;
+    }
+}

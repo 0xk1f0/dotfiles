@@ -1,0 +1,23 @@
+.system {
+    background-color: rgba($fg, 0.1);
+    border-radius: 8px;
+    padding: 14px;
+    font-family: "Open Sans";
+    .bluetooth {
+        background-color: rgba($bg, 0.0);
+        border-radius: 8px;
+        font-size : 32px;
+        font-family: "Font Awesome";
+        color: $fg;
+        &:hover {
+            background-color: $act;
+        }
+    }
+    .network {
+        background-color: rgba($bg, 0.0);
+        border-radius: 8px;
+        font-size : 42px;
+        font-family: "Font Awesome";
+        color: $fg;
+    }
+}
