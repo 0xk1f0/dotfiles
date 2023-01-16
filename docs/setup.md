@@ -36,6 +36,15 @@ GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
 
 ---
 
+## fstab SSD performance improvements (noatime) /etc/fstab
+
+```bash
+# root
+UUID=DRIVE_UUID     /   ext4    rw,noatime  0 1
+```
+
+---
+
 ## systemd TPM 2.0 LUKS2 Auto-Decryption
 
 ```bash
@@ -87,7 +96,7 @@ tpm2_dictionarylockout --clear-lockout
 
 ---
 
-## Swap File /swapfile
+## Swap File
 
 ```bash
 # generate 2G file
@@ -148,12 +157,12 @@ systemctl start pcscd.service
 
 ---
 
-## YubiKey Registration /etc/u2f_mappings
+## YubiKey Registration
 
 ```bash
 # generate new key with
 pamu2fcfg -o pam://[hostname] -i pam://[hostname]
-# file format f.E.
+# file format f.E. in /etc/u2f_mappings
 <username>:<KeyHandle1>,<UserKey1>,<CoseType1>,<Options1>:<KeyHandle2>,<UserKey2>,<CoseType2>,<Options2>
 ```
 
@@ -227,6 +236,15 @@ avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
 ```bash
 # barrier creates a new keyboard input, which defaults to english layout
 setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` [keymap]
+```
+
+---
+
+## fix GTK Cursor Theme ~/.icons/default/index.theme
+
+```bash
+[Icon Theme]
+Inherits=CursorThemeName
 ```
 
 ---

@@ -40,7 +40,6 @@ numlockx
 flatpak
 rsync
 ueberzug
-scrot
 pacman-mirrorlist
 pacman-contrib
 bind
@@ -70,11 +69,13 @@ exa
 bat
 fd
 dust
-ripgrep
+minicom
+glow
 reflector
 pam-u2f
 python-fido2
 pcsc-tools
+realtime-privileges
 
 ## Misc AUR
 
@@ -94,6 +95,7 @@ thunar
 thunar-archive-plugin
 thunar-media-tags-plugin
 thunar-volman
+tumbler
 file-roller
 easyeffects
 zathura
@@ -102,8 +104,6 @@ nomacs
 imagemagick
 mpv
 system-config-printer
-lxappearance
-xdg-desktop-portal-gtk
 python-pywal
 
 ## DE AUR
@@ -138,6 +138,7 @@ swaylock
 swayidle
 slurp
 grim
+rofi-calc
 wl-clipboard
 xdg-desktop-portal-wlr
 qt5-wayland
@@ -184,16 +185,13 @@ gparted
 gping
 nmap
 ipcalc
-minicom
-glow
+ncspot
 
 ## Apps AUR
 
-ncspot-bin
 webcord-bin
 visual-studio-code-bin
 cheat-bin
-epson-inkjet-printer-escpr2
 
 ---
 

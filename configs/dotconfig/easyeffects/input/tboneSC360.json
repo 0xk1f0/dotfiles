@@ -1,14 +1,5 @@
 {
     "input": {
-        "autogain#0": {
-            "bypass": false,
-            "input-gain": 0.0,
-            "maximum-history": 15,
-            "output-gain": 0.0,
-            "reference": "Geometric Mean (MSI)",
-            "silence-threshold": -70.0,
-            "target": -21.999999999999986
-        },
         "bass_enhancer#0": {
             "amount": 6.999999999999991,
             "blend": 0.0,
@@ -24,30 +15,14 @@
             "cava"
         ],
         "plugins_order": [
-            "speex#0",
-            "rnnoise#0",
-            "autogain#0",
-            "bass_enhancer#0"
+            "bass_enhancer#0",
+            "rnnoise#0"
         ],
         "rnnoise#0": {
             "bypass": false,
             "input-gain": 0.0,
             "model-path": "",
             "output-gain": 0.0
-        },
-        "speex#0": {
-            "bypass": false,
-            "enable-agc": false,
-            "enable-denoise": false,
-            "enable-dereverb": false,
-            "input-gain": 0.0,
-            "noise-suppression": -40,
-            "output-gain": 0.0,
-            "vad": {
-                "enable": true,
-                "probability-continue": 90,
-                "probability-start": 95
-            }
         }
     }
 }

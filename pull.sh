@@ -75,7 +75,6 @@ dotLIST=(
     "$homeCfgExt/rofi"
     "$homeCfgExt/eww"
     "$homeCfgExt/hypr"
-    "$homeCfgExt/waybar"
     "$homeCfgExt/scripts"
     "$homeCfgExt/kitty"
     "$homeCfgExt/ncspot"
@@ -93,10 +92,11 @@ dotLIST=(
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
     "$homeCfgExt/wireplumber"
-    "$homeCfgExt/Code/User/settings.json"
+    "$homeCfgExt/gtk-3.0"
     "$homeExt/.bashrc"
     "$homeExt/.inputrc"
     "$homeExt/.wayinitrc"
+    "$homeExt/.gtkrc-2.0"
 )
 
 binLIST=(
@@ -119,11 +119,8 @@ if handleYesNo "Include dotconfigs?"; then
     --delete \
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
+    --exclude 'bookmarks' \
     $(echo "${dotLIST[@]}") "$dotExt"/
-
-    # exception
-    mkdir -p "$dotExt"/Code/User/
-    mv "$dotExt"/settings.json "$dotExt"/Code/User/
 
     scriptFeedback success "Done"
 fi

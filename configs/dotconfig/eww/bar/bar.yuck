@@ -36,7 +36,7 @@
     :geometry (geometry
         :x "0"
         :y "0"
-        :width "2560px"
+        :width "100%"
         :height "26px"
         :anchor "top center")
     :stacking "bg"

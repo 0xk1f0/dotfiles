@@ -135,7 +135,7 @@ systemctl enable NetworkManager
 ```bash
 useradd -m [username]
 passwd [username]
-usermod -aG wheel,audio,video,network,storage,uucp [username]
+usermod -aG wheel,audio,video,uucp [username]
 ```
 
 ---

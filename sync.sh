@@ -70,7 +70,6 @@ dotLIST=(
     "$dotExt/rofi"
     "$dotExt/eww"
     "$dotExt/hypr"
-    "$dotExt/waybar"
     "$dotExt/scripts"
     "$dotExt/kitty"
     "$dotExt/ncspot"
@@ -86,7 +85,7 @@ dotLIST=(
     "$dotExt/Thunar"
     "$dotExt/pipewire"
     "$dotExt/wireplumber"
-    "$dotExt/Code"
+    "$dotExt/gtk-3.0"
 )
 
 binLIST=(
@@ -109,7 +108,8 @@ if handleYesNo "Perform Sync?"; then
 
     /bin/rsync -aq \
     --delete \
-    "$dotExt"/.bashrc "$dotExt"/.inputrc "$dotExt"/.wayinitrc \
+    "$dotExt"/.bashrc "$dotExt"/.inputrc \
+    "$dotExt"/.wayinitrc "$dotExt"/.gtkrc-2.0 \
     /home/$USER/
 
     scriptFeedback success "Done"
