@@ -56,7 +56,7 @@ sed -i -r \
 's/^.*BG:.*;/\tBG:\t#'"$WAL_BG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*BG_OPQ:.*;/\tBGOPQ:\t#'"$WAL_BG"'EE;/' \
+'s/^.*BGOPQ:.*;/\tBGOPQ:\t#'"$WAL_BG"'EE;/' \
 "$CNF_FILE"
 
 # hyprland
