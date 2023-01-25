@@ -1,2 +1,3 @@
 (include "bar/widgets/datetime.yuck")
 (include "bar/widgets/icon.yuck")
+(include "bar/widgets/battery.yuck")

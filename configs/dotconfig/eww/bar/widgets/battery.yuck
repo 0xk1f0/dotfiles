@@ -1,0 +1,13 @@
+(defwidget battery-widget []
+    (box
+        :class "battery-widget"
+        :space-evenly "false"
+        :halign "fill"
+        :orientation "h"
+        (label 
+            :xalign 0.5
+            :class "battery-text"
+            :text "${BAT_LEVEL}%"
+        )
+    )
+)

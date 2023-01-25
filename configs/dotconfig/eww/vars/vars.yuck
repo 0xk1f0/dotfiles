@@ -39,6 +39,12 @@
 (defpoll NET_STATE :interval "3s"
     "/home/$USER/.config/eww/scripts/net.sh status"
 )
+(defpoll BAT_LEVEL :interval "5s"
+    "/home/$USER/.config/eww/scripts/bat.sh level"
+)
+(defpoll BAT_PLUGGED :interval "5s"
+    "/home/$USER/.config/eww/scripts/bat.sh plugged"
+)
 
 ; MUSIC ;
 

@@ -1,0 +1,9 @@
+.battery-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    .battery-text {
+        color: $fg;
+        margin: 0 2px;
+    }
+}
