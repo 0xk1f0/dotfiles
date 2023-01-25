@@ -107,7 +107,6 @@ if handleYesNo "Perform Sync?"; then
     $(echo "${dotLIST[@]}") /home/$USER/.config/
 
     /bin/rsync -aq \
-    --delete \
     "$dotExt"/.bashrc "$dotExt"/.inputrc \
     "$dotExt"/.wayinitrc "$dotExt"/.gtkrc-2.0 \
     /home/$USER/
@@ -117,7 +116,6 @@ if handleYesNo "Perform Sync?"; then
     scriptFeedback proc "Syncing ~/.local/bin/ scripts"
 
     /bin/rsync -aq \
-    --delete \
     $(echo "${binLIST[@]}") /home/$USER/.local/bin/
 
     scriptFeedback success "Done"
