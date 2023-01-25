@@ -15,7 +15,7 @@ configuration {
 window {
     enabled:                true;
     transparency:           "real";
-    background-color:       @BG_OPQ;
+    background-color:       @BGOPQ;
     location:               center;
     anchor:                 center;
     fullscreen:             true;
