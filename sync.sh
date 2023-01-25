@@ -86,6 +86,7 @@ dotLIST=(
     "$dotExt/pipewire"
     "$dotExt/wireplumber"
     "$dotExt/gtk-3.0"
+    "$dotExt/xsettingsd"
 )
 
 binLIST=(
@@ -103,7 +104,6 @@ if handleYesNo "Perform Sync?"; then
     scriptFeedback proc "Syncing combined configs"
 
     /bin/rsync -aq \
-    --delete \
     $(echo "${dotLIST[@]}") /home/$USER/.config/
 
     /bin/rsync -aq \
