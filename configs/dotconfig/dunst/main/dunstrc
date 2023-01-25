@@ -3,17 +3,12 @@
 #  / __  / / / / __ \/ ___/ __/_____/ //_/ / /_/ / / /
 # / /_/ / /_/ / / / (__  ) /_/_____/ ,< / / __/ /_/ / 
 # \__,_/\__,_/_/ /_/____/\__/     /_/|_/_/_/  \____/  
- 
+
 [global]
     # monitor choice
     monitor = 1
 
-    # notification follows mouse
-    # follow = mouse
-
     # geometry
-    #width = 300
-    #height = 180
     origin = top-right
     offset = 8x8
     scale = 0
@@ -125,18 +120,6 @@
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
-
-    # corner radius
-    corner_radius = 8
-
-    # frame
-    frame_width = 0
-
-    # colors
-	frame_color = "#938E89"
-	foreground = "#D3CCC5"
-	background = "#0A100F"
-	highlight = "#694738"
 
 [experimental]
     per_monitor_dpi = false

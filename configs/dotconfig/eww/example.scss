@@ -1,8 +1,16 @@
+// unset all
 * {
     all: unset;
 }
 
-@import "colors.scss";
+// colors
+$fg: #000000;
+$bg: #000000;
+$nrm: #000000;
+$act: #000000;
+$urg: #000000;
+
+// imports
 @import "powermenu/powermenu.scss";
 @import "dashboard/dashboard.scss";
 @import "bar/bar.scss";

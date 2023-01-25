@@ -21,6 +21,12 @@ if [ "$EUID" -eq 0 ]; then
     scriptFeedback error "run as user!"
 fi
 
+# config file paths
+ROFI_CONF_FILE="/home/$USER/.config/rofi/config.rasi"
+HYPRLAND_CONF_FILE="/home/$USER/.config/hypr/hyprland.conf"
+DUNST_CONF_FILE="/home/$USER/.config/dunst/configrc"
+EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
+
 # get colors
 WAL_FG=$(cat .cache/wal/colors.json \
 | jq '.special.foreground' \
@@ -36,40 +42,25 @@ WAL_NRM=$(cat .cache/wal/colors.json \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
 
 # rofi
-CNF_FILE="/home/$USER/.config/rofi/colors.rasi"
+CNF_FILE="$ROFI_CONF_FILE"
 sed -i -r \
-'s/^.*ACT:.*;/\tACT:\t\t\t#'"$WAL_ACT"';/' \
+'s/^.*ACT:.*;/\tACT:\t#'"$WAL_ACT"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*NRM:.*;/\tNRM:\t\t\t#'"$WAL_NRM"';/' \
+'s/^.*NRM:.*;/\tNRM:\t#'"$WAL_NRM"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*FG:.*;/\tFG:\t\t\t\t#'"$WAL_FG"';/' \
+'s/^.*FG:.*;/\tFG:\t#'"$WAL_FG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*BG:.*;/\tBG:\t\t\t\t#'"$WAL_BG"';/' \
+'s/^.*BG:.*;/\tBG:\t#'"$WAL_BG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*OPQ_BG:.*;/\tOPQ-BG:\t\t\t#'"$WAL_BG"'EE;/' \
-"$CNF_FILE"
-
-# waybar
-CNF_FILE="/home/$USER/.config/waybar/style.css"
-sed -i -r \
-'s/^@define-color.*fg.*;/@define-color fg #'"$WAL_FG"';/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^@define-color.*bg.*;/@define-color bg #'"$WAL_BG"';/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^@define-color.*nrm.*;/@define-color nrm #'"$WAL_NRM"';/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^@define-color.*act.*;/@define-color act #'"$WAL_ACT"';/' \
+'s/^.*BG_OPQ:.*;/\tBG_OPQ:\t#'"$WAL_BG"'EE;/' \
 "$CNF_FILE"
 
 # hyprland
-CNF_FILE="/home/$USER/.config/hypr/colors.conf"
+CNF_FILE="$HYPRLAND_CONF_FILE"
 sed -i -r \
 's/^\$FGD.*/$FGD=0xFF'"$WAL_FG"'/' \
 "$CNF_FILE"
@@ -84,7 +75,7 @@ sed -i -r \
 "$CNF_FILE"
 
 # dunst
-CNF_FILE="/home/$USER/.config/dunst/dunstrc"
+CNF_FILE="$DUNST_CONF_FILE"
 sed -i -r \
 's/^\tforeground.*=.*/\tforeground = "#'"$WAL_FG"'"/' \
 "$CNF_FILE"
@@ -99,7 +90,7 @@ sed -i -r \
 "$CNF_FILE"
 
 # eww
-CNF_FILE="/home/$USER/.config/eww/colors.scss"
+CNF_FILE="$EWW_CONF_FILE"
 sed -i -r \
 's/^\$fg:.*;/$fg: #'"$WAL_FG"';/' \
 "$CNF_FILE"

@@ -4,9 +4,6 @@
 //  / /  / /_/ / __/ /_____/ ,< / / __/ /_/ / 
 // /_/   \____/_/ /_/     /_/|_/_/_/  \____/
 
-@theme "/dev/null"
-@import "colors.rasi"
-
 configuration {
     modi:                   "run,calc";
 }
@@ -18,7 +15,7 @@ configuration {
 window {
     enabled:                true;
     transparency:           "real";
-    background-color:       @OPQ-BG;
+    background-color:       @BG_OPQ;
     location:               center;
     anchor:                 center;
     fullscreen:             true;

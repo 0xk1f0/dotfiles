@@ -120,6 +120,11 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
     --exclude 'bookmarks' \
+    --exclude 'configrc' \
+    --exclude 'eww.yuck' \
+    --exclude 'eww.scss' \
+    --exclude 'hyprland.conf' \
+    --exclude 'config.rasi' \
     $(echo "${dotLIST[@]}") "$dotExt"/
 
     scriptFeedback success "Done"

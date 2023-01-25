@@ -2,7 +2,9 @@
 
 # dunst
 killall -q dunst -9
-dunst --startup_notification &
+cat "/home/$USER/.config/dunst/configrc" \
+"/home/$USER/.config/dunst/main/dunstrc" \
+| dunst --startup_notification -conf - &
 
 # eww
 killall -q eww -9

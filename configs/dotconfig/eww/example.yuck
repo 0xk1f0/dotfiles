@@ -1,0 +1,56 @@
+(include "vars/vars.yuck")
+(include "powermenu/powermenu.yuck")
+(include "dashboard/dashboard.yuck")
+(include "bar/bar.yuck")
+
+; DASHBOARD ;
+
+(defwindow dashboard
+    :focusable false
+    :monitor 0
+    :stacking "fg"
+    :geometry ( geometry 
+            :x 0
+            :y 0
+            :anchor "top left"
+    )
+    (box
+        :class "dashboard"
+        :space-evenly "false"
+        :orientation "v"
+        :spacing 14
+        ; ()
+    )
+)
+
+; BAR ;
+
+(defwidget left []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "start"
+        :class "left_modules"
+        ; ()
+    )
+)
+
+(defwidget center []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        :class "center_modules"
+        ; ()
+    )
+)
+
+(defwidget right []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "end"
+        :class "right_modules"
+        ; ()
+    )
+)
