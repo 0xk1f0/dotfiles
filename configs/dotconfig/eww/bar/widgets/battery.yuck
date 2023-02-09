@@ -5,9 +5,14 @@
         :halign "fill"
         :orientation "h"
         (label 
-            :xalign 0.5
+            :xalign 0
+            :class "battery-icon"
+            :text "${BAT_PLUGGED == 0 ? '' : ''}"
+        )
+        (label 
+            :xalign 1
             :class "battery-text"
             :text "${BAT_LEVEL}%"
         )
-    )
+   )
 )
