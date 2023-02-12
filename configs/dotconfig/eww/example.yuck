@@ -15,7 +15,7 @@
             :anchor "top left"
     )
     (box
-        :class "dashboard"
+        :class "dash_class"
         :space-evenly "false"
         :orientation "v"
         :spacing 14
