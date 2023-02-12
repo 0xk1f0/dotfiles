@@ -78,6 +78,7 @@ dotLIST=(
     "$dotExt/mpv"
     "$dotExt/btop"
     "$dotExt/paru"
+    "$dotExt/cheat"
     "$dotExt/easyeffects"
     "$dotExt/starship.toml"
     "$dotExt/electron-flags.conf"

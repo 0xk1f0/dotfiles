@@ -1,10 +1,11 @@
 #!/bin/bash
 
-systemctl stop --user xdg-desktop-portal*
-systemctl stop --user xsettingsd
-systemctl start --user xdg-desktop-portal-wlr
-sleep 1
-systemctl start --user xdg-desktop-portal-gtk
-systemctl start --user xsettingsd
-sleep 1
-systemctl start --user xdg-desktop-portal
+sleep 2
+systemctl --user stop xdg-desktop-portal*
+killall xdg-desktop-portal-wlr
+killall xdg-desktop-portal-gtk
+killall xdg-desktop-portal
+/usr/lib/xdg-desktop-portal-wlr &
+sleep 2
+/usr/lib/xdg-desktop-portal-gtk &
+/usr/lib/xdg-desktop-portal &
