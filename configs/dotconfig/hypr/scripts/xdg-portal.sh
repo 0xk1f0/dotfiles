@@ -7,5 +7,6 @@ killall xdg-desktop-portal-gtk
 killall xdg-desktop-portal
 /usr/lib/xdg-desktop-portal-wlr &
 sleep 2
+systemctl --user restart xsettingsd
 /usr/lib/xdg-desktop-portal-gtk &
 /usr/lib/xdg-desktop-portal &
