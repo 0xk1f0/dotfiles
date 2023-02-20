@@ -1,0 +1,18 @@
+(defwidget wifi-widget []
+    (box
+        :class "wifi-widget"
+        :space-evenly "false"
+        :halign "fill"
+        :orientation "h"
+        (label 
+            :xalign 0
+            :class "wifi-icon"
+            :text "${WIFI_STATE == 'connected' ? '' : ''}"
+        )
+        (label 
+            :xalign 1
+            :class "wifi-text"
+            :text "${WIFI_NAME}"
+        )
+   )
+)

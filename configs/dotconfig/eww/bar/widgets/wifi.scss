@@ -1,0 +1,13 @@
+.wifi-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    .wifi-text {
+        color: $fg;
+        margin: 0 2px;
+    }
+    .wifi-icon {
+        color: $fg;
+        margin: 0 10px;
+    }
+}

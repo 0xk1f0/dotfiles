@@ -1,6 +1,7 @@
 (include "bar/widgets/datetime.yuck")
 (include "bar/widgets/icon.yuck")
 (include "bar/widgets/battery.yuck")
+(include "bar/widgets/wifi.yuck")
 
 (defwindow topbar
     :monitor 0
