@@ -6,7 +6,7 @@ R='#ff0404ff'
 W='#ffffffff'
 B='#000000ff'
 
-swaylockd -f \
+swaylock -f \
 --color=$G \
 --image /home/$USER/.lockpaper \
 --scaling fill \
