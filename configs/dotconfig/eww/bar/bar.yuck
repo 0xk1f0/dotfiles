@@ -11,7 +11,7 @@
         :width "100%"
         :height "26px"
         :anchor "top center")
-    :stacking "fg"
+    :stacking "bottom"
     :exclusive true
     :focusable false
     (box

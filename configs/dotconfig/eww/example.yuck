@@ -5,21 +5,16 @@
 
 ; DASHBOARD ;
 
-(defwindow dashboard
-    :focusable false
-    :monitor 0
-    :stacking "fg"
-    :geometry ( geometry 
-            :x 0
-            :y 0
-            :anchor "top left"
-    )
+(defwidget dashitems []
     (box
         :class "dash_class"
         :space-evenly "false"
         :orientation "v"
         :spacing 14
-        ; ()
+        (clock)
+        (volume)
+        (music)
+        (cal)
     )
 )
 
