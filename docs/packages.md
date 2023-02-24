@@ -176,8 +176,6 @@ ttf-twemoji
 
 ## Apps
 
-signal-desktop
-gimp
 inkscape
 wireshark-qt
 mypaint
@@ -189,7 +187,7 @@ ncspot
 
 ## Apps AUR
 
-webcord-bin
+discord-canary
 visual-studio-code-bin
 cheat-bin
 
@@ -210,3 +208,7 @@ docker
 com.microsoft.Teams
 org.telegram.desktop
 com.spotify.Client
+org.signal.Signal
+org.gimp.GIMP
+com.hunterwittenborn.Celeste
+com.github.tchx84.Flatseal
