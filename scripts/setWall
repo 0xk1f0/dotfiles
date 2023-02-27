@@ -31,9 +31,6 @@ else
         -gaussian-blur 0.85x0.85 \
         -resize 1000% \
         "$TO_SET" .lockpaper
-        killall -9 -q swaybg
-        swaybg -m fill \
-        -i /home/$USER/.wallpaper &
         scriptFeedback success "'walled!"
         exit 0
     fi

@@ -133,7 +133,6 @@ i3lock-color
 ## Wayland DE
 
 dunst
-swaybg
 swaylock
 swayidle
 slurp
@@ -148,9 +147,9 @@ qt6-wayland
 
 hyprland-bin
 eww-wayland-git
-waybar-hyprland
+rwpspread-git
+wpaperd-git
 rofi-lbonn-wayland
-swaylockd
 
 ---
 

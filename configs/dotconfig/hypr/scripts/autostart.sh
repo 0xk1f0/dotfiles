@@ -22,10 +22,11 @@ timeout 60 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' \
 timeout 660 'hyprctl dispatch dpms off' \
 resume 'hyprctl dispatch dpms on' &
 
-# swaybg
-killall -q swaybg -9
-swaybg -m fill -i /home/$USER/.wallpaper &
-
 # refresh pywal
 rm -rf /home/$USER/.cache/wal/schemes/
 wal -nest -i /home/$USER/.wallpaper
+
+# wallpaper
+rwpspread -wi "/home/$USER/.wallpaper"
+killall -q wpaperd -9
+wpaperd -n &
