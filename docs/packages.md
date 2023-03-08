@@ -85,35 +85,6 @@ grub-hook
 
 ---
 
-## DE
-
-nm-connection-editor
-pavucontrol
-kitty
-firefox
-thunar
-thunar-archive-plugin
-thunar-media-tags-plugin
-thunar-volman
-tumbler
-file-roller
-easyeffects
-zathura
-zathura-pdf-poppler
-nomacs
-imagemagick
-mpv
-system-config-printer
-python-pywal
-
-## DE AUR
-
-xfce-polkit
-qt5gtk2
-qt6gtk2
-
----
-
 ## X11 DE
 
 qtile
@@ -140,16 +111,46 @@ grim
 rofi-calc
 wl-clipboard
 xdg-desktop-portal-wlr
+xdg-desktop-portal-gtk
 qt5-wayland
 qt6-wayland
 
 ## Wayland DE AUR
 
 hyprland-bin
-eww-wayland-git
+eww-wayland
 rwpspread-git
 wpaperd-git
 rofi-lbonn-wayland
+
+---
+
+## DE
+
+nm-connection-editor
+pavucontrol
+kitty
+firefox
+thunar
+thunar-archive-plugin
+thunar-media-tags-plugin
+thunar-volman
+tumbler
+file-roller
+easyeffects
+zathura
+zathura-pdf-poppler
+nomacs
+imagemagick
+mpv
+system-config-printer
+python-pywal
+
+## DE AUR
+
+xfce-polkit
+qt5gtk2
+qt6gtk2
 
 ---
 

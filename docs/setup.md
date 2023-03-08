@@ -104,7 +104,7 @@ dd if=/dev/zero of=/swapfile bs=1M count=[size] status=progress
 # set permssions
 chmod 0600 /swapfile
 # format to swap
-mkswap -U clear /swapfile
+mkswap /swapfile
 # enable swap
 swapon /swapfile
 # add to /etc/fstab
