@@ -22,6 +22,12 @@ shopt -s cdspell
 shopt -s checkwinsize
 shopt -s histappend
 
+# docker rootless
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
+
+# fix doas completion
+complete -cf doas
+
 # archive extraction
 extr () {
   if [ -z "$1" ] ; then
