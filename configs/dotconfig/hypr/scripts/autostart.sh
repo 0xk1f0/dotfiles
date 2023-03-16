@@ -28,5 +28,3 @@ wal -nest -i /home/$USER/.wallpaper
 
 # wallpaper
 rwpspread -wi "/home/$USER/.wallpaper"
-killall -q wpaperd -9
-wpaperd -n &

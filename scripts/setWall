@@ -27,10 +27,6 @@ else
     if file "$1" | /bin/grep "image" > /dev/null; then
         TO_SET=$(readlink -f "$1")
         ln -sf "$TO_SET" /home/$USER/.wallpaper
-        convert -scale 10% \
-        -gaussian-blur 0.85x0.85 \
-        -resize 1000% \
-        "$TO_SET" .lockpaper
         scriptFeedback success "'walled!"
         exit 0
     fi

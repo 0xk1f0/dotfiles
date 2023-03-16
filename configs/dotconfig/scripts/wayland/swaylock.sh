@@ -1,19 +1,18 @@
 #!/usr/bin/env bash
 
 T='#00000000'
-G='#040404ff'
+G='#0d0d0dff'
 R='#ff0404ff'
 W='#ffffffff'
 B='#000000ff'
 
 swaylock -f \
 --color=$G \
---image /home/$USER/.lockpaper \
 --scaling fill \
 --indicator-radius 80 \
 --indicator-thickness 8 \
 --inside-color=$T \
---inside-clear-color=$T \
+--inside-clear-color=$W \
 --inside-caps-lock-color=$T \
 --inside-ver-color=$T \
 --inside-wrong-color=$T \
