@@ -1,6 +1,8 @@
 # Package "Database"
 
 > This File cotains some of my most used packages
+>
+> Mostly Wayland only stuff now
 
 ---
 
@@ -85,23 +87,7 @@ grub-hook
 
 ---
 
-## X11 DE
-
-qtile
-dunst
-rofi
-rofi-calc
-feh
-
-## X11 DE AUR
-
-picom-git
-eww
-i3lock-color
-
----
-
-## Wayland DE
+## Base DE
 
 dunst
 swaylock
@@ -115,7 +101,7 @@ xdg-desktop-portal-gtk
 qt5-wayland
 qt6-wayland
 
-## Wayland DE AUR
+## Base DE AUR
 
 hyprland-bin
 eww-wayland
@@ -141,10 +127,10 @@ easyeffects
 zathura
 zathura-pdf-poppler
 nomacs
-imagemagick
 mpv
 system-config-printer
 python-pywal
+kvantum
 
 ## DE AUR
 
@@ -193,22 +179,27 @@ cheat-bin
 
 ---
 
-## Virtualization
+## Virtualization and Containers
 
 qemu-desktop
 libvirt
 virt-manager
 edk2-ovmf
 docker
+docker-compose
 
 ---
 
-## flatpak
+## Flatpak
 
-com.microsoft.Teams
 org.telegram.desktop
 com.spotify.Client
+org.libreoffice.LibreOffice
 org.signal.Signal
+org.qbittorrent.qBittorrent
 org.gimp.GIMP
-com.hunterwittenborn.Celeste
+org.inkscape.Inkscape
+org.kde.KStyle.Kvantum
+org.kde.KStyle.Adwaita
 com.github.tchx84.Flatseal
+com.nextcloud.desktopclient.nextcloud

@@ -12,6 +12,7 @@ export EDITOR="nano"
 export VISUAL="nano"
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
+export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
@@ -21,9 +22,6 @@ shopt -s autocd
 shopt -s cdspell
 shopt -s checkwinsize
 shopt -s histappend
-
-# docker rootless
-export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
 
 # fix doas completion
 complete -cf doas
@@ -90,8 +88,10 @@ alias grep='grep --color=auto'
 alias df='df -h'
 
 # update aliases
-alias mirup='doas reflector -p https -f 20 -l 20 \
--c ch,at,de -n 20 --verbose --save /etc/pacman.d/mirrorlist'
+alias mirup='doas reflector -p https -l 20 \
+-c ch,at,de \
+--sort rate -n 10 --verbose \
+--save /etc/pacman.d/mirrorlist'
 alias pacup='doas pacman -Syu'
 alias aurup='paru -aSyu'
 alias flatup='flatpak update'
