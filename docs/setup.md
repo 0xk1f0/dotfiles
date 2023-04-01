@@ -25,13 +25,50 @@ localectl set-x11-keymap [keymap]
 
 ---
 
-## GRUB /etc/default/grub
+## Kernel Parameters
 
 ```bash
-# force enable amd_pstate
-GRUB_CMDLINE_LINUX="initcall_blacklist=acpi_cpufreq_init amd_pstate.shared_mem=1"
+# fix dracut initrd errors
+"root=[UUID]"
+# systemd-cryptenroll TPM auto decryption
+"rd.luks.options=[UUID]=tpm2-device=auto rd.luks.name=[UUID]=root"
+# enable amd_pstate
+"amd_pstate.replace=1 amd_pstate=passive"
 # fix backlight issues
-GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
+"acpi_backlight=vendor"
+```
+
+---
+
+## dracut and systemd-boot
+
+```bash
+# install dracut and hooks
+pacman -S dracut
+paru -S dracut-hook-uefi
+# edit configuration
+# !IMPORTANT! root must be specified or initrd will fail
+nano /etc/dracut.conf.d/flags.conf
+> uefi="yes"
+> compress="lz4"
+> force_drivers+=" amdgpu "
+> omit_dracutmodules+=" brltty network-legacy network nfs "
+> stdloglvl="3"
+> show_modules="yes"
+> kernel_cmdline="quiet root=[UUID]"
+# regenerate
+dracut --regenerate-all --force
+# yeet mkinitcpio
+pacman -Rs mkinitcpio
+```
+
+```bash
+# systemd-boot hook
+paru -S systemd-boot-pacman-hook
+# install
+bootctl install
+# update
+bootctl update
 ```
 
 ---
@@ -40,7 +77,18 @@ GRUB_CMDLINE_LINUX="acpi_backlight=vendor"
 
 ```bash
 # root
-UUID=DRIVE_UUID     /   ext4    rw,noatime  0 1
+UUID=[UUID]    /    ext4    rw,noatime  0 1
+```
+
+---
+
+## LUKS2 SSD speed improvements
+
+```bash
+# disable read-workqueue and write-workqueue for root
+nano /etc/crypttab
+> # <name>    <device>          <password>      <options>
+> root        UUID=[UUID]       -               no-read-workqueue,no-write-workqueue
 ```
 
 ---
@@ -56,34 +104,17 @@ cryptsetup luksDump /dev/[disk]
 # edit /etc/crypttab and add
 nano /etc/crypttab
 > # <name>    <device>          <password>      <options>
-> root        /dev/nvme0n1p2    -               tpm2-device=auto
-# edit /etc/default/grub and add
-nano /etc/default/grub
-> GRUB_CMDLINE_LINUX="rd.luks.options=[root_part_UUID]=tpm2-device=auto rd.luks.name=[root_part_UUID]=root"
-# edit /etc/mkinitcpio.conf and set hooks to
+> root        UUID=[UUID]       -               tpm2-device=auto
+# add Kernel parameters
+"rd.luks.options=[UUID]=tpm2-device=auto rd.luks.name=[UUID]=root"
+# for mkinitcpio
 nano /etc/mkinitcpio.conf
 > HOOKS=(base systemd autodetect keyboard keymap sd-vconsole modconf block sd-encrypt filesystems fsck)
-# regenerate
 mkinitcpio -P
-```
-
----
-
-## clevis TPM 2.0 LUKS2 Auto-Decryption
-
-```bash
-# get necessary things
-pacman -S clevis libpwquality
-paru -S mkinitcpio-clevis-hook
-# bind against platform conf and secure boot
-clevis luks bind -d /dev/[disk] tpm2 '{"pcr_ids":"1,7"}'
-# check if it worked
-cryptsetup luksDump /dev/[disk]
-# edit /etc/mkinitcpio.conf and set hooks to
-nano /etc/mkinitcpio.conf
-> HOOKS=(base udev autodetect keyboard keymap consolefont modconf block clevis encrypt lvm2 filesystems fsck)
-# regenerate
-mkinitcpio -P
+# for dracut
+nano /etc/dracut.conf.d/flags.conf
+> add_dracutmodules+=" tpm2-tss "
+dracut --regenerate-all --force
 ```
 
 ---

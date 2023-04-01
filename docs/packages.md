@@ -25,6 +25,8 @@ lib32-vulkan-radeon
 vulkan-tools
 opendoas
 base-devel
+dracut
+sbsigntools
 wget
 git
 nano
@@ -82,8 +84,8 @@ realtime-privileges
 ## Misc AUR
 
 downgrade
-update-grub
-grub-hook
+dracut-hook-uefi
+systemd-boot-pacman-hook
 
 ---
 
