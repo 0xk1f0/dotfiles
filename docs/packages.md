@@ -91,6 +91,7 @@ systemd-boot-pacman-hook
 
 ## Base DE
 
+hyprland
 dunst
 swaylock
 swayidle
@@ -102,10 +103,10 @@ xdg-desktop-portal-wlr
 xdg-desktop-portal-gtk
 qt5-wayland
 qt6-wayland
+greetd-tuigreet
 
 ## Base DE AUR
 
-hyprland-bin
 eww-wayland
 rwpspread-git
 wpaperd-git
@@ -175,7 +176,7 @@ ncspot
 
 ## Apps AUR
 
-discord-canary
+discord_arch_electron
 visual-studio-code-bin
 cheat-bin
 
