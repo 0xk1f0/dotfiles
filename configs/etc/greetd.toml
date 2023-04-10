@@ -1,0 +1,7 @@
+[terminal]
+vt = 1
+
+# The default session, also known as the greeter.
+[default_session]
+command = "tuigreet -t -r --asterisks --cmd /home/$USER/.wayinitrc"
+user = "greeter"
