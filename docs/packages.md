@@ -139,6 +139,8 @@ kvantum
 
 xfce-polkit
 nwg-look
+qt5gtk2
+qt6gtk2
 
 ---
 
