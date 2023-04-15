@@ -99,7 +99,7 @@ slurp
 grim
 rofi-calc
 wl-clipboard
-xdg-desktop-portal-wlr
+xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
 qt5-wayland
 qt6-wayland
@@ -138,8 +138,7 @@ kvantum
 ## DE AUR
 
 xfce-polkit
-qt5gtk2
-qt6gtk2
+nwg-look
 
 ---
 

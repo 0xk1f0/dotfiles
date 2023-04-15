@@ -28,16 +28,16 @@ DUNST_CONF_FILE="/home/$USER/.config/dunst/configrc"
 EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
 
 # get colors
-WAL_FG=$(cat .cache/wal/colors.json \
+WAL_FG=$(cat /home/$USER/.cache/wal/colors.json \
 | jq '.special.foreground' \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_BG=$(cat .cache/wal/colors.json \
+WAL_BG=$(cat /home/$USER/.cache/wal/colors.json \
 | jq '.special.background' \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_ACT=$(cat .cache/wal/colors.json \
+WAL_ACT=$(cat /home/$USER/.cache/wal/colors.json \
 | jq '.colors.color8' \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_NRM=$(cat .cache/wal/colors.json \
+WAL_NRM=$(cat /home/$USER/.cache/wal/colors.json \
 | jq '.colors.color1' \
 | tr -d '"#' | tr '[:lower:]' '[:upper:]')
 

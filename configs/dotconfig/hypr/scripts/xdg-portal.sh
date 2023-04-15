@@ -1,12 +1,7 @@
 #!/bin/bash
 
 sleep 2
-systemctl --user stop xdg-desktop-portal*
-killall xdg-desktop-portal-wlr
-killall xdg-desktop-portal-gtk
-killall xdg-desktop-portal
-/usr/lib/xdg-desktop-portal-wlr &
+systemctl --user restart xdg-desktop-portal-hyprland
 sleep 2
-systemctl --user restart xsettingsd
-/usr/lib/xdg-desktop-portal-gtk &
-/usr/lib/xdg-desktop-portal &
+systemctl --user restart xdg-desktop-portal
+systemctl --user restart xdg-desktop-portal-gtk

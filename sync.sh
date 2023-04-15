@@ -87,7 +87,6 @@ dotLIST=(
     "$dotExt/pipewire"
     "$dotExt/wireplumber"
     "$dotExt/gtk-3.0"
-    "$dotExt/xsettingsd"
 )
 
 binLIST=(
@@ -109,7 +108,7 @@ if handleYesNo "Perform Sync?"; then
 
     /bin/rsync -aq \
     "$dotExt"/.bashrc "$dotExt"/.inputrc \
-    "$dotExt"/.wayinitrc "$dotExt"/.gtkrc-2.0 \
+    "$dotExt"/.wayinitrc \
     /home/$USER/
 
     scriptFeedback success "Done"

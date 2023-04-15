@@ -93,11 +93,9 @@ dotLIST=(
     "$homeCfgExt/pipewire"
     "$homeCfgExt/wireplumber"
     "$homeCfgExt/gtk-3.0"
-    "$homeCfgExt/xsettingsd"
     "$homeExt/.bashrc"
     "$homeExt/.inputrc"
     "$homeExt/.wayinitrc"
-    "$homeExt/.gtkrc-2.0"
 )
 
 binLIST=(
