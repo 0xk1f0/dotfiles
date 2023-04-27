@@ -8,8 +8,8 @@
 export TERM="xterm-256color"
 export PATH="$PATH:/home/k1f0/.local/bin"
 export HISTCONTROL="erasedups:ignorespace"
-export EDITOR="nano"
-export VISUAL="nano"
+export EDITOR="helix"
+export VISUAL="helix"
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
 export DOCKER_HOST=unix://$XDG_RUNTIME_DIR/docker.sock
