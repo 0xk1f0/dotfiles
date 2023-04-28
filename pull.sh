@@ -92,7 +92,6 @@ dotLIST=(
     "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
     "$homeCfgExt/wireplumber"
-    "$homeCfgExt/gtk-3.0"
     "$homeExt/.bashrc"
     "$homeExt/.inputrc"
     "$homeExt/.wayinitrc"

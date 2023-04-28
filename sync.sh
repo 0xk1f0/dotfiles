@@ -86,7 +86,6 @@ dotLIST=(
     "$dotExt/Thunar"
     "$dotExt/pipewire"
     "$dotExt/wireplumber"
-    "$dotExt/gtk-3.0"
 )
 
 binLIST=(
