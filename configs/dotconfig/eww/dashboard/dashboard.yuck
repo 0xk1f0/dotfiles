@@ -1,5 +1,4 @@
 (include "dashboard/widgets/clock.yuck")
-(include "dashboard/widgets/system.yuck")
 (include "dashboard/widgets/volume.yuck")
 (include "dashboard/widgets/music.yuck")
 (include "dashboard/widgets/calendar.yuck")
