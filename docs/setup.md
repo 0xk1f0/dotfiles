@@ -73,7 +73,11 @@ bootctl update
 
 ---
 
-## fstab SSD performance improvements (noatime) /etc/fstab
+## fstab SSD performance improvements (noatime)
+
+***File***
+
+- /etc/fstab
 
 ```bash
 # root
@@ -84,11 +88,14 @@ UUID=[UUID]    /    ext4    rw,noatime  0 1
 
 ## LUKS2 SSD speed improvements
 
+***File***
+
+- /etc/crypttab
+
 ```bash
 # disable read-workqueue and write-workqueue for root
-nano /etc/crypttab
-> # <name>    <device>          <password>      <options>
-> root        UUID=[UUID]       -               no-read-workqueue,no-write-workqueue
+# <name>    <device>          <password>      <options>
+root        UUID=[UUID]       -               no-read-workqueue,no-write-workqueue
 ```
 
 ---
@@ -144,7 +151,7 @@ swapon /swapfile
 
 ---
 
-## Paru First-Time Install
+## paru First-Time Install
 
 ```bash
 # make sure build tools are installed
@@ -199,7 +206,11 @@ pamu2fcfg -o pam://[hostname] -i pam://[hostname]
 
 ---
 
-## YubiKey PAM Module Code /etc/pam.d/hwkey
+## YubiKey PAM Module Code
+
+***File***
+
+- /etc/pam.d/hwkey
 
 ```bash
 #%PAM-1.0
@@ -210,7 +221,11 @@ auth    include     hwkey
 
 ---
 
-## sysctl Stuff /etc/sysctl.d/90-override.conf
+## sysctl Stuff
+
+***File***
+
+- /etc/sysctl.d/90-override.conf
 
 ```bash
 # change likelyness of swapping
@@ -219,7 +234,11 @@ vm.swappiness=60
 
 ---
 
-## Docker IP-Address Range /lib/systemd/system/docker.service
+## Docker IP-Address Range
+
+***File***
+
+- /lib/systemd/system/docker.service
 
 ```bash
 ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
@@ -227,7 +246,12 @@ ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
 
 ---
 
-## Windows font rendering /etc/fonts/conf.d/99-calibir-fix.conf
+## Windows font rendering
+
+***Files***
+
+- /etc/fonts/conf.d/99-calibir-fix.conf
+- ~/.config/fontconfig/fonts.conf
 
 ```xml
 <?xml version="1.0"?>
@@ -262,7 +286,7 @@ avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
 
 ---
 
-## set correct keymap when using barrier
+## Set correct Keymap when using barrier
 
 ```bash
 # barrier creates a new keyboard input, which defaults to english layout
@@ -271,7 +295,11 @@ setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/
 
 ---
 
-## fix GTK Cursor Theme ~/.icons/default/index.theme
+## Fix GTK Cursor Theme ~/.icons/default/index.theme
+
+***File***
+
+- ~/.icons/default/index.theme
 
 ```bash
 [Icon Theme]

@@ -14,4 +14,4 @@
 	OPQ:			#000000;
 }
 
-@import "main/main.rasi"
+@import "./lib/main.rasi"

@@ -12,6 +12,8 @@
     origin = top-right
     offset = 8x8
     scale = 0
+    width = 300
+    height = 100
 
     # max number of notification
     notification_limit = 5
@@ -23,7 +25,7 @@
     progress_bar_height = 10
     progress_bar_frame_width = 1
     progress_bar_min_width = 150
-    progress_bar_max_width = 300
+    progress_bar_max_width = 250
 
     # show currently hidden messages
     indicate_hidden = yes

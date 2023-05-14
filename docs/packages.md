@@ -108,8 +108,7 @@ greetd-tuigreet
 ## Base DE AUR
 
 eww-wayland
-rwpspread-git
-wpaperd-git
+rwpspread
 rofi-lbonn-wayland
 
 ---
@@ -177,7 +176,7 @@ ncspot
 
 ## Apps AUR
 
-discord_arch_electron
+discord-electron
 visual-studio-code-bin
 cheat-bin
 

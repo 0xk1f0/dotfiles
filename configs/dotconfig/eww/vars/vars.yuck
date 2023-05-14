@@ -27,18 +27,6 @@
 
 ; SYSTEM ;
 
-(defpoll STATE_NRM :interval "999h"
-    "grep 'nrm' /home/$USER/.config/eww/colors.scss | awk '{print $2}' | tr -d ';'"
-)
-(defpoll BLE_STATE :interval "3s"
-    "/home/$USER/.config/eww/scripts/ble.sh status"
-)
-(defpoll NET_TYPE :interval "3s"
-    "/home/$USER/.config/eww/scripts/net.sh type"
-)
-(defpoll NET_STATE :interval "3s"
-    "/home/$USER/.config/eww/scripts/net.sh status"
-)
 (defpoll BAT_LEVEL :interval "5s"
     "/home/$USER/.config/eww/scripts/bat.sh level"
 )
