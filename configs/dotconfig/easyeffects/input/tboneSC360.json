@@ -1,27 +1,15 @@
 {
     "input": {
-        "bass_enhancer#0": {
-            "amount": 6.999999999999991,
-            "blend": 0.0,
-            "bypass": false,
-            "floor": 20.0,
-            "floor-active": false,
-            "harmonics": 8.5,
-            "input-gain": 0.0,
-            "output-gain": 0.0,
-            "scope": 60.0
-        },
         "blocklist": [
             "cava"
         ],
         "plugins_order": [
-            "bass_enhancer#0",
             "rnnoise#0"
         ],
         "rnnoise#0": {
             "bypass": false,
             "input-gain": 0.0,
-            "model-path": "",
+            "model-path": "/home/k1f0/.config/easyeffects/rnnoise/cb.rnnn",
             "output-gain": 0.0
         }
     }

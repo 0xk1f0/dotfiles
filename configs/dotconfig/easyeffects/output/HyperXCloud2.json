@@ -1,7 +1,7 @@
 {
     "output": {
         "bass_enhancer#0": {
-            "amount": 8.499999999999986,
+            "amount": 8.999999999999984,
             "blend": 0.0,
             "bypass": false,
             "floor": 20.0,
@@ -15,7 +15,7 @@
         "equalizer#0": {
             "balance": 0.0,
             "bypass": false,
-            "input-gain": -5.0,
+            "input-gain": -6.0,
             "left": {
                 "band0": {
                     "frequency": 48.0,
