@@ -1,7 +1,7 @@
 {
     "output": {
         "bass_enhancer#0": {
-            "amount": 8.999999999999984,
+            "amount": 5.999999999999995,
             "blend": 0.0,
             "bypass": false,
             "floor": 20.0,
@@ -9,7 +9,7 @@
             "harmonics": 8.000000000000002,
             "input-gain": 0.0,
             "output-gain": 0.0,
-            "scope": 65.0
+            "scope": 60.0
         },
         "blocklist": [],
         "equalizer#0": {

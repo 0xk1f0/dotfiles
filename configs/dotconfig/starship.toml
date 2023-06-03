@@ -15,6 +15,8 @@ error_symbol = "[❯](bold #ffffff)"
 style = "italic bold"
 home_symbol = "~"
 read_only = ""
+truncation_length = 2
+truncation_symbol = '../'
 
 [cmd_duration]
 format = "\n[$duration]($style)\n"
