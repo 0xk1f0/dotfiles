@@ -10,7 +10,7 @@
 
     # geometry
     origin = top-right
-    offset = 8x8
+    offset = 6x6
     scale = 0
     width = 300
     height = 100
@@ -122,6 +122,12 @@
     mouse_left_click = close_current
     mouse_middle_click = do_action, close_current
     mouse_right_click = close_all
+
+    # corner radius
+    corner_radius = 0
+
+    # frame
+    frame_width = 0
 
 [experimental]
     per_monitor_dpi = false

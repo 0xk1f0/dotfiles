@@ -5,10 +5,6 @@
 # \__,_/\__,_/_/ /_/____/\__/     /_/|_/_/_/  \____/  
 
 [global]
-    # corner radius
-    corner_radius = 8
-    # frame
-    frame_width = 0
     # colors
 	frame_color = "#000000"
 	foreground = "#000000"
