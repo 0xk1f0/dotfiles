@@ -5,7 +5,7 @@ set -uo pipefail
 
 TIMESTAMP=$(date +%H_%M_%S)
 
-grim -g "$(slurp)" - | wl-copy
+grim -g "$(slurp -d -w 0)" - | wl-copy
 
 #notify user depending on exit code
 if [ "$?" -eq 0 ]; then
