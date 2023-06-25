@@ -131,19 +131,15 @@ else
     SU_SYS="/bin/doas"
 fi
 
-# check for root run
+# check for root run and react accordingly
 if [ "$EUID" -eq 0 ]; then
-    # dont use sudo or doas
-    scriptFeedback success "Root Detected"
     SU_SYS=""
-    if [ -z ${1+x} ]; then
-        scriptFeedback error "No user in root session: $_NAME <user>"
+    if [ -v SUDO_USER ]; then
+        scriptFeedback success "Root Detected for $SUDO_USER"
+        _USER=$SUDO_USER
     else
-        if [ -d "/home/$1/" ]; then
-            _USER=$1
-        else
-            scriptFeedback error "No home directory found for user '$1'!"
-        fi
+        scriptFeedback success "Root Detected for $DOAS_USER"
+        _USER=$DOAS_USER
     fi
 else
     _USER=$USER
