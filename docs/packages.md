@@ -14,15 +14,15 @@ lib32-wayland
 xf86-video-amdgpu
 amd-ucode
 mesa
-mesa-vdpau
 libva-mesa-driver
 mesa-utils
 lib32-mesa
-lib32-mesa-vdpau
 lib32-libva-mesa-driver
 vulkan-radeon
 lib32-vulkan-radeon
 vulkan-tools
+opencl-headers
+networkmanager
 opendoas
 base-devel
 dracut
@@ -43,7 +43,6 @@ pamixer
 numlockx
 flatpak
 rsync
-ueberzug
 pacman-mirrorlist
 pacman-contrib
 bind
@@ -72,6 +71,7 @@ procs
 exa
 bat
 fd
+ripgrep
 dust
 minicom
 glow
@@ -109,26 +109,25 @@ greetd-tuigreet
 
 eww-wayland
 rwpspread
-rofi-lbonn-wayland
+rofi-lbonn-wayland-git
 
 ---
 
 ## DE
 
 nm-connection-editor
+networkmanager-fortisslvpn
+networkmanager-openvpn
 pavucontrol
 kitty
 firefox
-thunar
-thunar-archive-plugin
-thunar-media-tags-plugin
-thunar-volman
+nautilus
 tumbler
 file-roller
 easyeffects
 zathura
 zathura-pdf-poppler
-nomacs
+ristretto
 mpv
 system-config-printer
 python-pywal
@@ -137,7 +136,7 @@ kvantum
 ## DE AUR
 
 xfce-polkit
-nwg-look
+nwg-look-bin
 qt5gtk2
 qt6gtk2
 
@@ -165,6 +164,7 @@ ttf-twemoji
 
 ## Apps
 
+code
 inkscape
 wireshark-qt
 mypaint
@@ -176,9 +176,11 @@ ncspot
 
 ## Apps AUR
 
-discord-electron
-visual-studio-code-bin
+discord-canary-electron-bin
 cheat-bin
+mullvad-vpn-bin
+code-features
+code-marketplace
 
 ---
 
@@ -206,3 +208,4 @@ org.kde.KStyle.Kvantum
 org.kde.KStyle.Adwaita
 com.github.tchx84.Flatseal
 com.nextcloud.desktopclient.nextcloud
+io.gitlab.adhami3310.Impression

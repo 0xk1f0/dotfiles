@@ -106,6 +106,8 @@ binLIST=(
     "$binExt/setWall"
     "$binExt/setTheme"
     "$binExt/xtkotlinc"
+    "$binExt/symlinkElectron"
+    "$binExt/rmWineAssocs"
 )
 
 clear

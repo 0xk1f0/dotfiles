@@ -40,6 +40,20 @@ localectl set-x11-keymap [keymap]
 
 ---
 
+## Environment Parameters
+
+```bash
+# force Vulkan Driver statically
+DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1
+VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+# force Mesa's Rusticl for OpenCL
+OCL_ICD_VENDORS=/etc/OpenCL/vendors/rusticl.icd
+# force Mesa OpenGL driver e.g. zink, radeonsi, etc.
+MESA_LOADER_DRIVER_OVERRIDE=radeonsi
+```
+
+---
+
 ## dracut and systemd-boot
 
 ```bash
@@ -230,18 +244,11 @@ auth    include     hwkey
 ```bash
 # change likelyness of swapping
 vm.swappiness=60
-```
-
----
-
-## Docker IP-Address Range
-
-***File***
-
-- /lib/systemd/system/docker.service
-
-```bash
-ExecStart=/usr/bin/dockerd -H fd:// --bip "192.168.8.1/24"
+# for linux hardened concerning flatpak
+kernel.unprivileged_userns_clone=1
+# docker rootless privs
+net.ipv4.ping_group_range=0 2147483647
+net.ipv4.ip_unprivileged_port_start=0
 ```
 
 ---
@@ -307,3 +314,11 @@ Inherits=CursorThemeName
 ```
 
 ---
+
+## Wine Temp Directory on tmpfs
+
+```bash
+rm -r ~/.wine/drive_c/users/$USER/Temp ~/.wine/drive_c/windows/temp
+ln -s /tmp/ ~/.wine/drive_c/users/$USER/Temp
+ln -s /tmp/ ~/.wine/drive_c/windows/temp
+```

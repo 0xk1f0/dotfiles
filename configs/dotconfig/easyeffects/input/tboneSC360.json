@@ -9,7 +9,7 @@
         "rnnoise#0": {
             "bypass": false,
             "input-gain": 0.0,
-            "model-path": "/home/k1f0/.config/easyeffects/rnnoise/cb.rnnn",
+            "model-path": "",
             "output-gain": 0.0
         }
     }

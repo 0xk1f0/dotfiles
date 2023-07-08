@@ -1,0 +1,35 @@
+#!/bin/bash
+
+# Taken from here: 
+# https://wiki.archlinux.org/title/Wine#Unregister_existing_Wine_file_associations
+
+# give user feedback
+scriptFeedback() {
+    case $1 in
+        success)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+            ;;
+        proc)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
+            ;;
+    esac
+}
+
+# unregister existing Wine file associations
+scriptFeedback proc "Unregistering existing Associations.."
+/bin/rm -f ~/.local/share/applications/wine-extension*.desktop
+/bin/rm -f ~/.local/share/icons/hicolor/*/*/application-x-wine-extension*
+
+# remove cache
+scriptFeedback proc "Removing Cache.."
+/bin/rm -f ~/.local/share/applications/mimeinfo.cache
+/bin/rm -f ~/.local/share/mime/packages/x-wine*
+/bin/rm -f ~/.local/share/mime/application/x-wine-extension*
+
+# update cache
+scriptFeedback proc "Updating Cache.."
+/usr/bin/update-desktop-database ~/.local/share/applications
+/usr/bin/update-mime-database ~/.local/share/mime/
+
+# we're done
+scriptFeedback success "Unregistered and refreshed Associations"
