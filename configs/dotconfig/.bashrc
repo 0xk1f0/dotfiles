@@ -84,7 +84,7 @@ alias la='exa -g@lahUm'
 alias cat='bat --plain --style grid'
 alias du='dust'
 alias ip='ip -color=auto'
-alias grep='grep --color=auto'
+alias grep='rg'
 alias df='df -h'
 
 # update aliases
@@ -106,9 +106,6 @@ alias gtcl='git clone'
 # more aliases
 alias whatislove='echo "baby don\`t hurt me"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
-alias fdpkg='pacman -Ss | paste -d "" - - | \
-fzf -e --multi --preview "pacman -Si {1}" | \
-cut -d " " -f 1 | xargs -ro doas pacman -S'
 alias ybi2fa=\
 'ykman oath accounts list | fzf -e | \
 xargs -ro ykman oath accounts code | \

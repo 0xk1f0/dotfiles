@@ -27,4 +27,5 @@ timeout 660 'hyprctl dispatch dpms off' \
 resume 'hyprctl dispatch dpms on' &
 
 # wallpaper
-rwpspread -wi "/home/$USER/.wallpaper" &
+killall -q rwpspread -9
+rwpspread -wdi "/home/$USER/.wallpaper" &
