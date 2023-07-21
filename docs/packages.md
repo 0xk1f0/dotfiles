@@ -121,7 +121,8 @@ networkmanager-openvpn
 pavucontrol
 kitty
 firefox
-nautilus
+caja
+caja-open-terminal
 tumbler
 file-roller
 easyeffects
