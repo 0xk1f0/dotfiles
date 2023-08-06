@@ -86,6 +86,7 @@ alias du='dust'
 alias ip='ip -color=auto'
 alias grep='rg'
 alias df='df -h'
+alias nano="helix"
 
 # update aliases
 alias mirup='doas reflector -p https -l 20 \
@@ -101,6 +102,9 @@ alias gta='git add'
 alias gtc='git commit'
 alias gtp='git push'
 alias gtu='git pull'
+alias gts='git status'
+alias gtb='git branch'
+alias gtf='git fetch'
 alias gtcl='git clone'
 
 # more aliases
