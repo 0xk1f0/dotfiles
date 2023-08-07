@@ -23,12 +23,12 @@ alert() {
 # match keys
 case $1 in
     sink)
-		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
-		doConvert
-		;;
+        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+        doConvert
+        ;;
 	source)
-		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2}')"
-		doConvert
+        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2}')"
+        doConvert
         ;;
     sink-set)
         wpctl set-volume @DEFAULT_AUDIO_SINK@ "$2%"
@@ -44,14 +44,22 @@ case $1 in
         ICON="audio-volume-high"
         alert
         ;;
-	sink-incr)
-        wpctl set-volume @DEFAULT_AUDIO_SINK@ "$3%$2"
-		STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+    sink-incr)
+        STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
         doConvert
+        if [[ $STATUS -lt 100 ]] && [[ "$2" == "+" ]]; then
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ "$3%$2"
+            STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+            doConvert
+        elif [[ $STATUS -gt 0 ]] && [[ "$2" == "-" ]]; then
+            wpctl set-volume @DEFAULT_AUDIO_SINK@ "$3%$2"
+            STATUS="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
+            doConvert
+        fi
         ICON="audio-volume-high"
         alert
         ;;
-	sink-mute)
+    sink-mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep "MUTE" >> /dev/null
         if [ $? -eq 0 ]; then
@@ -63,7 +71,7 @@ case $1 in
         fi
         alert
         ;;
-	source-mute)
+    source-mute)
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep "MUTE" >> /dev/null
         if [ $? -eq 0 ]; then
