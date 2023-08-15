@@ -14,10 +14,8 @@ lib32-wayland
 xf86-video-amdgpu
 amd-ucode
 mesa
-libva-mesa-driver
 mesa-utils
 lib32-mesa
-lib32-libva-mesa-driver
 vulkan-radeon
 lib32-vulkan-radeon
 vulkan-tools
@@ -29,7 +27,6 @@ dracut
 sbsigntools
 wget
 git
-nano
 helix
 
 ---
@@ -40,7 +37,6 @@ starship
 playerctl
 brightnessctl
 pamixer
-numlockx
 flatpak
 rsync
 pacman-mirrorlist
@@ -61,7 +57,6 @@ gzip
 zip
 lz4
 unrar
-cdrkit
 mtpfs
 gvfs
 gvfs-mtp
@@ -123,7 +118,6 @@ kitty
 firefox
 caja
 caja-open-terminal
-tumbler
 file-roller
 easyeffects
 zathura
@@ -138,8 +132,6 @@ kvantum
 
 xfce-polkit
 nwg-look-bin
-qt5gtk2
-qt6gtk2
 
 ---
 
@@ -154,7 +146,6 @@ lib32-fontconfig
 ttf-liberation
 wqy-zenhei
 papirus-icon-theme
-xcursor-neutral
 ttf-jetbrains-mono
 
 ## Fonts AUR
@@ -165,8 +156,6 @@ ttf-twemoji
 
 ## Apps
 
-code
-inkscape
 wireshark-qt
 mypaint
 gparted
@@ -177,11 +166,10 @@ ncspot
 
 ## Apps AUR
 
-discord-canary-electron-bin
+armcord-bin
 cheat-bin
 mullvad-vpn-bin
-code-features
-code-marketplace
+visual-studio-code-bin
 
 ---
 
@@ -190,8 +178,8 @@ code-marketplace
 qemu-desktop
 libvirt
 virt-manager
-edk2-ovmf
 docker
+docker-buildx
 docker-compose
 
 ---
@@ -206,7 +194,7 @@ org.qbittorrent.qBittorrent
 org.gimp.GIMP
 org.inkscape.Inkscape
 org.kde.KStyle.Kvantum
-org.kde.KStyle.Adwaita
+org.gtk.Gtk3theme.adw-gtk3-dark
 com.github.tchx84.Flatseal
 com.nextcloud.desktopclient.nextcloud
 io.gitlab.adhami3310.Impression
