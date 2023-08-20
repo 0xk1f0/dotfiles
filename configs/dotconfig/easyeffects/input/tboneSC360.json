@@ -4,6 +4,7 @@
             "cava"
         ],
         "plugins_order": [
+            "speex#0",
             "rnnoise#0"
         ],
         "rnnoise#0": {
@@ -11,6 +12,20 @@
             "input-gain": 0.0,
             "model-path": "",
             "output-gain": 0.0
+        },
+        "speex#0": {
+            "bypass": false,
+            "enable-agc": true,
+            "enable-denoise": true,
+            "enable-dereverb": false,
+            "input-gain": 0.0,
+            "noise-suppression": -70,
+            "output-gain": 0.0,
+            "vad": {
+                "enable": false,
+                "probability-continue": 90,
+                "probability-start": 95
+            }
         }
     }
 }
