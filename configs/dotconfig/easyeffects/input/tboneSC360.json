@@ -5,9 +5,9 @@
             "input-gain": 0.0,
             "maximum-history": 15,
             "output-gain": 0.0,
-            "reference": "Geometric Mean (MSI)",
+            "reference": "Momentary",
             "silence-threshold": -70.0,
-            "target": -23.0
+            "target": -28.0
         },
         "blocklist": [
             "cava"
@@ -21,8 +21,8 @@
             "input-gain": 0.0,
             "model-path": "",
             "output-gain": 0.0,
-            "release": 100.0,
-            "vad-thres": 5.0,
+            "release": 150.0,
+            "vad-thres": 0.0,
             "wet": 0.0
         }
     }
