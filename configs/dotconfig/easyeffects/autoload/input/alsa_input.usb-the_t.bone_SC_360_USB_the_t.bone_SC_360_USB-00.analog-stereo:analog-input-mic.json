@@ -1,6 +1,0 @@
-{
-    "device": "alsa_input.usb-the_t.bone_SC_360_USB_the_t.bone_SC_360_USB-00.analog-stereo",
-    "device-description": "t.bone SC 360 Analog Stereo",
-    "device-profile": "analog-input-mic",
-    "preset-name": "tboneSC360"
-}
