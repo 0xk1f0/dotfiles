@@ -77,10 +77,10 @@ dcryptArch() {
 
 # base replacement aliases
 alias ps='procs'
-alias tree='exa -Tg@'
-alias ls='exa -1g@'
-alias ll='exa -g@lhUm'
-alias la='exa -g@lahUm'
+alias tree='eza -Tg@'
+alias ls='eza -1g@'
+alias ll='eza -g@lhUm'
+alias la='eza -g@lahUm'
 alias cat='bat --plain --style grid'
 alias du='dust'
 alias ip='ip -color=auto'
@@ -115,6 +115,8 @@ alias ybi2fa=\
 xargs -ro ykman oath accounts code | \
 cut -d " " -f 3 | wl-copy -n && echo "Copied!"'
 alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
+alias ytaudio=\
+'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames'
 
 # prompt
 eval "$(starship init bash)"

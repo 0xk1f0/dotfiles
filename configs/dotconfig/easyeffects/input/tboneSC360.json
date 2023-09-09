@@ -1,0 +1,20 @@
+{
+    "input": {
+        "blocklist": [
+            "cava"
+        ],
+        "plugins_order": [
+            "rnnoise#0"
+        ],
+        "rnnoise#0": {
+            "bypass": false,
+            "enable-vad": false,
+            "input-gain": 0.0,
+            "model-path": "",
+            "output-gain": 0.0,
+            "release": 150.0,
+            "vad-thres": 0.0,
+            "wet": 0.0
+        }
+    }
+}
