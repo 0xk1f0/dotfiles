@@ -124,6 +124,21 @@ cleanOrph() {
     fi
 }
 
+# clean flatpak unused
+cleanFlatpak() {
+    if [ "$(flatpak remove --unused | tail -n 1)" == "Nothing unused to uninstall" ]; then
+        return
+    else
+        if
+        flatpak remove --unused --noninteractive >> /dev/null;
+        then
+            scriptFeedback success "Obsolete Flatpaks removed!"
+        else
+            scriptFeedback error "Some error occured!"
+        fi
+    fi
+}
+
 # detect su system
 if command -v /bin/sudo >> /dev/null; then
     SU_SYS="/bin/sudo"
@@ -155,6 +170,7 @@ selections=(
     "paru"
     "pip"
     "orphanPkgs"
+    "flatpak"
     "none"
 )
 chooseMenu "What to clean?" selected_choice ${selections[@]}
@@ -166,6 +182,7 @@ case $selected_choice in
         cleanParu
         cleanPip
         cleanOrph
+        cleanFlatpak
         ;;
     "pacman")
         scriptFeedback proc "Clearing pacman cache..."
@@ -182,6 +199,10 @@ case $selected_choice in
     "orphanPkgs")
         scriptFeedback proc "Removing orphan packages..."
         cleanOrph
+        ;;
+    "flatpak")
+        scriptFeedback proc "Removing unused Flatpaks..."
+        cleanFlatpak
         ;;
     "none")
         exit 0
