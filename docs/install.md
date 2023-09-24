@@ -135,7 +135,8 @@ systemctl enable NetworkManager
 ```bash
 useradd -m [username]
 passwd [username]
-usermod -aG wheel,audio,video,uucp [username]
+# example groups, some may not be available
+usermod -aG wheel,audio,video,uucp,render,realtime,libvirt [username]
 ```
 
 ---
@@ -157,6 +158,9 @@ EDITOR=nano visudo
 ## Installing the Bootloader
 
 ```bash
+################################
+### WITH GRUB AND MKINITCPIO ###
+################################
 # Get a few extra packages
 pacman -S grub efibootmgr dosfstools os-prober mtools
 # Install GRUB
@@ -165,12 +169,35 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux
 nano /etc/default/grub
 > GRUB_CMDLINE_LINUX="cryptdevice=UUID=[root_part_UUID]:root root=/dev/mapper/root"
 > GRUB_ENABLE_CRYPTODISK=y
-# edit mkinitcpio for encryption support
+### with mkinitcpio ###
 nano /etc/mkinitcpio.conf
 > HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
 mkinitcpio -P
-# Generate grub config
+# generate grub config
 grub-mkconfig -o /boot/grub/grub.cfg
+
+####################################
+### WITH SYSTEMD-BOOT AND DRACUT ###
+####################################
+# dracut install
+pacman -S dracut
+paru -S dracut-hook-uefi
+# edit configuration
+# !IMPORTANT! root must be specified or initrd will fail
+# only force AMD driver if you have a valid GPU!
+nano /etc/dracut.conf.d/flags.conf
+> uefi="yes"
+> compress="lz4"
+> force_drivers+=" amdgpu "
+> omit_dracutmodules+=" brltty network-legacy network nfs "
+> stdloglvl="3"
+> show_modules="no"
+> kernel_cmdline="quiet root=[UUID]"
+# regenerate
+dracut --regenerate-all --force
+# systemd-boot install
+bootctl install
+bootctl update
 ```
 
 ---

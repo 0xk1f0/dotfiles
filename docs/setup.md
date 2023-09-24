@@ -18,9 +18,7 @@ timedatectl set-ntp true
 
 ```bash
 # set with localectl
-# this modifies /etc/X11/xorg.conf.d/00-keyboard.conf
 localectl set-keymap [keymap]
-localectl set-x11-keymap [keymap]
 ```
 
 ---
@@ -50,6 +48,8 @@ VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/
 OCL_ICD_VENDORS=/etc/OpenCL/vendors/rusticl.icd
 # force Mesa OpenGL driver e.g. zink, radeonsi, etc.
 MESA_LOADER_DRIVER_OVERRIDE=radeonsi
+# ROCm device fix
+HSA_OVERRIDE_GFX_VERSION=10.3.0
 ```
 
 ---
@@ -62,13 +62,14 @@ pacman -S dracut
 paru -S dracut-hook-uefi
 # edit configuration
 # !IMPORTANT! root must be specified or initrd will fail
+# only force AMD driver if you have a valid GPU!
 nano /etc/dracut.conf.d/flags.conf
 > uefi="yes"
 > compress="lz4"
 > force_drivers+=" amdgpu "
 > omit_dracutmodules+=" brltty network-legacy network nfs "
 > stdloglvl="3"
-> show_modules="yes"
+> show_modules="no"
 > kernel_cmdline="quiet root=[UUID]"
 # regenerate
 dracut --regenerate-all --force
