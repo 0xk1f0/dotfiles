@@ -6,7 +6,7 @@
 
 # exports
 export TERM="xterm-256color"
-export PATH="$PATH:/home/k1f0/.local/bin"
+export PATH="$PATH:/home/$USER/.local/bin:/home/$USER/.cargo/bin"
 export HISTCONTROL="erasedups:ignorespace"
 export EDITOR="helix"
 export VISUAL="helix"
