@@ -323,3 +323,12 @@ rm -r ~/.wine/drive_c/users/$USER/Temp ~/.wine/drive_c/windows/temp
 ln -s /tmp/ ~/.wine/drive_c/users/$USER/Temp
 ln -s /tmp/ ~/.wine/drive_c/windows/temp
 ```
+
+---
+
+## Force GTK3 Pinentry by default
+
+```bash
+rm /usr/bin/pinentry
+ln -s /usr/bin/pinentry-gnome3 /usr/bin/pinentry
+```

@@ -116,7 +116,8 @@ xargs -ro ykman oath accounts code | \
 cut -d " " -f 3 | wl-copy -n && echo "Copied!"'
 alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
 alias ytaudio=\
-'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames'
+'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames \
+-x --audio-format mp3 --add-metadata'
 
 # prompt
 eval "$(starship init bash)"
