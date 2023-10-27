@@ -88,7 +88,7 @@ mount [/dev/boot_part] /boot
 
 ```bash
 # Run pacstrap to install Base Packages
-pacstrap /mnt base linux linux-headers linux-firmware nano git base-devel
+pacstrap /mnt base linux linux-headers linux-firmware git base-devel
 # Generate initial fstab
 genfstab -U /mnt >> /mnt/etc/fstab
 # chroot into your New System
@@ -114,7 +114,6 @@ locale-gen
 # Set Keymap
 nano /etc/vconsole.conf
 > KEYMAP=[keymap]
-> FONT=[font]
 # Set Hostname
 nano /etc/hostname            
 > yourHostname
@@ -149,7 +148,7 @@ nano /etc/doas.conf
 > permit persist :wheel
 >
 # With sudo
-EDITOR=nano visudo
+visudo
 > %wheel ALL=(ALL) ALL #uncomment this
 ```
 

@@ -28,4 +28,4 @@ resume 'hyprctl dispatch dpms on' &
 
 # wallpaper
 killall -q rwpspread -9
-rwpspread -wdi "/home/$USER/.wallpaper" &
+rwpspread -wpdi "/home/$USER/.wallpaper" &
