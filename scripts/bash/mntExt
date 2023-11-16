@@ -18,7 +18,7 @@ chooseMenu() {
         do
             local spc=""
             if [ $isDrivePrompt = true ]; then
-                spc=" ($(lsblk -l | grep "$o" | tr -s ' ' ' ' \
+                spc=" ($(/bin/lsblk -l | /bin/grep "$o" | tr -s ' ' ' ' \
                 | cut -d ' ' -f 4))"
             fi
             if [ "$index" == "$cur" ]; then

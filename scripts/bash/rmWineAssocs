@@ -3,6 +3,9 @@
 # Taken from here: 
 # https://wiki.archlinux.org/title/Wine#Unregister_existing_Wine_file_associations
 
+# "bash strict mode"
+set -uo pipefail
+
 # give user feedback
 scriptFeedback() {
     case $1 in
