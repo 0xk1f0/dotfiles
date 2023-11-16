@@ -65,7 +65,8 @@ handleYesNo() {
     fi
 }
 
-binExt="/home/$USER/.local/bin"
+bashExt="/home/$USER/.local/bin"
+sysdExt="/home/$USER/.config/systemd/user/"
 homeCfgExt="/home/$USER/.config"
 homeExt="/home/$USER"
 dotExt="./configs/dotconfig"
@@ -97,17 +98,21 @@ dotLIST=(
     "$homeExt/.wayinitrc"
 )
 
-binLIST=(
-    "$binExt/mntExt"
-    "$binExt/mntSMB"
-    "$binExt/sharePwnagotchy"
-    "$binExt/rsyncToShare"
-    "$binExt/clnJnk"
-    "$binExt/setWall"
-    "$binExt/setTheme"
-    "$binExt/xtkotlinc"
-    "$binExt/symlinkElectron"
-    "$binExt/rmWineAssocs"
+bashLIST=(
+    "$bashExt/mntExt"
+    "$bashExt/mntSMB"
+    "$bashExt/sharePwnagotchy"
+    "$bashExt/rsyncToShare"
+    "$bashExt/clnJnk"
+    "$bashExt/setWall"
+    "$bashExt/setTheme"
+    "$bashExt/xtkotlinc"
+    "$bashExt/symlinkElectron"
+    "$bashExt/rmWineAssocs"
+)
+
+sysdLIST=(
+    "$sysdExt/gamescope.service"
 )
 
 clear
@@ -130,12 +135,22 @@ if handleYesNo "Include dotconfigs?"; then
     scriptFeedback success "Done"
 fi
 
-if handleYesNo "Include scripts?"; then
-    scriptFeedback proc "Syncing ~/.local/bin/ scripts"
+if handleYesNo "Include bash scripts?"; then
+    scriptFeedback proc "Syncing bash scripts"
 
     /bin/rsync -aq \
     --delete \
-    $(echo "${binLIST[@]}") ./scripts/
+    $(echo "${bashLIST[@]}") ./scripts/bash/
+
+    scriptFeedback success "Done"
+fi
+
+if handleYesNo "Include systemd user units?"; then
+    scriptFeedback proc "Syncing systemd units"
+
+    /bin/rsync -aq \
+    --delete \
+    $(echo "${sysdLIST[@]}") ./scripts/systemd/
 
     scriptFeedback success "Done"
 fi

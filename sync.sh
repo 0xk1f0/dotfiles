@@ -62,7 +62,8 @@ handleYesNo() {
     fi
 }
 
-binExt="./scripts"
+bashExt="./scripts/bash"
+sysdExt="./scripts/systemd"
 dotExt="./configs/dotconfig"
 
 dotLIST=(
@@ -88,17 +89,21 @@ dotLIST=(
     "$dotExt/wireplumber"
 )
 
-binLIST=(
-    "$binExt/mntExt"
-    "$binExt/mntSMB"
-    "$binExt/sharePwnagotchy"
-    "$binExt/rsyncToShare"
-    "$binExt/clnJnk"
-    "$binExt/setWall"
-    "$binExt/setTheme"
-    "$binExt/xtkotlinc"
-    "$binExt/symlinkElectron"
-    "$binExt/rmWineAssocs"
+bashLIST=(
+    "$bashExt/mntExt"
+    "$bashExt/mntSMB"
+    "$bashExt/sharePwnagotchy"
+    "$bashExt/rsyncToShare"
+    "$bashExt/clnJnk"
+    "$bashExt/setWall"
+    "$bashExt/setTheme"
+    "$bashExt/xtkotlinc"
+    "$bashExt/symlinkElectron"
+    "$bashExt/rmWineAssocs"
+)
+
+sysdLIST=(
+    "$sysdExt/gamescope.service"
 )
 
 if handleYesNo "Perform Sync?"; then
@@ -114,10 +119,15 @@ if handleYesNo "Perform Sync?"; then
 
     scriptFeedback success "Done"
 
-    scriptFeedback proc "Syncing ~/.local/bin/ scripts"
+    scriptFeedback proc "Syncing bash scripts"
 
     /bin/rsync -aq \
-    $(echo "${binLIST[@]}") /home/$USER/.local/bin/
+    $(echo "${bashLIST[@]}") /home/$USER/.local/bin/
+
+    scriptFeedback proc "Syncing systemd units"
+
+    /bin/rsync -aq \
+    $(echo "${sysdLIST[@]}") /home/$USER/.config/systemd/user/
 
     scriptFeedback success "Done"
 fi

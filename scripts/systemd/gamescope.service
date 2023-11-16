@@ -1,0 +1,10 @@
+[Unit]
+Description=Gamescope Steam Session
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/gamescope -e -w 2560 -h 1440 --expose-wayland --immediate-flips --adaptive-sync --hdr-enabled --rt
+Restart=always
+
+[Install]
+WantedBy=default.target

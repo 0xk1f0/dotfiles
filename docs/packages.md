@@ -171,7 +171,7 @@ ncspot
 
 ## Apps AUR
 
-armcord-bin
+vencord-desktop-bin
 cheat-bin
 mullvad-vpn-bin
 visual-studio-code-bin

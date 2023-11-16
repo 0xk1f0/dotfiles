@@ -14,6 +14,14 @@ timedatectl set-ntp true
 
 ---
 
+## Generate Self-Signed SSL
+
+```bash
+openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -keyout server.key -out server.crt
+```
+
+---
+
 ## Keymap Configuration
 
 ```bash
@@ -31,7 +39,7 @@ localectl set-keymap [keymap]
 # systemd-cryptenroll TPM auto decryption
 "rd.luks.options=[UUID]=tpm2-device=auto rd.luks.name=[UUID]=root"
 # enable amd_pstate
-"amd_pstate.replace=1 amd_pstate=passive"
+"amd_pstate.replace=1 amd_pstate=[mode]"
 # fix backlight issues
 "acpi_backlight=vendor"
 ```
@@ -62,14 +70,11 @@ pacman -S dracut
 paru -S dracut-hook-uefi
 # edit configuration
 # !IMPORTANT! root must be specified or initrd will fail
-# only force AMD driver if you have a valid GPU!
 nano /etc/dracut.conf.d/flags.conf
 > uefi="yes"
+> hostonly="yes"
 > compress="lz4"
-> force_drivers+=" amdgpu "
-> omit_dracutmodules+=" brltty network-legacy network nfs "
 > stdloglvl="3"
-> show_modules="no"
 > kernel_cmdline="quiet root=[UUID]"
 # regenerate
 dracut --regenerate-all --force
@@ -84,6 +89,27 @@ paru -S systemd-boot-pacman-hook
 bootctl install
 # update
 bootctl update
+```
+
+---
+
+## Enable and manage Secure Boot using sbctl
+
+```bash
+# check status
+sbctl status
+# generate new keys
+sbctl create-keys
+# enroll keys
+sbctl enroll-keys --microsoft # with microsoft keys
+sbctl enroll-keys --tpm-eventlog # with TPM eventlog checksums
+sbctl enroll-keys --yes-this-might-brick-my-machine # only user keys (dangerzone)
+# verify what files are signed
+sbctl verify
+# sign a single file
+sbctl sign /path/to/file
+# sign all files
+sbctl sign-all
 ```
 
 ---
@@ -120,7 +146,7 @@ root        UUID=[UUID]       -               no-read-workqueue,no-write-workque
 ```bash
 # all systemd things should already be installed
 # bind against platform conf and secure boot
-systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+7 /dev/[disk]
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+2+3+5+6+7 /dev/[disk]
 # check if it worked
 cryptsetup luksDump /dev/[disk]
 # edit /etc/crypttab and add
@@ -137,6 +163,14 @@ mkinitcpio -P
 nano /etc/dracut.conf.d/flags.conf
 > add_dracutmodules+=" tpm2-tss "
 dracut --regenerate-all --force
+```
+
+---
+
+## LUKS systemd clear all TPM entries
+
+```bash
+systemd-cryptenroll /dev/[disk] --wipe-slot=tpm2
 ```
 
 ---
@@ -193,7 +227,7 @@ ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 
 ```bash
 # simple command so printers don't complain
-paperconfig -p a4
+paperconf -p a4
 ```
 
 ---
@@ -250,6 +284,13 @@ kernel.unprivileged_userns_clone=1
 # docker rootless privs
 net.ipv4.ping_group_range=0 2147483647
 net.ipv4.ip_unprivileged_port_start=0
+# cloudflare recommended network stuff
+net.ipv4.tcp_adv_win_scale = -2
+net.ipv4.tcp_rmem = 8192 262144 536870912
+net.ipv4.tcp_wmem = 4096 16384 536870912
+net.ipv4.tcp_shrink_window = 1
+net.ipv4.tcp_collapse_max_bytes = 6291456
+net.ipv4.tcp_notsent_lowat = 131072
 ```
 
 ---
@@ -290,15 +331,6 @@ rustup default stable
 ```bash
 # Arduino MEGA 2560
 avrdude -p m2560 -c wiring -P [port] -b [baudrate] -D -U flash:w:[filename]
-```
-
----
-
-## Set correct Keymap when using barrier
-
-```bash
-# barrier creates a new keyboard input, which defaults to english layout
-setxkbmap -device `xinput list | grep "Virtual core XTEST keyboard" | sed -e 's/.\+=\([0-9]\+\).\+/\1/'` [keymap]
 ```
 
 ---
