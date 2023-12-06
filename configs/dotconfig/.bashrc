@@ -94,7 +94,7 @@ alias mirup='doas reflector -p https -l 20 \
 --sort rate -n 10 --verbose \
 --save /etc/pacman.d/mirrorlist'
 alias pacup='doas pacman -Syu'
-alias aurup='paru -aSyu'
+alias aurup='paru --pkgbuilds -aSyu'
 alias flatup='flatpak update'
 
 # git aliases
