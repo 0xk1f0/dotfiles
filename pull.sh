@@ -90,7 +90,6 @@ dotLIST=(
     "$homeCfgExt/starship.toml"
     "$homeCfgExt/electron-flags.conf"
     "$homeCfgExt/code-flags.conf"
-    "$homeCfgExt/Thunar"
     "$homeCfgExt/pipewire"
     "$homeCfgExt/wireplumber"
     "$homeExt/.bashrc"

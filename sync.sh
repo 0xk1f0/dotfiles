@@ -84,7 +84,6 @@ dotLIST=(
     "$dotExt/starship.toml"
     "$dotExt/electron-flags.conf"
     "$dotExt/code-flags.conf"
-    "$dotExt/Thunar"
     "$dotExt/pipewire"
     "$dotExt/wireplumber"
 )

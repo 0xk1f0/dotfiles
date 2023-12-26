@@ -1,22 +1,6 @@
 (include "vars/vars.yuck")
 (include "powermenu/powermenu.yuck")
-(include "dashboard/dashboard.yuck")
 (include "bar/bar.yuck")
-
-; DASHBOARD ;
-
-(defwidget dashitems []
-    (box
-        :class "dash_class"
-        :space-evenly "false"
-        :orientation "v"
-        :spacing 14
-        (clock)
-        (volume)
-        (music)
-        (cal)
-    )
-)
 
 ; BAR ;
 

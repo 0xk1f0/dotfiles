@@ -40,16 +40,11 @@
     "/home/$USER/.config/eww/scripts/wifi.sh name"
 )
 
-; MUSIC ;
-
-(deflisten TITLE :initial "Offline"
-    "playerctl -F metadata title"
-)
-(deflisten ARTIST :initial ""
-    "playerctl -F metadata artist"
-)
-
 ; HYPR ;
 
-; (deflisten workspaces :initial "[]" "/home/$USER/.config/eww/scripts/hypr-workspaces.sh")
-; (deflisten current_workspace :initial "1" "/home/$USER/.config/eww/scripts/hypr-active.sh")
+; (deflisten workspaces :initial "[]"
+;     "/home/$USER/.config/eww/scripts/hypr-workspaces.sh"
+; )
+; (deflisten current_workspace :initial "1"
+;     "/home/$USER/.config/eww/scripts/hypr-active.sh"
+; )
