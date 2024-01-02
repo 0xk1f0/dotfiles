@@ -1,10 +1,10 @@
 @import "./widgets/datetime.scss";
-@import "./widgets/icon.scss";
 @import "./widgets/battery.scss";
 @import "./widgets/wifi.scss";
+@import "./widgets/workspaces.scss";
 
 .bar_class {
-    background-color: rgba($bg, 0.93);
+    background-color: rgba($bg, 0.85);
 }
 
 .center_modules {

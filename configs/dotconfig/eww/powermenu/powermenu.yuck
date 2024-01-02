@@ -38,7 +38,12 @@
         (button 
             :class "reboot"
             :onclick "systemctl reboot"
-            ""
+            ""
+        )
+        (button 
+            :class "bios-reboot"
+            :onclick "systemctl reboot --firmware-setup"
+            ""
         )
         (button 
             :class "lock"

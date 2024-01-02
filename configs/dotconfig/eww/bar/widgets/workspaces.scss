@@ -1,19 +1,8 @@
-.worksapce-widget {
-    border-radius: 0px;
-}
-
 .workspace-entry {
-    color: $fg;
+    color: $act;
+    margin: 0 2px;
 }
 
 .current {
-    color: $nrm;
-}
-
-.occupied {
-    color: $act;
-}
-
-.empty {
     color: $fg;
 }

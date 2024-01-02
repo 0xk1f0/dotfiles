@@ -1,10 +1,17 @@
-(defwidget workspaces []
-    (box :class "workspaces-widget"
-        (box :space-evenly true
-            (for workspace in workspaces
-                (eventbox :onclick "hyprctl dispatch workspace ${workspace.id}"
-                    (box :class "workspace-entry ${workspace.id == current_workspace ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
-                        (label :text "${workspace.id}")
+(defwidget workspaces-widget []
+    (box
+        (box
+            (label :text "${HYPRLAND_WORKSPACES}${HYPRLAND_CURRENT}" :visible false)
+            (for workspace in HYPRLAND_WORKSPACES
+                (eventbox
+                    (box 
+                        :class "workspace-entry ${workspace.id == HYPRLAND_CURRENT ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                        (label 
+                            :xalign 0.5
+                            :yalign 0.5
+                            :text "${workspace.id == HYPRLAND_CURRENT ? "▼" : "▲"}"
+                            :visible "${workspace.windows > 0 || workspace.id == HYPRLAND_CURRENT ? true : false}"
+                        )
                     )
                 )
             )

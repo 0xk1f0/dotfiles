@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # bash strict
 set -uo pipefail
@@ -26,4 +26,3 @@ case $1 in
         echo "$(cat $ADPPATH/online)"
         ;;
 esac
-

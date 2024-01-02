@@ -40,11 +40,11 @@
     "/home/$USER/.config/eww/scripts/wifi.sh name"
 )
 
-; HYPR ;
+; HYPRLAND ;
 
-; (deflisten workspaces :initial "[]"
-;     "/home/$USER/.config/eww/scripts/hypr-workspaces.sh"
-; )
-; (deflisten current_workspace :initial "1"
-;     "/home/$USER/.config/eww/scripts/hypr-active.sh"
-; )
+(deflisten HYPRLAND_WORKSPACES :initial "[]"
+    "/home/$USER/.config/eww/scripts/hyprland-all.sh"
+)
+(deflisten HYPRLAND_CURRENT :initial "1"
+    "/home/$USER/.config/eww/scripts/hyprland-current.sh"
+)
