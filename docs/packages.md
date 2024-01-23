@@ -79,6 +79,7 @@ python-fido2
 pcsc-tools
 realtime-privileges
 borg
+htop
 
 ## Misc AUR
 
@@ -106,7 +107,7 @@ greetd-tuigreet
 
 ## Base DE AUR
 
-eww-wayland
+eww-wayland-git
 rwpspread
 rofi-lbonn-wayland-git
 
@@ -115,14 +116,14 @@ rofi-lbonn-wayland-git
 ## DE
 
 nm-connection-editor
-networkmanager-fortisslvpn
-networkmanager-openvpn
 pavucontrol
 kitty
 firefox
 caja
-caja-open-terminal
+filemanager-actions
 file-roller
+xarchiver
+engrampa
 easyeffects
 zathura
 zathura-pdf-poppler
@@ -171,7 +172,7 @@ ncspot
 
 ## Apps AUR
 
-vencord-desktop-bin
+vesktop-bin
 cheat-bin
 mullvad-vpn-bin
 visual-studio-code-bin
