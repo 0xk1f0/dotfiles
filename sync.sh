@@ -77,7 +77,6 @@ dotLIST=(
     "$dotExt/nano"
     "$dotExt/zathura"
     "$dotExt/mpv"
-    "$dotExt/btop"
     "$dotExt/paru"
     "$dotExt/cheat"
     "$dotExt/easyeffects"

@@ -101,6 +101,7 @@ rofi-calc
 wl-clipboard
 xdg-desktop-portal-hyprland
 xdg-desktop-portal-gtk
+xsettingsd
 qt5-wayland
 qt6-wayland
 greetd-tuigreet

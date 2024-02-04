@@ -10,7 +10,7 @@ export PATH="$PATH:/home/$USER/.local/bin:/home/$USER/.cargo/bin"
 export HISTCONTROL="erasedups:ignorespace"
 export EDITOR="helix"
 export VISUAL="helix"
-export LESS="-R --use-color -Dd+r$Du+b"
+export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
 export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 

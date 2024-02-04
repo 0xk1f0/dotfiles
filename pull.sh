@@ -83,7 +83,6 @@ dotLIST=(
     "$homeCfgExt/helix"
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
-    "$homeCfgExt/btop"
     "$homeCfgExt/cheat"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
