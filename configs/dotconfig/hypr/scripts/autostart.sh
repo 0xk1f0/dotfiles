@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# refresh pywal
-rm -rf /home/$USER/.cache/wal/schemes/
-wal -nest -i /home/$USER/.wallpaper
-
 # dunst
 killall -q dunst -9
 cat "/home/$USER/.config/dunst/configrc" \

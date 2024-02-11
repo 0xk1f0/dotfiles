@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# a themer script that uses way too much sed
+# but it works
+
 # "bash strict mode"
 set -uo pipefail
 
@@ -26,82 +29,170 @@ ROFI_CONF_FILE="/home/$USER/.config/rofi/config.rasi"
 HYPRLAND_CONF_FILE="/home/$USER/.config/hypr/hyprland.conf"
 DUNST_CONF_FILE="/home/$USER/.config/dunst/configrc"
 EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
+KITTY_CONF_FILE="/home/$USER/.config/kitty/colors.conf"
 
 # get colors
-WAL_FG=$(cat /home/$USER/.cache/wal/colors.json \
-| jq '.special.foreground' \
-| tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_BG=$(cat /home/$USER/.cache/wal/colors.json \
-| jq '.special.background' \
-| tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_ACT=$(cat /home/$USER/.cache/wal/colors.json \
+RWP_FG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.foreground' \
+| tr -d '"#')
+RWP_BG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.background' \
+| tr -d '"#')
+RWP_ACT=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color13' \
+| tr -d '"#')
+RWP_NRM=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color2' \
+| tr -d '"#')
+RWP_0=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color0' \
+| tr -d '"#')
+RWP_8=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
 | jq '.colors.color8' \
-| tr -d '"#' | tr '[:lower:]' '[:upper:]')
-WAL_NRM=$(cat /home/$USER/.cache/wal/colors.json \
-| jq '.colors.color1' \
-| tr -d '"#' | tr '[:lower:]' '[:upper:]')
+| tr -d '"#')
+RWP_9=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color9' \
+| tr -d '"#')
+RWP_10=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color10' \
+| tr -d '"#')
+RWP_11=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color11' \
+| tr -d '"#')
+RWP_12=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color12' \
+| tr -d '"#')
+RWP_13=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color13' \
+| tr -d '"#')
+RWP_14=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color14' \
+| tr -d '"#')
+RWP_15=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
+| jq '.colors.color15' \
+| tr -d '"#')
 
 # rofi
-CNF_FILE="$ROFI_CONF_FILE"
+CNF_FILE="${ROFI_CONF_FILE}"
 sed -i -r \
-'s/^.*ACT:.*;/\tACT:\t#'"$WAL_ACT"';/' \
+'s/^.*ACT:.*;/\tACT:\t#'"$RWP_ACT"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*NRM:.*;/\tNRM:\t#'"$WAL_NRM"';/' \
+'s/^.*NRM:.*;/\tNRM:\t#'"$RWP_NRM"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*FG:.*;/\tFG:\t#'"$WAL_FG"';/' \
+'s/^.*FG:.*;/\tFG:\t#'"$RWP_FG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*BG:.*;/\tBG:\t#'"$WAL_BG"';/' \
+'s/^.*BG:.*;/\tBG:\t#'"$RWP_BG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^.*BGOPQ:.*;/\tBGOPQ:\t#'"$WAL_BG"'EE;/' \
+'s/^.*BGOPQ:.*;/\tBGOPQ:\t#'"$RWP_BG"'EE;/' \
 "$CNF_FILE"
 
 # hyprland
-CNF_FILE="$HYPRLAND_CONF_FILE"
+CNF_FILE="${HYPRLAND_CONF_FILE}"
 sed -i -r \
-'s/^\$FGD.*/$FGD=0xFF'"$WAL_FG"'/' \
+'s/^\$FGD.*/$FGD=0xFF'"$RWP_FG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$BGD.*/$BGD=0xFF'"$WAL_BG"'/' \
+'s/^\$BGD.*/$BGD=0xFF'"$RWP_BG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$NRM.*/$NRM=0xFF'"$WAL_NRM"'/' \
+'s/^\$NRM.*/$NRM=0xFF'"$RWP_NRM"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$ACT.*/$ACT=0xFF'"$WAL_ACT"'/' \
+'s/^\$ACT.*/$ACT=0xFF'"$RWP_ACT"'/' \
 "$CNF_FILE"
 
 # dunst
-CNF_FILE="$DUNST_CONF_FILE"
+CNF_FILE="${DUNST_CONF_FILE}"
 sed -i -r \
-'s/^\tforeground.*=.*/\tforeground = "#'"$WAL_FG"'"/' \
+'s/^\tforeground.*=.*/\tforeground = "#'"$RWP_FG"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tbackground.*=.*/\tbackground = "#'"$WAL_BG"'EE"/' \
+'s/^\tbackground.*=.*/\tbackground = "#'"$RWP_BG"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tframe_color.*=.*/\tframe_color = "#'"$WAL_ACT"'"/' \
+'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_ACT"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\thighlight.*=.*/\thighlight = "#'"$WAL_NRM"'"/' \
+'s/^\thighlight.*=.*/\thighlight = "#'"$RWP_NRM"'"/' \
 "$CNF_FILE"
 
 # eww
-CNF_FILE="$EWW_CONF_FILE"
+CNF_FILE="${EWW_CONF_FILE}"
 sed -i -r \
-'s/^\$fg:.*;/$fg: #'"$WAL_FG"';/' \
+'s/^\$fg:.*;/$fg: #'"$RWP_FG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$bg:.*;/$bg: #'"$WAL_BG"';/' \
+'s/^\$bg:.*;/$bg: #'"$RWP_BG"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$nrm:.*;/$nrm: #'"$WAL_NRM"';/' \
+'s/^\$nrm:.*;/$nrm: #'"$RWP_NRM"';/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$act:.*;/$act: #'"$WAL_ACT"';/' \
+'s/^\$act:.*;/$act: #'"$RWP_ACT"';/' \
+"$CNF_FILE"
+
+# kitty
+CNF_FILE="${KITTY_CONF_FILE}"
+sed -i -r \
+'s/^background\s#.*$/background #'"$RWP_BG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^foreground\s#.*$/foreground #'"$RWP_FG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^cursor\s#.*$/cursor #'"$RWP_FG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color0\s#.*$/color0 #'"$RWP_0"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color8\s#.*$/color8 #'"$RWP_8"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color1\s#.*$/color1 #'"$RWP_9"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color9\s#.*$/color9 #'"$RWP_9"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color2\s#.*$/color2 #'"$RWP_10"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color10\s#.*$/color10 #'"$RWP_10"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color3\s#.*$/color3 #'"$RWP_11"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color11\s#.*$/color11 #'"$RWP_11"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color4\s#.*$/color4 #'"$RWP_12"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color12\s#.*$/color12 #'"$RWP_12"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color5\s#.*$/color5 #'"$RWP_13"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color13\s#.*$/color13 #'"$RWP_13"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color6\s#.*$/color6 #'"$RWP_14"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color14\s#.*$/color14 #'"$RWP_14"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color7\s#.*$/color7 #'"$RWP_15"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^color15\s#.*$/color15 #'"$RWP_15"'/' \
 "$CNF_FILE"
 
 scriptFeedback success "'themed!"

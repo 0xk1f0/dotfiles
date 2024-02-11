@@ -128,6 +128,7 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude 'eww.scss' \
     --exclude 'hyprland.conf' \
     --exclude 'config.rasi' \
+    --exclude 'kitty-colors.conf' \
     $(echo "${dotLIST[@]}") "$dotExt"/
 
     scriptFeedback success "Done"

@@ -132,7 +132,6 @@ ristretto
 mpv
 vlc
 system-config-printer
-python-pywal
 kvantum
 
 ## DE AUR
