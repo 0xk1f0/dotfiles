@@ -29,7 +29,7 @@ ROFI_CONF_FILE="/home/$USER/.config/rofi/config.rasi"
 HYPRLAND_CONF_FILE="/home/$USER/.config/hypr/hyprland.conf"
 DUNST_CONF_FILE="/home/$USER/.config/dunst/configrc"
 EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
-KITTY_CONF_FILE="/home/$USER/.config/kitty/colors.conf"
+KITTY_CONF_FILE="/home/$USER/.config/kitty/kitty-colors.conf"
 
 # get colors
 RWP_FG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
@@ -42,7 +42,7 @@ RWP_ACT=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
 | jq '.colors.color13' \
 | tr -d '"#')
 RWP_NRM=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color2' \
+| jq '.colors.color3' \
 | tr -d '"#')
 RWP_0=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
 | jq '.colors.color0' \
@@ -114,10 +114,10 @@ sed -i -r \
 's/^\tbackground.*=.*/\tbackground = "#'"$RWP_BG"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_ACT"'"/' \
+'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_NRM"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\thighlight.*=.*/\thighlight = "#'"$RWP_NRM"'"/' \
+'s/^\thighlight.*=.*/\thighlight = "#'"$RWP_ACT"'"/' \
 "$CNF_FILE"
 
 # eww
