@@ -7,8 +7,8 @@ W='#ffffffff'
 B='#000000ff'
 
 IMAGES="--color=$G"
-if [ -f "/home/$USER/.cache/rwps_swaylock.conf" ]; then
-  IMAGES=$(/bin/cat /home/$USER/.cache/rwps_swaylock.conf)
+if [ -f "/home/$USER/.cache/rwpspread/rwps_swaylock.conf" ]; then
+  IMAGES=$(/bin/cat /home/$USER/.cache/rwpspread/rwps_swaylock.conf)
 fi
 
 swaylock -f \

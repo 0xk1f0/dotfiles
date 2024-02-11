@@ -119,6 +119,9 @@ alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
 alias ytaudio=\
 'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames \
 -x --audio-format mp3 --add-metadata'
+alias ytvideo=\
+'yt-dlp -o "%(title)s.%(ext)s" --restrict-filenames \
+--recode-video mp4 --add-metadata'
 
 # prompt
 eval "$(starship init bash)"
