@@ -10,7 +10,6 @@ cat "/home/$USER/.config/dunst/configrc" \
 killall -q eww -9
 eww daemon &
 eww open topbar
-ln -sf /dev/null /home/$USER/.cache/eww_*.log
 
 # swayidle
 killall -q swayidle -9
