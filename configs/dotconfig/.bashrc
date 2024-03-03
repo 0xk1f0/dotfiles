@@ -75,6 +75,16 @@ dcryptArch() {
   fi
 }
 
+# find file and cd to found dir
+findcd() {
+  found=$(/bin/find . -type f -name "$1" -print -quit);
+  if [ -n "$found" ]; then
+    cd "$(dirname "$found")"
+  else
+    echo "File not found"
+  fi
+}
+
 # base replacement aliases
 alias ps='procs'
 alias tree='eza -Tg@'
