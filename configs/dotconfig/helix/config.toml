@@ -4,6 +4,16 @@ theme = "base16_terminal"
 mouse = true
 bufferline = "multiple"
 
+[editor.cursor-shape]
+insert = "bar"
+normal = "bar"
+select = "bar"
+
+[editor.file-picker]
+hidden = false
+
+[editor.whitespace]
+render = "none"
+
 [keys.normal]
 esc = ["collapse_selection", "keep_primary_selection"]
-
