@@ -75,6 +75,7 @@ dotLIST=(
     "$dotExt/kitty"
     "$dotExt/ncspot"
     "$dotExt/nano"
+    "$dotExt/helix"
     "$dotExt/zathura"
     "$dotExt/mpv"
     "$dotExt/paru"
