@@ -123,8 +123,9 @@ alias whatislove='echo "baby don\`t hurt me, no more"'
 alias identme='echo -e "You are:\n$(curl -s ident.me)"'
 alias ybi2fa=\
 'ykman oath accounts list | fzf -e | \
-xargs -ro ykman oath accounts code | \
-cut -d " " -f 3 | wl-copy -n && echo "Copied!"'
+xargs -rod "\n" ykman oath accounts code | \
+cut -d ":" -f 2 | cut -d " " -f 3 | \
+wl-copy -n && echo "Copied!"'
 alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
 alias ytaudio=\
 'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames \
