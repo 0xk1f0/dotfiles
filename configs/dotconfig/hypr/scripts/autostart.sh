@@ -13,13 +13,13 @@ eww open topbar
 
 # swayidle
 killall -9 -q swayidle
-LOCKER="/home/$USER/.config/scripts/wayland/swaylock.sh"
+LOCKER="hyprlock"
 swayidle -w \
 timeout 600 $LOCKER \
-timeout 60 'if pgrep -x swaylock; then hyprctl dispatch dpms off; fi' \
+timeout 60 'if pgrep -x hyprlock; then hyprctl dispatch dpms off; fi' \
 timeout 660 'hyprctl dispatch dpms off' \
 resume 'hyprctl dispatch dpms on' &
 
 # wallpaper
 killall -9 -q rwpspread
-rwpspread -b swaybg -spdi "/home/$USER/.wallpaper" &
+rwpspread -b swaybg --hyprlock -pdi "/home/$USER/.wallpaper" &

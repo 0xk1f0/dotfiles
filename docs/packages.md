@@ -110,6 +110,7 @@ greetd-tuigreet
 
 eww-wayland-git
 rwpspread
+hyprlock
 rofi-lbonn-wayland-git
 
 ---
@@ -175,7 +176,8 @@ ncspot
 vesktop-bin
 cheat-bin
 mullvad-vpn-bin
-visual-studio-code-bin
+vscodium-bin
+vscodium-bin-marketplace
 
 ---
 
