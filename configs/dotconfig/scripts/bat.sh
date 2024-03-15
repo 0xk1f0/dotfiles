@@ -22,6 +22,9 @@ case $1 in
     level)
         echo "$(cat $BATPATH/capacity)"
         ;;
+    percent)
+        echo "$(cat $BATPATH/capacity)%"
+        ;;
     plugged)
         echo "$(cat $ADPPATH/online)"
         ;;

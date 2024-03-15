@@ -28,23 +28,23 @@
 ; SYSTEM ;
 
 (defpoll BAT_LEVEL :interval "5s"
-    "/home/$USER/.config/eww/scripts/bat.sh level"
+    "/home/$USER/.config/scripts/bat.sh level"
 )
 (defpoll BAT_PLUGGED :interval "5s"
-    "/home/$USER/.config/eww/scripts/bat.sh plugged"
+    "/home/$USER/.config/scripts/bat.sh plugged"
 )
 (defpoll WIFI_STATE :interval "5s"
-    "/home/$USER/.config/eww/scripts/wifi.sh state"
+    "/home/$USER/.config/scripts/wifi.sh state"
 )
 (defpoll WIFI_NAME :interval "5s"
-    "/home/$USER/.config/eww/scripts/wifi.sh name"
+    "/home/$USER/.config/scripts/wifi.sh name"
 )
 
 ; HYPRLAND ;
 
 (deflisten HYPRLAND_WORKSPACES :initial "[]"
-    "/home/$USER/.config/eww/scripts/hyprland-all.sh"
+    "/home/$USER/.config/scripts/hyprland-all.sh"
 )
 (deflisten HYPRLAND_CURRENT :initial "1"
-    "/home/$USER/.config/eww/scripts/hyprland-current.sh"
+    "/home/$USER/.config/scripts/hyprland-current.sh"
 )
