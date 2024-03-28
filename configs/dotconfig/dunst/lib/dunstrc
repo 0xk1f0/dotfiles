@@ -10,7 +10,7 @@
 
     # geometry
     origin = top-right
-    offset = 6x6
+    offset = 3x3
     scale = 0
     width = 300
     height = 100
@@ -127,7 +127,7 @@
     corner_radius = 0
 
     # frame
-    frame_width = 0
+    frame_width = 2
 
 [experimental]
     per_monitor_dpi = false
