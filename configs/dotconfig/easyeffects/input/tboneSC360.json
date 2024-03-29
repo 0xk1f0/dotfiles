@@ -1,8 +1,7 @@
 {
     "input": {
         "blocklist": [
-            "cava",
-            "Chromium input"
+            "cava"
         ],
         "plugins_order": [
             "rnnoise#0"
