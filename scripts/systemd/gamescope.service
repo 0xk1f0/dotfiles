@@ -7,7 +7,7 @@ Environment="XKBLAYOUT=at"
 Environment="XKBVARIANT=nodeadkeys"
 Environment="XKB_DEFAULT_LAYOUT=at"
 Environment="XKB_DEFAULT_VARIANT=nodeadkeys"
-ExecStart=/usr/bin/gamescope -e -w 2560 -h 1440 --expose-wayland --immediate-flips --adaptive-sync --hdr-enabled --rt
+ExecStart=/usr/bin/gamescope -w 2560 -h 1440 --steam --expose-wayland --immediate-flips --adaptive-sync --hdr-enabled --rt
 Restart=always
 
 [Install]

@@ -135,4 +135,5 @@ alias ytvideo=\
 --recode-video mp4 --add-metadata'
 
 # prompt
+eval "$(zoxide init --cmd cd bash)"
 eval "$(starship init bash)"

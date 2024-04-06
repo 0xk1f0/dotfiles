@@ -66,7 +66,8 @@ gvfs-mtp
 cups
 p7zip
 procs
-exa
+eza
+zoxide
 bat
 fd
 ripgrep
