@@ -15,7 +15,7 @@ eww open topbar
 killall -9q swayidle
 swayidle \
 timeout 30 'if pgrep -x hyprlock; then hyprctl dispatch dpms off; fi' \
-timeout 600 'if not pgrep -x hyprlock; then hyprlock; fi' \
+timeout 600 'if ! pgrep -x hyprlock; then hyprlock; fi' \
 timeout 630 'hyprctl dispatch dpms off' \
 resume 'hyprctl dispatch dpms on' &
 
