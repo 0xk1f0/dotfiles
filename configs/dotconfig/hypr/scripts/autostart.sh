@@ -21,4 +21,4 @@ resume 'hyprctl dispatch dpms on' &
 
 # wallpaper
 killall -9q rwpspread
-rwpspread -b swaybg --hyprlock -pdi "/home/$USER/.wallpaper" &
+rwpspread -b hyprpaper --hyprlock -pdi "/home/$USER/.wallpaper" &
