@@ -93,9 +93,10 @@ systemd-boot-pacman-hook
 ## Base DE
 
 hyprland
+hyprpaper
+hypridle
+hyprlock
 dunst
-swaylock
-swayidle
 slurp
 grim
 rofi-calc
@@ -111,7 +112,6 @@ greetd-tuigreet
 
 eww-wayland-git
 rwpspread
-hyprlock
 rofi-lbonn-wayland-git
 
 ---
