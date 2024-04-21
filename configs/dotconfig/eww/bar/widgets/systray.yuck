@@ -1,0 +1,11 @@
+(defwidget systray-widget []
+    (systray
+        :class "systray-widget"
+        :halign "fill"
+        :orientation "h"
+        :icon-size 18
+        :prepend-new true
+        :space-evenly true
+        :spacing 4
+   )
+)
