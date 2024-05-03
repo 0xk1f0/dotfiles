@@ -2,6 +2,10 @@
 
 export XDG_SESSION_DESKTOP=Hyprland
 export XDG_SESSION_TYPE=wayland
+export XDG_CACHE_HOME=$HOME/.cache
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_STATE_HOME=$HOME/.local/state
+export XDG_DATA_HOME=$HOME/.local/share
 export HYPRCURSOR_THEME=XCursor-Pro-Dark-Hyprcursor
 export HYPRCURSOR_SIZE=24
 export XCURSOR_THEME=XCursor-Pro-Dark

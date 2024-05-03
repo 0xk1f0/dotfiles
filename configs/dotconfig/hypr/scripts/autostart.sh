@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# clipboard persist
+killall -9q wl-clip-persist
+wl-clip-persist --clipboard regular &
+
 # dunst
 killall -9q dunst
 cat "/home/$USER/.config/dunst/configrc" \

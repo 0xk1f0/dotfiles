@@ -113,6 +113,8 @@ greetd-tuigreet
 eww-wayland-git
 rwpspread
 rofi-lbonn-wayland-git
+wl-clip-persist-git
+satty
 
 ---
 
