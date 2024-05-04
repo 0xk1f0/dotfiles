@@ -9,7 +9,7 @@ configuration {
 }
 
 * {
-    font:                   "Source Code Pro Semibold 14";
+    font:                   "Monaspace Neon Semibold 14";
 }
 
 window {

@@ -152,6 +152,8 @@ otf-font-awesome
 awesome-terminal-fonts
 ttf-opensans
 adobe-source-code-pro-fonts
+ttf-monaspace-variable
+otf-monaspace
 lib32-fontconfig
 ttf-liberation
 wqy-zenhei
