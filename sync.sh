@@ -73,6 +73,7 @@ dotLIST=(
     "$dotExt/hypr"
     "$dotExt/scripts"
     "$dotExt/kitty"
+    "$dotExt/alacritty"
     "$dotExt/ncspot"
     "$dotExt/nano"
     "$dotExt/helix"

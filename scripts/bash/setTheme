@@ -30,6 +30,7 @@ HYPRLAND_CONF_FILE="/home/$USER/.config/hypr/hyprland.conf"
 DUNST_CONF_FILE="/home/$USER/.config/dunst/configrc"
 EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
 KITTY_CONF_FILE="/home/$USER/.config/kitty/kitty-colors.conf"
+ALACRITTY_CONF_FILE="/home/$USER/.config/alacritty/alacritty-colors.toml"
 
 # get colors
 RWP_FG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
@@ -165,9 +166,6 @@ sed -i -r \
 's/^foreground\s#.*$/foreground #'"$RWP_FG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^cursor\s#.*$/cursor #'"$RWP_FG"'/' \
-"$CNF_FILE"
-sed -i -r \
 's/^color0\s#.*$/color0 #'"$RWP_0"'/' \
 "$CNF_FILE"
 sed -i -r \
@@ -214,6 +212,64 @@ sed -i -r \
 "$CNF_FILE"
 sed -i -r \
 's/^color15\s#.*$/color15 #'"$RWP_15"'/' \
+"$CNF_FILE"
+
+# alacritty
+CNF_FILE="${ALACRITTY_CONF_FILE}"
+BRIGHT_START=$(/bin/grep -n "colors.bright" .config/alacritty/alacritty-colors.toml  | cut -d ':' -f 1)
+sed -i -r \
+'s/^background\s=\s"#.*$/background = "#'"$RWP_BG"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^foreground\s=\s"#.*$/foreground = "#'"$RWP_FG"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^black\s=\s"#.*$/black = "#'"$RWP_0"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^black\s=\s"#.*$/black = "#'"$RWP_8"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^red\s=\s"#.*$/red = "#'"$RWP_2"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^red9\s=\s"#.*$/red = "#'"$RWP_9"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^green\s=\s"#.*$/green = "#'"$RWP_3"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^green\s=\s"#.*$/green = "#'"$RWP_10"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^yellow\s=\s"#.*$/yellow = "#'"$RWP_4"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^yellow\s=\s"#.*$/yellow = "#'"$RWP_11"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^blue\s=\s"#.*$/blue = "#'"$RWP_5"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^blue\s=\s"#.*$/blue = "#'"$RWP_12"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^magenta\s=\s"#.*$/magenta = "#'"$RWP_6"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^magenta\s=\s"#.*$/magenta = "#'"$RWP_13"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^cyan\s=\s"#.*$/cyan = "#'"$RWP_7"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^cyan\s=\s"#.*$/cyan = "#'"$RWP_14"'"/' \
+"$CNF_FILE"
+sed -i -r \
+'1,'"$BRIGHT_START"'s/^white\s=\s"#.*$/white = "#'"$RWP_8"'"/' \
+"$CNF_FILE"
+sed -i -r \
+''"$BRIGHT_START"',9999s/^white\s=\s"#.*$/white = "#'"$RWP_15"'"/' \
 "$CNF_FILE"
 
 scriptFeedback success "'themed!"

@@ -78,6 +78,7 @@ dotLIST=(
     "$homeCfgExt/hypr"
     "$homeCfgExt/scripts"
     "$homeCfgExt/kitty"
+    "$homeCfgExt/alacritty"
     "$homeCfgExt/ncspot"
     "$homeCfgExt/nano"
     "$homeCfgExt/helix"
@@ -129,6 +130,7 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude 'hyprland.conf' \
     --exclude 'config.rasi' \
     --exclude 'kitty-colors.conf' \
+    --exclude 'alacritty-colors.toml' \
     $(echo "${dotLIST[@]}") "$dotExt"/
 
     scriptFeedback success "Done"
