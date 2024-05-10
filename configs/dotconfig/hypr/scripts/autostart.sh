@@ -21,4 +21,4 @@ hypridle &
 
 # wallpaper
 killall -9q rwpspread
-rwpspread -b hyprpaper --hyprlock -pdi "/home/$USER/.wallpaper" &
+rwpspread -b hyprpaper -l hyprlock -pdi "/home/$USER/.wallpaper" &
