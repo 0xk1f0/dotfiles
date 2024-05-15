@@ -157,46 +157,26 @@ visudo
 ## Installing the Bootloader
 
 ```bash
-################################
-### WITH GRUB AND MKINITCPIO ###
-################################
-# Get a few extra packages
-pacman -S grub efibootmgr dosfstools os-prober mtools
-# Install GRUB
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=ArchLinux --recheck
-# Edit grub default
-nano /etc/default/grub
-> GRUB_CMDLINE_LINUX="cryptdevice=UUID=[root_part_UUID]:root root=/dev/mapper/root"
-> GRUB_ENABLE_CRYPTODISK=y
-### with mkinitcpio ###
-nano /etc/mkinitcpio.conf
-> HOOKS=(base udev autodetect keyboard keymap consolefont modconf block encrypt lvm2 filesystems fsck)
-mkinitcpio -P
-# generate grub config
-grub-mkconfig -o /boot/grub/grub.cfg
-
-####################################
-### WITH SYSTEMD-BOOT AND DRACUT ###
-####################################
 # dracut install
-pacman -S dracut
-paru -S dracut-hook-uefi
+pacman -S dracut dosfstools efibootmgr
+# hooks from AUR
+paru -S dracut-hook-uefi systemd-boot-pacman-hook
 # edit configuration
 # !IMPORTANT! root must be specified or initrd will fail
-# only force AMD driver if you have a valid GPU!
 nano /etc/dracut.conf.d/flags.conf
 > uefi="yes"
+> hostonly="yes"
 > compress="lz4"
-> force_drivers+=" amdgpu "
-> omit_dracutmodules+=" brltty network-legacy network nfs "
 > stdloglvl="3"
 > show_modules="no"
-> kernel_cmdline="quiet root=[UUID]"
+> kernel_cmdline="quiet cryptdevice=UUID=[UUID]:root rd.luks.name=[UUID]=root root=/dev/mapper/root"
 # regenerate
 dracut --regenerate-all --force
 # systemd-boot install
 bootctl install
 bootctl update
+# remove mkinitcpio
+pacman -Rs mkinitcpio
 ```
 
 ---

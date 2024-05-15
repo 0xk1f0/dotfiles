@@ -67,7 +67,6 @@ cups
 p7zip
 procs
 eza
-zoxide
 bat
 fd
 ripgrep
@@ -107,6 +106,7 @@ xsettingsd
 qt5-wayland
 qt6-wayland
 greetd-tuigreet
+mate-polkit
 
 ## Base DE AUR
 
@@ -140,7 +140,6 @@ kvantum
 
 ## DE AUR
 
-xfce-polkit
 nwg-look-bin
 
 ---

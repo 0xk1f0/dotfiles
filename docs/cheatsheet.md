@@ -34,10 +34,10 @@ localectl set-keymap [keymap]
 ## Kernel Parameters
 
 ```bash
-# fix dracut initrd errors
-"root=[UUID]"
+# fix dracut initrd errors with luks partition
+"cryptdevice=UUID=[UUID]:root rd.luks.name=[UUID]=root root=/dev/mapper/root"
 # systemd-cryptenroll TPM auto decryption
-"rd.luks.options=[UUID]=tpm2-device=auto rd.luks.name=[UUID]=root"
+"rd.luks.options=[UUID]=tpm2-device=auto"
 # enable amd_pstate
 "amd_pstate.replace=1 amd_pstate=[mode]"
 # fix backlight issues
@@ -67,24 +67,19 @@ HSA_OVERRIDE_GFX_VERSION=10.3.0
 ```bash
 # install dracut and hooks
 pacman -S dracut
-paru -S dracut-hook-uefi
+paru -S dracut-hook-uefi systemd-boot-pacman-hook
 # edit configuration
-# !IMPORTANT! root must be specified or initrd will fail
 nano /etc/dracut.conf.d/flags.conf
 > uefi="yes"
 > hostonly="yes"
 > compress="lz4"
 > stdloglvl="3"
-> kernel_cmdline="quiet root=[UUID]"
+> show_modules="no"
+> kernel_cmdline="quiet"
 # regenerate
 dracut --regenerate-all --force
 # yeet mkinitcpio
 pacman -Rs mkinitcpio
-```
-
-```bash
-# systemd-boot hook
-paru -S systemd-boot-pacman-hook
 # install
 bootctl install
 # update
@@ -153,15 +148,11 @@ cryptsetup luksDump /dev/[disk]
 nano /etc/crypttab
 > # <name>    <device>          <password>      <options>
 > root        UUID=[UUID]       -               tpm2-device=auto
-# add Kernel parameters
-"rd.luks.options=[UUID]=tpm2-device=auto rd.luks.name=[UUID]=root"
-# for mkinitcpio
-nano /etc/mkinitcpio.conf
-> HOOKS=(base systemd autodetect keyboard keymap sd-vconsole modconf block sd-encrypt filesystems fsck)
-mkinitcpio -P
-# for dracut
+# add params
 nano /etc/dracut.conf.d/flags.conf
 > add_dracutmodules+=" tpm2-tss "
+> kernel_cmdline+="rd.luks.options=[UUID]=tpm2-device=auto"
+# regenerate
 dracut --regenerate-all --force
 ```
 
@@ -217,7 +208,6 @@ makepkg -si
 ## Change to traditional Network Interface Naming
 
 ```bash
-# simple symlink
 ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ```
 
@@ -226,7 +216,6 @@ ln -s /dev/null /etc/udev/rules.d/80-net-setup-link.rules
 ## Change Papersize to A4
 
 ```bash
-# simple command so printers don't complain
 paperconf -p a4
 ```
 
