@@ -56,8 +56,11 @@ VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/
 OCL_ICD_VENDORS=/etc/OpenCL/vendors/rusticl.icd
 # force Mesa OpenGL driver e.g. zink, radeonsi, etc.
 MESA_LOADER_DRIVER_OVERRIDE=radeonsi
-# ROCm device fix
+# ROCm device fix (rarely needed with newer versions)
 HSA_OVERRIDE_GFX_VERSION=10.3.0
+# Applications that get fired through systemd f.E. will
+# need this in here because they ignore compositor env vars
+QT_STYLE_OVERRIDE=kvantum
 ```
 
 ---
