@@ -108,6 +108,7 @@ bashLIST=(
     "$bashExt/xtkotlinc"
     "$bashExt/symlinkElectron"
     "$bashExt/rmWineAssocs"
+    "$bashExt/syncThemes"
 )
 
 sysdLIST=(
