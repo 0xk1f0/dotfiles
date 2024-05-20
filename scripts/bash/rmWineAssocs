@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Taken from here:
 # https://wiki.archlinux.org/title/Wine#Unregister_existing_Wine_file_associations

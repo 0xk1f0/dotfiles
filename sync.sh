@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # bash strict
 set -uo pipefail
@@ -41,11 +41,11 @@ chooseMenu() {
 scriptFeedback() {
     case $1 in
         success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+        ;;
         proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
+        ;;
     esac
 }
 
@@ -107,27 +107,27 @@ sysdLIST=(
 
 if handleYesNo "Perform Sync?"; then
     scriptFeedback proc "Syncing combined configs"
-
+    
     /bin/rsync -aq \
-    $(echo "${dotLIST[@]}") /home/$USER/.config/
-
+    "${dotLIST[@]}" "/home/$USER/.config/"
+    
     /bin/rsync -aq \
     "$dotExt"/.bashrc "$dotExt"/.inputrc \
     "$dotExt"/.wayinitrc \
-    /home/$USER/
-
+    "/home/$USER/"
+    
     scriptFeedback success "Done"
-
+    
     scriptFeedback proc "Syncing bash scripts"
-
+    
     /bin/rsync -aq \
-    $(echo "${bashLIST[@]}") /home/$USER/.local/bin/
-
+    "${bashLIST[@]}" "/home/$USER/.local/bin/"
+    
     scriptFeedback proc "Syncing systemd units"
-
+    
     /bin/rsync -aq \
-    $(echo "${sysdLIST[@]}") /home/$USER/.config/systemd/user/
-
+    "${sysdLIST[@]}" "/home/$USER/.config/systemd/user/"
+    
     scriptFeedback success "Done"
 fi
 

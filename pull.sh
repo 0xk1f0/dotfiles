@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # bash strict
 set -uo pipefail
@@ -41,14 +41,14 @@ chooseMenu() {
 scriptFeedback() {
     case $1 in
         prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
+        ;;
         success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+        ;;
         proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
+        ;;
     esac
 }
 
@@ -117,7 +117,7 @@ clear
 
 if handleYesNo "Include dotconfigs?"; then
     scriptFeedback proc "Syncing configs"
-
+    
     /bin/rsync -aq \
     --delete \
     --exclude '*.cbor' \
@@ -130,28 +130,28 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude 'config.rasi' \
     --exclude 'kitty-colors.conf' \
     --exclude 'alacritty-colors.toml' \
-    $(echo "${dotLIST[@]}") "$dotExt"/
-
+    "${dotLIST[@]}" "$dotExt"/
+    
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include bash scripts?"; then
     scriptFeedback proc "Syncing bash scripts"
-
+    
     /bin/rsync -aq \
     --delete \
-    $(echo "${bashLIST[@]}") ./scripts/bash/
-
+    "${bashLIST[@]}" ./scripts/bash/
+    
     scriptFeedback success "Done"
 fi
 
 if handleYesNo "Include systemd user units?"; then
     scriptFeedback proc "Syncing systemd units"
-
+    
     /bin/rsync -aq \
     --delete \
-    $(echo "${sysdLIST[@]}") ./scripts/systemd/
-
+    "${sysdLIST[@]}" ./scripts/systemd/
+    
     scriptFeedback success "Done"
 fi
 
