@@ -8,20 +8,20 @@ scriptFeedback() {
     case $1 in
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-            ;;
+        ;;
         error)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "!" " $2"
-            ;;
+        ;;
     esac
 }
 
 # execute a command for each electron version
 while IFS= read -r line; do
     # symlink to main electron flags file
-    if [ -f /home/$USER/.config/${line%-bin}-flags.conf ]; then
+    if [ -f "/home/${USER}/.config/${line%-bin}-flags.conf" ]; then
         scriptFeedback error "Symlink for ${line%-bin}-flags.conf already exists"
     else
-        /bin/ln -s /home/$USER/.config/electron-flags.conf /home/$USER/.config/${line%-bin}-flags.conf
+        /bin/ln -s "/home/${USER}/.config/electron-flags.conf" "/home/${USER}/.config/${line%-bin}-flags.conf"
         scriptFeedback success "Symlinked ${line%-bin}-flags.conf to electron-flags.conf"
     fi
 done < <(/usr/bin/pacman -Q | /bin/grep -e 'electron[0-9][0-9]' | /bin/awk '{print $1}')

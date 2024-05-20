@@ -4,15 +4,14 @@ T='#00000000'
 G='#0d0d0dff'
 R='#ff0404ff'
 W='#ffffffff'
-B='#000000ff'
 
 IMAGES="--color=$G"
-if [ -f "/home/$USER/.cache/rwpspread/rwps_swaylock.conf" ]; then
-  IMAGES=$(/bin/cat /home/$USER/.cache/rwpspread/rwps_swaylock.conf)
+if [ -f "/home/${USER}/.cache/rwpspread/rwps_swaylock.conf" ]; then
+    IMAGES=$(/bin/cat "/home/${USER}/.cache/rwpspread/rwps_swaylock.conf")
 fi
 
 swaylock -f \
-$IMAGES \
+"${IMAGES}" \
 --scaling fill \
 --indicator-radius 80 \
 --indicator-thickness 8 \

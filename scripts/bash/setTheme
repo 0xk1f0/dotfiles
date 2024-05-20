@@ -12,10 +12,10 @@ scriptFeedback() {
         error)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
             exit 1
-            ;;
+        ;;
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-            ;;
+        ;;
     esac
 }
 
@@ -34,64 +34,64 @@ ALACRITTY_CONF_FILE="/home/$USER/.config/alacritty/alacritty-colors.toml"
 
 # get colors
 RWP_FG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.foreground' \
+    | jq '.foreground' \
 | tr -d '"#')
 RWP_BG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.background' \
+    | jq '.background' \
 | tr -d '"#')
 RWP_ACT=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color13' \
+    | jq '.colors.color13' \
 | tr -d '"#')
 RWP_NRM=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color3' \
+    | jq '.colors.color3' \
 | tr -d '"#')
 RWP_0=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color0' \
+    | jq '.colors.color0' \
 | tr -d '"#')
 RWP_1=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color1' \
+    | jq '.colors.color1' \
 | tr -d '"#')
 RWP_2=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color2' \
+    | jq '.colors.color2' \
 | tr -d '"#')
 RWP_3=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color3' \
+    | jq '.colors.color3' \
 | tr -d '"#')
 RWP_4=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color4' \
+    | jq '.colors.color4' \
 | tr -d '"#')
 RWP_5=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color5' \
+    | jq '.colors.color5' \
 | tr -d '"#')
 RWP_6=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color6' \
+    | jq '.colors.color6' \
 | tr -d '"#')
 RWP_7=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color7' \
+    | jq '.colors.color7' \
 | tr -d '"#')
 RWP_8=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color8' \
+    | jq '.colors.color8' \
 | tr -d '"#')
 RWP_9=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color9' \
+    | jq '.colors.color9' \
 | tr -d '"#')
 RWP_10=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color10' \
+    | jq '.colors.color10' \
 | tr -d '"#')
 RWP_11=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color11' \
+    | jq '.colors.color11' \
 | tr -d '"#')
 RWP_12=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color12' \
+    | jq '.colors.color12' \
 | tr -d '"#')
 RWP_13=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color13' \
+    | jq '.colors.color13' \
 | tr -d '"#')
 RWP_14=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color14' \
+    | jq '.colors.color14' \
 | tr -d '"#')
 RWP_15=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-| jq '.colors.color15' \
+    | jq '.colors.color15' \
 | tr -d '"#')
 
 # rofi

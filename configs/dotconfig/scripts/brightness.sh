@@ -8,12 +8,12 @@ case $1 in
         # up Volume
         brightnessctl s 5%+
         ICON="xfpm-brightness-lcd"
-        ;;
+    ;;
     down)
         # down Volume
         brightnessctl s 5%-
         ICON="xfpm-brightness-lcd"
-        ;;
+    ;;
 esac
 
 # calc percent value
@@ -25,4 +25,4 @@ dunstify \
 -r 55177 \
 -u low \
 -i "$ICON" "Brightness:" "$PERCENT_BRIGHTNESS" \
--h int:value:$PERCENT_BRIGHTNESS
+-h int:value:"$PERCENT_BRIGHTNESS"

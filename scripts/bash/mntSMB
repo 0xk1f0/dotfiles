@@ -45,18 +45,18 @@ chooseMenu() {
 scriptFeedback() {
     case $1 in
         prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
+        ;;
         error)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
             exit 1
-            ;;
+        ;;
         success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2" 
-            ;;
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
+        ;;
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-            ;;
+        ;;
     esac
 }
 
@@ -89,8 +89,8 @@ handleUnmount() {
     chooseMenu "Mountpoint already occupied, unmount?" \
     selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
-        if 
-        $SU_SYS /bin/umount -l $SMB_MOUNT; 
+        if
+        $SU_SYS /bin/umount -l "$SMB_MOUNT";
         then
             scriptFeedback success "Successfully unmounted!"
             exit 0
@@ -105,8 +105,8 @@ handleUnmount() {
 # handle mount SMB
 handleMount() {
     if
-    $SU_SYS /bin/mount $SMB_SERVER -t cifs \
-    -o user,uid=1000,rw,credentials=$SMB_CREDS $SMB_MOUNT; 
+    $SU_SYS /bin/mount "$SMB_SERVER" -t cifs \
+    -o user,uid=1000,rw,credentials="$SMB_CREDS" "$SMB_MOUNT";
     then
         scriptFeedback success "Successfully mounted!"
         exit 0
@@ -141,15 +141,15 @@ SMB_CREDS="/home/$_USER/.smbcreds"
 SMB_CFG="/home/$_USER/.smbcfg"
 
 # check if config files exist read, else exit
-if [ -e $SMB_CREDS ] && [ -e $SMB_CFG ]; then
+if [ -e "$SMB_CREDS" ] && [ -e "$SMB_CFG" ]; then
     scriptFeedback success "SMB config files found!"
-    . $SMB_CFG
+    . "$SMB_CFG"
 else
     scriptFeedback error "No SMB config files found for user '$1'!"
 fi
 
 # check if mountpoint is occupied, if not, mount
-if /bin/mountpoint $SMB_MOUNT >> /dev/null; then
+if /bin/mountpoint "$SMB_MOUNT" >> /dev/null; then
     handleUnmount
 else
     handleMultiple

@@ -68,7 +68,7 @@ chooseDrive() {
     for d in $FETCHDRIVES; do
         mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' \
         | cut -d ' ' -f 7)
-        if [ -z $mountStat ]; then
+        if [ -z "$mountStat" ]; then
             adj_selections="$adj_selections""$d "
         fi
     done
@@ -108,7 +108,7 @@ handleUnmount() {
     selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if 
-        $SU_SYS /bin/umount -l $MOUNTPOINT; 
+        $SU_SYS /bin/umount -l "$MOUNTPOINT"; 
         then
             scriptFeedback success "Successfully unmounted!"
             exit 0
@@ -134,7 +134,7 @@ with '$FS' to '$MOUNTPOINT\'"
     chooseMenu "Correct?" selected_choice ${selections[@]}
     if [ "$selected_choice" == "yes" ]; then
         if
-        $SU_SYS /bin/mount -t $FS $DRIVE $MOUNTPOINT;
+        $SU_SYS /bin/mount -t "$FS" "$DRIVE" "$MOUNTPOINT";
         then
             scriptFeedback success "Successfully mounted!"
             exit 0

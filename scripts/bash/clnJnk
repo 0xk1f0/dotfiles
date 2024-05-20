@@ -46,17 +46,17 @@ scriptFeedback() {
     case $1 in
         prompt)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
-            ;;
+        ;;
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-            ;;
+        ;;
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-            ;;
+        ;;
         error)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
             exit 1
-            ;;
+        ;;
     esac
 }
 
@@ -64,20 +64,20 @@ scriptFeedback() {
 getCacheSpace() {
     scriptFeedback proc "Pacman cache is \
 $(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 \
-| tail -n 1 2>/dev/null)"
+    | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Paru cache is \
-$(/bin/du -h /home/$_USER/.cache/paru/clone/ | cut -d '/' -f 1 \
-| tail -n 1 2>/dev/null)"
+$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 \
+    | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Pip cache is \
-$(/bin/du -h /home/$_USER/.cache/pip/ | cut -d '/' -f 1 \
-| tail -n 1 2>/dev/null)"
+$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 \
+    | tail -n 1 2>/dev/null)"
     scriptFeedback proc "Currently \
-$(pacman -Qtdq | wc -l 2>/dev/null) orphan packages"
+    $(pacman -Qtdq | wc -l 2>/dev/null) orphan packages"
 }
 
 # clean pacman cache
 cleanPacman() {
-    if 
+    if
     $SU_SYS pacman -Scc --noconfirm >> /dev/null \
     && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
     then
@@ -90,7 +90,7 @@ cleanPacman() {
 # clean paru cache
 cleanParu() {
     if
-    rm -rf /home/$_USER/.cache/paru/clone/*;
+    rm -rf "/home/$_USER/.cache/paru/clone/*";
     then
         scriptFeedback success "Paru cache cleared!"
     else
@@ -101,7 +101,7 @@ cleanParu() {
 # clean pip cache
 cleanPip() {
     if
-    rm -rf /home/$_USER/.cache/pip/*;
+    rm -rf "/home/$_USER/.cache/pip/*";
     then
         scriptFeedback success "Pip cache cleared!"
     else
@@ -183,30 +183,30 @@ case $selected_choice in
         cleanPip
         cleanOrph
         cleanFlatpak
-        ;;
+    ;;
     "pacman")
         scriptFeedback proc "Clearing pacman cache..."
         cleanPacman
-        ;;
+    ;;
     "paru")
         scriptFeedback proc "Clearing paru cache..."
         cleanParu
-        ;;
+    ;;
     "pip")
         scriptFeedback proc "Clearing pip cache..."
         cleanPip
-        ;;
+    ;;
     "orphanPkgs")
         scriptFeedback proc "Removing orphan packages..."
         cleanOrph
-        ;;
+    ;;
     "flatpak")
         scriptFeedback proc "Removing unused Flatpaks..."
         cleanFlatpak
-        ;;
+    ;;
     "none")
         exit 0
-        ;;
+    ;;
 esac
 scriptFeedback success "All Done!"
 exit 0

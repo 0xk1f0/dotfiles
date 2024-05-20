@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Taken from here: 
+# Taken from here:
 # https://wiki.archlinux.org/title/Wine#Unregister_existing_Wine_file_associations
 
 # "bash strict mode"
@@ -11,10 +11,10 @@ scriptFeedback() {
     case $1 in
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-            ;;
+        ;;
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-            ;;
+        ;;
     esac
 }
 
