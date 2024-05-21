@@ -25,10 +25,10 @@ fi
 # match options
 case $1 in
     level)
-        "$(cat $BAT_PATH/capacity)"
+        cat "$BAT_PATH/capacity"
     ;;
     plugged)
-        "$(cat $ADP_PATH/online)"
+        cat "$ADP_PATH/online"
     ;;
     percent)
         echo "$(cat $BAT_PATH/capacity)%"

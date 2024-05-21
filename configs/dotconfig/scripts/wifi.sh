@@ -6,9 +6,9 @@ set -uo pipefail
 # match options
 case $1 in
     name)
-        nmcli d | grep "wifi" | awk '{print $4}'
+        nmcli d | grep -e "^wlan0.*$" | awk '{print $4}'
         ;;
     state)
-        nmcli d | grep "wifi" | awk '{print $3}'
+        nmcli d | grep -e "^wlan0.*$" | awk '{print $3}'
         ;;
 esac
