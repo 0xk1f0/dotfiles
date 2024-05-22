@@ -16,15 +16,6 @@
     "date +%d.%m.%Y"
 )
 
-; VOLUME ;
-
-(defpoll SINK :interval "300ms"
-    "/home/$USER/.config/scripts/volume.sh sink"
-)
-(defpoll SOURCE :interval "300ms"
-    "/home/$USER/.config/scripts/volume.sh source"
-)
-
 ; SYSTEM ;
 
 (defpoll BAT_LEVEL :interval "5s"

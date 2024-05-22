@@ -25,12 +25,11 @@
         :height "15%"
         :anchor "center"
     )
-    (box 
+    (box
         :class "powermenu"
         :orientation "h"
         :space-evenly true
-        :spacing 20
-        (button 
+        (button
             :class "shutdown"
             :onclick "systemctl poweroff"
             ""
