@@ -12,13 +12,22 @@ doConvert() {
 
 # alert user
 alert() {
-    dunstify \
-    -a "chgVol" \
-    -r 66199 \
-    -u low \
-    -i "$ICON" \
-    -h int:value:"$LEVEL" \
-    "Volume:" "$STATUS"
+    if [ "${LEVEL}" -eq 0 ]; then
+        dunstify \
+        -a "chgVol" \
+        -r 66199 \
+        -u low \
+        -i "$ICON" \
+        "Volume" "$STATUS"
+    else
+        dunstify \
+        -a "chgVol" \
+        -r 66199 \
+        -u low \
+        -i "$ICON" \
+        -h int:value:"$LEVEL" \
+        "Volume" "$STATUS"
+    fi
 }
 
 # match keys
@@ -63,13 +72,13 @@ case $1 in
     sink-mute)
         wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
         if wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep "MUTE" >> /dev/null; then
-            STATUS="Muted"
+            STATUS="Speaker Muted"
             LEVEL=0
             ICON="audio-volume-muted"
         else
             LEVEL="$(wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{print $2}')"
             LEVEL=$(awk "BEGIN {print $LEVEL * 100}")
-            STATUS="Unmuted: $LEVEL"
+            STATUS="Speaker Active: $LEVEL%"
             ICON="audio-volume-high"
         fi
         alert
@@ -77,13 +86,12 @@ case $1 in
     source-mute)
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         if wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | grep "MUTE" >> /dev/null; then
-            STATUS="Muted"
+            STATUS="Microphone Muted"
             LEVEL=0
             ICON="audio-volume-muted"
         else
-            LEVEL="$(wpctl get-volume @DEFAULT_AUDIO_SOURCE@ | awk '{print $2}')"
-            LEVEL=$(awk "BEGIN {print $LEVEL * 100}")
-            STATUS="Unmuted: $LEVEL"
+            STATUS="Microphone Active"
+            LEVEL=0
             ICON="audio-volume-high"
         fi
         alert

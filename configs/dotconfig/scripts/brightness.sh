@@ -24,5 +24,5 @@ dunstify \
 -a "chgBrt" \
 -r 55177 \
 -u low \
--i "$ICON" "Brightness:" "$PERCENT_BRIGHTNESS" \
+-i "$ICON" "Brightness" "$PERCENT_BRIGHTNESS" \
 -h int:value:"$PERCENT_BRIGHTNESS"

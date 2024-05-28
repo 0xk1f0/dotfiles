@@ -17,5 +17,5 @@ if ! pgrep -x slurp && ! pgrep -x grim; then
     -a "tkScr" \
     -r 44188 \
     -u low \
-    -i "window_fullscreen" "Screenshot:" "$SCREEN_STATUS"
+    -i "window_fullscreen" "Screenshot" "$SCREEN_STATUS"
 fi
