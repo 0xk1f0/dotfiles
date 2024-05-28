@@ -25,7 +25,8 @@
                     "q": 0.699999988079071,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Lo-shelf"
+                    "type": "Lo-shelf",
+                    "width": 4.0
                 },
                 "band1": {
                     "frequency": 59.29999923706055,
@@ -35,7 +36,8 @@
                     "q": 1.059999942779541,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band2": {
                     "frequency": 139.6999969482422,
@@ -45,7 +47,8 @@
                     "q": 0.8700000047683716,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band3": {
                     "frequency": 367.20001220703125,
@@ -55,7 +58,8 @@
                     "q": 1.0199999809265137,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band4": {
                     "frequency": 1071.199951171875,
@@ -65,7 +69,8 @@
                     "q": 1.75,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band5": {
                     "frequency": 2019.5999755859375,
@@ -75,7 +80,8 @@
                     "q": 1.7400000095367432,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band6": {
                     "frequency": 2398.199951171875,
@@ -85,7 +91,8 @@
                     "q": 2.950000047683716,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band7": {
                     "frequency": 3853.89990234375,
@@ -95,7 +102,8 @@
                     "q": 2.5799999237060547,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band8": {
                     "frequency": 7739.0,
@@ -105,7 +113,8 @@
                     "q": 2.8499999046325684,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band9": {
                     "frequency": 10000.0,
@@ -115,7 +124,8 @@
                     "q": 0.699999988079071,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Hi-shelf"
+                    "type": "Hi-shelf",
+                    "width": 4.0
                 }
             },
             "mode": "IIR",
@@ -132,7 +142,8 @@
                     "q": 0.699999988079071,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Lo-shelf"
+                    "type": "Lo-shelf",
+                    "width": 4.0
                 },
                 "band1": {
                     "frequency": 59.29999923706055,
@@ -142,7 +153,8 @@
                     "q": 1.059999942779541,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band2": {
                     "frequency": 139.6999969482422,
@@ -152,7 +164,8 @@
                     "q": 0.8700000047683716,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band3": {
                     "frequency": 367.20001220703125,
@@ -162,7 +175,8 @@
                     "q": 1.0199999809265137,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band4": {
                     "frequency": 1071.199951171875,
@@ -172,7 +186,8 @@
                     "q": 1.75,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band5": {
                     "frequency": 2019.5999755859375,
@@ -182,7 +197,8 @@
                     "q": 1.7400000095367432,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band6": {
                     "frequency": 2398.199951171875,
@@ -192,7 +208,8 @@
                     "q": 2.950000047683716,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band7": {
                     "frequency": 3853.89990234375,
@@ -202,7 +219,8 @@
                     "q": 2.5799999237060547,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band8": {
                     "frequency": 7739.0,
@@ -212,7 +230,8 @@
                     "q": 2.8499999046325684,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Bell"
+                    "type": "Bell",
+                    "width": 4.0
                 },
                 "band9": {
                     "frequency": 10000.0,
@@ -222,7 +241,8 @@
                     "q": 0.699999988079071,
                     "slope": "x1",
                     "solo": false,
-                    "type": "Hi-shelf"
+                    "type": "Hi-shelf",
+                    "width": 4.0
                 }
             },
             "split-channels": false
