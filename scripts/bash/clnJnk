@@ -62,17 +62,14 @@ scriptFeedback() {
 
 # check how full the caches are
 getCacheSpace() {
-    scriptFeedback proc "Pacman cache is \
-$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 \
-    | tail -n 1 2>/dev/null)"
-    scriptFeedback proc "Paru cache is \
-$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 \
-    | tail -n 1 2>/dev/null)"
-    scriptFeedback proc "Pip cache is \
-$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 \
-    | tail -n 1 2>/dev/null)"
-    scriptFeedback proc "Currently \
-    $(pacman -Qtdq | wc -l 2>/dev/null) orphan packages"
+    PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
+    scriptFeedback proc "Pacman cache is ${PACMAN_CACHE}"
+    PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
+    scriptFeedback proc "Paru cache is ${PARU_CACHE}"
+    PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
+    scriptFeedback proc "Pip cache is ${PIP_CACHE}"
+    PACMAN_ORPHANS=$(pacman -Qtdq | wc -l 2> /dev/null)
+    scriptFeedback proc "Currently ${PACMAN_ORPHANS} orphan packages"
 }
 
 # clean pacman cache
@@ -90,7 +87,7 @@ cleanPacman() {
 # clean paru cache
 cleanParu() {
     if
-    rm -rf "/home/$_USER/.cache/paru/clone/*";
+    rm -rf /home/$_USER/.cache/paru/clone/*;
     then
         scriptFeedback success "Paru cache cleared!"
     else
@@ -101,7 +98,7 @@ cleanParu() {
 # clean pip cache
 cleanPip() {
     if
-    rm -rf "/home/$_USER/.cache/pip/*";
+    rm -rf /home/$_USER/.cache/pip/*;
     then
         scriptFeedback success "Pip cache cleared!"
     else
@@ -109,10 +106,10 @@ cleanPip() {
     fi
 }
 
-# clean orphnaed packages
+# clean orphan packages
 cleanOrph() {
     if [ "$(pacman -Qtdq | wc -l)" == "0" ]; then
-        return
+        scriptFeedback success "No orphans to remove!"
     else
         if
         $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
@@ -127,7 +124,7 @@ cleanOrph() {
 # clean flatpak unused
 cleanFlatpak() {
     if [ "$(flatpak remove --unused | tail -n 1)" == "Nothing unused to uninstall" ]; then
-        return
+        scriptFeedback success "No flatpaks to remove!"
     else
         if
         flatpak remove --unused --noninteractive >> /dev/null;
@@ -169,7 +166,7 @@ selections=(
     "pacman"
     "paru"
     "pip"
-    "orphanPkgs"
+    "orphans"
     "flatpak"
     "none"
 )
@@ -196,7 +193,7 @@ case $selected_choice in
         scriptFeedback proc "Clearing pip cache..."
         cleanPip
     ;;
-    "orphanPkgs")
+    "orphans")
         scriptFeedback proc "Removing orphan packages..."
         cleanOrph
     ;;

@@ -30,6 +30,13 @@ alert() {
     fi
 }
 
+# audibly alert user
+audioAlert() {
+    if command -v sox >> /dev/null; then
+        play "/home/${USER}/.config/scripts/assets/${1}.mp3"
+    fi
+}
+
 # match keys
 case $1 in
     sink)
@@ -89,11 +96,14 @@ case $1 in
             STATUS="Microphone Muted"
             LEVEL=0
             ICON="audio-volume-muted"
+            alert
+            audioAlert mic_off
         else
             STATUS="Microphone Active"
             LEVEL=0
             ICON="audio-volume-high"
+            alert
+            audioAlert mic_on
         fi
-        alert
     ;;
 esac
