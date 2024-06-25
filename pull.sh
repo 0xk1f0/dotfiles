@@ -123,7 +123,7 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
     --exclude 'bookmarks' \
-    --exclude 'configrc' \
+    --exclude 'user.conf' \
     --exclude 'eww.yuck' \
     --exclude 'eww.scss' \
     --exclude 'hyprland.conf' \

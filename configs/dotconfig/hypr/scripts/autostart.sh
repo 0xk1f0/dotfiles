@@ -6,9 +6,7 @@ wl-clip-persist --clipboard regular &
 
 # dunst
 killall -9q dunst
-cat "/home/$USER/.config/dunst/configrc" \
-"/home/$USER/.config/dunst/lib/dunstrc" \
-| dunst -conf - &
+dunst &
 
 # eww
 killall -9q eww
