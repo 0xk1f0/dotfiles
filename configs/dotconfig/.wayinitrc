@@ -20,4 +20,6 @@ export ELECTRON_OZONE_PLATFORM_HINT=auto
 export WLR_DRM_NO_ATOMIC=1
 export MOZ_ENABLE_WAYLAND=1
 
-exec Hyprland 1> /dev/null
+echo "Starting Session..."
+echo "" > .wayinit.log
+exec Hyprland 1> /dev/null 2> .wayinit.log
