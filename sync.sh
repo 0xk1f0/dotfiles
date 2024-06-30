@@ -103,6 +103,7 @@ bashLIST=(
 
 sysdLIST=(
     "$sysdExt/gamescope.service"
+    "$sysdExt/easyeffects.service"
 )
 
 if handleYesNo "Perform Sync?"; then

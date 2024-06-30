@@ -10,7 +10,7 @@
             "bypass": false,
             "enable-vad": false,
             "input-gain": 0.0,
-            "model-path": "",
+            "model-name": "",
             "output-gain": 0.0,
             "release": 150.0,
             "vad-thres": 0.0,

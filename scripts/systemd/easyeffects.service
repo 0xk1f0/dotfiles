@@ -1,0 +1,10 @@
+[Unit]
+Description=Audio Effects for Pipewire applications
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/easyeffects --gapplication-service
+Restart=always
+
+[Install]
+WantedBy=default.target
