@@ -1,0 +1,56 @@
+//     __  ___________                      __
+//    / /_<  / __/ __ \     ____  ___  ____/ /
+//   / //_/ / /_/ / / /____/_  / / _ \/ __  / 
+//  / ,< / / __/ /_/ /_____// /_/  __/ /_/ /  
+// /_/|_/_/_/  \____/      /___/\___/\__,_/                                                                          
+
+{
+    "base_keymap": "VSCode",
+    "autosave": {
+        "after_delay": {
+            "milliseconds": 1000
+        }
+    },
+    "tab_size": 4,
+    "ui_font_size": 17,
+    "buffer_font_size": 17,
+    "buffer_font_family": "MonaspaceNeon-Medium",
+    "buffer_font_features": {
+        "liga": true
+    },
+    "ui_font_family": "OpenSans-SemiBold",
+    "terminal": {
+        "font_family": "MonaspaceNeon-Medium",
+        "font_features": {
+            "liga": true
+        }
+    },
+    "formatter": "auto",
+    "hour_format": "hour24",
+    "telemetry": {
+    "diagnostics": false,
+    "metrics": true
+    },
+    "theme": {
+        "mode": "dark",
+        "light": "One Light",
+        "dark": "One Dark"
+    },
+    "lsp": {
+        "typescript-language-server": {
+            "initialization_options": {
+                "preferences": {
+                    "includeInlayParameterNameHints": "all",
+                    "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
+                    "includeInlayFunctionParameterTypeHints": true,
+                    "includeInlayVariableTypeHints": true,
+                    "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
+                    "includeInlayPropertyDeclarationTypeHints": true,
+                    "includeInlayFunctionLikeReturnTypeHints": true,
+                    "includeInlayEnumMemberValueHints": true,
+                    "includeInlayEnumMemberDeclarationTypes": true
+                }
+            }
+        }
+    }
+}

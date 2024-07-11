@@ -82,6 +82,7 @@ dotLIST=(
     "$homeCfgExt/ncspot"
     "$homeCfgExt/nano"
     "$homeCfgExt/helix"
+    "$homeCfgExt/zed"
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
     "$homeCfgExt/cheat"
