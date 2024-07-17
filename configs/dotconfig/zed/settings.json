@@ -1,8 +1,8 @@
 //     __  ___________                      __
 //    / /_<  / __/ __ \     ____  ___  ____/ /
-//   / //_/ / /_/ / / /____/_  / / _ \/ __  / 
-//  / ,< / / __/ /_/ /_____// /_/  __/ /_/ /  
-// /_/|_/_/_/  \____/      /___/\___/\__,_/                                                                          
+//   / //_/ / /_/ / / /____/_  / / _ \/ __  /
+//  / ,< / / __/ /_/ /_____// /_/  __/ /_/ /
+// /_/|_/_/_/  \____/      /___/\___/\__,_/
 
 {
     "base_keymap": "VSCode",
@@ -14,27 +14,29 @@
     "tab_size": 4,
     "ui_font_size": 17,
     "buffer_font_size": 17,
-    "buffer_font_family": "MonaspaceNeon-Medium",
+    "buffer_font_family": "Monaspace Neon",
     "buffer_font_features": {
-        "liga": true
+        "liga": true,
+        "calt": true
     },
-    "ui_font_family": "OpenSans-SemiBold",
+    "ui_font_family": "OpenSans-Regular",
     "terminal": {
-        "font_family": "MonaspaceNeon-Medium",
+        "font_family": "Monaspace Neon",
         "font_features": {
-            "liga": true
+            "liga": true,
+            "calt": false
         }
     },
     "formatter": "auto",
     "hour_format": "hour24",
     "telemetry": {
-    "diagnostics": false,
-    "metrics": true
+        "diagnostics": false,
+        "metrics": true
     },
     "theme": {
         "mode": "dark",
-        "light": "One Light",
-        "dark": "One Dark"
+        "light": "Ayu Light",
+        "dark": "Ayu Dark"
     },
     "lsp": {
         "typescript-language-server": {
