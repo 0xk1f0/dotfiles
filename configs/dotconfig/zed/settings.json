@@ -5,6 +5,9 @@
 // /_/|_/_/_/  \____/      /___/\___/\__,_/
 
 {
+    "features": {
+        "inline_completion_provider": "none"
+    },
     "base_keymap": "VSCode",
     "autosave": {
         "after_delay": {
@@ -37,22 +40,5 @@
         "mode": "dark",
         "light": "Ayu Light",
         "dark": "Ayu Dark"
-    },
-    "lsp": {
-        "typescript-language-server": {
-            "initialization_options": {
-                "preferences": {
-                    "includeInlayParameterNameHints": "all",
-                    "includeInlayParameterNameHintsWhenArgumentMatchesName": true,
-                    "includeInlayFunctionParameterTypeHints": true,
-                    "includeInlayVariableTypeHints": true,
-                    "includeInlayVariableTypeHintsWhenTypeMatchesName": false,
-                    "includeInlayPropertyDeclarationTypeHints": true,
-                    "includeInlayFunctionLikeReturnTypeHints": true,
-                    "includeInlayEnumMemberValueHints": true,
-                    "includeInlayEnumMemberDeclarationTypes": true
-                }
-            }
-        }
     }
 }

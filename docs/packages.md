@@ -98,6 +98,8 @@ hyprlock
 dunst
 slurp
 grim
+rofi-wayland
+rofi-emoji
 rofi-calc
 wl-clipboard
 xdg-desktop-portal-hyprland
@@ -107,14 +109,12 @@ qt5-wayland
 qt6-wayland
 greetd-tuigreet
 mate-polkit
+wl-clip-persist
 
 ## Base DE AUR
 
-eww-wayland-git
+eww-git
 rwpspread
-rofi-lbonn-wayland-git
-wl-clip-persist-git
-satty
 
 ---
 
@@ -123,11 +123,14 @@ satty
 nm-connection-editor
 pavucontrol
 kitty
-firefox
 caja
-filemanager-actions
-file-roller
-xarchiver
+caja-actions
+caja-audio-video-properties
+caja-extensions-common
+caja-xattr-tags
+caja-share
+caja-sendto
+caja-open-terminal
 engrampa
 easyeffects
 zathura
@@ -137,10 +140,11 @@ mpv
 vlc
 system-config-printer
 kvantum
+nwg-look
 
 ## DE AUR
 
-nwg-look-bin
+librewolf-bin
 
 ---
 
@@ -177,6 +181,7 @@ ncspot
 
 ## Apps AUR
 
+zed-git
 vesktop-bin
 cheat-bin
 mullvad-vpn-bin
@@ -206,6 +211,5 @@ org.qbittorrent.qBittorrent
 org.gimp.GIMP
 org.inkscape.Inkscape
 org.kde.KStyle.Kvantum
-org.gtk.Gtk3theme.adw-gtk3-dark
 com.github.tchx84.Flatseal
 com.borgbase.Vorta
