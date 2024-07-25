@@ -30,7 +30,6 @@
             "calt": false
         }
     },
-    "formatter": "auto",
     "hour_format": "hour24",
     "telemetry": {
         "diagnostics": false,
@@ -40,5 +39,20 @@
         "mode": "dark",
         "light": "Ayu Light",
         "dark": "Ayu Dark"
+    },
+    "formatter": "auto",
+    "languages": {
+        "Python": {
+            "formatter": { "language_server": { "name": "ruff" } }
+        }
+    },
+    "lsp": {
+        "pyright": {
+            "settings": {
+                "python": {
+                    "pythonPath": ".venv/bin/python"
+                }
+            }
+        }
     }
 }
