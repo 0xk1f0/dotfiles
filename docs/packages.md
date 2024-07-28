@@ -123,6 +123,7 @@ rwpspread
 nm-connection-editor
 pavucontrol
 kitty
+yazi
 caja
 caja-actions
 caja-audio-video-properties
