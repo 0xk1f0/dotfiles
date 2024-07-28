@@ -85,7 +85,6 @@ dotLIST=(
     "$homeCfgExt/zed"
     "$homeCfgExt/zathura"
     "$homeCfgExt/mpv"
-    "$homeCfgExt/cheat"
     "$homeCfgExt/paru"
     "$homeCfgExt/easyeffects"
     "$homeCfgExt/starship.toml"
