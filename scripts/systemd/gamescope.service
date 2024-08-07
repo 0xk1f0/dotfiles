@@ -5,7 +5,7 @@ Description=Gamescope Steam Session
 Type=simple
 Environment="XKBLAYOUT=us"
 Environment="XKB_DEFAULT_LAYOUT=us"
-ExecStart=/usr/bin/gamescope --adaptive-sync --rt --backend sdl -w 2560 -h 1440 -e
+ExecStart=/usr/bin/gamescope --adaptive-sync --rt -w 2560 -h 1440 -e
 Restart=always
 
 [Install]

@@ -30,6 +30,11 @@
             "calt": false
         }
     },
+    "indent_guides": {
+        "enabled": true,
+        "coloring": "indent_aware",
+        "background_coloring": "disabled"
+    },
     "hour_format": "hour24",
     "telemetry": {
         "diagnostics": false,
