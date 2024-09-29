@@ -111,7 +111,6 @@ bashLIST=(
 
 sysdLIST=(
     "$sysdExt/gamescope.service"
-    "$sysdExt/easyeffects.service"
 )
 
 clear
