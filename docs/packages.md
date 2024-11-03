@@ -142,6 +142,8 @@ vlc
 system-config-printer
 kvantum
 nwg-look
+qt5ct
+qt6ct
 
 ## DE AUR
 
