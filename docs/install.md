@@ -79,7 +79,7 @@ mount /dev/mapper/root /mnt
 # We mount directly to /boot because the unencrypted
 # boot partition will need to house our kernel
 mkdir /mnt/boot
-mount [/dev/boot_part] /boot
+mount [/dev/boot_part] /mnt/boot
 ```
 
 ---
