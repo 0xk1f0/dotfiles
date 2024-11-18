@@ -45,7 +45,6 @@
         "light": "Ayu Light",
         "dark": "Ayu Dark"
     },
-    "formatter": "auto",
     "languages": {
         "Python": {
             "formatter": { "language_server": { "name": "ruff" } }

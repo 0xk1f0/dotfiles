@@ -4,17 +4,28 @@
 #  _ / /_/ / /_/ (__  ) / / / /  / /__/_____/ ,< / / __/ /_/ /
 # (_)_.___/\__,_/____/_/ /_/_/   \___/     /_/|_/_/_/  \____/
 
-# exports
+# base exports
 export TERM="xterm-256color"
-export PATH="$PATH:/home/$USER/.local/bin:/home/$USER/.cargo/bin"
 export HISTCONTROL="erasedups:ignorespace"
 export EDITOR="helix"
 export VISUAL="helix"
 export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
-export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 
-# If not running interactively, don't do anything
+# custom exports
+export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
+export ANDROID_HOME="/home/$USER/.android/sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export ANDROID_SDK_HOME="$ANDROID_HOME"
+
+# path exports
+export PATH="$PATH:$(ls $ANDROID_HOME/build-tools/*/ | sort -V | tail -n 1)"
+export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
+export PATH="$PATH:/home/$USER/.local/bin"
+export PATH="$PATH:/home/$USER/.cargo/bin"
+
+# if not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # shopt
