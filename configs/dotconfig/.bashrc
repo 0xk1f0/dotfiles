@@ -19,7 +19,7 @@ export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export ANDROID_SDK_HOME="$ANDROID_HOME"
 
 # path exports
-export PATH="$PATH:$(ls $ANDROID_HOME/build-tools/*/ | sort -V | tail -n 1)"
+export PATH="$PATH:$(ls -d $ANDROID_HOME/build-tools/*/ | sort -V | tail -n 1)"
 export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:/home/$USER/.local/bin"
