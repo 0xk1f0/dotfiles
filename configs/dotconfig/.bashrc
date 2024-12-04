@@ -109,13 +109,15 @@ alias grep='rg'
 alias df='df -h'
 alias nano='helix'
 alias top='htop'
+alias sudo='sudo-rs'
+alias su='su-rs'
 
 # update aliases
-alias mirup='doas reflector -p https -l 20 \
+alias mirup='reflector -p https -l 20 \
 -c ch,at,de \
 --sort rate -n 10 --verbose \
 --save /etc/pacman.d/mirrorlist'
-alias pacup='doas pacman -Syu'
+alias pacup='pacman -Syu'
 alias aurup='paru -aSyu'
 alias aurthird='paru --pkgbuilds -Sy'
 alias flatup='flatpak update'
