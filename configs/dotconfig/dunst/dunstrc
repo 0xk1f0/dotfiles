@@ -10,10 +10,10 @@
 
     # geometry
     origin = top-right
-    offset = 3x3
+    offset = (5,5)
     scale = 0
     width = 300
-    height = 100
+    height = (0,100)
 
     # max number of notification
     notification_limit = 5
