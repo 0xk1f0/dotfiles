@@ -24,7 +24,6 @@ vulkan-tools
 opencl-headers
 networkmanager
 firewalld
-opendoas
 base-devel
 dracut
 sbsigntools
