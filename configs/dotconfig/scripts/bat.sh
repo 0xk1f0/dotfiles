@@ -26,11 +26,14 @@ fi
 case $1 in
     level)
         cat "$BAT_PATH/capacity"
-    ;;
+        ;;
     plugged)
         cat "$ADP_PATH/online"
-    ;;
+        ;;
     percent)
         echo "$(cat $BAT_PATH/capacity)%"
-    ;;
+        ;;
+    *)
+        exit 1
+        ;;
 esac

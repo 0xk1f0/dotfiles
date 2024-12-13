@@ -1,19 +1,10 @@
 ; DATE-TIME ;
 
-(defpoll DAY :interval "1h"
-    "date '+%d'"
-)
-(defpoll WEEKDAY :interval "1h"
-    "date '+%A'"
-)
-(defpoll YEAR :interval "1h"
-    "date '+%Y'"
-)
 (defpoll TIME :interval "1s"
     "date +%H:%M"
 )
-(defpoll DATE :interval "1s"
-    "date +%d.%m.%Y"
+(defpoll WEEKDAY_DATE :interval "1s"
+    "date '+%A %d.%m.%Y'"
 )
 
 ; SYSTEM ;
@@ -33,9 +24,15 @@
 
 ; HYPRLAND ;
 
-(deflisten HYPRLAND_WORKSPACES :initial "[]"
+(deflisten HYPRLAND_ALL :initial "[]"
     "/home/$USER/.config/scripts/hyprland-all.sh"
 )
 (deflisten HYPRLAND_CURRENT :initial "1"
     "/home/$USER/.config/scripts/hyprland-current.sh"
+)
+
+; OPENRAZER ;
+
+(defpoll OPENRAZER_MOUSE_BAT_LEVEL :interval "60s"
+    "/home/$USER/.config/scripts/openrazer.sh level"
 )

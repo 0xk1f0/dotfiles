@@ -5,10 +5,12 @@ set -uo pipefail
 
 # notify alert user
 alert() {
-    dunstify \
-    -a "bootHi" \
-    -u low \
-    "Welcome ${USER}!" "Running: $(uname -r)"
+    if command -v dunstify >> /dev/null; then
+        dunstify \
+        -a "bootHi" \
+        -u low \
+        "Welcome ${USER}!" "Running: $(uname -r)"
+    fi
 }
 
 # audible boot sound

@@ -1,8 +1,9 @@
 (include "bar/widgets/datetime.yuck")
 (include "bar/widgets/battery.yuck")
 (include "bar/widgets/wifi.yuck")
-(include "bar/widgets/workspaces.yuck")
+(include "bar/widgets/hyprland.yuck")
 (include "bar/widgets/systray.yuck")
+(include "bar/widgets/openrazer.yuck")
 
 (defwindow topbar
     :monitor 0

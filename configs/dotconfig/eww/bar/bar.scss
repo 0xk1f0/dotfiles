@@ -1,21 +1,22 @@
 @import "./widgets/datetime.scss";
 @import "./widgets/battery.scss";
 @import "./widgets/wifi.scss";
-@import "./widgets/workspaces.scss";
+@import "./widgets/hyprland.scss";
 @import "./widgets/systray.scss";
+@import "./widgets/openrazer.scss";
 
 .bar_class {
     background-color: rgba($bg, 0.85);
 }
 
 .center_modules {
-    margin: 0 8px;
+    margin: 0 4px;
 }
 
 .right_modules {
-    margin: 0 8px;
+    margin: 0 4px;
 }
 
 .left_modules {
-    margin: 0 8px;
+    margin: 0 4px;
 }

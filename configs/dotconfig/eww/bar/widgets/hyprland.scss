@@ -1,15 +1,15 @@
-.battery-widget {
+.hyprland-widget {
     border-radius: 0px;
     font-family: "Open Sans";
     font-weight: bold;
     margin: 0 4px;
 
-    .battery-text {
-        color: $fg;
-        margin-left: 2px;
+    .hyprland-workspace-entry {
+        color: $act;
+        margin: 0 2px;
     }
-    .battery-icon {
+
+    .hyprland-current {
         color: $fg;
-        margin-right: 2px;
     }
 }

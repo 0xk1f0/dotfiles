@@ -116,8 +116,8 @@ handleMount() {
 }
 
 # detect su system
-if command -v /bin/sudo >> /dev/null; then
-    SU_SYS="/bin/sudo"
+if command -v sudo >> /dev/null; then
+    SU_SYS="sudo"
 else
     SU_SYS="/bin/doas"
 fi

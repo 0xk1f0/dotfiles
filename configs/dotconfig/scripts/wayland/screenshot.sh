@@ -3,6 +3,11 @@
 # bash strict
 set -uo pipefail
 
+# check if slurp, grim and wl-copy are available
+if ! command -v slurp >> /dev/null && command -v grim >> /dev/null && command -v wl-copy >> /dev/null; then
+    exit 1
+fi
+
 # check for running instance
 if ! pgrep -x slurp && ! pgrep -x grim; then
     # take screenshot
@@ -13,9 +18,12 @@ if ! pgrep -x slurp && ! pgrep -x grim; then
         #exitcode is non zero, screenshot aborted
         SCREEN_STATUS="Nothing Captured!"
     fi
-    dunstify \
-    -a "tkScr" \
-    -r 44188 \
-    -u low \
-    -i "window_fullscreen" "Screenshot" "$SCREEN_STATUS"
+    # notify user
+    if command -v dunstify >> /dev/null; then
+        dunstify \
+        -a "tkScr" \
+        -r 44188 \
+        -u low \
+        -i "window_fullscreen" "Screenshot" "$SCREEN_STATUS"
+    fi
 fi

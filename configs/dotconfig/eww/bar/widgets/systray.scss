@@ -2,8 +2,9 @@
     border-radius: 0px;
     font-family: "Open Sans";
     font-weight: bold;
-    margin: 0 2px;
     color: $fg;
+    margin: 0 4px;
+
     :nth-child(2) {
         background-color: rgba($bg, 0.6);
         padding: 2px;

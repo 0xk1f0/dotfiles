@@ -1,0 +1,18 @@
+(defwidget openrazer-mouse-widget []
+    (box
+        :class "openrazer-mouse-widget"
+        :space-evenly "false"
+        :halign "fill"
+        :orientation "h"
+        (label 
+            :xalign 0
+            :class "openrazer-mouse-icon"
+            :text ""
+        )
+        (label 
+            :xalign 1
+            :class "openrazer-mouse-text"
+            :text "${OPENRAZER_MOUSE_BAT_LEVEL}%"
+        )
+   )
+)
