@@ -13,7 +13,6 @@ export LESS='-R --use-color -Dd+r$Du+b'
 export MANPAGER="less"
 
 # custom exports
-export DOCKER_HOST="unix://$XDG_RUNTIME_DIR/docker.sock"
 export ANDROID_HOME="/home/$USER/.android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export ANDROID_SDK_HOME="$ANDROID_HOME"
