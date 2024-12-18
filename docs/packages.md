@@ -1,25 +1,23 @@
 # Package "Database"
 
 > This File cotains some of my most used packages
->
-> Mostly Wayland only stuff now
 
 ---
 
 ## Base
 
-xorg-xwayland
 wayland
 lib32-wayland
-xf86-video-amdgpu
+xorg-xwayland
 amd-ucode
 mesa
+mesa-utils
 lib32-mesa
+lib32-mesa-utils
 vulkan-radeon
 lib32-vulkan-radeon
-mesa-vdpau
-lib32-mesa-vdpau
-mesa-utils
+opencl-rusticl-mesa
+lib32-opencl-rusticl-mesa
 vulkan-tools
 opencl-headers
 networkmanager
@@ -79,11 +77,8 @@ pcsc-tools
 realtime-privileges
 borg
 htop
-
-## Misc AUR
-
-downgrade
 dracut-hook-uefi
+downgrade
 systemd-boot-pacman-hook
 
 ---
@@ -109,11 +104,8 @@ qt6-wayland
 greetd-tuigreet
 mate-polkit
 wl-clip-persist
-
-## Base DE AUR
-
-eww-git
 rwpspread
+eww
 
 ---
 
@@ -143,10 +135,7 @@ kvantum
 nwg-look
 qt5ct
 qt6ct
-
-## DE AUR
-
-librewolf-bin
+librewolf
 
 ---
 
@@ -164,9 +153,6 @@ ttf-liberation
 wqy-zenhei
 papirus-icon-theme
 ttf-jetbrains-mono
-
-## Fonts AUR
-
 ttf-twemoji
 
 ---
@@ -175,20 +161,16 @@ ttf-twemoji
 
 wireshark-qt
 mypaint
-gparted
 gping
 nmap
 ipcalc
 ncspot
-
-## Apps AUR
-
-zed-git
-vesktop-bin
-cheat-bin
-mullvad-vpn-bin
-vscodium-bin
-vscodium-bin-marketplace
+zed
+mullvad-vpn-beta
+vesktop
+vscodium
+vscodium-marketplace
+cheat
 
 ---
 
@@ -197,9 +179,7 @@ vscodium-bin-marketplace
 qemu-desktop
 libvirt
 virt-manager
-docker
-docker-buildx
-docker-compose
+podman
 
 ---
 

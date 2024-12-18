@@ -256,7 +256,7 @@ pamu2fcfg -o pam://[hostname] -i pam://[hostname]
 ```bash
 #%PAM-1.0
 auth    sufficient  pam_u2f.so      cue [cue_prompt=Touch YubiKey..] authfile=/etc/u2f_mappings
-# Implement like this f.E. in /etc/pam.d/doas
+# Implement like this f.E. in /etc/pam.d/sudo
 auth    include     hwkey
 ```
 

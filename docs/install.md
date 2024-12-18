@@ -143,13 +143,8 @@ usermod -aG wheel,audio,video,uucp,render,realtime,libvirt [username]
 ## Making "wheel" Members Superusers
 
 ```bash
-# With doas
-nano /etc/doas.conf
-> permit persist :wheel
->
-# With sudo
-visudo
-> %wheel ALL=(ALL) ALL #uncomment this
+nano /etc/sudoers
+> %wheel ALL=(ALL:ALL) ALL
 ```
 
 ---
