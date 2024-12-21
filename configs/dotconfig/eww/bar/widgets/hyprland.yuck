@@ -1,3 +1,14 @@
+; VARS ;
+
+(deflisten HYPRLAND_ALL :initial "[]"
+    "/home/$USER/.config/scripts/hyprland-all.sh"
+)
+(deflisten HYPRLAND_CURRENT :initial "1"
+    "/home/$USER/.config/scripts/hyprland-current.sh"
+)
+
+; WIDGET ;
+
 (defwidget hyprland-widget []
     (box
         :class "hyprland-widget"

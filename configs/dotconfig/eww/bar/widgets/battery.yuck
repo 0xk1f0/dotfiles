@@ -1,3 +1,14 @@
+; VARS ;
+
+(defpoll SYS_BAT_LEVEL :interval "5s"
+    "/home/$USER/.config/scripts/bat.sh level"
+)
+(defpoll SYS_BAT_PLUGGED :interval "5s"
+    "/home/$USER/.config/scripts/bat.sh plugged"
+)
+
+; WIDGET ;
+
 (defwidget battery-widget []
     (box
         :class "battery-widget"
@@ -6,13 +17,13 @@
         :orientation "h"
         (label 
             :xalign 0
-            :class "battery-icon"
-            :text "${BAT_PLUGGED == 0 ? '' : ''}"
+            :class "${SYS_BAT_PLUGGED == 1 ? 'battery-icon-charging' : 'battery-icon-normal'}"
+            :text "${SYS_BAT_PLUGGED == 1 ? '' : ''}"
         )
         (label 
             :xalign 1
             :class "battery-text"
-            :text "${BAT_LEVEL}%"
+            :text "${SYS_BAT_LEVEL}%"
         )
    )
 )

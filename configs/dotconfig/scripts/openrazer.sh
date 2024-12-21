@@ -12,9 +12,17 @@ fi
 case $1 in
     level)
         /bin/polychromatic-cli -k \
-        | grep 'Battery' \
-        | cut -d 'y' -f 2 \
-        | cut -d '%' -f 1
+        | /bin/grep 'Battery' \
+        | /bin/cut -d 'y' -f 2 \
+        | /bin/cut -d '%' -f 1
+        ;;
+    charging)
+        if $(/bin/polychromatic-cli -k \
+        | /bin/grep 'charging' > /dev/null); then
+            echo 1
+        else
+            echo 0
+        fi
         ;;
     *)
         exit 1

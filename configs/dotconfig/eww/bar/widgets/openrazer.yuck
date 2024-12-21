@@ -1,3 +1,15 @@
+; VARS ;
+
+(defpoll OPENRAZER_MOUSE_BAT_LEVEL :interval "60s"
+    "/home/$USER/.config/scripts/openrazer.sh level"
+)
+
+(defpoll OPENRAZER_MOUSE_BAT_CHARGING :interval "60s"
+    "/home/$USER/.config/scripts/openrazer.sh charging"
+)
+
+; WIDGET ;
+
 (defwidget openrazer-mouse-widget []
     (box
         :class "openrazer-mouse-widget"
@@ -6,8 +18,8 @@
         :orientation "h"
         (label 
             :xalign 0
-            :class "openrazer-mouse-icon"
-            :text ""
+            :class "${OPENRAZER_MOUSE_BAT_CHARGING == 1 ? "openrazer-mouse-icon-normal" : "openrazer-mouse-icon-charging"}"
+            :text "${OPENRAZER_MOUSE_BAT_CHARGING == 1 ? "" : ""}"
         )
         (label 
             :xalign 1

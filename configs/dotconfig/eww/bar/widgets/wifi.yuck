@@ -1,3 +1,17 @@
+; VARS ;
+
+(defpoll WIFI_CONNECTIVITY :interval "5s"
+    "/home/$USER/.config/scripts/network.sh connectivity"
+)
+(defpoll WIFI_STATE :interval "5s"
+    "/home/$USER/.config/scripts/network.sh wifi-state"
+)
+(defpoll WIFI_NAME :interval "5s"
+    "/home/$USER/.config/scripts/network.sh wifi-name"
+)
+
+; WIDGET ;
+
 (defwidget wifi-widget []
     (box
         :class "wifi-widget"
@@ -7,12 +21,12 @@
         (label 
             :xalign 0
             :class "wifi-icon"
-            :text "${WIFI_STATE == 'connected' ? '' : ''}"
+            :text "${WIFI_STATE == 'connected' ? '' : ''}"
         )
         (label 
             :xalign 1
             :class "wifi-text"
-            :text "${WIFI_NAME}"
+            :text "${WIFI_NAME}/${WIFI_CONNECTIVITY == 'full' ? 'online' : 'offline'}"
         )
    )
 )

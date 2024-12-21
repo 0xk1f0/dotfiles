@@ -4,6 +4,7 @@
 (include "bar/widgets/hyprland.yuck")
 (include "bar/widgets/systray.yuck")
 (include "bar/widgets/openrazer.yuck")
+(include "bar/widgets/ether.yuck")
 
 (defwindow topbar
     :monitor 0

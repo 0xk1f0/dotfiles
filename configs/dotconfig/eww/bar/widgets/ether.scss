@@ -1,18 +1,14 @@
-.openrazer-mouse-widget {
+.ether-widget {
     border-radius: 0px;
     font-family: "Open Sans";
     font-weight: bold;
     padding: 0 4px;
 
-    .openrazer-mouse-text {
+    .ether-text {
         color: $fg;
         margin-left: 2px;
     }
-    .openrazer-mouse-icon-charging {
-        color: $act;
-        margin-right: 2px;
-    }
-    .openrazer-mouse-icon-normal {
+    .ether-icon {
         color: $fg;
         margin-right: 2px;
     }
