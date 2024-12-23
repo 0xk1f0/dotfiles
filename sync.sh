@@ -3,42 +3,51 @@
 # bash strict
 set -uo pipefail
 
-# modified version of https://askubuntu.com/a/1386907
-chooseMenu() {
-    local prompt="$1" outvar="$2"
-    shift
-    shift
-    local options=("$@") cur=0 count=${#options[@]} index=0
-    local esc=$(echo -en "\e")
-    scriptFeedback prompt "$prompt"
-    while true
-    do
-        index=0
-        for o in "${options[@]}"
-        do
-            if [ "$index" == "$cur" ]
-            then echo -e "> \e[1m\e[92m$o\e[0m"
-            else echo -e "  \e[90m$o\e[0m"
-            fi
-            index=$(( $index + 1 ))
-        done
-        read -s -n3 key
-        if [[ $key == "$esc[A" ]]
-        then cur=$(( $cur - 1 ))
-            [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == "$esc[B" ]]
-        then cur=$(( $cur + 1 ))
-            [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
-        elif [[ $key == "" ]]
-        then break
-        fi
-        echo -en "\e[${count}A"
-    done
-    printf -v $outvar "${options[$cur]}"
-}
+# shortcuts
+BASH_EXT="./scripts/bash"
+SYSTEMD_EXT="./scripts/systemd"
+DOTFILES_EXT="./configs/dotconfig"
+
+DOTFILES_LIST=(
+    "${DOTFILES_EXT}/dunst"
+    "${DOTFILES_EXT}/rofi"
+    "${DOTFILES_EXT}/eww"
+    "${DOTFILES_EXT}/hypr"
+    "${DOTFILES_EXT}/scripts"
+    "${DOTFILES_EXT}/kitty"
+    "${DOTFILES_EXT}/ncspot"
+    "${DOTFILES_EXT}/nano"
+    "${DOTFILES_EXT}/helix"
+    "${DOTFILES_EXT}/zed"
+    "${DOTFILES_EXT}/zathura"
+    "${DOTFILES_EXT}/mpv"
+    "${DOTFILES_EXT}/paru"
+    "${DOTFILES_EXT}/easyeffects"
+    "${DOTFILES_EXT}/starship.toml"
+    "${DOTFILES_EXT}/electron-flags.conf"
+    "${DOTFILES_EXT}/code-flags.conf"
+    "${DOTFILES_EXT}/pipewire"
+    "${DOTFILES_EXT}/wireplumber"
+)
+
+BASH_LIST=(
+    "${BASH_EXT}/mntExt"
+    "${BASH_EXT}/mntSMB"
+    "${BASH_EXT}/sharePwnagotchy"
+    "${BASH_EXT}/clnJnk"
+    "${BASH_EXT}/setWall"
+    "${BASH_EXT}/setTheme"
+    "${BASH_EXT}/symlinkElectron"
+    "${BASH_EXT}/rmWineAssocs"
+    "${BASH_EXT}/syncThemes"
+)
+
+SYSTEMD_LIST=(
+    "${SYSTEMD_EXT}/gamescope.service"
+)
 
 # give user feedback
-scriptFeedback() {
+p_echo() {
     case $1 in
         success)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
@@ -46,89 +55,47 @@ scriptFeedback() {
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
         ;;
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
+        ;;
     esac
 }
 
-handleYesNo() {
-    selections=(
-        "no"
-        "yes"
-    )
-    chooseMenu "$1" selected_choice "${selections[@]}"
-    if [ "$selected_choice" == "yes" ]; then
+choice_menu() {
+    CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
+    if [ "${CHOICE}" == "yes" ]; then
         return 0
     else
         return 1
     fi
 }
 
-bashExt="./scripts/bash"
-sysdExt="./scripts/systemd"
-dotExt="./configs/dotconfig"
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    p_echo error "run as user!"
+fi
 
-dotLIST=(
-    "$dotExt/dunst"
-    "$dotExt/rofi"
-    "$dotExt/eww"
-    "$dotExt/hypr"
-    "$dotExt/scripts"
-    "$dotExt/kitty"
-    "$dotExt/alacritty"
-    "$dotExt/ncspot"
-    "$dotExt/nano"
-    "$dotExt/helix"
-    "$dotExt/zed"
-    "$dotExt/zathura"
-    "$dotExt/mpv"
-    "$dotExt/paru"
-    "$dotExt/easyeffects"
-    "$dotExt/starship.toml"
-    "$dotExt/electron-flags.conf"
-    "$dotExt/code-flags.conf"
-    "$dotExt/pipewire"
-    "$dotExt/wireplumber"
-)
+# check if fzf is available
+if ! command -v fzf >> /dev/null; then
+    p_echo error "needs 'fzf' installed!"
+fi
 
-bashLIST=(
-    "$bashExt/mntExt"
-    "$bashExt/mntSMB"
-    "$bashExt/sharePwnagotchy"
-    "$bashExt/clnJnk"
-    "$bashExt/setWall"
-    "$bashExt/setTheme"
-    "$bashExt/symlinkElectron"
-    "$bashExt/rmWineAssocs"
-    "$bashExt/syncThemes"
-)
-
-sysdLIST=(
-    "$sysdExt/gamescope.service"
-)
-
-if handleYesNo "Perform Sync?"; then
-    scriptFeedback proc "Syncing combined configs"
-    
+if choice_menu "Perform Sync?"; then
+    p_echo proc "Syncing combined configs"
     /bin/rsync -aq \
-    "${dotLIST[@]}" "/home/$USER/.config/"
-    
+    "${DOTFILES_LIST[@]}" "/home/${USER}/.config/"
     /bin/rsync -aq \
-    "$dotExt"/.bashrc "$dotExt"/.inputrc \
-    "$dotExt"/.wayinitrc \
-    "/home/$USER/"
-    
-    scriptFeedback success "Done"
-    
-    scriptFeedback proc "Syncing bash scripts"
-    
+    "${DOTFILES_EXT}"/.bashrc "${DOTFILES_EXT}"/.inputrc \
+    "${DOTFILES_EXT}"/.wayinitrc \
+    "/home/${USER}/"
+    p_echo proc "Syncing bash scripts"
     /bin/rsync -aq \
-    "${bashLIST[@]}" "/home/$USER/.local/bin/"
-    
-    scriptFeedback proc "Syncing systemd units"
-    
+    "${BASH_LIST[@]}" "/home/${USER}/.local/bin/"
+    p_echo proc "Syncing systemd units"
     /bin/rsync -aq \
-    "${sysdLIST[@]}" "/home/$USER/.config/systemd/user/"
-    
-    scriptFeedback success "Done"
+    "${SYSTEMD_LIST[@]}" "/home/${USER}/.config/systemd/user/"
+    p_echo success "Done"
 fi
 
 exit 0

@@ -114,9 +114,8 @@ alias su='su-rs'
 # update aliases
 alias mirup='reflector -p https -l 20 \
 -c ch,at,de \
---sort rate -n 10 --verbose \
---save /etc/pacman.d/mirrorlist'
-alias pacup='pacman -Syu'
+--sort rate -n 10 --verbose | \
+wl-copy -n && echo "Copied!"'
 alias aurup='paru -aSyu'
 alias aurthird='paru --pkgbuilds -Sy'
 alias flatup='flatpak update'
@@ -137,7 +136,7 @@ alias ybi2fa=\
 'ykman oath accounts list | fzf -e | \
 xargs -rod "\n" ykman oath accounts code | \
 cut -d ":" -f 2 | cut -d " " -f 3 | \
-wl-copy -n && echo "Copied!"'
+wl-copy -n && echo -e "\n> $(wl-paste) <"'
 alias uphist='expac --timefmt="%F %T" "%l %n" | sort -n'
 alias ytaudio=\
 'yt-dlp -o "%(title)s.%(ext)s" -f bestaudio --restrict-filenames \

@@ -3,42 +3,56 @@
 # bash strict
 set -uo pipefail
 
-# modified version of https://askubuntu.com/a/1386907
-chooseMenu() {
-    local prompt="$1" outvar="$2"
-    shift
-    shift
-    local options=("$@") cur=0 count=${#options[@]} index=0
-    local esc=$(echo -en "\e")
-    scriptFeedback prompt "$prompt"
-    while true
-    do
-        index=0
-        for o in "${options[@]}"
-        do
-            if [ "$index" == "$cur" ]
-            then echo -e "> \e[1m\e[92m$o\e[0m"
-            else echo -e "  \e[90m$o\e[0m"
-            fi
-            index=$(( $index + 1 ))
-        done
-        read -s -n3 key
-        if [[ $key == "$esc[A" ]]
-        then cur=$(( $cur - 1 ))
-            [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == "$esc[B" ]]
-        then cur=$(( $cur + 1 ))
-            [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
-        elif [[ $key == "" ]]
-        then break
-        fi
-        echo -en "\e[${count}A"
-    done
-    printf -v $outvar "${options[$cur]}"
-}
+# shortcuts
+BASH_EXT="/home/${USER}/.local/bin"
+SYSTEMD_EXT="/home/${USER}/.config/systemd/user/"
+HOME_EXT="/home/${USER}"
+HOME_DOTFILES_EXT="/home/${USER}/.config"
+DOTFILES_EXT="./configs/dotconfig"
+
+DOTFILES_LIST=(
+    "${HOME_DOTFILES_EXT}/dunst"
+    "${HOME_DOTFILES_EXT}/rofi"
+    "${HOME_DOTFILES_EXT}/eww"
+    "${HOME_DOTFILES_EXT}/hypr"
+    "${HOME_DOTFILES_EXT}/scripts"
+    "${HOME_DOTFILES_EXT}/kitty"
+    "${HOME_DOTFILES_EXT}/ncspot"
+    "${HOME_DOTFILES_EXT}/nano"
+    "${HOME_DOTFILES_EXT}/helix"
+    "${HOME_DOTFILES_EXT}/zed"
+    "${HOME_DOTFILES_EXT}/zathura"
+    "${HOME_DOTFILES_EXT}/mpv"
+    "${HOME_DOTFILES_EXT}/paru"
+    "${HOME_DOTFILES_EXT}/easyeffects"
+    "${HOME_DOTFILES_EXT}/starship.toml"
+    "${HOME_DOTFILES_EXT}/electron-flags.conf"
+    "${HOME_DOTFILES_EXT}/code-flags.conf"
+    "${HOME_DOTFILES_EXT}/pipewire"
+    "${HOME_DOTFILES_EXT}/wireplumber"
+    "${HOME_EXT}/.bashrc"
+    "${HOME_EXT}/.inputrc"
+    "${HOME_EXT}/.wayinitrc"
+)
+
+BASH_LIST=(
+    "${BASH_EXT}/mntExt"
+    "${BASH_EXT}/mntSMB"
+    "${BASH_EXT}/sharePwnagotchy"
+    "${BASH_EXT}/clnJnk"
+    "${BASH_EXT}/setWall"
+    "${BASH_EXT}/setTheme"
+    "${BASH_EXT}/symlinkElectron"
+    "${BASH_EXT}/rmWineAssocs"
+    "${BASH_EXT}/syncThemes"
+)
+
+SYSTEMD_LIST=(
+    "${SYSTEMD_EXT}/gamescope.service"
+)
 
 # give user feedback
-scriptFeedback() {
+p_echo() {
     case $1 in
         prompt)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
@@ -49,75 +63,34 @@ scriptFeedback() {
         proc)
             printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
         ;;
+        error)
+            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
+            exit 1
+        ;;
     esac
 }
 
-handleYesNo() {
-    selections=(
-        "no"
-        "yes"
-    )
-    chooseMenu "$1" selected_choice "${selections[@]}"
-    if [ "$selected_choice" == "yes" ]; then
+choice_menu() {
+    CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
+    if [ "${CHOICE}" == "yes" ]; then
         return 0
     else
         return 1
     fi
 }
 
-bashExt="/home/$USER/.local/bin"
-sysdExt="/home/$USER/.config/systemd/user/"
-homeCfgExt="/home/$USER/.config"
-homeExt="/home/$USER"
-dotExt="./configs/dotconfig"
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    p_echo error "run as user!"
+fi
 
-dotLIST=(
-    "$homeCfgExt/dunst"
-    "$homeCfgExt/rofi"
-    "$homeCfgExt/eww"
-    "$homeCfgExt/hypr"
-    "$homeCfgExt/scripts"
-    "$homeCfgExt/kitty"
-    "$homeCfgExt/alacritty"
-    "$homeCfgExt/ncspot"
-    "$homeCfgExt/nano"
-    "$homeCfgExt/helix"
-    "$homeCfgExt/zed"
-    "$homeCfgExt/zathura"
-    "$homeCfgExt/mpv"
-    "$homeCfgExt/paru"
-    "$homeCfgExt/easyeffects"
-    "$homeCfgExt/starship.toml"
-    "$homeCfgExt/electron-flags.conf"
-    "$homeCfgExt/code-flags.conf"
-    "$homeCfgExt/pipewire"
-    "$homeCfgExt/wireplumber"
-    "$homeExt/.bashrc"
-    "$homeExt/.inputrc"
-    "$homeExt/.wayinitrc"
-)
+# check if fzf is available
+if ! command -v fzf >> /dev/null; then
+    p_echo error "needs 'fzf' installed!"
+fi
 
-bashLIST=(
-    "$bashExt/mntExt"
-    "$bashExt/mntSMB"
-    "$bashExt/sharePwnagotchy"
-    "$bashExt/clnJnk"
-    "$bashExt/setWall"
-    "$bashExt/setTheme"
-    "$bashExt/symlinkElectron"
-    "$bashExt/rmWineAssocs"
-    "$bashExt/syncThemes"
-)
-
-sysdLIST=(
-    "$sysdExt/gamescope.service"
-)
-
-clear
-
-if handleYesNo "Include dotconfigs?"; then
-    scriptFeedback proc "Syncing configs"
-    
+if choice_menu "Include dotconfigs?"; then
+    p_echo proc "Syncing configs"
     /bin/rsync -aq \
     --delete \
     --exclude '*.cbor' \
@@ -130,29 +103,24 @@ if handleYesNo "Include dotconfigs?"; then
     --exclude 'config.rasi' \
     --exclude 'kitty-colors.conf' \
     --exclude 'alacritty-colors.toml' \
-    "${dotLIST[@]}" "$dotExt"/
-    
-    scriptFeedback success "Done"
+    "${DOTFILES_LIST[@]}" "${DOTFILES_EXT}"/
+    p_echo success "Done"
 fi
 
-if handleYesNo "Include bash scripts?"; then
-    scriptFeedback proc "Syncing bash scripts"
-    
+if choice_menu "Include bash scripts?"; then
+    p_echo proc "Syncing bash scripts"
     /bin/rsync -aq \
     --delete \
-    "${bashLIST[@]}" ./scripts/bash/
-    
-    scriptFeedback success "Done"
+    "${BASH_LIST[@]}" "./scripts/bash/"
+    p_echo success "Done"
 fi
 
-if handleYesNo "Include systemd user units?"; then
-    scriptFeedback proc "Syncing systemd units"
-    
+if choice_menu "Include systemd user units?"; then
+    p_echo proc "Syncing systemd units"
     /bin/rsync -aq \
     --delete \
-    "${sysdLIST[@]}" ./scripts/systemd/
-    
-    scriptFeedback success "Done"
+    "${SYSTEMD_LIST[@]}" "./scripts/systemd/"
+    p_echo success "Done"
 fi
 
 exit 0
