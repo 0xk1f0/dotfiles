@@ -81,7 +81,7 @@ if ! command -v fzf >> /dev/null; then
     p_echo error "needs 'fzf' installed!"
 fi
 
-if choice_menu "Perform Sync?"; then
+if choice_menu "Perform Sync?" && choice_menu "Are you sure?"; then
     p_echo proc "Syncing combined configs"
     /bin/rsync -aq \
     "${DOTFILES_LIST[@]}" "/home/${USER}/.config/"
@@ -96,6 +96,8 @@ if choice_menu "Perform Sync?"; then
     /bin/rsync -aq \
     "${SYSTEMD_LIST[@]}" "/home/${USER}/.config/systemd/user/"
     p_echo success "Done"
+else
+    p_echo error "Aborted"
 fi
 
 exit 0
