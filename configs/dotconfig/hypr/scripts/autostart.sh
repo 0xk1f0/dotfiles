@@ -19,4 +19,4 @@ hypridle &
 
 # wallpaper
 pidof rwpspread && killall -s 15 -q rwpspread
-rwpspread -b hyprpaper -l hyprlock -pdi "/home/$USER/.wallpaper" &
+rwpspread -b hyprpaper -l hyprlock -c 140 -pdi "/home/$USER/.wallpaper" &
