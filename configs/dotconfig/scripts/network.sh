@@ -22,7 +22,7 @@ case $1 in
             | tr -s ' ' ' ' \
             | awk '{print $2}')
             WIFI_NAME=$(nmcli d show ${WIFI_DEVICE} \
-            | /bin/grep -m 1 'WIFI.NAME' \
+            | /bin/grep -m 1 'GENERAL.CONNECTION' \
             | tr -d ' ' \
             | cut -d ':' -f2)
             if [[ $WIFI_NAME != '' ]]; then

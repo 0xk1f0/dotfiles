@@ -5,6 +5,7 @@
 // /_/|_/_/_/  \____/      /___/\___/\__,_/
 
 {
+    "icon_theme": "Catppuccin Mocha",
     "features": {
         "inline_completion_provider": "none"
     },
@@ -16,7 +17,7 @@
     },
     "tab_size": 4,
     "ui_font_size": 17,
-    "buffer_font_size": 17,
+    "buffer_font_size": 17.0,
     "buffer_font_family": "Monaspace Neon",
     "buffer_font_features": {
         "liga": true,
@@ -27,7 +28,7 @@
         "font_family": "Monaspace Neon",
         "font_features": {
             "liga": true,
-            "calt": false
+            "calt": true
         }
     },
     "indent_guides": {
@@ -43,7 +44,7 @@
     "theme": {
         "mode": "dark",
         "light": "Ayu Light",
-        "dark": "Ayu Dark"
+        "dark": "Catppuccin Mocha"
     },
     "languages": {
         "Python": {

@@ -1,102 +1,45 @@
 #!/usr/bin/env bash
 
-# a themer script that uses way too much sed
-# but it works
-
 # "bash strict mode"
 set -uo pipefail
 
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-        ;;
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-    esac
-}
-
 # dont run as root
 if [ "$EUID" -eq 0 ]; then
-    scriptFeedback error "run as user!"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " run as user!"
 fi
 
 # check if jq is available
 if ! command -v jq >> /dev/null; then
-    scriptFeedback error "needs 'jq' installed!"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " needs 'jq' installed!"
 fi
 
 # config file paths
-ROFI_CONF_FILE="/home/$USER/.config/rofi/config.rasi"
-HYPRLAND_CONF_FILE="/home/$USER/.config/hypr/hyprland.conf"
-DUNST_CONF_FILE="/home/$USER/.config/dunst/dunstrc.d/user.conf"
-EWW_CONF_FILE="/home/$USER/.config/eww/eww.scss"
-KITTY_CONF_FILE="/home/$USER/.config/kitty/kitty-colors.conf"
+ROFI_CONF_FILE="/home/${USER}/.config/rofi/config.rasi"
+HYPRLAND_CONF_FILE="/home/${USER}/.config/hypr/hyprland.conf"
+DUNST_CONF_FILE="/home/${USER}/.config/dunst/dunstrc.d/user.conf"
+EWW_CONF_FILE="/home/${USER}/.config/eww/eww.scss"
+KITTY_CONF_FILE="/home/${USER}/.config/kitty/kitty.conf"
+
+# read file
+COLOR_SCHEME=$(cat /home/${USER}/.cache/rwpspread/rwps_colors.json)
+COLOR_SCHEME_HASH=$(b2sum /home/${USER}/.cache/rwpspread/rwps_colors.json | cut -d ' ' -f 1)
+
+if [ -f "/home/${USER}/.cache/.setTheme.b2sum" ]; then
+    if [ $(head -n 1 "/home/${USER}/.cache/.setTheme.b2sum") == ${COLOR_SCHEME_HASH} ]; then
+        printf "[\e[1m\e[92m✓\e[0m]%s\n" " already themed!"
+        exit 0
+    else
+        echo ${COLOR_SCHEME_HASH} > "/home/${USER}/.cache/.setTheme.b2sum"
+    fi
+else
+    echo ${COLOR_SCHEME_HASH} > "/home/${USER}/.cache/.setTheme.b2sum"
+fi
 
 # get colors
-RWP_FG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.foreground' \
-| tr -d '"#')
-RWP_BG=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.background' \
-| tr -d '"#')
-RWP_ACT=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color13' \
-| tr -d '"#')
-RWP_NRM=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color3' \
-| tr -d '"#')
-RWP_0=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color0' \
-| tr -d '"#')
-RWP_1=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color1' \
-| tr -d '"#')
-RWP_2=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color2' \
-| tr -d '"#')
-RWP_3=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color3' \
-| tr -d '"#')
-RWP_4=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color4' \
-| tr -d '"#')
-RWP_5=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color5' \
-| tr -d '"#')
-RWP_6=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color6' \
-| tr -d '"#')
-RWP_7=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color7' \
-| tr -d '"#')
-RWP_8=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color8' \
-| tr -d '"#')
-RWP_9=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color9' \
-| tr -d '"#')
-RWP_10=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color10' \
-| tr -d '"#')
-RWP_11=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color11' \
-| tr -d '"#')
-RWP_12=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color12' \
-| tr -d '"#')
-RWP_13=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color13' \
-| tr -d '"#')
-RWP_14=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color14' \
-| tr -d '"#')
-RWP_15=$(cat /home/$USER/.cache/rwpspread/rwps_colors.json \
-    | jq '.colors.color15' \
-| tr -d '"#')
+RWP_FG=$(echo ${COLOR_SCHEME} | jq '.foreground' | tr -d '"#')
+RWP_BG=$(echo ${COLOR_SCHEME} | jq '.background' | tr -d '"#')
+RWP_ACT=$(echo ${COLOR_SCHEME} | jq '.colors.color13' | tr -d '"#')
+RWP_NRM=$(echo ${COLOR_SCHEME} | jq '.colors.color3' | tr -d '"#')
 
 # rofi
 CNF_FILE="${ROFI_CONF_FILE}"
@@ -140,7 +83,7 @@ sed -i -r \
 's/^\tbackground.*=.*/\tbackground = "#'"$RWP_BG"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_1"'EE"/' \
+'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_NRM"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
 's/^\thighlight.*=.*/\thighlight = "#'"$RWP_ACT"'"/' \
@@ -169,53 +112,6 @@ sed -i -r \
 sed -i -r \
 's/^foreground\s#.*$/foreground #'"$RWP_FG"'/' \
 "$CNF_FILE"
-sed -i -r \
-'s/^color0\s#.*$/color0 #'"$RWP_0"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color8\s#.*$/color8 #'"$RWP_8"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color1\s#.*$/color1 #'"$RWP_2"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color9\s#.*$/color9 #'"$RWP_9"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color2\s#.*$/color2 #'"$RWP_3"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color10\s#.*$/color10 #'"$RWP_10"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color3\s#.*$/color3 #'"$RWP_4"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color11\s#.*$/color11 #'"$RWP_11"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color4\s#.*$/color4 #'"$RWP_5"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color12\s#.*$/color12 #'"$RWP_12"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color5\s#.*$/color5 #'"$RWP_6"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color13\s#.*$/color13 #'"$RWP_13"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color6\s#.*$/color6 #'"$RWP_7"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color14\s#.*$/color14 #'"$RWP_14"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color7\s#.*$/color7 #'"$RWP_8"'/' \
-"$CNF_FILE"
-sed -i -r \
-'s/^color15\s#.*$/color15 #'"$RWP_15"'/' \
-"$CNF_FILE"
 
-scriptFeedback success "'themed!"
+sleep 1
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " themed!"
