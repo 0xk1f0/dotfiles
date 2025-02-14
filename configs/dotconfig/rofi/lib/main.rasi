@@ -110,7 +110,9 @@ element-text {
 }
 
 prompt {
-    enabled:                false;
+    enabled:                true;
+    text-color:             @FG;
+    background-color:       transparent;
 }
 
 scrollbar {

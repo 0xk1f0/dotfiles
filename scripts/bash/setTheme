@@ -20,21 +20,6 @@ DUNST_CONF_FILE="/home/${USER}/.config/dunst/dunstrc.d/user.conf"
 EWW_CONF_FILE="/home/${USER}/.config/eww/eww.scss"
 KITTY_CONF_FILE="/home/${USER}/.config/kitty/kitty.conf"
 
-# read file
-COLOR_SCHEME=$(cat /home/${USER}/.cache/rwpspread/rwps_colors.json)
-COLOR_SCHEME_HASH=$(b2sum /home/${USER}/.cache/rwpspread/rwps_colors.json | cut -d ' ' -f 1)
-
-if [ -f "/home/${USER}/.cache/.setTheme.b2sum" ]; then
-    if [ $(head -n 1 "/home/${USER}/.cache/.setTheme.b2sum") == ${COLOR_SCHEME_HASH} ]; then
-        printf "[\e[1m\e[92m✓\e[0m]%s\n" " already themed!"
-        exit 0
-    else
-        echo ${COLOR_SCHEME_HASH} > "/home/${USER}/.cache/.setTheme.b2sum"
-    fi
-else
-    echo ${COLOR_SCHEME_HASH} > "/home/${USER}/.cache/.setTheme.b2sum"
-fi
-
 # get colors
 RWP_FG=$(echo ${COLOR_SCHEME} | jq '.foreground' | tr -d '"#')
 RWP_BG=$(echo ${COLOR_SCHEME} | jq '.background' | tr -d '"#')
@@ -113,5 +98,4 @@ sed -i -r \
 's/^foreground\s#.*$/foreground #'"$RWP_FG"'/' \
 "$CNF_FILE"
 
-sleep 1
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " themed!"

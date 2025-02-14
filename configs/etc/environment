@@ -1,3 +1,7 @@
 # vulkan
+HSA_OVERRIDE_GFX_VERSION=10.3.0
 DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1=1
 VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
+QT_QPA_PLATFORMTHEME=qt6ct
+LIBVA_DRIVER_NAME=radeonsi
+VDPAU_DRIVER=radeonsi

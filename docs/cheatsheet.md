@@ -56,10 +56,13 @@ VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.i686.json:/usr/share/vulkan/
 OCL_ICD_VENDORS=/etc/OpenCL/vendors/rusticl.icd
 # force Mesa OpenGL driver e.g. zink, radeonsi, etc.
 MESA_LOADER_DRIVER_OVERRIDE=radeonsi
-# ROCm device fix (rarely needed with newer versions)
+LIBVA_DRIVER_NAME=radeonsi
+VDPAU_DRIVER=radeonsi
+# ROCm device fix
 HSA_OVERRIDE_GFX_VERSION=10.3.0
 # Applications that get fired through systemd f.E. will
 # need this in here because they ignore compositor env vars
+QT_QPA_PLATFORMTHEME=qt6ct
 QT_STYLE_OVERRIDE=kvantum
 ```
 
@@ -75,10 +78,10 @@ paru -S dracut-hook-uefi systemd-boot-pacman-hook
 nano /etc/dracut.conf.d/flags.conf
 > uefi="yes"
 > hostonly="yes"
-> compress="lz4"
-> stdloglvl="3"
+> compress="gzip"
+> stdloglvl="2"
 > show_modules="no"
-> kernel_cmdline="quiet"
+> kernel_cmdline="quiet root=UUID=[UUID]"
 # regenerate
 dracut --regenerate-all --force
 # yeet mkinitcpio
