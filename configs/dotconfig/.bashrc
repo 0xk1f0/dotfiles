@@ -33,13 +33,10 @@ shopt -s cdspell
 shopt -s checkwinsize
 shopt -s histappend
 
-# fix doas completion
-complete -cf doas
-
 # archive extraction
 extr () {
   if [ -z "$1" ] ; then
-    echo "no input"
+    echo "Missing argument"
   elif [ -f "$1" ] ; then
     case $1 in
       *.tar.bz2)   tar xjf "$1" ;;
@@ -59,39 +56,47 @@ extr () {
       *)           echo "'$1': no alias" ;;
     esac
   else
-    echo "'$1': invalid"
+    echo "Invalid argument"
   fi
 }
 
-# to encr-archive
-ncryptArch() {
+# encrypt folder to archive
+gncrypt() {
   if [ -n "$1" ]; then
-    read -esp "Enter Passphrase: " pass
-    tar -czf - $1 | gpg -c --cipher-algo AES256 --s2k-digest-algo SHA512 \
+    read -esp "Enter Passphrase: " p
+    tar -czf - ${1} | gpg -c --cipher-algo AES256 --s2k-digest-algo SHA512 \
     --s2k-count 100000 --no-symkey-cache \
-    --passphrase $pass --batch > $(echo $1 | tr -d '/').tar.gz.gpg
+    --passphrase ${p} --batch > $(basename -s ${1}).tar.gz.gpg
   else
-    echo "No Input"
+    echo "Missing argument"
   fi
 }
 
-# encr-archive decryption
-dcryptArch() {
+# decrypt archive to folder
+gdcrypt() {
   if [ -n "$1" ]; then
-    read -esp "Enter Passphrase: " pass
-    gpg -d --no-symkey-cache --passphrase $pass --batch $1 | tar -xzf -
+    read -esp "Enter Passphrase: " p
+    gpg -d --no-symkey-cache --passphrase ${p} --batch ${1} | tar -xzf -
   else
-    echo "No Input"
+    echo "Missing argument"
   fi
 }
 
-# find file and cd to found dir
-findcd() {
-  found=$(/bin/find . -type f -name "$1" -print -quit);
-  if [ -n "$found" ]; then
-    cd "$(dirname "$found")"
+# cut media to bounds
+ffcut() {
+  if [ -n "$1" ] && [ -n "$2" ] && [ -n "$3" ]; then
+    ffmpeg -i ${1} -ss ${2} -to ${3} -c:v copy -c:a copy "cut_${1}"
   else
-    echo "File not found"
+    echo "Missing arguments"
+  fi
+}
+
+# trim metadata from media
+ffmtrim() {
+  if [ -n "$1" ]; then
+    ffmpeg -i ${1} -map 0 -map_metadata -1 -c copy "trim_${1}"
+  else
+    echo "Missing argument"
   fi
 }
 
