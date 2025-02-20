@@ -1,0 +1,22 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+.hyprland-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    padding: 0 4px;
+
+    .hyprland-workspace-entry {
+        color: $act;
+        margin: 0 2px;
+    }
+
+    .hyprland-current {
+        color: $fg;
+    }
+}

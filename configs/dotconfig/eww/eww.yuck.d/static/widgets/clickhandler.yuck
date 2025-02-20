@@ -1,0 +1,16 @@
+;     __  ___________
+;    / /_<  / __/ __ \      ___ _      ___      __
+;   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+;  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+; /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+;
+
+; WIDGET ;
+
+(defwidget powermenu-clickhandler []
+    (button 
+        :class "powermenu-clickhandler"
+        :onclick "eww close powermenu powermenu-blur"
+        ""
+    )
+)

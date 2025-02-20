@@ -1,0 +1,38 @@
+;     __  ___________
+;    / /_<  / __/ __ \      ___ _      ___      __
+;   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+;  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+; /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+;
+
+; BAR ;
+
+(defwidget left []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "start"
+        :class "left_modules"
+        ; ()
+    )
+)
+
+(defwidget center []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "center"
+        :class "center_modules"
+        ; ()
+    )
+)
+
+(defwidget right []
+	(box
+        :orientation "h"
+        :space-evenly false
+        :halign "end"
+        :class "right_modules"
+        ; ()
+    )
+)

@@ -97,10 +97,9 @@ if choice_menu "Include dotconfigs?"; then
     --exclude 'cheatsheets' \
     --exclude 'bookmarks' \
     --exclude 'user.conf' \
-    --exclude 'eww.yuck' \
-    --exclude 'eww.scss' \
-    --exclude 'hyprland.conf' \
-    --exclude 'config.rasi' \
+    --exclude 'user.yuck' \
+    --exclude 'user.scss' \
+    --exclude 'user.rasi' \
     "${DOTFILES_LIST[@]}" "${DOTFILES_EXT}"/
     p_echo success "Done"
 fi

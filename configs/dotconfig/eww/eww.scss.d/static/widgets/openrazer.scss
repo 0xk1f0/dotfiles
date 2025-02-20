@@ -1,0 +1,22 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+.openrazer-mouse-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    padding: 0 4px;
+
+    .openrazer-mouse-text {
+        color: $fg;
+        margin-left: 2px;
+    }
+    .openrazer-mouse-icon {
+        color: $fg;
+        margin-right: 2px;
+    }
+}

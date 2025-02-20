@@ -1,0 +1,36 @@
+;     __  ___________
+;    / /_<  / __/ __ \      ___ _      ___      __
+;   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+;  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+; /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+;
+
+; VARS ;
+
+(defpoll ETHER_CONNECTIVITY :interval "5s"
+    "/home/$USER/.config/scripts/network.sh connectivity"
+)
+(defpoll ETHER_STATE :interval "5s"
+    "/home/$USER/.config/scripts/network.sh ether-state"
+)
+
+; WIDGET ;
+
+(defwidget ether-widget []
+    (box
+        :class "ether-widget"
+        :space-evenly "false"
+        :halign "fill"
+        :orientation "h"
+        (label 
+            :xalign 0
+            :class "ether-icon"
+            :text "${ETHER_STATE == 'connected' ? '' : ''}"
+        )
+        (label 
+            :xalign 1
+            :class "ether-text"
+            :text "${ETHER_CONNECTIVITY == 'full' ? 'online' : 'offline'}"
+        )
+   )
+)

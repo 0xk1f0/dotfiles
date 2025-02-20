@@ -1,0 +1,34 @@
+;     __  ___________
+;    / /_<  / __/ __ \      ___ _      ___      __
+;   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+;  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+; /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+;
+
+(include "eww.yuck.d/static/widgets/datetime.yuck")
+(include "eww.yuck.d/static/widgets/battery.yuck")
+(include "eww.yuck.d/static/widgets/wifi.yuck")
+(include "eww.yuck.d/static/widgets/hyprland.yuck")
+(include "eww.yuck.d/static/widgets/systray.yuck")
+(include "eww.yuck.d/static/widgets/openrazer.yuck")
+(include "eww.yuck.d/static/widgets/ether.yuck")
+
+(defwindow topbar
+    :monitor 0
+    :geometry (geometry
+        :x "0"
+        :y "0"
+        :width "100%"
+        :height "26px"
+        :anchor "top center")
+    :stacking "bottom"
+    :exclusive true
+    :focusable false
+    (box
+        :class "bar_class"
+        :orientation "h"
+        (left)
+        (center)
+        (right)
+    )
+)

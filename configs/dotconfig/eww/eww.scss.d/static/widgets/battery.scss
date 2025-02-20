@@ -1,0 +1,26 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+.battery-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    padding: 0 4px;
+
+    .battery-text {
+        color: $fg;
+        margin-left: 2px;
+    }
+    .battery-icon-normal {
+        color: $fg;
+        margin-right: 2px;
+    }
+    .battery-icon-charging {
+        color: $act;
+        margin-right: 2px;
+    }
+}

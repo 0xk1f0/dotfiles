@@ -1,0 +1,20 @@
+;     __  ___________
+;    / /_<  / __/ __ \      ___ _      ___      __
+;   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+;  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+; /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+;
+
+; WIDGET ;
+
+(defwidget systray-widget []
+    (systray
+        :class "systray-widget"
+        :halign "fill"
+        :orientation "h"
+        :icon-size 18
+        :prepend-new true
+        :space-evenly true
+        :spacing 4
+   )
+)

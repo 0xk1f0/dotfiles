@@ -1,0 +1,26 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+@import "./widgets/clickhandler.scss";
+
+.powermenu {
+    background-color: rgba($bg, 0.0);
+    margin: 0px;
+    padding: 0px;
+    font-family: "FontAwesome";
+    font-size: 80px;
+    button {
+        margin: 0px;
+        padding: 0px;
+        border-radius: 15px;
+        transition: all ease .2s;
+        color: $nrm;
+        &:hover {
+            color: $act;
+        }
+    }
+}

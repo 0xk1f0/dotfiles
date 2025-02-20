@@ -1,0 +1,22 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+.ether-widget {
+    border-radius: 0px;
+    font-family: "Open Sans";
+    font-weight: bold;
+    padding: 0 4px;
+
+    .ether-text {
+        color: $fg;
+        margin-left: 2px;
+    }
+    .ether-icon {
+        color: $fg;
+        margin-right: 2px;
+    }
+}

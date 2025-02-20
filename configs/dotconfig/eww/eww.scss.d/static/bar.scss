@@ -1,0 +1,30 @@
+//     __  ___________
+//    / /_<  / __/ __ \      ___ _      ___      __
+//   / //_/ / /_/ / / /_____/ _ \ | /| / / | /| / /
+//  / ,< / / __/ /_/ /_____/  __/ |/ |/ /| |/ |/ /
+// /_/|_/_/_/  \____/      \___/|__/|__/ |__/|__/
+//
+
+@import "./widgets/openrazer.scss";
+@import "./widgets/battery.scss";
+@import "./widgets/datetime.scss";
+@import "./widgets/ether.scss";
+@import "./widgets/hyprland.scss";
+@import "./widgets/systray.scss";
+@import "./widgets/wifi.scss";
+
+.bar_class {
+    background-color: rgba($bg, 0.85);
+}
+
+.center_modules {
+    margin: 0 4px;
+}
+
+.right_modules {
+    margin: 0 4px;
+}
+
+.left_modules {
+    margin: 0 4px;
+}
