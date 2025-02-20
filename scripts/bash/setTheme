@@ -21,10 +21,12 @@ EWW_CONF_FILE="/home/${USER}/.config/eww/eww.scss"
 KITTY_CONF_FILE="/home/${USER}/.config/kitty/kitty.conf"
 
 # get colors
-RWP_FG=$(echo ${COLOR_SCHEME} | jq '.foreground' | tr -d '"#')
-RWP_BG=$(echo ${COLOR_SCHEME} | jq '.background' | tr -d '"#')
-RWP_ACT=$(echo ${COLOR_SCHEME} | jq '.colors.color13' | tr -d '"#')
-RWP_NRM=$(echo ${COLOR_SCHEME} | jq '.colors.color3' | tr -d '"#')
+COLOR_SCHEME=$(cat "/home/${USER}/.cache/rwpspread/rwps_colors.json")
+RWP_FG=$(echo ${COLOR_SCHEME} | jq '.material.dark.onbackground' | tr -d '"#')
+RWP_BG=$(echo ${COLOR_SCHEME} | jq '.material.dark.background' | tr -d '"#')
+RWP_ACT=$(echo ${COLOR_SCHEME} | jq '.material.dark.primary' | tr -d '"#')
+RWP_NRM=$(echo ${COLOR_SCHEME} | jq '.material.dark.inverseprimary' | tr -d '"#')
+RWP_BRD=$(echo ${COLOR_SCHEME} | jq '.material.dark.outline' | tr -d '"#')
 
 # rofi
 CNF_FILE="${ROFI_CONF_FILE}"
@@ -58,6 +60,9 @@ sed -i -r \
 sed -i -r \
 's/^\$ACT.*/$ACT=0xFF'"$RWP_ACT"'/' \
 "$CNF_FILE"
+sed -i -r \
+'s/^\$BRD.*/$BRD=0xFF'"$RWP_BRD"'/' \
+"$CNF_FILE"
 
 # dunst
 CNF_FILE="${DUNST_CONF_FILE}"
@@ -68,7 +73,7 @@ sed -i -r \
 's/^\tbackground.*=.*/\tbackground = "#'"$RWP_BG"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_NRM"'EE"/' \
+'s/^\tframe_color.*=.*/\tframe_color = "#'"$RWP_BRD"'EE"/' \
 "$CNF_FILE"
 sed -i -r \
 's/^\thighlight.*=.*/\thighlight = "#'"$RWP_ACT"'"/' \

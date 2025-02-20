@@ -101,8 +101,6 @@ if choice_menu "Include dotconfigs?"; then
     --exclude 'eww.scss' \
     --exclude 'hyprland.conf' \
     --exclude 'config.rasi' \
-    --exclude 'kitty-colors.conf' \
-    --exclude 'alacritty-colors.toml' \
     "${DOTFILES_LIST[@]}" "${DOTFILES_EXT}"/
     p_echo success "Done"
 fi
