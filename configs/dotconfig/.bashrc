@@ -137,7 +137,7 @@ alias gtcl='git clone'
 
 # more aliases
 alias whatislove='echo "baby don\`t hurt me, no more"'
-alias identme='echo -e "You are:\n$(curl -s ident.me)"'
+alias identme='echo -e "You are:\n$(curl -s a.ident.me)"'
 alias ybi2fa=\
 'ykman oath accounts list | fzf -e | \
 xargs -rod "\n" ykman oath accounts code | \
