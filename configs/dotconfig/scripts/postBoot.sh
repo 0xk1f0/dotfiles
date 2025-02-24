@@ -5,8 +5,8 @@ set -uo pipefail
 
 # notify alert user
 alert() {
-    if command -v dunstify >> /dev/null; then
-        dunstify \
+    if command -v notify-send >> /dev/null; then
+        notify-send \
         -a "bootHi" \
         -u low \
         "Welcome ${USER}!" "Running: $(uname -r)"

@@ -19,8 +19,8 @@ if ! pgrep -x slurp && ! pgrep -x grim; then
         SCREEN_STATUS="Nothing Captured!"
     fi
     # notify user
-    if command -v dunstify >> /dev/null; then
-        dunstify \
+    if command -v notify-send >> /dev/null; then
+        notify-send \
         -a "tkScr" \
         -r 44188 \
         -u low \

@@ -17,16 +17,16 @@ doConvert() {
 
 # alert user
 alert() {
-    if command -v dunstify >> /dev/null; then
+    if command -v notify-send >> /dev/null; then
         if [ "${LEVEL}" -eq 0 ]; then
-            dunstify \
+            notify-send \
             -a "chgVol" \
             -r 66199 \
             -u low \
             -i "$ICON" \
             "Volume" "$STATUS"
         else
-            dunstify \
+            notify-send \
             -a "chgVol" \
             -r 66199 \
             -u low \

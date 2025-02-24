@@ -29,8 +29,8 @@ esac
 PERCENT_BRIGHTNESS=$(brightnessctl i | grep "Current" | cut -d "(" -f 2 | tr -d ")")
 
 # alert user
-if command -v dunstify >> /dev/null; then
-    dunstify \
+if command -v notify-send >> /dev/null; then
+    notify-send \
     -a "chgBrt" \
     -r 55177 \
     -u low \
