@@ -103,4 +103,5 @@ sed -i -r \
 's/^foreground\s#.*$/foreground #'"$RWP_FG"'/' \
 "$CNF_FILE"
 
-printf "[\e[1m\e[92m✓\e[0m]%s\n" " themed!"
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
+exit 0

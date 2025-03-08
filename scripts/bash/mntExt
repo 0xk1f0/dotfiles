@@ -151,7 +151,7 @@ with '$FS' to '$MOUNTPOINT\'"
 if command -v sudo >> /dev/null; then
     SU_SYS="sudo"
 else
-    SU_SYS="/bin/doas"
+    SU_SYS="doas"
 fi
 
 # check for root run

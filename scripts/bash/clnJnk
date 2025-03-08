@@ -3,9 +3,6 @@
 # "bash strict mode"
 set -uo pipefail
 
-# get script name
-_NAME=$(echo $0 | rev | cut -d '/' -f 1 | rev)
-
 # modified version of https://askubuntu.com/a/1386907
 chooseMenu() {
     local prompt="$1" outvar="$2"
@@ -13,7 +10,7 @@ chooseMenu() {
     shift
     local options=("$@") cur=0 count=${#options[@]} index=0
     local esc=$(echo -en "\e")
-    scriptFeedback prompt "$prompt"
+    printf "[\e[1m\e[93m?\e[0m]%s\n" " $prompt"
     while true
     do
         index=0
@@ -41,116 +38,29 @@ chooseMenu() {
     printf -v $outvar "${options[$cur]}"
 }
 
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
-        ;;
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-        proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-        ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-        ;;
-    esac
-}
-
 # check how full the caches are
 getCacheSpace() {
-    PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
-    scriptFeedback proc "Pacman cache is ${PACMAN_CACHE}"
-    PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
-    scriptFeedback proc "Paru cache is ${PARU_CACHE}"
-    PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 2> /dev/null)
-    scriptFeedback proc "Pip cache is ${PIP_CACHE}"
-    PACMAN_ORPHANS=$(pacman -Qtdq | wc -l 2> /dev/null)
-    scriptFeedback proc "Currently ${PACMAN_ORPHANS} orphan packages"
-}
-
-# clean pacman cache
-cleanPacman() {
-    if
-    $SU_SYS pacman -Scc --noconfirm >> /dev/null \
-    && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
-    then
-        scriptFeedback success "Pacman cache cleared!"
-    else
-        scriptFeedback error "Some error occured!"
-    fi
-}
-
-# clean paru cache
-cleanParu() {
-    if
-    rm -rf /home/$_USER/.cache/paru/clone/*;
-    then
-        scriptFeedback success "Paru cache cleared!"
-    else
-        scriptFeedback error "Some error occured!"
-    fi
-}
-
-# clean pip cache
-cleanPip() {
-    if
-    rm -rf /home/$_USER/.cache/pip/*;
-    then
-        scriptFeedback success "Pip cache cleared!"
-    else
-        scriptFeedback error "Some error occured!"
-    fi
-}
-
-# clean orphan packages
-cleanOrph() {
-    if [ "$(pacman -Qtdq | wc -l)" == "0" ]; then
-        scriptFeedback success "No orphans to remove!"
-    else
-        if
-        $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
-        then
-            scriptFeedback success "Obsolete packages removed!"
-        else
-            scriptFeedback error "Some error occured!"
-        fi
-    fi
-}
-
-# clean flatpak unused
-cleanFlatpak() {
-    if [ "$(flatpak remove --unused | tail -n 1)" == "Nothing unused to uninstall" ]; then
-        scriptFeedback success "No flatpaks to remove!"
-    else
-        if
-        flatpak remove --unused --noninteractive >> /dev/null;
-        then
-            scriptFeedback success "Obsolete Flatpaks removed!"
-        else
-            scriptFeedback error "Some error occured!"
-        fi
-    fi
+    PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+    printf "\e[1m\e[93m → \e[0m%s\n" " pacman: ${PACMAN_CACHE}"
+    PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+    printf "\e[1m\e[93m → \e[0m%s\n" " paru: ${PARU_CACHE}"
+    PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+    printf "\e[1m\e[93m → \e[0m%s\n" " pip: ${PIP_CACHE}"
 }
 
 # detect su system
 if command -v sudo >> /dev/null; then
     SU_SYS="sudo"
 else
-    SU_SYS="/bin/doas"
+    SU_SYS="doas"
 fi
 
 # check for root run and react accordingly
 if [ "$EUID" -eq 0 ]; then
     SU_SYS=""
     if [ -v SUDO_USER ]; then
-        scriptFeedback success "Root Detected for $SUDO_USER"
         _USER=$SUDO_USER
     else
-        scriptFeedback success "Root Detected for $DOAS_USER"
         _USER=$DOAS_USER
     fi
 else
@@ -158,11 +68,11 @@ else
 fi
 
 # get space occupation
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Checking Caches.."
 getCacheSpace
 
 # start selection here
 selections=(
-    "all"
     "pacman"
     "paru"
     "pip"
@@ -172,38 +82,41 @@ selections=(
 )
 chooseMenu "What to clean?" selected_choice ${selections[@]}
 
+_ERROR=0
+
 case $selected_choice in
-    "all")
-        scriptFeedback proc "Clearing all caches..."
-        cleanPacman
-        cleanParu
-        cleanPip
-        cleanOrph
-        cleanFlatpak
-    ;;
     "pacman")
-        scriptFeedback proc "Clearing pacman cache..."
-        cleanPacman
+        $SU_SYS pacman -Scc --noconfirm >> /dev/null \
+        && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
+        _ERROR=$?
     ;;
     "paru")
-        scriptFeedback proc "Clearing paru cache..."
-        cleanParu
+        rm -rf /home/$_USER/.cache/paru/clone/*;
+        _ERROR=$?
     ;;
     "pip")
-        scriptFeedback proc "Clearing pip cache..."
-        cleanPip
+        rm -rf /home/$_USER/.cache/pip/*;
+        _ERROR=$?
     ;;
     "orphans")
-        scriptFeedback proc "Removing orphan packages..."
-        cleanOrph
+        $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
+        _ERROR=$?
     ;;
     "flatpak")
-        scriptFeedback proc "Removing unused Flatpaks..."
-        cleanFlatpak
+        flatpak remove --unused --noninteractive >> /dev/null;
+        _ERROR=$?
     ;;
     "none")
+        printf "[\e[1m\e[92m✓\e[0m]%s\n" " Goodbye"
         exit 0
     ;;
 esac
-scriptFeedback success "All Done!"
-exit 0
+
+if [ $_ERROR -eq 0 ]; then
+    printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
+    getCacheSpace
+    exit 0
+else
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Error while cleaning"
+    exit 1
+fi

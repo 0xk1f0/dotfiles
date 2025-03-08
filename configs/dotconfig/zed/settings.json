@@ -45,19 +45,5 @@
         "mode": "dark",
         "light": "Ayu Light",
         "dark": "Catppuccin Mocha"
-    },
-    "languages": {
-        "Python": {
-            "formatter": { "language_server": { "name": "ruff" } }
-        }
-    },
-    "lsp": {
-        "pyright": {
-            "settings": {
-                "python": {
-                    "pythonPath": ".venv/bin/python"
-                }
-            }
-        }
     }
 }

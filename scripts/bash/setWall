@@ -3,33 +3,21 @@
 # "bash strict mode"
 set -uo pipefail
 
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-        ;;
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-    esac
-}
-
 # dont run as root
 if [ "$EUID" -eq 0 ]; then
-    scriptFeedback error "run as user!"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " run as user!"
 fi
 
 if [ $# -eq 0 ]; then
-    scriptFeedback error "specify a wallpaper"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " specify a wallpaper"
 else
     if file "$1" | /bin/grep "image" > /dev/null; then
-        TO_SET=$(readlink -f "$1")
-        ln -sf "$TO_SET" "/home/${USER}/.wallpaper"
-        scriptFeedback success "'walled!"
+        TO_SET=$(readlink -f "${1}")
+        ln -sf "${TO_SET}" "/home/${USER}/.wallpaper"
+        printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
         exit 0
+    else
+        printf "[\e[1m\e[91m✗\e[0m]%s\n" " ${1} is invalid"
+        exit 1
     fi
 fi
-
-scriptFeedback error "$1 is invalid"

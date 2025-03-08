@@ -3,33 +3,19 @@
 # "bash strict mode"
 set -uo pipefail
 
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-        proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-        ;;
-    esac
-}
-
 # detect su system
 if command -v sudo >> /dev/null; then
     SU_SYS="sudo"
 else
-    SU_SYS="/bin/doas"
+    SU_SYS="doas"
 fi
 
 # check for root run and react accordingly
 if [ "$EUID" -eq 0 ]; then
     SU_SYS=""
     if [ -v SUDO_USER ]; then
-        scriptFeedback success "Root Detected for $SUDO_USER"
         _USER=$SUDO_USER
     else
-        scriptFeedback success "Root Detected for $DOAS_USER"
         _USER=$DOAS_USER
     fi
 else
@@ -41,43 +27,43 @@ USER_SHARE="/home/$_USER/.local/share"
 USER_HOME="/home/$_USER"
 
 # ensure home and alt path are available
-scriptFeedback proc "Checking folder availability.."
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Checking folder availability.."
 if [ ! -d "${USER_SHARE}/themes" ]; then
-    scriptFeedback proc "Creating ${USER_SHARE}/themes.."
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_SHARE}/themes.."
     mkdir -p "${USER_SHARE}/themes"
 fi
 if [ ! -d "${USER_SHARE}/icons" ]; then
-    scriptFeedback proc "Creating ${USER_SHARE}/icons.."
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_SHARE}/icons.."
     mkdir -p "${USER_SHARE}/icons"
 fi
 if [ ! -d "${USER_HOME}/.themes" ]; then
-    scriptFeedback proc "Creating ${USER_HOME}/.themes.."
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_HOME}/.themes.."
     mkdir -p "${USER_HOME}/.themes"
 fi
 if [ ! -d "${USER_HOME}/.icons" ]; then
-    scriptFeedback proc "Creating ${USER_HOME}/.icons.."
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_HOME}/.icons.."
     mkdir -p "${USER_HOME}/.icons"
 fi
-scriptFeedback success "Folders OK"
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " Folders OK"
 
 # copy themes to home and alt location
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_THEMES} current themes.."
 NUM_THEMES=$(ls -la "${GLOBAL_THEME_PATH}/themes/" | wc -l)
-scriptFeedback proc "Copying ${NUM_THEMES} current themes.."
 $SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_SHARE}/themes"
 $SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_HOME}/.themes"
 
 # copy icons to home and alt location
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_ICONS} current icons.."
 NUM_ICONS=$(ls -la "${GLOBAL_THEME_PATH}/icons/" | wc -l)
-scriptFeedback proc "Copying ${NUM_ICONS} current icons.."
 $SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_SHARE}/icons"
 $SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
 
 # set permissions back to user
-scriptFeedback proc "Fixing permissions.."
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Fixing permissions.."
 $SU_SYS chown -R $_USER:$_USER "${USER_SHARE}/themes"
 $SU_SYS chown -R $_USER:$_USER "${USER_SHARE}/icons"
 $SU_SYS chown -R $_USER:$_USER "${USER_HOME}/.themes"
 $SU_SYS chown -R $_USER:$_USER "${USER_HOME}/.icons"
 
-scriptFeedback success "All Done!"
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

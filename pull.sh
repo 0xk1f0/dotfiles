@@ -38,13 +38,13 @@ DOTFILES_LIST=(
 BASH_LIST=(
     "${BASH_EXT}/mntExt"
     "${BASH_EXT}/mntSMB"
-    "${BASH_EXT}/sharePwnagotchy"
     "${BASH_EXT}/clnJnk"
     "${BASH_EXT}/setWall"
     "${BASH_EXT}/setTheme"
     "${BASH_EXT}/symlinkElectron"
     "${BASH_EXT}/rmWineAssocs"
     "${BASH_EXT}/syncThemes"
+    "${BASH_EXT}/spicetifyRefresh"
 )
 
 SYSTEMD_LIST=(
