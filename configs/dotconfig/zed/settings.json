@@ -5,9 +5,14 @@
 // /_/|_/_/_/  \____/      /___/\___/\__,_/
 
 {
+    "theme": {
+        "mode": "dark",
+        "light": "Catppuccin Mocha",
+        "dark": "Catppuccin Mocha"
+    },
     "icon_theme": "Catppuccin Mocha",
     "features": {
-        "inline_completion_provider": "none"
+        "edit_prediction_provider": "none"
     },
     "base_keymap": "VSCode",
     "autosave": {
@@ -15,17 +20,27 @@
             "milliseconds": 1000
         }
     },
+    "format_on_save": "off",
+    "use_autoclose": true,
+    "hard_tabs": false,
     "tab_size": 4,
-    "ui_font_size": 17,
     "buffer_font_size": 17.0,
+    "buffer_font_weight": 400,
     "buffer_font_family": "Monaspace Neon",
     "buffer_font_features": {
         "liga": true,
         "calt": true
     },
-    "ui_font_family": "OpenSans-Regular",
+    "ui_font_size": 17.0,
+    "ui_font_family": "Open Sans",
+    "ui_font_weight": 300,
+    "ui_font_features": {
+        "liga": true,
+        "calt": true
+    },
     "terminal": {
         "font_family": "Monaspace Neon",
+        "font_size": 17.0,
         "font_features": {
             "liga": true,
             "calt": true
@@ -36,14 +51,11 @@
         "coloring": "indent_aware",
         "background_coloring": "disabled"
     },
-    "hour_format": "hour24",
     "telemetry": {
         "diagnostics": false,
         "metrics": true
     },
-    "theme": {
-        "mode": "dark",
-        "light": "Ayu Light",
-        "dark": "Catppuccin Mocha"
+    "journal": {
+        "hour_format": "hour24"
     }
 }
