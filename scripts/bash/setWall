@@ -4,8 +4,8 @@
 set -uo pipefail
 
 # dont run as root
-if [ "$EUID" -eq 0 ]; then
-    printf "[\e[1m\e[91m✗\e[0m]%s\n" " run as user!"
+if [ $EUID -eq 0 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
 if [ $# -eq 0 ]; then

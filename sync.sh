@@ -3,6 +3,16 @@
 # bash strict
 set -uo pipefail
 
+# tweaked fzf chooser
+fzf_choose() {
+    local _CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
+    if [ "${_CHOICE}" == "yes" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # shortcuts
 BASH_EXT="./scripts/bash"
 SYSTEMD_EXT="./scripts/systemd"
@@ -46,58 +56,28 @@ SYSTEMD_LIST=(
     "${SYSTEMD_EXT}/gamescope.service"
 )
 
-# give user feedback
-p_echo() {
-    case $1 in
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-        proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
-        ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-        ;;
-    esac
-}
-
-choice_menu() {
-    CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
-    if [ "${CHOICE}" == "yes" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
 # dont run as root
 if [ $EUID -eq 0 ]; then
-    p_echo error "run as user!"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
-# check if fzf is available
-if ! command -v fzf >> /dev/null; then
-    p_echo error "needs 'fzf' installed!"
-fi
-
-if choice_menu "Perform Sync?" && choice_menu "Are you sure?"; then
-    p_echo proc "Syncing combined configs"
+if fzf_choose "Perform Sync?" && fzf_choose "Are you sure?"; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing combined configs.."
     /bin/rsync -aq \
     "${DOTFILES_LIST[@]}" "/home/${USER}/.config/"
     /bin/rsync -aq \
     "${DOTFILES_EXT}"/.bashrc "${DOTFILES_EXT}"/.inputrc \
     "${DOTFILES_EXT}"/.wayinitrc \
     "/home/${USER}/"
-    p_echo proc "Syncing bash scripts"
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing bash scripts.."
     /bin/rsync -aq \
     "${BASH_LIST[@]}" "/home/${USER}/.local/bin/"
-    p_echo proc "Syncing systemd units"
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing systemd units.."
     /bin/rsync -aq \
     "${SYSTEMD_LIST[@]}" "/home/${USER}/.config/systemd/user/"
-    p_echo success "Done"
 else
-    p_echo error "Aborted"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Aborted"
 fi
 
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

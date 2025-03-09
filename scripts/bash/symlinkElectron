@@ -3,6 +3,11 @@
 # "bash strict mode"
 set -uo pipefail
 
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
+fi
+
 # execute a command for each electron version
 while IFS= read -r line; do
     # symlink to main electron flags file

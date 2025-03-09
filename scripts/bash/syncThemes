@@ -3,15 +3,8 @@
 # "bash strict mode"
 set -uo pipefail
 
-# detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
-else
-    SU_SYS="doas"
-fi
-
 # check for root run and react accordingly
-if [ "$EUID" -eq 0 ]; then
+if [ $EUID -eq 0 ]; then
     SU_SYS=""
     if [ -v SUDO_USER ]; then
         _USER=$SUDO_USER
@@ -20,6 +13,11 @@ if [ "$EUID" -eq 0 ]; then
     fi
 else
     _USER=$USER
+    if command -v sudo >> /dev/null; then
+        SU_SYS="sudo"
+    else
+        SU_SYS="doas"
+    fi
 fi
 
 GLOBAL_THEME_PATH="/usr/share"

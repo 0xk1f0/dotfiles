@@ -6,6 +6,11 @@
 # "bash strict mode"
 set -uo pipefail
 
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
+fi
+
 # unregister existing Wine file associations
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Unregistering existing Associations.."
 /bin/rm -f ~/.local/share/applications/wine-extension*.desktop

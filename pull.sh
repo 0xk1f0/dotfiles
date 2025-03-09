@@ -3,6 +3,16 @@
 # bash strict
 set -uo pipefail
 
+# tweaked fzf chooser
+fzf_choose() {
+    local _CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
+    if [ "${_CHOICE}" == "yes" ]; then
+        return 0
+    else
+        return 1
+    fi
+}
+
 # shortcuts
 BASH_EXT="/home/${USER}/.local/bin"
 SYSTEMD_EXT="/home/${USER}/.config/systemd/user/"
@@ -51,46 +61,13 @@ SYSTEMD_LIST=(
     "${SYSTEMD_EXT}/gamescope.service"
 )
 
-# give user feedback
-p_echo() {
-    case $1 in
-        prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
-        ;;
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-        ;;
-        proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ".." " $2"
-        ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-        ;;
-    esac
-}
-
-choice_menu() {
-    CHOICE=$(echo -e "no\nyes" | fzf --prompt="${1}")
-    if [ "${CHOICE}" == "yes" ]; then
-        return 0
-    else
-        return 1
-    fi
-}
-
 # dont run as root
 if [ $EUID -eq 0 ]; then
-    p_echo error "run as user!"
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
-# check if fzf is available
-if ! command -v fzf >> /dev/null; then
-    p_echo error "needs 'fzf' installed!"
-fi
-
-if choice_menu "Include dotconfigs?"; then
-    p_echo proc "Syncing configs"
+if fzf_choose "Include dotconfigs?"; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing configs.."
     /bin/rsync -aq \
     --delete \
     --exclude '*.cbor' \
@@ -101,23 +78,21 @@ if choice_menu "Include dotconfigs?"; then
     --exclude 'user.scss' \
     --exclude 'user.rasi' \
     "${DOTFILES_LIST[@]}" "${DOTFILES_EXT}"/
-    p_echo success "Done"
 fi
 
-if choice_menu "Include bash scripts?"; then
-    p_echo proc "Syncing bash scripts"
+if fzf_choose "Include bash scripts?"; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing bash scripts.."
     /bin/rsync -aq \
     --delete \
     "${BASH_LIST[@]}" "./scripts/bash/"
-    p_echo success "Done"
 fi
 
-if choice_menu "Include systemd user units?"; then
-    p_echo proc "Syncing systemd units"
+if fzf_choose "Include systemd user units?"; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Syncing systemd units.."
     /bin/rsync -aq \
     --delete \
     "${SYSTEMD_LIST[@]}" "./scripts/systemd/"
-    p_echo success "Done"
 fi
 
+printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

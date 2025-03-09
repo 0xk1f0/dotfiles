@@ -3,117 +3,68 @@
 # "bash strict mode"
 set -uo pipefail
 
-# modified version of https://askubuntu.com/a/1386907
-chooseMenu() {
-    local prompt="$1" outvar="$2"
-    shift
-    shift
-    local options=("$@") cur=0 count=${#options[@]} index=0
-    local esc=$(echo -en "\e")
-    scriptFeedback prompt "$prompt"
-    while true
-    do
-        index=0
-        for o in "${options[@]}"
-        do
-            local spc=""
-            if [ $isDrivePrompt = true ]; then
-                spc=" ($(/bin/lsblk -l | /bin/grep "$o" | tr -s ' ' ' ' \
-                | cut -d ' ' -f 4))"
-            fi
-            if [ "$index" == "$cur" ]; then
-                echo -e "> \e[1m\e[92m$o\e[0m\e[3m$spc\e[0m"
-            else
-                echo -e "  \e[90m$o\e[3m$spc\e[0m"
-            fi
-            index=$(( $index + 1 ))
-        done
-        read -s -n3 key
-        if [[ $key == "$esc[A" ]]
-        then cur=$(( $cur - 1 ))
-            [ "$cur" -lt 0 ] && cur=0
-        elif [[ $key == "$esc[B" ]]
-        then cur=$(( $cur + 1 ))
-            [ "$cur" -ge $count ] && cur=$(( $count - 1 ))
-        elif [[ $key == "" ]]
-        then break
-        fi
-        echo -en "\e[${count}A"
-    done
-    printf -v $outvar "${options[$cur]}"
-}
-
-# give user feedback
-scriptFeedback() {
-    case $1 in
-        prompt)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" "?" " $2"
-            ;;
-        error)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "1" "✗" " $2"
-            exit 1
-            ;;
-        success)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "2" "✓" " $2"
-            ;;
-        proc)
-            printf "[\e[1m\e[9%sm%s\e[0m]%s\n" "3" ":" " $2"
-            ;;
-    esac
+# tweaked fzf chooser
+fzf_choose() {
+    local choices=("$@")
+    local prompt="${choices[-2]}"
+    local output="${choices[-1]}"
+    unset 'choices[-1]' && unset 'choices[-1]'
+    printf -v $output \
+    "$(printf "%s\n" "${choices[@]}" \
+    | fzf --multi --prompt="$prompt > ")"
 }
 
 # drive chooser
-chooseDrive() {
-    adj_selections=""
-    for d in $FETCHDRIVES; do
-        mountStat=$(lsblk -l | grep "$d" | tr -s ' ' ' ' \
+choose_drive() {
+    FETCHDRIVES=$(lsblk -l | /bin/grep -E \
+    'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' \
+    | tr -s ' ' ' ' | cut -d ' ' -f 1)
+    local _OPTIONS=""
+    for d in ${FETCHDRIVES}; do
+        mountStat=$(lsblk -l | /bin/grep "$d" | tr -s ' ' ' ' \
         | cut -d ' ' -f 7)
         if [ -z "$mountStat" ]; then
-            adj_selections="$adj_selections""$d "
+            _OPTIONS="${_OPTIONS}""${d} "
         fi
     done
-    if [ -z "$adj_selections" ]; then
-        scriptFeedback proc "No mountable drives found!"
+    if [ -z "${_OPTIONS}" ]; then
+        printf "[\e[1m\e[92m✓\e[0m]%s\n" " No mountable drives"
         exit 0
     else
-        isDrivePrompt=true
-        chooseMenu "What Drive to mount?" \
-        selected_choice ${adj_selections[@]}
-        DRIVE=$selected_choice
-        isDrivePrompt=false
+        fzf_choose "${_OPTIONS[@]}" \
+        "What Drive to mount?" DRIVE
     fi
 }
 
 # fs chooser
-chooseFS() {
-    selections=(
+choose_fs() {
+    local _OPTIONS=(
         "auto"
         "ntfs3"
         "ext4"
-        "xfs"
         "vfat"
     )
-    chooseMenu "What filesystem to mount with?" \
-    selected_choice ${selections[@]}
-    FS=$selected_choice
+    fzf_choose "${_OPTIONS[@]}" \
+    "What filesystem to mount with?" FS
 }
 
 # unmount mountpoint if user wants
-handleUnmount() {
-    selections=(
+handle_unmount() {
+    local _OPTIONS=(
         "no"
         "yes"
     )
-    chooseMenu "Mountpoint already occupied, unmount?" \
-    selected_choice ${selections[@]}
-    if [ "$selected_choice" == "yes" ]; then
+    fzf_choose "${_OPTIONS[@]}" \
+    "Mountpoint already occupied, unmount?" UMOUNT_CHOICE
+    if [ "${UMOUNT_CHOICE}" == "yes" ]; then
         if 
-        $SU_SYS /bin/umount -l "$MOUNTPOINT"; 
+        $SU_SYS umount -l "${MOUNTPOINT}"; 
         then
-            scriptFeedback success "Successfully unmounted!"
+            printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
         else
-            scriptFeedback error "Some error occured!"
+            printf "[\e[1m\e[91m✗\e[0m]%s\n" " Unmount error"
+            exit 1
         fi
     else
         exit 0
@@ -121,25 +72,24 @@ handleUnmount() {
 }
 
 # mount drive after selections
-handleMount() {
-    DRIVESPACE=$(lsblk -l | grep "$DRIVE" | tr -s ' ' ' ' \
-    | cut -d ' ' -f 4)
-    DRIVE="/dev/""$DRIVE"
-    scriptFeedback proc "Mounting '$DRIVE' ($DRIVESPACE) \
-with '$FS' to '$MOUNTPOINT\'"
-    selections=(
+handle_mount() {
+    DRIVESPACE=$(lsblk -l | /bin/grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" \
+    " Mounting '/dev/${DRIVE}' (${DRIVESPACE}) with '${FS}' to '${MOUNTPOINT}'"
+    local _OPTIONS=(
         "no"
         "yes"
     )
-    chooseMenu "Correct?" selected_choice ${selections[@]}
-    if [ "$selected_choice" == "yes" ]; then
+    fzf_choose "${_OPTIONS[@]}" "Correct?" MOUNT_CHOICE
+    if [ "${MOUNT_CHOICE}" == "yes" ]; then
         if
-        $SU_SYS /bin/mount -t "$FS" "$DRIVE" "$MOUNTPOINT";
+        $SU_SYS mount -t "${FS}" "/dev/${DRIVE}" "${MOUNTPOINT}";
         then
-            scriptFeedback success "Successfully mounted!"
+            printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
         else
-            scriptFeedback error "Some error occured!"
+            printf "[\e[1m\e[91m✗\e[0m]%s\n" " Mount error"
+            exit 1
         fi
         
     else
@@ -148,38 +98,27 @@ with '$FS' to '$MOUNTPOINT\'"
 }
 
 # detect su system
-if command -v sudo >> /dev/null; then
-    SU_SYS="sudo"
-else
-    SU_SYS="doas"
-fi
-
-# check for root run
-if [ "$EUID" -eq 0 ]; then
-    # dont use sudo or doas
-    scriptFeedback success "Root Detected"
+if [ $EUID -eq 0 ]; then
     SU_SYS=""
+else
+    if command -v sudo >> /dev/null; then
+        SU_SYS="sudo"
+    else
+        SU_SYS="doas"
+    fi
 fi
 
-# no drive prompt
-isDrivePrompt=false
-# first get list of mountable drives
-FETCHDRIVES=$(/bin/lsblk -l | grep -E \
-'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' \
-| tr -s ' ' ' ' | cut -d ' ' -f 1)
-
-# get supplied mountpoint
-if [ -v 1 ]; then
-    MOUNTPOINT=$1
-else
-    scriptFeedback error "Supply a mountpoint!"
+# check for mountpoint
+if ! [ -v 1 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " No mountpoint specified"
+    exit 1
 fi
 
 # then check if mountpoint is occupied, if not continue
-if /bin/mountpoint "$MOUNTPOINT" >> /dev/null; then
-    handleUnmount
+if mountpoint "${MOUNTPOINT}" >> /dev/null; then
+    handle_unmount
 else
-    chooseDrive
-    chooseFS
-    handleMount
+    choose_drive
+    choose_fs
+    handle_mount
 fi
