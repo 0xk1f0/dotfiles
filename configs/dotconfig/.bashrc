@@ -139,7 +139,7 @@ alias gtcl='git clone'
 alias whatislove='echo "baby don\`t hurt me, no more"'
 alias identme='echo -e "You are:\n$(curl -s a.ident.me)"'
 alias ybi2fa=\
-'ykman oath accounts list | fzf -e | \
+'ykman oath accounts list | fzf --margin=25% --border | \
 xargs -rod "\n" ykman oath accounts code | \
 cut -d ":" -f 2 | cut -d " " -f 3 | \
 wl-copy -n && echo -e "\n> $(wl-paste) <"'
