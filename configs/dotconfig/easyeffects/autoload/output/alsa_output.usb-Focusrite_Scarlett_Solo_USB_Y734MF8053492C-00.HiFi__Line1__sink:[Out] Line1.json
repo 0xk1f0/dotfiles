@@ -1,5 +1,5 @@
 {
-    "device": "alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y734MF8053492C-00.HiFi__hw_USB__sink",
+    "device": "alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y734MF8053492C-00.HiFi__Line1__sink",
     "device-description": "Scarlett Solo (3rd Gen.) Headphones / Line 1-2",
     "device-profile": "[Out] Line1",
     "preset-name": "BeyerDT770ProXLimited"
