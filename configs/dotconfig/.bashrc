@@ -62,11 +62,11 @@ extr () {
 
 # encrypt folder to archive
 gncrypt() {
-  if [ -n "$1" ]; then
+  if [ -n "${1}" ]; then
     read -esp "Enter Passphrase: " p
-    tar -czf - ${1} | gpg -c --cipher-algo AES256 --s2k-digest-algo SHA512 \
-    --s2k-count 100000 --no-symkey-cache \
-    --passphrase ${p} --batch > $(basename -s ${1}).tar.gz.gpg
+    tar -czf - "${1}" | gpg -c --cipher-algo AES256 \
+    --s2k-digest-algo SHA512 --s2k-count 100000 --no-symkey-cache \
+    --passphrase "${p}" --batch > $(basename "${1}").tar.gz.gpg
   else
     echo "Missing argument"
   fi
@@ -74,18 +74,19 @@ gncrypt() {
 
 # decrypt archive to folder
 gdcrypt() {
-  if [ -n "$1" ]; then
+  if [ -n "${1}" ]; then
     read -esp "Enter Passphrase: " p
-    gpg -d --no-symkey-cache --passphrase ${p} --batch ${1} | tar -xzf -
+    gpg -d --no-symkey-cache --passphrase "${p}" \
+    --batch "${1}" | tar -xzf -
   else
     echo "Missing argument"
   fi
 }
 
 # cut media to bounds
-ffcut() {
-  if [ -n "$1" ] && [ -n "$2" ] && [ -n "$3" ]; then
-    ffmpeg -i ${1} -ss ${2} -to ${3} -c:v copy -c:a copy "cut_${1}"
+ffmcut() {
+  if [ -n "${1}" ] && [ -n "${2}" ] && [ -n "${3}" ]; then
+    ffmpeg -i "${1}" -ss "${2}" -to "${3}" -c:v copy -c:a copy "cut_${1}"
   else
     echo "Missing arguments"
   fi
@@ -93,8 +94,8 @@ ffcut() {
 
 # trim metadata from media
 ffmtrim() {
-  if [ -n "$1" ]; then
-    ffmpeg -i ${1} -map 0 -map_metadata -1 -c copy "trim_${1}"
+  if [ -n "${1}" ]; then
+    ffmpeg -i "${1}" -map 0 -map_metadata -1 -c copy "trim_${1}"
   else
     echo "Missing argument"
   fi

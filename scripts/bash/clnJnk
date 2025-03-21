@@ -14,13 +14,6 @@ fzf_choose() {
     | fzf --multi --prompt="$prompt > ")"
 }
 
-# check cache spaces
-get_cache_space() {
-    PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-    PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-    PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-}
-
 # detect su system
 if command -v sudo >> /dev/null; then
     SU_SYS="sudo"
@@ -32,12 +25,12 @@ fi
 if [ "$EUID" -eq 0 ]; then
     SU_SYS=""
     if [ -v SUDO_USER ]; then
-        _USER=$SUDO_USER
+        SCRIPT_USER=$SUDO_USER
     else
-        _USER=$DOAS_USER
+        SCRIPT_USER=$DOAS_USER
     fi
 else
-    _USER=$USER
+    SCRIPT_USER=$USER
 fi
 
 # check if fzf is available
@@ -46,65 +39,67 @@ if ! command -v fzf >> /dev/null; then
 fi
 
 # get space occupation
-printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Checking Caches.."
 PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-
-# print all caches
-printf "\e[1m\e[93m → \e[0m%s\n" " pacman: ${PACMAN_CACHE}"
-printf "\e[1m\e[93m → \e[0m%s\n" " paru: ${PARU_CACHE}"
-printf "\e[1m\e[93m → \e[0m%s\n" " pip: ${PIP_CACHE}"
+PARU_CACHE=$(/bin/du -h "/home/${SCRIPT_USER}/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+PIP_CACHE=$(/bin/du -h "/home/${SCRIPT_USER}/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
 
 # start selection here
 OPTIONS=(
-    "pacman"
-    "paru"
-    "pip"
-    "orphans"
-    "flatpak"
     "none"
+    "unneeded"
+    "pacman → ${PACMAN_CACHE}"
+    "paru → ${PARU_CACHE}"
+    "pip → ${PIP_CACHE}"
 )
 fzf_choose "${OPTIONS[@]}" "What to clean?" CHOICES
 
+# if none in options, exit
+if [[ "${CHOICES}" == *"none"* ]]; then
+    printf "[\e[1m\e[92m✓\e[0m]%s\n" " Goodbye"
+    exit 0
+fi
+
+# start cleaning
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Cleaning.."
 for _CHOICE in ${CHOICES}; do
     _ERROR=0
-    case $_CHOICE in
+    case $(echo "${_CHOICE}" | cut -d ' ' -f 1) in
         "pacman")
             $SU_SYS pacman -Scc --noconfirm >> /dev/null \
             && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
             _ERROR=$?
-            _OLD_PACMAN_CACHE=$PACMAN_CACHE
-            PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman: ${_OLD_PACMAN_CACHE} → ${PACMAN_CACHE}"
+            _PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman: ${PACMAN_CACHE} → ${_PACMAN_CACHE}"
         ;;
         "paru")
-            rm -rf /home/$_USER/.cache/paru/clone/*;
+            rm -rf "/home/${SCRIPT_USER}/.cache/paru/clone/*";
             _ERROR=$?
-            _OLD_PARU_CACHE=$PARU_CACHE
-            PARU_CACHE=$(/bin/du -h "/home/$_USER/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " paru: ${_OLD_PARU_CACHE} → ${PARU_CACHE}"
+            _PARU_CACHE=$(/bin/du -h "/home/${SCRIPT_USER}/.cache/paru/clone/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " paru: ${PARU_CACHE} → ${_PARU_CACHE}"
         ;;
         "pip")
-            rm -rf /home/$_USER/.cache/pip/*;
+            rm -rf "/home/${SCRIPT_USER}/.cache/pip/*";
             _ERROR=$?
-            _OLD_PIP_CACHE=$PIP_CACHE
-            PIP_CACHE=$(/bin/du -h "/home/$_USER/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pip: ${_OLD_PIP_CACHE} → ${PIP_CACHE}"
+            _PIP_CACHE=$(/bin/du -h "/home/${SCRIPT_USER}/.cache/pip/" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+            printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pip: ${PIP_CACHE} → ${_PIP_CACHE}"
         ;;
-        "orphans")
+        "unneeded")
             if [ $(pacman -Qtdq | wc -l) -gt 0 ]; then
                 $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
                 _ERROR=$?
+                printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman unused → 0"
+            else
+                printf "[\e[1m\e[93m⧗\e[0m]%s\n" " no packages unused"
             fi
-        ;;
-        "flatpak")
-            flatpak remove --unused --noninteractive >> /dev/null;
-            _ERROR=$?
-        ;;
-        "none")
-            printf "[\e[1m\e[92m✓\e[0m]%s\n" " Goodbye"
-            exit 0
+            if [ $_ERROR -eq 0 ]; then
+                _RESULT=$(flatpak uninstall --unused --noninteractive);
+                _ERROR=$?
+                if [[ "${_RESULT}" == *"Nothing"* ]]; then
+                    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " no flatpaks unused"
+                else
+                    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " flatpak unused → 0"
+                fi
+            fi
         ;;
     esac
     if ! [ $_ERROR -eq 0 ]; then
