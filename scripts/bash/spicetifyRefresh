@@ -27,16 +27,16 @@ fi
 SPICETIFY_PATH=$(which spicetify)
 
 # Set correct prefs_path
-$SPICETIFY_PATH config prefs_path "/home/${_USER}/.var/app/com.spotify.Client/config/spotify/prefs"
+${SPICETIFY_PATH} config prefs_path "/home/${_USER}/.var/app/com.spotify.Client/config/spotify/prefs"
 
 # Set correct read/write permission:
-$SU_SYS chmod a+wr "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-$SU_SYS chmod a+wr -R "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps"
+${SU_SYS} chmod a+wr "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+${SU_SYS} chmod a+wr -R "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps"
 
 # Restore then apply
-$SPICETIFY_PATH backup clear
-$SPICETIFY_PATH backup
-$SPICETIFY_PATH apply
+${SPICETIFY_PATH} backup clear
+${SPICETIFY_PATH} backup
+${SPICETIFY_PATH} apply
 
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

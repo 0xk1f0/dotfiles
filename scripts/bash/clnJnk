@@ -65,8 +65,8 @@ for _CHOICE in ${CHOICES}; do
     _ERROR=0
     case $(echo "${_CHOICE}" | cut -d ' ' -f 1) in
         "pacman")
-            $SU_SYS pacman -Scc --noconfirm >> /dev/null \
-            && $SU_SYS rm -rf /var/cache/pacman/pkg/*;
+            ${SU_SYS} pacman -Scc --noconfirm >> /dev/null \
+            && ${SU_SYS} rm -rf /var/cache/pacman/pkg/*;
             _ERROR=$?
             _PACMAN_CACHE=$(/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
             printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman: ${PACMAN_CACHE} → ${_PACMAN_CACHE}"
@@ -85,7 +85,7 @@ for _CHOICE in ${CHOICES}; do
         ;;
         "unneeded")
             if [ $(pacman -Qtdq | wc -l) -gt 0 ]; then
-                $SU_SYS pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
+                ${SU_SYS} pacman -Rs --noconfirm $(pacman -Qtdq) >> /dev/null;
                 _ERROR=$?
                 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman unused → 0"
             else

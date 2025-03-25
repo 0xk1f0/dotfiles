@@ -58,7 +58,7 @@ handle_unmount() {
     "Mountpoint already occupied, unmount?" UMOUNT_CHOICE
     if [ "${UMOUNT_CHOICE}" == "yes" ]; then
         if 
-        $SU_SYS umount -l "${MOUNTPOINT}"; 
+        ${SU_SYS} umount -l "${MOUNTPOINT}"; 
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
@@ -83,7 +83,7 @@ handle_mount() {
     fzf_choose "${_OPTIONS[@]}" "Correct?" MOUNT_CHOICE
     if [ "${MOUNT_CHOICE}" == "yes" ]; then
         if
-        $SU_SYS mount -t "${FS}" "/dev/${DRIVE}" "${MOUNTPOINT}";
+        ${SU_SYS} mount -t "${FS}" "/dev/${DRIVE}" "${MOUNTPOINT}";
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0

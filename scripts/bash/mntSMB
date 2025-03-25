@@ -28,14 +28,14 @@ handle_mount() {
         fi
     done
     SHARE_COUNT=${#SHARES[@]}
-    if [ $SHARE_COUNT -gt 1 ]; then
+    if [ ${SHARE_COUNT} -gt 1 ]; then
         fzf_choose "${SHARES[@]}" "What Share to mount?" SMB_SERVER
     else
         SMB_SERVER=$SMB_SERVER_1
     fi
     if
-    $SU_SYS mount "$SMB_SERVER" -t cifs \
-    -o user,uid=1000,rw,credentials="$SMB_CREDS" "$SMB_MOUNT";
+    ${SU_SYS} mount "${SMB_SERVER}" -t cifs \
+    -o user,uid=1000,rw,credentials="${SMB_CREDS}" "${SMB_MOUNT}";
     then
         printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
         exit 0
@@ -54,7 +54,7 @@ handle_unmount() {
     fzf_choose "${_OPTIONS[@]}" "Mountpoint occupied, unmount?" UNMOUNT_CHOICE
     if [ "${UNMOUNT_CHOICE}" == "yes" ]; then
         if
-        $SU_SYS umount -l "$SMB_MOUNT";
+        ${SU_SYS} umount -l "${SMB_MOUNT}";
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0

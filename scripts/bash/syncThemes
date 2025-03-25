@@ -45,23 +45,23 @@ fi
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Folders OK"
 
 # copy themes to home and alt location
-printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_THEMES} current themes.."
 NUM_THEMES=$(ls -la "${GLOBAL_THEME_PATH}/themes/" | wc -l)
-$SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_SHARE}/themes"
-$SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_HOME}/.themes"
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_THEMES} current themes.."
+${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_SHARE}/themes"
+${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_HOME}/.themes"
 
 # copy icons to home and alt location
-printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_ICONS} current icons.."
 NUM_ICONS=$(ls -la "${GLOBAL_THEME_PATH}/icons/" | wc -l)
-$SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_SHARE}/icons"
-$SU_SYS cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
+printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_ICONS} current icons.."
+${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_SHARE}/icons"
+${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
 
 # set permissions back to user
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Fixing permissions.."
-$SU_SYS chown -R $_USER:$_USER "${USER_SHARE}/themes"
-$SU_SYS chown -R $_USER:$_USER "${USER_SHARE}/icons"
-$SU_SYS chown -R $_USER:$_USER "${USER_HOME}/.themes"
-$SU_SYS chown -R $_USER:$_USER "${USER_HOME}/.icons"
+${SU_SYS} chown -R $_USER:$_USER "${USER_SHARE}/themes"
+${SU_SYS} chown -R $_USER:$_USER "${USER_SHARE}/icons"
+${SU_SYS} chown -R $_USER:$_USER "${USER_HOME}/.themes"
+${SU_SYS} chown -R $_USER:$_USER "${USER_HOME}/.icons"
 
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0
