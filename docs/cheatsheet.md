@@ -147,7 +147,7 @@ root        UUID=[UUID]       -               no-read-workqueue,no-write-workque
 ```bash
 # all systemd things should already be installed
 # bind against platform conf and secure boot
-systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+2+3+5+6+7 /dev/[disk]
+systemd-cryptenroll --tpm2-device=auto --tpm2-pcrs=1+3+5+7 /dev/[disk]
 # check if it worked
 cryptsetup luksDump /dev/[disk]
 # edit /etc/crypttab and add
