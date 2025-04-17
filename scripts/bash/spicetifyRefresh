@@ -6,32 +6,30 @@
 # "bash strict mode"
 set -uo pipefail
 
+# run su check
+if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
+    sleep 1
+fi
+
 # check for root run and react accordingly
 if [ $EUID -eq 0 ]; then
-    SU_SYS=""
     if [ -v SUDO_USER ]; then
         _USER=$SUDO_USER
-    else
-        _USER=$DOAS_USER
     fi
 else
     _USER=$USER
-    if command -v sudo >> /dev/null; then
-        SU_SYS="sudo"
-    else
-        SU_SYS="doas"
-    fi
 fi
 
 # get full spicetify path
 SPICETIFY_PATH=$(which spicetify)
 
+# Set correct read/write permission:
+sudo chmod a+wr "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
+sudo chmod a+wr -R "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps"
+
 # Set correct prefs_path
 ${SPICETIFY_PATH} config prefs_path "/home/${_USER}/.var/app/com.spotify.Client/config/spotify/prefs"
-
-# Set correct read/write permission:
-${SU_SYS} chmod a+wr "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify"
-${SU_SYS} chmod a+wr -R "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active/files/extra/share/spotify/Apps"
 
 # Restore then apply
 ${SPICETIFY_PATH} backup clear

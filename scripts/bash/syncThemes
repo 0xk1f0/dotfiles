@@ -3,36 +3,34 @@
 # "bash strict mode"
 set -uo pipefail
 
+# run su check
+if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
+    sleep 1
+fi
+
 # check for root run and react accordingly
 if [ $EUID -eq 0 ]; then
-    SU_SYS=""
     if [ -v SUDO_USER ]; then
-        _USER=$SUDO_USER
-    else
-        _USER=$DOAS_USER
+        SCRIPT_USER=$SUDO_USER
     fi
 else
-    _USER=$USER
-    if command -v sudo >> /dev/null; then
-        SU_SYS="sudo"
-    else
-        SU_SYS="doas"
-    fi
+    SCRIPT_USER=$USER
 fi
 
 GLOBAL_THEME_PATH="/usr/share"
-USER_SHARE="/home/$_USER/.local/share"
-USER_HOME="/home/$_USER"
+USER_LOCAL_SHARE="/home/${SCRIPT_USER}/.local/share"
+USER_HOME="/home/${SCRIPT_USER}"
 
 # ensure home and alt path are available
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Checking folder availability.."
-if [ ! -d "${USER_SHARE}/themes" ]; then
-    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_SHARE}/themes.."
-    mkdir -p "${USER_SHARE}/themes"
+if [ ! -d "${USER_LOCAL_SHARE}/themes" ]; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_LOCAL_SHARE}/themes.."
+    mkdir -p "${USER_LOCAL_SHARE}/themes"
 fi
-if [ ! -d "${USER_SHARE}/icons" ]; then
-    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_SHARE}/icons.."
-    mkdir -p "${USER_SHARE}/icons"
+if [ ! -d "${USER_LOCAL_SHARE}/icons" ]; then
+    printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_LOCAL_SHARE}/icons.."
+    mkdir -p "${USER_LOCAL_SHARE}/icons"
 fi
 if [ ! -d "${USER_HOME}/.themes" ]; then
     printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Creating ${USER_HOME}/.themes.."
@@ -45,23 +43,23 @@ fi
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Folders OK"
 
 # copy themes to home and alt location
-NUM_THEMES=$(ls -la "${GLOBAL_THEME_PATH}/themes/" | wc -l)
+NUM_THEMES=$(find "${GLOBAL_THEME_PATH}/themes/" -maxdepth 1 -mindepth 1 -type d | wc -l)
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_THEMES} current themes.."
-${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_SHARE}/themes"
-${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/themes/." "${USER_HOME}/.themes"
+sudo cp -ar "${GLOBAL_THEME_PATH}/themes/." "${USER_LOCAL_SHARE}/themes"
+sudo cp -ar "${GLOBAL_THEME_PATH}/themes/." "${USER_HOME}/.themes"
 
 # copy icons to home and alt location
-NUM_ICONS=$(ls -la "${GLOBAL_THEME_PATH}/icons/" | wc -l)
+NUM_ICONS=$(find "${GLOBAL_THEME_PATH}/icons/" -maxdepth 1 -mindepth 1 -type d | wc -l)
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Copying ${NUM_ICONS} current icons.."
-${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_SHARE}/icons"
-${SU_SYS} cp -ar --no-preserve=ownership "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
+sudo cp -ar "${GLOBAL_THEME_PATH}/icons/." "${USER_LOCAL_SHARE}/icons"
+sudo cp -ar "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
 
 # set permissions back to user
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Fixing permissions.."
-${SU_SYS} chown -R $_USER:$_USER "${USER_SHARE}/themes"
-${SU_SYS} chown -R $_USER:$_USER "${USER_SHARE}/icons"
-${SU_SYS} chown -R $_USER:$_USER "${USER_HOME}/.themes"
-${SU_SYS} chown -R $_USER:$_USER "${USER_HOME}/.icons"
+sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_LOCAL_SHARE}/themes"
+sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_LOCAL_SHARE}/icons"
+sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_HOME}/.themes"
+sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_HOME}/.icons"
 
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

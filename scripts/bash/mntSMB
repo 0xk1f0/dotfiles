@@ -3,9 +3,11 @@
 # "bash strict mode"
 set -uo pipefail
 
-# settings
-SMB_CREDS="/home/${_USER}/.smbcreds"
-SMB_CFG="/home/${_USER}/.smbcfg"
+# run su check
+if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
+    sleep 1
+fi
 
 # tweaked fzf chooser
 fzf_choose() {
@@ -34,7 +36,7 @@ handle_mount() {
         SMB_SERVER=$SMB_SERVER_1
     fi
     if
-    ${SU_SYS} mount "${SMB_SERVER}" -t cifs \
+    sudo mount "${SMB_SERVER}" -t cifs \
     -o user,uid=1000,rw,credentials="${SMB_CREDS}" "${SMB_MOUNT}";
     then
         printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
@@ -54,7 +56,7 @@ handle_unmount() {
     fzf_choose "${_OPTIONS[@]}" "Mountpoint occupied, unmount?" UNMOUNT_CHOICE
     if [ "${UNMOUNT_CHOICE}" == "yes" ]; then
         if
-        ${SU_SYS} umount -l "${SMB_MOUNT}";
+        sudo umount -l "${SMB_MOUNT}";
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
@@ -69,20 +71,15 @@ handle_unmount() {
 
 # check for root run and react accordingly
 if [ $EUID -eq 0 ]; then
-    SU_SYS=""
     if [ -v SUDO_USER ]; then
-        _USER=$SUDO_USER
-    else
-        _USER=$DOAS_USER
+        SCRIPT_USER=$SUDO_USER
     fi
 else
-    _USER=$USER
-    if command -v sudo >> /dev/null; then
-        SU_SYS="sudo"
-    else
-        SU_SYS="doas"
-    fi
+    SCRIPT_USER=$USER
 fi
+
+SMB_CREDS="/home/${SCRIPT_USER}/.smbcreds"
+SMB_CFG="/home/${SCRIPT_USER}/.smbcfg"
 
 # check if config files exist read, else exit
 if [ -e "${SMB_CREDS}" ] && [ -e "${SMB_CFG}" ]; then

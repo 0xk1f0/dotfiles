@@ -3,6 +3,12 @@
 # "bash strict mode"
 set -uo pipefail
 
+# run su check
+if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
+    sleep 1
+fi
+
 # tweaked fzf chooser
 fzf_choose() {
     local choices=("$@")
@@ -58,7 +64,7 @@ handle_unmount() {
     "Mountpoint already occupied, unmount?" UMOUNT_CHOICE
     if [ "${UMOUNT_CHOICE}" == "yes" ]; then
         if 
-        ${SU_SYS} umount -l "${MOUNTPOINT}"; 
+        sudo umount -l "${MOUNTPOINT}"; 
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
@@ -83,7 +89,7 @@ handle_mount() {
     fzf_choose "${_OPTIONS[@]}" "Correct?" MOUNT_CHOICE
     if [ "${MOUNT_CHOICE}" == "yes" ]; then
         if
-        ${SU_SYS} mount -t "${FS}" "/dev/${DRIVE}" "${MOUNTPOINT}";
+        sudo mount -t "${FS}" "/dev/${DRIVE}" "${MOUNTPOINT}";
         then
             printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
             exit 0
@@ -97,21 +103,17 @@ handle_mount() {
     fi
 }
 
-# detect su system
-if [ $EUID -eq 0 ]; then
-    SU_SYS=""
-else
-    if command -v sudo >> /dev/null; then
-        SU_SYS="sudo"
-    else
-        SU_SYS="doas"
-    fi
-fi
-
 # check for mountpoint
-if ! [ -v 1 ]; then
+if [ ! -v 1 ]; then
     printf "[\e[1m\e[91m✗\e[0m]%s\n" " No mountpoint specified"
     exit 1
+else
+    if [ ! -d "${1}" ]; then
+        printf "[\e[1m\e[91m✗\e[0m]%s\n" " Mountpoint does not exist"
+        exit 1
+    else
+        MOUNTPOINT="${1}"
+    fi
 fi
 
 # then check if mountpoint is occupied, if not continue
