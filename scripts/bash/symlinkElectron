@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -18,7 +18,7 @@ fi
 while IFS= read -r line; do
     # symlink to main electron flags file
     if ! [ -f "/home/${USER}/.config/${line%-bin}-flags.conf" ]; then
-        /bin/ln -s "/home/${USER}/.config/electron-flags.conf" "/home/${USER}/.config/${line%-bin}-flags.conf"
+        /usr/bin/ln -s "/home/${USER}/.config/electron-flags.conf" "/home/${USER}/.config/${line%-bin}-flags.conf"
     fi
     printf "[\e[1m\e[92m✓\e[0m]%s\n" " ${line%-bin}-flags.conf → electron-flags.conf"
 done < <(/usr/bin/pacman -Q | /bin/grep -e 'electron[0-9][0-9]' | /bin/awk '{print $1}')

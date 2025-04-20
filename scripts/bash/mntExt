@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -22,12 +22,12 @@ fzf_choose() {
 
 # drive chooser
 choose_drive() {
-    FETCHDRIVES=$(lsblk -l | /bin/grep -E \
+    FETCHDRIVES=$(lsblk -l | /usr/bin/grep -E \
     'sd[a-zA-Z][0-9]|nvme[0-9]n[0-9]p[0-9]' \
     | tr -s ' ' ' ' | cut -d ' ' -f 1)
     local _OPTIONS=""
     for d in ${FETCHDRIVES}; do
-        mountStat=$(lsblk -l | /bin/grep "$d" | tr -s ' ' ' ' \
+        mountStat=$(lsblk -l | /usr/bin/grep "$d" | tr -s ' ' ' ' \
         | cut -d ' ' -f 7)
         if [ -z "$mountStat" ]; then
             _OPTIONS="${_OPTIONS}""${d} "
@@ -79,7 +79,7 @@ handle_unmount() {
 
 # mount drive after selections
 handle_mount() {
-    DRIVESPACE=$(lsblk -l | /bin/grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
+    DRIVESPACE=$(lsblk -l | /usr/bin/grep "$DRIVE" | tr -s ' ' ' ' | cut -d ' ' -f 4)
     printf "[\e[1m\e[93m⧗\e[0m]%s\n" \
     " Mounting '/dev/${DRIVE}' (${DRIVESPACE}) with '${FS}' to '${MOUNTPOINT}'"
     local _OPTIONS=(
@@ -102,6 +102,11 @@ handle_mount() {
         exit 0
     fi
 }
+
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
+fi
 
 # check for mountpoint
 if [ ! -v 1 ]; then

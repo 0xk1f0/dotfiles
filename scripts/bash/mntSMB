@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -69,17 +69,13 @@ handle_unmount() {
     fi
 }
 
-# check for root run and react accordingly
+# dont run as root
 if [ $EUID -eq 0 ]; then
-    if [ -v SUDO_USER ]; then
-        SCRIPT_USER=$SUDO_USER
-    fi
-else
-    SCRIPT_USER=$USER
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
-SMB_CREDS="/home/${SCRIPT_USER}/.smbcreds"
-SMB_CFG="/home/${SCRIPT_USER}/.smbcfg"
+SMB_CREDS="/home/${USER}/.smbcreds"
+SMB_CFG="/home/${USER}/.smbcfg"
 
 # check if config files exist read, else exit
 if [ -e "${SMB_CREDS}" ] && [ -e "${SMB_CFG}" ]; then

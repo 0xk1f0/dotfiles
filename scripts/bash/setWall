@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -17,7 +17,7 @@ fi
 if [ $# -eq 0 ]; then
     printf "[\e[1m\e[91m✗\e[0m]%s\n" " specify a wallpaper"
 else
-    if file "$1" | /bin/grep "image" > /dev/null; then
+    if file "$1" | /usr/bin/grep "image" > /dev/null; then
         TO_SET=$(readlink -f "${1}")
         ln -sf "${TO_SET}" "/home/${USER}/.wallpaper"
         printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"

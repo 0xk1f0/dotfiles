@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -20,13 +20,9 @@ fzf_choose() {
     | fzf --multi --prompt="$prompt > ")"
 }
 
-# check for root run and react accordingly
-if [ "$EUID" -eq 0 ]; then
-    if [ -v SUDO_USER ]; then
-        SCRIPT_USER=$SUDO_USER
-    fi
-else
-    SCRIPT_USER=$USER
+# dont run as root
+if [ $EUID -eq 0 ]; then
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
 # check if fzf is available
@@ -35,9 +31,9 @@ if ! command -v fzf >> /dev/null; then
 fi
 
 # get space occupation
-PACMAN_CACHE=$(sudo /bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-PARU_CACHE=$(sudo /bin/du -h "/home/${SCRIPT_USER}/.cache/paru" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
-PIP_CACHE=$(sudo /bin/du -h "/home/${SCRIPT_USER}/.cache/pip" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+PACMAN_CACHE=$(sudo /usr/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+PARU_CACHE=$(sudo /usr/bin/du -h "/home/${USER}/.cache/paru" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+PIP_CACHE=$(sudo /usr/bin/du -h "/home/${USER}/.cache/pip" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
 
 # start selection here
 OPTIONS=(
@@ -62,27 +58,26 @@ for _CHOICE in ${CHOICES}; do
     case $(echo "${_CHOICE}" | cut -d ' ' -f 1) in
         "pacman")
             sudo pacman -Scc --noconfirm >> /dev/null \
-            && sudo rm -rf /var/cache/pacman/pkg/*
+            && sudo /usr/bin/find /var/cache/pacman/pkg/ -mindepth 1 -delete
             _ERROR=$?
             if [ $_ERROR -eq 0 ]; then
-                _PACMAN_CACHE=$(sudo /bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+                _PACMAN_CACHE=$(sudo /usr/bin/du -h /var/cache/pacman/pkg/ | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
                 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman: ${PACMAN_CACHE} → ${_PACMAN_CACHE}"
             fi
         ;;
         "paru")
-            echo "/home/${SCRIPT_USER}/.cache/paru/*"
-            sudo rm -rf "/home/${SCRIPT_USER}/.cache/paru/*"
+            sudo /usr/bin/find "/home/${USER}/.cache/paru/" -mindepth 1 -delete
             _ERROR=$?
             if [ $_ERROR -eq 0 ]; then
-                _PARU_CACHE=$(sudo /bin/du -h "/home/${SCRIPT_USER}/.cache/paru" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+                _PARU_CACHE=$(sudo /usr/bin/du -h "/home/${USER}/.cache/paru" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
                 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " paru: ${PARU_CACHE} → ${_PARU_CACHE}"
             fi
         ;;
         "pip")
-            sudo rm -rf "/home/${SCRIPT_USER}/.cache/pip/*"
+            sudo /usr/bin/find "/home/${USER}/.cache/pip/" -mindepth 1 -delete
             _ERROR=$?
             if [ $_ERROR -eq 0 ]; then
-                _PIP_CACHE=$(sudo /bin/du -h "/home/${SCRIPT_USER}/.cache/pip" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
+                _PIP_CACHE=$(sudo /usr/bin/du -h "/home/${USER}/.cache/pip" | cut -d '/' -f 1 | tail -n 1 | tr -d '\t' 2> /dev/null)
                 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pip: ${PIP_CACHE} → ${_PIP_CACHE}"
             fi
         ;;

@@ -4,23 +4,19 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
 
-# check for root run and react accordingly
+# dont run as root
 if [ $EUID -eq 0 ]; then
-    if [ -v SUDO_USER ]; then
-        SCRIPT_USER=$SUDO_USER
-    fi
-else
-    SCRIPT_USER=$USER
+    printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
 fi
 
 GLOBAL_THEME_PATH="/usr/share"
-USER_LOCAL_SHARE="/home/${SCRIPT_USER}/.local/share"
-USER_HOME="/home/${SCRIPT_USER}"
+USER_LOCAL_SHARE="/home/${USER}/.local/share"
+USER_HOME="/home/${USER}"
 
 # ensure home and alt path are available
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Checking folder availability.."
@@ -56,10 +52,10 @@ sudo cp -ar "${GLOBAL_THEME_PATH}/icons/." "${USER_HOME}/.icons"
 
 # set permissions back to user
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Fixing permissions.."
-sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_LOCAL_SHARE}/themes"
-sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_LOCAL_SHARE}/icons"
-sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_HOME}/.themes"
-sudo chown -R "${SCRIPT_USER}":"${SCRIPT_USER}" "${USER_HOME}/.icons"
+sudo chown -R "${USER}":"${USER}" "${USER_LOCAL_SHARE}/themes"
+sudo chown -R "${USER}":"${USER}" "${USER_LOCAL_SHARE}/icons"
+sudo chown -R "${USER}":"${USER}" "${USER_HOME}/.themes"
+sudo chown -R "${USER}":"${USER}" "${USER_HOME}/.icons"
 
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0

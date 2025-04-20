@@ -7,7 +7,7 @@
 set -uo pipefail
 
 # run su check
-if [ "$(/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
     printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
     sleep 1
 fi
@@ -19,19 +19,19 @@ fi
 
 # unregister existing Wine file associations
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Unregistering existing Associations.."
-/bin/rm -f ~/.local/share/applications/wine-extension*.desktop
-/bin/rm -f ~/.local/share/icons/hicolor/*/*/application-x-wine-extension*
+rm -f ~/.local/share/applications/wine-extension*.desktop
+rm -f ~/.local/share/icons/hicolor/*/*/application-x-wine-extension*
 
 # remove cache
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Removing Cache.."
-/bin/rm -f ~/.local/share/applications/mimeinfo.cache
-/bin/rm -f ~/.local/share/mime/packages/x-wine*
-/bin/rm -f ~/.local/share/mime/application/x-wine-extension*
+rm -f ~/.local/share/applications/mimeinfo.cache
+rm -f ~/.local/share/mime/packages/x-wine*
+rm -f ~/.local/share/mime/application/x-wine-extension*
 
 # update cache
 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " Updating Cache.."
-/usr/bin/update-desktop-database ~/.local/share/applications
-/usr/bin/update-mime-database ~/.local/share/mime/
+update-desktop-database ~/.local/share/applications
+update-mime-database ~/.local/share/mime/
 
 # we're done
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
