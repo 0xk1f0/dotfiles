@@ -3,15 +3,16 @@
 # "bash strict mode"
 set -uo pipefail
 
-# run su check
-if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
-    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
-    sleep 1
-fi
-
 # dont run as root
 if [ $EUID -eq 0 ]; then
     printf "[\e[1m\e[91m✗\e[0m]%s\n" " Run as user"
+    exit 1
+fi
+
+# run su check
+if [ "$(/usr/bin/grep -c "sudo" "$(which "${0}")")" -gt 1 ]; then
+    printf "[\e[1m\e[91m!\e[0m]%s\n" " Contains root commands"
+    sleep 0.5
 fi
 
 # execute a command for each electron version
