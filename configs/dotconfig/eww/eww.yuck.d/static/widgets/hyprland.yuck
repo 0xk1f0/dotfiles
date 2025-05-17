@@ -28,7 +28,7 @@
                         (label 
                             :xalign 0.5
                             :yalign 0.5
-                            :text "${workspace.id == HYPRLAND_CURRENT ? "▼" : "▲"}"
+                            :text "${workspace.id == HYPRLAND_CURRENT ? "⬣" : "⬡"}"
                             :visible "${workspace.windows > 0 || workspace.id == HYPRLAND_CURRENT ? true : false}"
                         )
                     )

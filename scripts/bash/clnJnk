@@ -88,8 +88,8 @@ for _CHOICE in ${CHOICES}; do
             fi
         ;;
         "unneeded")
-            if [ "$(sudo pacman -Qtdq | wc -l)" -gt 0 ]; then
-                sudo pacman -Rs --noconfirm "$(pacman -Qtdq)" >> /dev/null
+            if [ "$(pacman -Qtdq | wc -l)" -gt 0 ]; then
+                sudo pacman -Rs $(pacman -Qtdq) --noconfirm >> /dev/null
                 _ERROR=$?
                 printf "[\e[1m\e[93m⧗\e[0m]%s\n" " pacman unused → 0"
             else

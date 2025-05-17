@@ -26,12 +26,12 @@
         (label 
             :xalign 0
             :class "openrazer-mouse-icon"
-            :text ""
+            :text "${OPENRAZER_MOUSE_BAT_CHARGING == 1 ? "" : ""}"
         )
         (label 
             :xalign 1
             :class "openrazer-mouse-text"
-            :text "${OPENRAZER_MOUSE_BAT_LEVEL}${OPENRAZER_MOUSE_BAT_CHARGING == 1 ? "" : "%"}"
+            :text "${OPENRAZER_MOUSE_BAT_LEVEL}%"
         )
    )
 )
