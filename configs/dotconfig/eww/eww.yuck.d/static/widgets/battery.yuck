@@ -24,8 +24,8 @@
         :orientation "h"
         (label 
             :xalign 0
-            :class "${SYS_BAT_PLUGGED == 1 ? 'battery-icon-charging' : 'battery-icon-normal'}"
-            :text "${SYS_BAT_PLUGGED == 1 ? '' : ''}"
+            :class "battery-icon"
+            :text "${SYS_BAT_PLUGGED == 1 ? '' : ''}"
         )
         (label 
             :xalign 1
