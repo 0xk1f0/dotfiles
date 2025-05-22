@@ -28,10 +28,5 @@ sudo chmod a+wr -R "/var/lib/flatpak/app/com.spotify.Client/x86_64/stable/active
 # Set correct prefs_path
 ${SPICETIFY_PATH} config prefs_path "/home/${USER}/.var/app/com.spotify.Client/config/spotify/prefs"
 
-# Restore then apply
-${SPICETIFY_PATH} backup clear
-${SPICETIFY_PATH} backup
-${SPICETIFY_PATH} apply
-
 printf "[\e[1m\e[92m✓\e[0m]%s\n" " Done"
 exit 0
