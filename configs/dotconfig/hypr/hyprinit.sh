@@ -26,4 +26,4 @@ hypridle &
 
 # wallpaper
 pidof rwpspread && killall -s 15 -q rwpspread
-rwpspread -b hyprpaper -l hyprlock --monitors DP-1:27 DP-2:24 --experimental-ppi --bezel 100 -wpdi "/home/$USER/.wallpaper" &
+rwpspread -b hyprpaper -l hyprlock --monitors DP-1:27 DP-2:27 --experimental-ppi --bezel 80 -wpdi "/home/$USER/.wallpaper" &
