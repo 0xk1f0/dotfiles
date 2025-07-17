@@ -49,12 +49,12 @@
         (button 
             :class "bios-reboot"
             :onclick "systemctl reboot --firmware-setup"
-            ""
+            ""
         )
         (button 
             :class "lock"
             :onclick "eww close powermenu powermenu-blur \
-            && /home/$USER/.config/scripts/wayland/swaylock.sh"
+            && loginctl lock-session"
             ""
         )
         (button 
