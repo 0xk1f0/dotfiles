@@ -23,17 +23,18 @@ fi
 # config file paths
 ROFI_CONF_FILE="/home/${USER}/.config/rofi/config.rasi.d/user.rasi"
 HYPRLAND_CONF_FILE="/home/${USER}/.config/hypr/hyprland.conf.d/user.conf"
+HYPRLOCK_CONF_FILE="/home/${USER}/.config/hypr/hyprlock.conf.d/user.conf"
 DUNST_CONF_FILE="/home/${USER}/.config/dunst/dunstrc.d/user.conf"
 EWW_CONF_FILE="/home/${USER}/.config/eww/eww.scss.d/user.scss"
 KITTY_CONF_FILE="/home/${USER}/.config/kitty/kitty.conf.d/user.conf"
 
 # get colors
 COLOR_SCHEME=$(cat "/home/${USER}/.cache/rwpspread/rwps_colors.json")
-RWP_FG=$(echo ${COLOR_SCHEME} | jq '.material.dark.onbackground' | tr -d '"#')
-RWP_BG=$(echo ${COLOR_SCHEME} | jq '.material.dark.background' | tr -d '"#')
-RWP_ACT=$(echo ${COLOR_SCHEME} | jq '.material.dark.primary' | tr -d '"#')
-RWP_NRM=$(echo ${COLOR_SCHEME} | jq '.material.dark.inverseprimary' | tr -d '"#')
-RWP_BRD=$(echo ${COLOR_SCHEME} | jq '.material.dark.outline' | tr -d '"#')
+RWP_FG=$(echo "${COLOR_SCHEME}" | jq '.material.dark.onbackground' | tr -d '"#')
+RWP_BG=$(echo "${COLOR_SCHEME}" | jq '.material.dark.background' | tr -d '"#')
+RWP_ACT=$(echo "${COLOR_SCHEME}" | jq '.material.dark.primary' | tr -d '"#')
+RWP_NRM=$(echo "${COLOR_SCHEME}" | jq '.material.dark.inverseprimary' | tr -d '"#')
+RWP_BRD=$(echo "${COLOR_SCHEME}" | jq '.material.dark.outline' | tr -d '"#')
 
 # rofi
 CNF_FILE="${ROFI_CONF_FILE}"
@@ -56,19 +57,37 @@ sed -i -r \
 # hyprland
 CNF_FILE="${HYPRLAND_CONF_FILE}"
 sed -i -r \
-'s/^\$FGD.*/$FGD=0xFF'"$RWP_FG"'/' \
+'s/^\$COLOR_FOREGROUND.*/$COLOR_FOREGROUND=0xFF'"$RWP_FG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$BGD.*/$BGD=0xFF'"$RWP_BG"'/' \
+'s/^\$COLOR_BACKGROUND.*/$COLOR_BACKGROUND=0xFF'"$RWP_BG"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$NRM.*/$NRM=0xFF'"$RWP_NRM"'/' \
+'s/^\$COLOR_NORMAL.*/$COLOR_NORMAL=0xFF'"$RWP_NRM"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$ACT.*/$ACT=0xFF'"$RWP_ACT"'/' \
+'s/^\$COLOR_ACTIVE.*/$COLOR_ACTIVE=0xFF'"$RWP_ACT"'/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$BRD.*/$BRD=0xFF'"$RWP_BRD"'/' \
+'s/^\$COLOR_BORDER.*/$COLOR_BORDER=0xFF'"$RWP_BRD"'/' \
+"$CNF_FILE"
+
+# hyprlock
+CNF_FILE="${HYPRLOCK_CONF_FILE}"
+sed -i -r \
+'s/^\$COLOR_FOREGROUND.*/$COLOR_FOREGROUND=0xFF'"$RWP_FG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$COLOR_BACKGROUND.*/$COLOR_BACKGROUND=0xFF'"$RWP_BG"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$COLOR_NORMAL.*/$COLOR_NORMAL=0xFF'"$RWP_NRM"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$COLOR_ACTIVE.*/$COLOR_ACTIVE=0xFF'"$RWP_ACT"'/' \
+"$CNF_FILE"
+sed -i -r \
+'s/^\$COLOR_BORDER.*/$COLOR_BORDER=0xFF'"$RWP_BRD"'/' \
 "$CNF_FILE"
 
 # dunst
