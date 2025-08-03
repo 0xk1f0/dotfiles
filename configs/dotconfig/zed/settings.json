@@ -20,6 +20,7 @@
             "milliseconds": 1000
         }
     },
+    "disable_ai": true,
     "format_on_save": "off",
     "use_autoclose": true,
     "hard_tabs": false,
@@ -53,9 +54,14 @@
     },
     "telemetry": {
         "diagnostics": false,
-        "metrics": true
+        "metrics": false
     },
     "journal": {
         "hour_format": "hour24"
+    },
+    "languages": {
+        "YAML": {
+            "tab_size": 2
+        }
     }
 }
