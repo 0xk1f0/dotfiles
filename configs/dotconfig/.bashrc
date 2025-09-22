@@ -114,8 +114,6 @@ alias grep='rg'
 alias df='df -h'
 alias nano='helix'
 alias top='htop'
-alias sudo='sudo-rs'
-alias su='su-rs'
 alias amd-smi="amdgpu_top --smi"
 
 # update aliases
