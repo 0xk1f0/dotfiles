@@ -16,6 +16,7 @@ export MANPAGER="less"
 export ANDROID_HOME="/home/$USER/.android/sdk"
 export ANDROID_SDK_ROOT="$ANDROID_HOME"
 export ANDROID_SDK_HOME="$ANDROID_HOME"
+export GOROOT="$HOME/.goup/current"
 
 # path exports
 export PATH="$PATH:$(ls -d $ANDROID_HOME/build-tools/*/ | sort -V | tail -n 1)"
@@ -23,6 +24,8 @@ export PATH="$PATH:$ANDROID_HOME/cmdline-tools/latest/bin"
 export PATH="$PATH:$ANDROID_HOME/platform-tools"
 export PATH="$PATH:/home/$USER/.local/bin"
 export PATH="$PATH:/home/$USER/.cargo/bin"
+export PATH="$PATH:$HOME/.goup/bin"
+export PATH="$PATH:$HOME/.goup/current/bin"
 
 # if not running interactively, don't do anything
 [[ $- != *i* ]] && return

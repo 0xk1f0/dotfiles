@@ -11,14 +11,14 @@ fi
 # match options
 case $1 in
     level)
-        /bin/polychromatic-cli -k \
-        | /bin/grep 'Battery' \
-        | /bin/cut -d 'y' -f 2 \
-        | /bin/cut -d '%' -f 1
+        /usr/bin/razer-cli -l \
+        | /bin/grep 'charge' \
+        | /bin/cut -d ':' -f 2 \
+        | /bin/tr -d ' '
         ;;
     charging)
-        if $(/bin/polychromatic-cli -k \
-        | /bin/grep 'charging' > /dev/null); then
+        if $(/usr/bin/razer-cli -l \
+        | /bin/grep 'charging: True' > /dev/null); then
             echo 1
         else
             echo 0
