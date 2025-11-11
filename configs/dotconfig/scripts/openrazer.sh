@@ -4,7 +4,7 @@
 set -uo pipefail
 
 # check if polychromatic is available
-if ! command -v polychromatic-cli >> /dev/null; then
+if ! command -v razer-cli >> /dev/null; then
     exit 1
 fi
 
