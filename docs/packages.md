@@ -35,6 +35,7 @@ net-tools
 wget
 git
 helix
+kmscon
 
 ---
 

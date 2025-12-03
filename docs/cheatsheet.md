@@ -359,3 +359,15 @@ ln -s /tmp/ ~/.wine/drive_c/windows/temp
 rm /usr/bin/pinentry
 ln -s /usr/bin/pinentry-gnome3 /usr/bin/pinentry
 ```
+
+---
+
+## Replace old fbdev VT with kmscon VT
+
+```bash
+# replace tty 1
+systemctl disable getty@tty1.service
+systemctl enable kmsconvt@tty1.service
+# replace globally
+ln -s '/usr/lib/systemd/system/kmsconvt@.service' '/etc/systemd/system/autovt@.service'
+```
