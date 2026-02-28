@@ -22,4 +22,4 @@ export GDK_BACKEND="wayland,x11,*"
 export MOZ_ENABLE_WAYLAND=1
 
 echo "" > .wayinit.log
-exec Hyprland 1> /dev/null 2> .wayinit.log
+exec start-hyprland 1> /dev/null 2> .wayinit.log

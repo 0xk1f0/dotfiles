@@ -34,7 +34,6 @@ DOTFILES_LIST=(
     "${HOME_DOTFILES_EXT}/zathura"
     "${HOME_DOTFILES_EXT}/mpv"
     "${HOME_DOTFILES_EXT}/paru"
-    "${HOME_DOTFILES_EXT}/easyeffects"
     "${HOME_DOTFILES_EXT}/starship.toml"
     "${HOME_DOTFILES_EXT}/electron-flags.conf"
     "${HOME_DOTFILES_EXT}/code-flags.conf"
