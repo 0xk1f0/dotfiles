@@ -26,4 +26,4 @@ hypridle &
 
 # wallpaper
 pidof rwpspread && killall -s 15 -q rwpspread
-rwpspread -b swaybg -l hyprlock --bezel 80 -wpdi "/home/$USER/.wallpaper" &
+rwpspread -b hyprpaper -l hyprlock --bezel 80 -wpdi "/home/$USER/.wallpaper" &
