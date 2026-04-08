@@ -6,14 +6,20 @@
 //
 
 .systray-widget {
-    border-radius: 0px;
     font-family: "system-ui";
     font-weight: bold;
     color: $fg;
     padding: 0 4px;
 
     :nth-child(2) {
-        background-color: rgba($bg, 0.6);
-        padding: 2px;
+        background-color: rgba($bg, 0.8);
+        padding: 5px;
+        border-radius: 5px;
+    }
+    :hover {
+        color: rgba($act, 0.8);
+    }
+    :disabled {
+        color: rgba($act, 0.4);
     }
 }

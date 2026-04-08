@@ -15,6 +15,6 @@
         :icon-size 18
         :prepend-new true
         :space-evenly true
-        :spacing 4
+        :spacing 8
    )
 )
