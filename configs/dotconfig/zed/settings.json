@@ -5,41 +5,96 @@
 // /_/|_/_/_/  \____/      /___/\___/\__,_/
 
 {
-    "theme": {
-        "mode": "dark",
-        "light": "Catppuccin Mocha",
-        "dark": "Catppuccin Mocha"
+    "focus_follows_mouse": {
+        "enabled": false
     },
-    "icon_theme": "Catppuccin Mocha",
-    "features": {
-        "edit_prediction_provider": "none"
+    "bottom_dock_layout": "full",
+    "preview_tabs": {
+        "enable_preview_from_project_panel": false,
+        "enabled": false
     },
+    "tabs": {
+        "show_close_button": "hover"
+    },
+    "tab_bar": {
+        "show_tab_bar_buttons": false,
+        "show_nav_history_buttons": false,
+        "show": true
+    },
+    "title_bar": {
+        "show_menus": false,
+        "show_user_picture": false,
+        "show_user_menu": true,
+        "show_sign_in": false,
+        "show_branch_name": false,
+        "show_branch_status_icon": false
+    },
+    "git": {
+        "disable_git": true
+    },
+    "proxy": "",
+    "auto_update": false,
+    "session": {
+        "trust_all_worktrees": true
+    },
+    "edit_predictions": {
+        "provider": "zed"
+    },
+    "cli_default_open_behavior": "existing_window",
+    "project_panel": {
+        "hide_root": true,
+        "indent_guides": {
+            "show": "always"
+        },
+        "git_status_indicator": false,
+        "bold_folder_labels": true,
+        "indent_size": 15.0,
+        "dock": "left"
+    },
+    "outline_panel": {
+        "dock": "left"
+    },
+    "collaboration_panel": {
+        "dock": "left"
+    },
+    "agent": {
+        "dock": "right",
+        "favorite_models": [],
+        "model_parameters": []
+    },
+    "git_panel": {
+        "dock": "left"
+    },
+    "theme": "GitHub Dark",
+    "icon_theme": "Colored Zed Icons Theme Dark",
     "base_keymap": "VSCode",
     "autosave": {
         "after_delay": {
             "milliseconds": 1000
         }
     },
-    "disable_ai": true,
+    "disable_ai": false,
     "format_on_save": "off",
     "use_autoclose": true,
     "hard_tabs": false,
     "tab_size": 4,
     "buffer_font_size": 17.0,
-    "buffer_font_weight": 400,
+    "buffer_font_weight": 350.0,
     "buffer_font_family": "Monaspace Neon",
     "buffer_font_features": {
         "liga": true,
         "calt": true
     },
     "ui_font_size": 17.0,
-    "ui_font_family": "Open Sans",
-    "ui_font_weight": 300,
+    "ui_font_family": "Google Sans Flex",
+    "ui_font_weight": 350.0,
     "ui_font_features": {
         "liga": true,
         "calt": true
     },
     "terminal": {
+        "show_count_badge": false,
+        "font_weight": 350.0,
         "font_family": "Monaspace Neon",
         "font_size": 17.0,
         "font_features": {
@@ -60,6 +115,9 @@
         "hour_format": "hour24"
     },
     "languages": {
+        "Kotlin": {
+            "enable_language_server": false
+        },
         "YAML": {
             "tab_size": 2
         }
