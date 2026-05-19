@@ -72,10 +72,11 @@ if fzf_choose "Include dotconfigs?"; then
     --exclude '*.cbor' \
     --exclude 'cheatsheets' \
     --exclude 'bookmarks' \
-    --exclude 'user.conf' \
+    --exclude 'user.lua' \
     --exclude 'user.yuck' \
     --exclude 'user.scss' \
     --exclude 'user.rasi' \
+    --exclude 'user.conf' \
     "${DOTFILES_LIST[@]}" "${DOTFILES_EXT}"/
 fi
 
