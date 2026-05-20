@@ -22,7 +22,7 @@ fi
 
 # config file paths
 ROFI_CONF_FILE="/home/${USER}/.config/rofi/config.rasi.d/user.rasi"
-HYPRLAND_CONF_FILE="/home/${USER}/.config/hypr/hyprland.conf.d/user.conf"
+HYPRLAND_CONF_FILE="/home/${USER}/.config/hypr/lua/user.lua"
 HYPRLOCK_CONF_FILE="/home/${USER}/.config/hypr/hyprlock.conf.d/user.conf"
 DUNST_CONF_FILE="/home/${USER}/.config/dunst/dunstrc.d/user.conf"
 EWW_CONF_FILE="/home/${USER}/.config/eww/eww.scss.d/user.scss"
@@ -57,19 +57,19 @@ sed -i -r \
 # hyprland
 CNF_FILE="${HYPRLAND_CONF_FILE}"
 sed -i -r \
-'s/^\$COLOR_FOREGROUND.*/$COLOR_FOREGROUND=0xFF'"$RWP_FG"'/' \
+'s/^\local COLOR_FOREGROUND.*/local COLOR_FOREGROUND = "0xFF'"$RWP_FG"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$COLOR_BACKGROUND.*/$COLOR_BACKGROUND=0xFF'"$RWP_BG"'/' \
+'s/^\local COLOR_BACKGROUND.*/local COLOR_BACKGROUND = "0xFF'"$RWP_BG"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$COLOR_NORMAL.*/$COLOR_NORMAL=0xFF'"$RWP_NRM"'/' \
+'s/^\local COLOR_NORMAL.*/local COLOR_NORMAL = "0xFF'"$RWP_NRM"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$COLOR_ACTIVE.*/$COLOR_ACTIVE=0xFF'"$RWP_ACT"'/' \
+'s/^\local COLOR_ACTIVE.*/local COLOR_ACTIVE = "0xFF'"$RWP_ACT"'"/' \
 "$CNF_FILE"
 sed -i -r \
-'s/^\$COLOR_BORDER.*/$COLOR_BORDER=0xFF'"$RWP_BRD"'/' \
+'s/^\local COLOR_BORDER.*/local COLOR_BORDER = "0xFF'"$RWP_BRD"'"/' \
 "$CNF_FILE"
 
 # hyprlock
