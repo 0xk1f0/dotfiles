@@ -17,6 +17,7 @@ local SCRIPTS         = "/home/" .. USER .. "/.config/scripts"
 
 -- IMPORTS
 
+local funcs = require("lua.functions")
 require("lua.user")
 
 -- MAIN
@@ -184,7 +185,7 @@ hl.bind(SUPERSHIFT .. " + R", hl.dsp.exec_cmd("hyprctl reload"))
 hl.bind(SUPERSHIFT .. " + F", hl.dsp.window.float({ action = "toggle" }))
 hl.bind(SUPERSHIFT .. " + D", hl.dsp.layout("togglesplit"))
 hl.bind(SUPERCTRL .. " + F", hl.dsp.window.fullscreen())
-hl.bind(SUPERCTRL .. " + S", hl.dsp.window.float({ action = "toggle" }))
+hl.bind(SUPERCTRL .. " + S", funcs.toggle_workspace_floating)
 
 hl.bind(SUPER .. " + left", hl.dsp.focus({ direction = "left" }))
 hl.bind(SUPER .. " + right", hl.dsp.focus({ direction = "right" }))

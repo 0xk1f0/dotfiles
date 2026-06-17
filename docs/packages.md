@@ -125,7 +125,6 @@ caja-share
 caja-sendto
 caja-open-terminal
 engrampa
-easyeffects
 zathura
 zathura-pdf-poppler
 ristretto
@@ -137,6 +136,7 @@ nwg-look
 qt5ct
 qt6ct
 librewolf
+noise-suppression-for-voice
 
 ---
 

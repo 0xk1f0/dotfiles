@@ -30,7 +30,9 @@
         "show_branch_status_icon": false
     },
     "git": {
-        "disable_git": true
+        "enable_status": true,
+        "enable_diff": true,
+        "disable_git": false
     },
     "proxy": "",
     "auto_update": false,
